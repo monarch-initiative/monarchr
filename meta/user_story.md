@@ -2,7 +2,7 @@
 
 R users will appreciate a `monarchr` package as a convenient and usable data source, abstracting away ontology details as much as possible.
 
-We envision the user building small, in-memory knowledge graphs (minikgs?), possibly of a simpler structure than the base knowledge graph. To facilitate working with them we'll allow users to select subsets of nodes (and edges?) to perform operations on. 
+We envision the user building small, in-memory knowledge graphs (minikgs?), likely simpler than the underlying knowledge graph with custom node and edge properties. To facilitate working with them we'll allow users to select subsets of nodes (and edges?) to perform operations on. 
 
 A user might for example start with a minikg with one node and no edges as a result from a call like below (`c("disease")` in R is more or less equivalent to `["disease"]` in Python, ie we can search multiple categories).
 
