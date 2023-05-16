@@ -68,6 +68,7 @@ Obviously, users will want to create cool plots of their minikgs, and there are 
 
 We should probably start with a simple data model; we can always add features later so long as we don't paint ourselves in any corners. This is shown in a nodes/edges tabular version, though R can easily convert between this and igraph-based internal structures:
 
+```
 nodes columns:
 	id: primary identifier, e.g. MONDO:0138501
 	taxon: e.g. "Human"
@@ -91,7 +92,7 @@ edges columns:
 	                                  "url": "https://pubmed...",
 	                                  "evidence_type": "guesswork"}]
   selected: boolean
-
+```
 	
 In the future we may want to add additional complex columns for other less commonly used metadata or data that varies depending on the node or edge type.
 
