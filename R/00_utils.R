@@ -18,8 +18,8 @@
 #' null_to_na(NULL, as.integer) # returns an integer NA
 #' null_to_na("Not null") # returns "Not null"
 null_to_na <- function(x, na_type_fun = as.character) {
-	if(is.null(x)) { return(na_type_fun(NA)) }
-	else { return(x) }
+    if(is.null(x)) { return(na_type_fun(NA)) }
+    else { return(x) }
 }
 
 
@@ -49,85 +49,84 @@ null_to_na <- function(x, na_type_fun = as.character) {
 #' get_association_all("biolink:CorrelatedGeneToDiseaseAssociation", "HGNC:1884", 5, 1)
 #'
 get_association_all <- function(category, entity, limit, offset) {
-	# TODO: remove offset and handle pagination here
+    # TODO: remove offset and handle pagination here
 
 
-	api_url <- paste0(getOption("monarchr.base_api_url"), "/association/all")
+    api_url <- paste0(getOption("monarchr.base_api_url"), "/association/all")
 
-	params <- list(
-		"category" = category,
-		"entity" = entity,
-		"limit" = limit,
-		"offset" = offset
-	)
+    params <- list(
+        "category" = category,
+        "entity" = entity,
+        "limit" = limit,
+        "offset" = offset
+    )
 
-	response <- httr::GET(api_url, query = params)
-	if(response$status_code != 200) {
-		stop(paste0("Status code not 200, stopping."))
-	}
+    response <- memoized_get(api_url, query = params)
+    if(response$status_code != 200) {
+        stop(paste0("Status code not 200, stopping."))
+    }
 
-	response_content <- httr::content(response, "parsed")
-	if(length(response_content$items) < 1) {
-		stop(paste0("Entity or category unknown, stopping"))
-	}
+    response_content <- httr::content(response, "parsed")
+    if(length(response_content$items) < 1) {
+        stop(paste0("Entity or category unknown, stopping"))
+    }
 
-	edges <- lapply(response_content$items, function(item) {
-			subject <- item$subject
-			subject_categories <- item$subject_category
-			subject_label <- null_to_na(item$subject_label)
+    edges <- lapply(response_content$items, function(item) {
+            subject <- item$subject
 
-			predicate <- item$predicate
-			predicate_categories <- item$category
-			if(!is.null(item$negated)) {
-				# TODO: this is guess work, need to know what the possible values are here (NULL is one for sure)
-				is_negated <- as.logical(item$negated)
-			} else {
-				is_negated <- FALSE
-			}
+            predicate <- item$predicate
+            predicate_categories <- item$category
+            if(!is.null(item$negated)) {
+                # TODO: this is guess work, need to know what the possible values are here (NULL is one for sure)
+                is_negated <- as.logical(item$negated)
+            } else {
+                is_negated <- FALSE
+            }
 
-			object <- item$object
-			object_categories <- item$object_category
-			object_label <- null_to_na(item$object_label)
+            object <- item$object
+            object_categories <- item$object_category
+            object_label <- null_to_na(item$object_label)
 
-			publications <- item$publications
-			frequency_qualifier <- null_to_na(item$frequency_qualifier)
-			onset_qualifier <- null_to_na(item$onset_qualifier)
-			sex_qualifier <- null_to_na(item$sex_qualifier)
-			# what are these?
-			# .. ..$ source                     : NULL
-			# .. ..$ stage_qualifier            : NULL
-			# .. ..$ pathway                    : NULL
-			# .. ..$ relation                   : NULL
-			df <- tibble::tibble(subject = subject,
-													 object = object,
-												 	 predicate = predicate,
-													 predicate_categories = predicate_categories,
-													 frequency_qualifier = frequency_qualifier,
-													 onset_qualifier = onset_qualifier,
-													 sex_qualifier = sex_qualifier)
+            publications <- item$publications
+            frequency_qualifier <- null_to_na(item$frequency_qualifier)
+            onset_qualifier <- null_to_na(item$onset_qualifier)
+            sex_qualifier <- null_to_na(item$sex_qualifier)
+            # what are these?
+            # .. ..$ source                     : NULL
+            # .. ..$ stage_qualifier            : NULL
+            # .. ..$ pathway                    : NULL
+            # .. ..$ relation                   : NULL
+            df <- tibble::tibble(subject = subject,
+                                object = object,
+                                predicate = predicate,
+                                is_negated = is_negated,
+                                predicate_categories = predicate_categories,
+                                frequency_qualifier = frequency_qualifier,
+                                onset_qualifier = onset_qualifier,
+                                sex_qualifier = sex_qualifier)
 
-			return(df)
-		})
+            return(df)
+        })
 
-	edges <- do.call(rbind, edges)
+    edges <- do.call(rbind, edges)
 
-	edges$from <- edges$subject
-	edges$to <- edges$object
+    edges$from <- edges$subject
+    edges$to <- edges$object
 
-	entities <- unique(c(edges$subject, edges$object))
-	pb <- progress::progress_bar$new(total = length(entities))
-	message(paste0("Getting information from Monarch on ", length(entities), " entities."))
-	nodes <- lapply(entities, function(entity) {
-		  pb$tick()
-			get_entity(entity)
-		})
-	nodes <- do.call(rbind, nodes)
+    entities <- unique(c(edges$subject, edges$object))
+    pb <- progress::progress_bar$new(total = length(entities))
+    message(paste0("Getting information from Monarch on ", length(entities), " entities."))
+    nodes <- lapply(entities, function(entity) {
+          pb$tick()
+            get_entity(entity)
+        })
+    nodes <- do.call(rbind, nodes)
 
-	graph <- tidygraph::as_tbl_graph(edges, directed = TRUE)
-	graph <- dplyr::left_join(tidygraph::activate(graph, nodes), nodes, by = c("name" = "id"))
-	graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
+    graph <- tidygraph::as_tbl_graph(edges, directed = TRUE)
+    graph <- dplyr::left_join(tidygraph::activate(graph, nodes), nodes, by = c("name" = "id"))
+    graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
 
-	return(as.monarch_kg(graph))
+    return(as.monarch_kg(graph))
 }
 
 
@@ -149,44 +148,44 @@ get_association_all <- function(category, entity, limit, offset) {
 #' get_entity() # returns an empty data tibble
 #' get_entity("sdfsdf") # returns and empty tibble and produces a warning
 get_entity <- function(entity = NULL) {
-	dummy_df <- tibble::tibble(
-		id = character(),
-		categories = character(),
-		label = character(),
-		description = character(),
-		symbol = character(),
-		synonyms = list(),
-		taxon = character(),
-		inheritance_id = character(),
-		inheritance_name = character()
-	)
+    dummy_df <- tibble::tibble(
+        id = character(),
+        categories = list(),
+        label = character(),
+        description = character(),
+        symbol = character(),
+        synonyms = list(),
+        taxon = character(),
+        inheritance_id = character(),
+        inheritance_name = character()
+    )
 
-	if(is.null(entity)) { return(dummy_df) }
+    if(is.null(entity)) { return(dummy_df) }
 
-	api_url <- paste0(getOption("monarchr.base_api_url"), "/entity/", entity)
+    api_url <- paste0(getOption("monarchr.base_api_url"), "/entity/", entity)
 
-	#print(paste("Calling: ", httr::modify_url(api_url)))
-	response <- httr::GET(api_url)
+    #print(paste("Calling: ", httr::modify_url(api_url)))
+    response <- memoized_get(api_url)
 
-	if(response$status_code != 200) {
-		warning(paste0("Entity unknown: ", entity))
-		return(dummy_df)
-	}
+    if(response$status_code != 200) {
+        warning(paste0("Entity unknown: ", entity, "\n", httr::content(response, "text")))
+        return(dummy_df)
+    }
 
-	res <- httr::content(response, "parsed")
+    res <- httr::content(response, "parsed")
 
-	df <- tibble::tibble(
-		id = res$id,
-		categories = res$category,
-		label = null_to_na(res$name),
-		description = null_to_na(res$description),
-		symbol = null_to_na(res$symbol),
-		synonyms = list(as.character(res$synonym)),
-		taxon = null_to_na(res$taxon),
-		inheritance_id = null_to_na(res$inheritance$id),
-		inheritance_name = null_to_na(res$inheritance$id)
-	)
-	return(df)
+    df <- tibble::tibble(
+        id = res$id,
+        categories = res$category,
+        label = null_to_na(res$name),
+        description = null_to_na(res$description),
+        symbol = null_to_na(res$symbol),
+        synonyms = list(as.character(res$synonym)),
+        taxon = null_to_na(res$taxon),
+        inheritance_id = null_to_na(res$inheritance$id),
+        inheritance_name = null_to_na(res$inheritance$id)
+    )
+    return(df)
 }
 
 
@@ -210,20 +209,20 @@ get_entity <- function(entity = NULL) {
 #' seed_graph() # returns an empty graph
 #' seed_graph("sdflkjsdf")  # returns an empty graph and gives a warning
 seed_graph <- function(entity_id = NULL) {
-	# creates a graph with a single node and no edges, based on the entity_id, e.g. "MONDO:0009061" or "HGNC:1884".
-	# If the entity is not found, returns an empty graph.
-	entity <- get_entity(entity_id)
-	entity$selected <- TRUE
-	# is there really no better way to create a new graph with 0 edges?
-	edges <- data.frame(to = entity$id, from = entity$id)
-	graph <- tidygraph::as_tbl_graph(edges, directed = TRUE)
-	graph <- dplyr::filter(tidygraph::activate(graph, edges), FALSE)
-	graph <- dplyr::left_join(tidygraph::activate(graph, nodes), entity, by = c("name" = "id"))
-	graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
-	return(as.monarch_kg(graph))
+    # creates a graph with a single node and no edges, based on the entity_id, e.g. "MONDO:0009061" or "HGNC:1884".
+    # If the entity is not found, returns an empty graph.
+    entity <- get_entity(entity_id)
+    entity$selected <- TRUE
+    # is there really no better way to create a new graph with 0 edges?
+    edges <- data.frame(to = entity$id, from = entity$id)
+    graph <- tidygraph::as_tbl_graph(edges, directed = TRUE)
+    graph <- dplyr::filter(tidygraph::activate(graph, edges), FALSE)
+    graph <- dplyr::left_join(tidygraph::activate(graph, nodes), entity, by = c("name" = "id"))
+    graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
+    return(as.monarch_kg(graph))
 }
 
 
-
-
-
+memoized_get <- memoise::memoise(function(api_url, params = list()) {
+    return(httr::GET(api_url, query = params))
+})

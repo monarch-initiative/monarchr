@@ -16,12 +16,33 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/as.monarch_kg.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_association_all.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_entity.html</loc>
   </url>
   <url>
     <loc>/reference/hello.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/monarch_search.html</loc>
+  </url>
+  <url>
+    <loc>/reference/null_to_na.html</loc>
+  </url>
+  <url>
+    <loc>/reference/seed_graph.html</loc>
+  </url>
+  <url>
+    <loc>/reference/select_nodes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/select_nodes.monarch_kg.html</loc>
   </url>
 </urlset>

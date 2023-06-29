@@ -18,6 +18,7 @@ Imports:
     dplyr,
     httr,
     magrittr,
+    memoise,
     progress,
     rlang,
     tibble,

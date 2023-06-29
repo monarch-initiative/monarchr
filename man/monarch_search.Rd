@@ -4,7 +4,12 @@
 \alias{monarch_search}
 \title{Search the Monarch Initiative}
 \usage{
-monarch_search(query, category = "biolink:Disease", limit = 10, offset = 0)
+monarch_search(
+  query,
+  category = "biolink:Disease",
+  limit = 10,
+  results_per_request = 25
+)
 }
 \arguments{
 \item{query}{A character string representing the query term. Example terms:
