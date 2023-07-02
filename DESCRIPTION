@@ -22,4 +22,5 @@ Imports:
     progress,
     rlang,
     tibble,
-    tidygraph
+    tidygraph,
+    yaml

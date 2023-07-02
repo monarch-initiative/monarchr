@@ -15,11 +15,11 @@
 #' str(g)
 #'
 #' print(methods(class = "monarch_kg"))
-as.monarch_kg <- function(graph_obj, ...) {
-	if(!"tbl_graph" %in% class(graph_obj)) {
-		stop("Cannot convert to minikg, input must be a tidygraph object.")
-	}
-	# TODO: should we validate that it's got the right columns?
-	class(graph_obj) <- c("monarch_kg", class(graph_obj))
-	return(graph_obj)
+as_monarch_kg <- function(graph_obj, ...) {
+    if(!"tbl_graph" %in% class(graph_obj)) {
+        stop("Cannot convert to minikg, input must be a tidygraph object.")
+    }
+    # TODO: should we validate that it's got the right columns?
+    class(graph_obj) <- c("monarch_kg", class(graph_obj))
+    return(graph_obj)
 }

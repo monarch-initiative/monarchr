@@ -16,31 +16,6 @@
 #' monarch_search("Cystic Fibrosis", "biolink:Disease", 5)
 #'
 #' @export
-# monarch_search <- function(query, category = "biolink:Disease", limit = 10, offset = 0) {
-#     api_url <- paste0(getOption("monarchr.base_api_url"), "/search")
-
-#     params <- list(
-#         "q" = query,
-#         "category" = category,
-#         "limit" = limit,
-#         "offset" = offset
-#     )
-
-#     response <- httr::GET(api_url, query = params)
-#     response_content <- httr::content(response, "parsed")
-
-#     seeds <- lapply(response_content$items, function(item) {
-#         seed_graph(item$id)
-#     })
-
-#     g <- seed_graph() # get an empty graph with the right columns
-#     for(seed in seeds) {
-#         suppressMessages(g <- tidygraph::graph_join(g, seed))
-#     }
-
-#     return(as.monarch_kg(g))
-# }
-
 monarch_search <- function(query,
                            category = "biolink:Disease",
                            limit = 10,
