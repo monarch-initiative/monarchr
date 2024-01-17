@@ -23,4 +23,5 @@ Imports:
     rlang,
     tibble,
     tidygraph,
+    vcr,
     yaml

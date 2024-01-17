@@ -84,7 +84,7 @@ get_association_all <- function(category, entity, limit, offset) {
             }
 
             object <- item$object
-            object_categories <- item$object_category
+            object_categories <- item$object_category %>% lapply(stringr::str_replace("biolink:", ""))
             object_label <- null_to_na(item$object_label)
 
             publications <- item$publications
@@ -126,7 +126,7 @@ get_association_all <- function(category, entity, limit, offset) {
     graph <- dplyr::left_join(tidygraph::activate(graph, nodes), nodes, by = c("name" = "id"))
     graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
 
-    return(as.monarch_kg(graph))
+    return(as_monarch_kg(graph))
 }
 
 
@@ -176,7 +176,7 @@ get_entity <- function(entity = NULL) {
 
     df <- tibble::tibble(
         id = res$id,
-        categories = res$category,
+        categories = res$category %>% lapply(stringr::str_replace, "biolink:", ""),
         label = null_to_na(res$name),
         description = null_to_na(res$description),
         symbol = null_to_na(res$symbol),
@@ -219,10 +219,14 @@ seed_graph <- function(entity_id = NULL) {
     graph <- dplyr::filter(tidygraph::activate(graph, edges), FALSE)
     graph <- dplyr::left_join(tidygraph::activate(graph, nodes), entity, by = c("name" = "id"))
     graph <- dplyr::rename(tidygraph::activate(graph, nodes), id = name)
-    return(as.monarch_kg(graph))
+    return(as_monarch_kg(graph))
 }
 
 
-memoized_get <- memoise::memoise(function(api_url, params = list()) {
-    return(httr::GET(api_url, query = params))
-})
+# memoized_get <- memoise::memoise(function(api_url, query = list()) {
+#     return(httr::GET(api_url, query = query))
+# })
+
+memoized_get <- function(api_url, query = list()) {
+    return(httr::GET(api_url, query = query))
+}

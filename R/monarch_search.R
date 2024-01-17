@@ -62,5 +62,5 @@ monarch_search <- function(query,
         message(paste0("\n\nNOTE: Only ", limit, " of ", total_available, " results returned.\n"))
     }
 
-    return(as.monarch_kg(g))
+    return(as_monarch_kg(g))
 }
