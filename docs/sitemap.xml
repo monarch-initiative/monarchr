@@ -37,7 +37,13 @@
     <loc>/reference/monarch_search.html</loc>
   </url>
   <url>
+    <loc>/reference/normalize_categories.html</loc>
+  </url>
+  <url>
     <loc>/reference/null_to_na.html</loc>
+  </url>
+  <url>
+    <loc>/reference/query_graph.html</loc>
   </url>
   <url>
     <loc>/reference/seed_graph.html</loc>
@@ -47,5 +53,8 @@
   </url>
   <url>
     <loc>/reference/select_nodes.monarch_kg.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tbl_kgx.html</loc>
   </url>
 </urlset>

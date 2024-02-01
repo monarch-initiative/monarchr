@@ -2,18 +2,18 @@
 % Please edit documentation in R/select_nodes.R
 \name{select_nodes.monarch_kg}
 \alias{select_nodes.monarch_kg}
-\title{Select nodes from a \code{monarch_kg} graph}
+\title{Select nodes from a \code{tbl_kgx} graph}
 \usage{
 \method{select_nodes}{monarch_kg}(graph, ...)
 }
 \arguments{
-\item{graph}{An object of class \code{monarch_kg} from which nodes should be selected.}
+\item{graph}{An object of class \code{tbl_kgx} from which nodes should be selected.}
 
 \item{...}{Further arguments passed to \code{dplyr::filter}. These define the conditions
 for selecting nodes based on their properties.}
 }
 \value{
-A \code{monarch_kg} graph object with the nodes selected.
+A \code{tbl_kgx} graph object with the nodes selected.
 }
 \description{
 This is the method for \code{select_nodes} specific to \code{monarch_kg} graph objects.

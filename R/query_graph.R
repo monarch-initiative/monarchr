@@ -1,46 +1,15 @@
-library(tidygraph)
-library(neo2R)
-library(dotenv)
-
-load_dot_env()
-
-##################
-
-
-## connect to graph db
-graph <- startGraph(Sys.getenv("NEO_4J_HTTP")) # e.g. "http://localhost:7474"
-## load preferences (primarily how to define each node's "primary category";
-## e.g. from [biolink:NamedThing, biolink:BiologicalEntity, biolink:Gene, biolink:PhysicalEssenceOrOccurrent], prefer biolink:Gene)
-prefs <- yaml::read_yaml("meta/kg_prefs.yaml")
-
-## a tbl_kgx is a tidygraph::tbl_graph, conforming to the kgx specification, https://github.com/biolink/kgx/blob/master/specification/kgx-format.md
-## the from and to information defining edge endpoints is set from edge subject and object
-## and the node_key is assumed to be id
-tbl_kgx <- function(nodes = NULL, edges = NULL, ...) {
-	if(is.null(nodes$id)) { stop("Error: tbl_kgx nodes must have an 'id' column.") }
-	if(is.null(nodes$id)) { stop("Error: tbl_kgx nodes must have an 'category' column.") }
-	# we do allow graphs with no edges
-	if(!is.null(edges)) {
-		if(is.null(edges$subject)) { stop("Error: tbl_kgx edges must have an 'subject' column.") }
-		if(is.null(edges$predicate)) { stop("Error: tbl_kgx edges must have an 'predicate' column.") }
-		if(is.null(edges$object)) { stop("Error: tbl_kgx edges must have an 'object' column.") }
-
-		# set canonical to and from columns
-		edges$from <- edges$subject
-		edges$to <- edges$object
-		}
-
-	g <- tidygraph::tbl_graph(nodes = nodes, edges = edges, node_key = "id")
-	class(g) <- c("tbl_kgx", class(g))
-	return(g)
-}
-
-
-
-
-# given a list of vectors of categories, and an ordered preference list over
-# categories, selects the most preferred from each vector,
-# or the first if no preferred are included
+#' Normalize Categories
+#'
+#' This function takes a list of vectors of categories and an ordered preference list over categories. 
+#' It selects the most preferred category from each vector, or the first category if no preferred categories are included.
+#'
+#' @param cats_list A list of vectors of categories.
+#' @param cats_prefs An ordered preference list over categories.
+#' @return A vector of normalized categories.
+#' @examples
+#' categories_list <- list(c("A", "B", "C"), c("D", "E", "F"))
+#' categories_prefs <- c("B", "E", "A", "D", "C", "F")
+#' normalize_categories(categories_list, categories_prefs)
 normalize_categories <- function(cats_list, cats_prefs) {
 	normed <- unlist(lapply(cats_list, function(categories) {
 		positions <- match(categories, cats_prefs)
@@ -64,7 +33,7 @@ normalize_categories <- function(cats_list, cats_prefs) {
 ## We leave these in a list element to distinguish sets of size 1 from
 ## scalar strings
 stitch_vectors <- function(x) {
-	# Check if the element is a list
+	# Check if the element is a list # nolint
 	if (is.list(x)) {
 		# Check if all elements of the list are single-character vectors
 		if (all(sapply(x, function(y) is.character(y) && length(y) == 1))) {
@@ -80,12 +49,35 @@ stitch_vectors <- function(x) {
 	}
 }
 
-## Given a cypher query, returns a tbl_kgx graph.
-query_graph <- function(graph, query = "MATCH (s) -[p]- (o) return s, p, o LIMIT 2", parameters = NULL) {
-	res <- neo2R::cypher(graph, query= query, parameters = parameters, result = "graph")
+#' Query Graph
+#'
+#' This function takes a cypher query and returns a tbl_kgx graph. It retrieves the graph connection and knowledge graph preferences from the parent environment. 
+#' It then executes the cypher query and stitches the vectors. It creates a data frame for nodes and edges and adds all other node and edge properties as columns. 
+#' It also computes a priority category based on a preference list. Finally, it creates a tbl_kgx graph from the nodes and edges data frames.
+#'
+#' @param query A string representing the cypher query.
+#' @param parameters Parameters for the cypher query. Default is NULL.
+#' @param ... Additional arguments passed to the function (unused).
+#' @return A tbl_kgx graph.
+#' @examples
+#' query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
+#' parameters <- NULL
+#' g <- query_graph(query, parameters)
+#'
+#' query = "MATCH (n) WHERE n.id IN $ids RETURN n"
+#' parameters = list(ids = ids)
+#' g <- query_graph(query, parameters)
+#' @export
+#' @importFrom neo2R cypher
+#' @importFrom tibble tibble
+query_graph <- function(query, parameters = NULL, ...) {
+	pkg_env <- parent.env(environment())
+	graph_connections <- get("graph_connections", envir = pkg_env)
+	kg_prefs <- get("kg_prefs", envir = pkg_env)
+
+	res <- neo2R::cypher(graph_connections$monarch, query = query, parameters = parameters, result = "graph")
 	res <- stitch_vectors(res)
 
-	#str(res)
 	## node info
 	node_ids <- unlist(lapply(res$nodes, function(node) {
 		node$properties$id
@@ -98,7 +90,7 @@ query_graph <- function(graph, query = "MATCH (s) -[p]- (o) return s, p, o LIMIT
 	nodes_df <- tibble::tibble(id = node_ids, category = node_categories)
 
 	## compute a pcategory, or priority category, based on a preference list
-	nodes_df$pcategory <- normalize_categories(node_categories, prefs$monarch_kg$category_priority)
+	nodes_df$pcategory <- normalize_categories(node_categories, kg_prefs$monarch_kg$category_priority)
 	nodes_df$selected <- FALSE
 
 	## add all other node properties as columns
@@ -155,47 +147,3 @@ query_graph <- function(graph, query = "MATCH (s) -[p]- (o) return s, p, o LIMIT
 	g <- tbl_kgx(nodes_df, edges_df)
 	return(g)
 }
-l <- query_graph(graph, query = "MATCH (s) -[r]- (o) return s LIMIT 1")
-m <- query_graph(graph, query = "MATCH (s) -[r]- (o) return r LIMIT 1")
-n <- query_graph(graph, query = "MATCH (s) -[r]- (o) return s, r, o LIMIT 5000")
-n
-
-z <- query_graph(graph, query = "MATCH path = (startNode)-[*3..3]-(endNode), path2 = (endNode)-[*3..3]-(endNode2) return path, path2 LIMIT 1000")
-z2 <- query_graph(graph, query = "MATCH path = (startNode)-[*100..100]-(endNode) return path limit 1")
-
-
-query_node_ids <- function(graph, ids) {
-	return(query_graph(graph,
-	query = "MATCH (n) WHERE n.id IN $ids RETURN n",
-	parameters = list(ids = ids))
-	)
-}
-query_node_ids(graph, c("MONDO:0009061", "MONDO:0005413"))
-
-
-
-
-count_labels <- function() {
-	query <- "
-MATCH (n)
-WITH LABELS(n) AS labels
-UNWIND labels AS label
-WITH label, COUNT(*) AS usageCount
-RETURN label, usageCount
-ORDER BY usageCount DESC
-		"
-	res <- neo2R::cypher(graph, query = query)
-	print(res)
-}
-count_labels()
-
-
-
-
-
-
-
-
-
-
-
