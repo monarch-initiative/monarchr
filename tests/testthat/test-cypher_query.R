@@ -1,8 +1,8 @@
 library(testthat)
 library(assertthat)
 
-test_that("query_graph returns a graph object", {
-    g <- query_graph(query = "MATCH (s) -[r]- (o) return s, r, o LIMIT 1")
+test_that("cypher_query returns a graph object", {
+    g <- cypher_query(query = "MATCH (s) -[r]- (o) return s, r, o LIMIT 1")
     expect_s3_class(g, "tbl_kgx")
     nodes_df <- data.frame(tidygraph::activate(g, nodes))
     edges_df <- data.frame(tidygraph::activate(g, edges))

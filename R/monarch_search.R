@@ -38,7 +38,7 @@ monarch_search <- function(query,
         item$id
     }))
 
-    g <- query_graph(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
+    g <- cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                      parameters = list(ids = ids))
 
     return(g)

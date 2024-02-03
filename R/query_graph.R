@@ -66,16 +66,18 @@ stitch_vectors <- function(x) {
 #'
 #' query = "MATCH (n) WHERE n.id IN $ids RETURN n"
 #' parameters = list(ids = ids)
-#' g <- query_graph(query, parameters)
+#' g <- cypher_query(query, parameters)
 #' @export
 #' @importFrom neo2R cypher
 #' @importFrom tibble tibble
-query_graph <- function(query, parameters = NULL, ...) {
+cypher_query <- function(query, parameters = NULL, ...) {
+	kg_name <- "monarch" # we can parameterize this in the future if desired
+
 	pkg_env <- parent.env(environment())
 	graph_connections <- get("graph_connections", envir = pkg_env)
 	kg_prefs <- get("kg_prefs", envir = pkg_env)
 
-	res <- neo2R::cypher(graph_connections$monarch, query = query, parameters = parameters, result = "graph")
+	res <- neo2R::cypher(graph_connections[[kg_name]], query = query, parameters = parameters, result = "graph")
 	res <- stitch_vectors(res)
 
 	## node info
