@@ -38,6 +38,15 @@ monarch_search <- function(query,
         item$id
     }))
 
+    if(length(ids) == 0) {
+        # return an empty graph
+        return(tbl_kgx(nodes = data.frame(id = character(), category = list()))
+        )
+    }
+    if(length(ids) == 1) {
+        ids <- list(ids)
+    }
+
     g <- cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                      parameters = list(ids = ids))
 

@@ -62,7 +62,7 @@ stitch_vectors <- function(x) {
 #' @examples
 #' query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
 #' parameters <- NULL
-#' g <- query_graph(query, parameters)
+#' g <- cypher_query(query, parameters)
 #'
 #' query = "MATCH (n) WHERE n.id IN $ids RETURN n"
 #' parameters = list(ids = ids)
@@ -148,4 +148,27 @@ cypher_query <- function(query, parameters = NULL, ...) {
 
 	g <- tbl_kgx(nodes_df, edges_df)
 	return(g)
+}
+
+#' Execute a Cypher Query and Return a Data Frame
+#'
+#' This function takes a Cypher query and parameters, executes the query on the Monarch knowledge graph, and returns the result as a data frame.
+#'
+#' @param query A string representing the Cypher query.
+#' @param parameters A list of parameters for the Cypher query. Default is an empty list.
+#' @param ... Additional arguments passed to the function.
+#' @return A data frame containing the result of the Cypher query.
+#' @examples
+#' query <- "MATCH (n) RETURN n LIMIT 10"
+#' parameters <- list()
+#' result <- cypher_query_df(query, parameters)
+#' @importFrom neo2R cypher
+cypher_query_df <- function(query, parameters = list(), ...) {
+    kg_name <- "monarch" # we can parameterize this in the future if desired
+
+	pkg_env <- parent.env(environment())
+	graph_connections <- get("graph_connections", envir = pkg_env)
+    result <- neo2R::cypher(graph_connections[[kg_name]], query = query, parameters = parameters, result = "row", arraysAsStrings = FALSE)
+
+    return(result)
 }
