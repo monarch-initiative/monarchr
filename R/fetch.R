@@ -3,7 +3,7 @@
 #' @param g A graph
 #' @param predicates A vector of outgoing relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the neighborhood. If NULL (default), all edges are considered.
 #' @param result_categories A vector of node categories, indicating which nodes in the larger KG (objects in the relationship) to consider as potential result nodes. If NULL (default), all object nodes in the larger KG are considered as potential nodes.
-#' @param transitive If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like `biolink:subclass_of`.
+#' @param transitive NOT IMPLEMENTED If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like `biolink:subclass_of`.
 #' @param drop_unused_query_nodes If TRUE, remove query nodes from the result, unless they are at the neighboorhood boundary, ie, required for connecting to the result nodes. Default is FALSE.
 #' 
 #' @return A tbl_kgx graph
@@ -27,6 +27,9 @@ fetch_outgoing <- function(g, predicates = NULL, result_categories = NULL, trans
     assert_that(is.null(predicates) | is.character(predicates))
     assert_that(is.null(result_categories) | is.character(result_categories))
     assert_that(is.logical(transitive))
+    if(transitive) {
+        stop("Transitive closure not yet implemented")
+    }
 
     node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(g, nodes))$id)
 
