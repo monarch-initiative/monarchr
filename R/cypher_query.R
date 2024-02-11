@@ -33,7 +33,7 @@ normalize_categories <- function(cats_list, cats_prefs) {
 ## We leave these in a list element to distinguish sets of size 1 from
 ## scalar strings
 stitch_vectors <- function(x) {
-	# Check if the element is a list # nolint
+	# Check if the element is a list
 	if (is.list(x)) {
 		# Check if all elements of the list are single-character vectors
 		if (all(sapply(x, function(y) is.character(y) && length(y) == 1))) {
@@ -104,7 +104,12 @@ cypher_query <- function(query, parameters = NULL, ...) {
 	for(prop_name in node_prop_names) {
 		# sapply!
 		nodes_df[[prop_name]] <- sapply(res$nodes, function(node) {
-			node$properties[[prop_name]]
+			prop_value <- node$properties[[prop_name]]
+			if(is.null(prop_value)) {
+				return(NA)
+			} else {
+				return(prop_value)
+			}
 		})
 	}
 
