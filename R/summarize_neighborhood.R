@@ -19,7 +19,6 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-#' @importFrom tbl_kgx tbl_kgx
 summarize_neighborhood_edges <- function(g, direction = "both") {
     # returns a dataframe of relationship types and counts, broken down by pcategory
     # operates over the combined neighborhoods of the nodes in g
@@ -72,7 +71,6 @@ summarize_neighborhood_edges <- function(g, direction = "both") {
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-#' @importFrom tbl_kgx tbl_kgx
 summarize_neighborhood_nodes <- function(g, direction = "both") {
     # returns a dataframe of node categories and counts
     # operates over the combined neighborhoods of the nodes in g
@@ -137,7 +135,6 @@ summarize_neighborhood_nodes <- function(g, direction = "both") {
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-#' @importFrom tbl_kgx tbl_kgx
 summarize_neighborhood <- function(g, direction = "both", summarize = "edges") {
     assert_that(summarize %in% c("edges", "nodes"))
     assert_that(direction %in% c("both", "in", "out"))

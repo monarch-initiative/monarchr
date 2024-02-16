@@ -21,8 +21,7 @@ This function creates a new tbl_kgx object which inherits from tidygraph::tbl_gr
 described at https://github.com/biolink/kgx/blob/master/specification/kgx-format.md. Specifically, nodes must have an 'id' and 'category' column,
 and edges, if provided, must have 'subject', 'predicate', and 'object' columns. The function allows graphs with no edges.
 The function sets 'from' and 'to' columns in the edges from 'subject' and 'object' respectively, and sets the node key to 'id'.
-Additional columns are allowed, and a logical \code{selected} column is added to the nodes data frame to indicate whether a node is selected, if not already present.
-If a selected column is present, it should be a logical vector. If not, an error is thrown.
+Additional columns are allowed.
 }
 \details{
 This function will generally be called internally.

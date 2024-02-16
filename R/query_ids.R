@@ -9,9 +9,9 @@
 #' ids <- c("MONDO:0015780", "HP:0001903", "HGNC:2890")
 #' g <- query_ids(ids)
 #' @export
-#' @importFrom cypher_query cypher_query
 query_ids <- function(ids) {
-  return(cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
+  res <- cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                       parameters = list(ids = ids))
-  )
+  str(res)
+  return(res)
 }
