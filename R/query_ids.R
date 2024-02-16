@@ -10,8 +10,11 @@
 #' g <- query_ids(ids)
 #' @export
 query_ids <- function(ids) {
+  # if ids is a length-1 character vector, it is treated as a scalar, so we need to wrap it in a list
+  if (length(ids) == 1) {
+    ids <- list(ids)
+  }
   res <- cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                       parameters = list(ids = ids))
-  str(res)
   return(res)
 }
