@@ -212,7 +212,6 @@ seed_graph <- function(entity_id = NULL) {
     # creates a graph with a single node and no edges, based on the entity_id, e.g. "MONDO:0009061" or "HGNC:1884".
     # If the entity is not found, returns an empty graph.
     entity <- get_entity(entity_id)
-    entity$selected <- TRUE
     # is there really no better way to create a new graph with 0 edges?
     edges <- data.frame(to = entity$id, from = entity$id)
     graph <- tidygraph::as_tbl_graph(edges, directed = TRUE)

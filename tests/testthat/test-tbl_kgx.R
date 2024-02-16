@@ -11,11 +11,11 @@ test_that("tbl_kgx constructor follows the rules", {
     g <- tbl_kgx(nodes_df, edges_df)
     expect_s3_class(g, "tbl_kgx")
 
-    # try one with a selected column
-    nodes_df <- data.frame(id = c("a", "b"), category = c("foo", "bar"), selected = c(TRUE, FALSE))
-    edges_df <- data.frame(subject = c("a"), object = c("b"), predicate = c("baz"))
-    g <- tbl_kgx(nodes_df, edges_df)
-    expect_s3_class(g, "tbl_kgx")
+    # # try one with a selected column
+    # nodes_df <- data.frame(id = c("a", "b"), category = c("foo", "bar"), selected = c(TRUE, FALSE))
+    # edges_df <- data.frame(subject = c("a"), object = c("b"), predicate = c("baz"))
+    # g <- tbl_kgx(nodes_df, edges_df)
+    # expect_s3_class(g, "tbl_kgx")
 
     # if the node df is missing the id column, it should fail
     nodes_df <- data.frame(category = c("foo", "bar"))

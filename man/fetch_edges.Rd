@@ -9,7 +9,8 @@ fetch_edges(
   direction = "both",
   predicates = NULL,
   result_categories = NULL,
-  transitive = FALSE
+  transitive = FALSE,
+  drop_unused_query_nodes = FALSE
 )
 }
 \arguments{
@@ -34,9 +35,9 @@ Expand a graph by fetching connected edges from the KG.
 \examples{
 g <- monarch_search("fanconi anemia", limit = 1)
 phenos <- g \%>\%
-  fetch_outgoing(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
+  fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 
 ancestors <- g \%>\%
- fetch_outgoing(predicates = "biolink:subclass_of", transitive = TRUE)
+ fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE)
 
 }
