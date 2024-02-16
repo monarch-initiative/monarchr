@@ -24,13 +24,29 @@ fetch_edges <- function(g,
                         direction = "both",
                         predicates = NULL,
                         result_categories = NULL,
-                        transitive = FALSE) {
+                        transitive = FALSE,
+                        drop_unused_query_nodes = FALSE) {
     assert_that(is.tbl_graph(g))
+    assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
     assert_that(is.null(result_categories) | is.character(result_categories))
     assert_that(is.logical(transitive))
-    if(transitive) {
-        stop("Transitive closure not yet implemented")
+
+    if(transitive && length(predicates) == 0) {
+        stop("Transitive closure requires specified predicates.")
+    }
+
+    if(transitive && length(predicates) > 1) {
+        # we call recusively on each predicate
+        for(predicate in predicates) {
+            g2 <- fetch_edges(g, 
+                              direction = direction,
+                              predicates = predicate,
+                              result_categories = result_categories,
+                              transitive = transitive,
+                              drop_unused_query_nodes = TRUE)
+            g <- tidygraph::graph_join(g, g2)
+        }
     }
 
     node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(g, nodes))$id)
@@ -39,6 +55,7 @@ fetch_edges <- function(g,
     if (length(node_ids) == 1) {
         node_ids <- list(node_ids)
     }
+
     # do the same length checks for predicates and result_categories
     if (!is.null(predicates)) {
         if (length(predicates) == 1) {
@@ -51,24 +68,37 @@ fetch_edges <- function(g,
         }
     }
 
-
+    query_pre <- "-"
+    query_post <- "->"
     if(direction == "in") {
-        query <- "MATCH (n)<-[r]-(m) WHERE n.id IN $nodes"
-    } else if(direction == "out") {
-        query <- "MATCH (n)-[r]->(m) WHERE n.id IN $nodes"
+        query_pre <- "<-"
+        query_post <- "-"
     } else if(direction == "both") {
-        query <- "MATCH (n)-[r]-(m) WHERE n.id IN $nodes"
-    } else {
-        stop("Invalid direction")
+        query_pre <- "-"
+        query_post <- "-"
     }
 
+    `%+%` <- function(a, b) {
+        paste0(a, b)
+    }
+
+    query_r <- "[r]"
+    if(transitive) {
+        # if transitive is TRUE here, we know that predicates is a length-1 character vector
+        query_r <- "[r:`" %+% predicates %+% "`*]"
+    } else if(length(predicates) == 1) {
+        query_r <- "[r:`" %+% predicates %+% "`]"
+    }
+
+    query <- "MATCH (n)" %+% query_pre %+% query_r %+% query_post %+% "(m) WHERE n.id IN $nodes"
     parameters <- list(nodes = node_ids)
-    if (!is.null(predicates)) {
+
+    if(length(predicates) > 1) {
        query <- paste0(query, " AND r.predicate IN $predicates")
        parameters$predicates <- predicates
     }
 
-    if (!is.null(result_categories)) {
+    if(!is.null(result_categories)) {
        # remember, m.category is an array of strings
        query <- paste0(query, " AND ANY(category IN m.category WHERE category IN $result_categories)")
        parameters$result_categories <- result_categories
@@ -77,23 +107,19 @@ fetch_edges <- function(g,
     query <- paste0(query, " RETURN n, r, m")
 
     result <- cypher_query(query, parameters = list(nodes = node_ids,
-                                                       predicates = predicates,
-                                                       result_categories = result_categories))
+                                                    predicates = predicates,
+                                                    result_categories = result_categories))
 
     result <- result %>%
         tidygraph::activate(nodes) %>%
         mutate(pcategory = normalize_categories(category, kg_prefs$monarch_kg$category_priority))
 
-    # # if drop_unused_query_nodes is FALSE, we'll keep them by
-    # # joining the result with the original graph
-    # if(!drop_unused_query_nodes) {
-    #     # we'll join on id and all column names appearing in both graphs node data
-    #     query_node_cols <- colnames(tidygraph::as_tibble(tidygraph::activate(g, nodes)))
-    #     result_node_cols <- colnames(tidygraph::as_tibble(tidygraph::activate(result, nodes)))
-    #     common_cols <- intersect(query_node_cols, result_node_cols)
-
-    #     result <- tidygraph::graph_join(g, result, by = common_cols)
-    # }
+    # if drop_unused_query_nodes is FALSE, we'll keep them by
+    # joining the result with the original graph
+    if(!drop_unused_query_nodes) {
+        result <- tidygraph::graph_join(g, result)
+    }
 
     return(result)
 }
+
