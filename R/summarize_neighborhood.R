@@ -40,15 +40,14 @@ summarize_neighborhood_edges <- function(g, direction = "both") {
     result <- cypher_query_df(query, parameters = list(nodes = node_ids))
 
     # create a pcategory column
-    result$query_category <- normalize_categories(result$query_category, kg_prefs$monarch_kg$category_priority)
-    result$result_category <- normalize_categories(result$result_category, kg_prefs$monarch_kg$category_priority)
+    result$query_pcategory <- normalize_categories(result$query_category, kg_prefs$monarch_kg$category_priority)
+    result$result_pcategory <- normalize_categories(result$result_category, kg_prefs$monarch_kg$category_priority)
 
     result <- result %>%
-        group_by(predicate, query_category, result_category) %>%
+        group_by(query_pcategory, query_category, predicate, result_pcategory, result_category) %>%
         summarize(count = sum(count)) %>%
         ungroup() %>%
-        arrange(desc(count)) %>%
-        select(query_category, predicate, result_category, count)
+        arrange(desc(count))
 
     return(result)
 }
