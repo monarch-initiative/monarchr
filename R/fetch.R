@@ -39,7 +39,7 @@ fetch_edges <- function(g,
     if(transitive && length(predicates) > 1) {
         # we call recusively on each predicate
         for(predicate in predicates) {
-            g2 <- fetch_edges(g, 
+            g2 <- fetch_edges(g,
                               direction = direction,
                               predicates = predicate,
                               result_categories = result_categories,
@@ -112,7 +112,7 @@ fetch_edges <- function(g,
 
     result <- result %>%
         tidygraph::activate(nodes) %>%
-        mutate(pcategory = normalize_categories(category, kg_prefs$monarch_kg$category_priority))
+        mutate(pcategory = normalize_categories(category, options("kg_prefs")$kg_prefs$monarch_kg$category_priority))
 
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph

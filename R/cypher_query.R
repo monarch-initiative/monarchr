@@ -1,6 +1,6 @@
 #' Normalize Categories
 #'
-#' This function takes a list of vectors of categories and an ordered preference list over categories. 
+#' This function takes a list of vectors of categories and an ordered preference list over categories.
 #' It selects the most preferred category from each vector, or the first category if no preferred categories are included.
 #'
 #' @param cats_list A list of vectors of categories.
@@ -51,8 +51,8 @@ stitch_vectors <- function(x) {
 
 #' Query Graph
 #'
-#' This function takes a cypher query and returns a tbl_kgx graph. It retrieves the graph connection and knowledge graph preferences from the parent environment. 
-#' It then executes the cypher query and stitches the vectors. It creates a data frame for nodes and edges and adds all other node and edge properties as columns. 
+#' This function takes a cypher query and returns a tbl_kgx graph. It retrieves the graph connection and knowledge graph preferences from the parent environment.
+#' It then executes the cypher query and stitches the vectors. It creates a data frame for nodes and edges and adds all other node and edge properties as columns.
 #' It also computes a priority category based on a preference list. Finally, it creates a tbl_kgx graph from the nodes and edges data frames.
 #'
 #' @param query A string representing the cypher query.
@@ -75,7 +75,6 @@ cypher_query <- function(query, parameters = NULL, ...) {
 
 	pkg_env <- parent.env(environment())
 	graph_connections <- get("graph_connections", envir = pkg_env)
-	kg_prefs <- get("kg_prefs", envir = pkg_env)
 
 	res <- neo2R::cypher(graph_connections[[kg_name]], query = query, parameters = parameters, result = "graph")
 	res <- stitch_vectors(res)
@@ -92,8 +91,7 @@ cypher_query <- function(query, parameters = NULL, ...) {
 	nodes_df <- tibble::tibble(id = node_ids, category = node_categories)
 
 	## compute a pcategory, or priority category, based on a preference list
-	nodes_df$pcategory <- normalize_categories(node_categories, kg_prefs$monarch_kg$category_priority)
-	nodes_df$selected <- FALSE
+	nodes_df$pcategory <- normalize_categories(node_categories, options("kg_prefs")$kg_prefs$monarch_kg$category_priority)
 
 	## add all other node properties as columns
 	node_prop_names <- unname(unique(unlist(lapply(res$nodes, function(node){
@@ -142,8 +140,9 @@ cypher_query <- function(query, parameters = NULL, ...) {
 
 	for(prop_name in edge_prop_names) {
 		# sapply!
-		edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
-			edge$properties[[prop_name]]
+		# edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
+		edges_df[[prop_name]] <- lapply(res$relationships, function(edge) {
+				edge$properties[[prop_name]]
 		})
 	}
 
