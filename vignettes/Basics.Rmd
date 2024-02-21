@@ -1,0 +1,156 @@
+---
+title: "MonarchR Basics"
+author: "Shawn T O'Neil"
+date: "2024-02-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Basic Usage
+
+The MonarchR package is designed to support interactive queries against the [Monarch Initiative](https://monarchinitiative.org) Knowledge Graph (KG). It is in early development and testing, and relies upon publicly-available services managed by the Monarch Initiative.
+
+Briefly, a graph stored in a local variable represents a subsets of nodes and/or edges from the larger KG. These local graphs are also [`tidygraph`](https://tidygraph.data-imaginist.com/) objects (which are [igraph](https://r.igraph.org/)s) providing a large range of graph-related functionality. 
+
+First, let's load some useful libraries:
+
+```{r}
+suppressMessages({
+	library(monarchr)
+	library(dplyr)
+	library(tidygraph)
+	library(kableExtra) # for kbl() table output formatting
+})
+```
+
+
+The `monarch_search()` function uses the keyword search [API](https://api-v3.monarchinitiative.org/v3/docs), 
+returning up to `limit` nodes, and no edges connecting them:
+
+```{r}
+g <- monarch_search("Ehlers-danlos syndrome", limit = 5)
+
+print(g)
+```
+
+```{r}
+library(visNetwork)
+library(igraph)
+
+x <- visNetwork(g %N>% as_tibble(), g %E>% as_tibble(), height = "400px")
+
+x
+```
+
+Tidygraphs are stored as node and edge dataframes; we can "activate" one or the other to manipulate it, 
+or extract it with `as_tibble()`. Let's add a `source` to these nodes of `"search"`, and print the node table. We leave off
+the `iri` to save a little space.
+
+```{r}
+g <- g |> 
+	activate(nodes) |>
+	mutate(source = "search")
+
+g |>
+	activate(nodes) |>
+	as_tibble() |>
+	select(-iri) |>
+	kbl()
+```
+The `pcategory` column is a unique addition of MonarchR: typically, nodes are annotated with multiple categories, 
+which is stored in the `category` field in the KG. These tend to relate to ontological concepts, in that 
+a `biolink:Disease` is also a `biolink:BiologicalEntity` and `biolink:NamedThing`, but in typical use we are interested in a "primary" category. Rather than try and determine the primary category of interest from the data, we set a priority list of categories to use, choosing the first available prioritized category, or the first category available as a fallback. This can be configured via the `kg_prefs` option should you so choose:
+
+```{r}
+options("kg_prefs")
+```
+Let's see what kinds of connections exist in the broader graph for these nodes, which is a good idea before we go and fetch some of them. We can summarize the nodes in the surrounding neighborhood, or the edges:
+
+```{r}
+library(knitr)
+summarize_neighborhood(g, summarize = "nodes") %>% kbl()
+
+summarize_neighborhood(g, summarize = "edges") %>% kbl()
+```
+
+
+
+
+```{r eval=FALSE}
+subtypes <- g %>%
+	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
+
+with_phenos <- subtypes %>%
+  fetch_edges(predicates = "biolink:has_phenotype")
+
+# print(with_phenos)
+	
+with_genes <- subtypes %>%
+	fetch_edges(result_categories = "biolink:Gene")
+
+# print(with_genes)
+
+neighbors <- graph_join(with_phenos, with_genes)
+neighbors
+```
+
+```{r eval=FALSE}
+library(ggraph)
+
+neighbors <- neighbors %>%
+	activate(nodes)
+
+p <- ggraph(neighbors, layout = 'fr') + 
+  geom_edge_link() + 
+  geom_node_point(aes(color = pcategory)) + 
+  theme(legend.position = 'bottom')
+
+plot(p)
+```
+
+
+```{r eval=FALSE}
+library(ggraph)
+
+eds_phenos <- monarch_search("Ehlers-danlos syndrome", limit = 1) %>%
+	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+
+# eds_phenos
+
+fanconi_phenos <- monarch_search("Fanconi anemia", limit = 1) %>%
+	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+
+# fanconi_phenos
+
+inner <- inner_join(activate(eds_phenos, nodes), activate(fanconi_phenos, nodes) %>% as_tibble())
+print(inner)
+
+p <- ggraph(inner, layout = 'fr') + 
+  geom_edge_link() + 
+  geom_node_point(aes(color = pcategory)) + 
+  theme(legend.position = 'bottom')
+
+plot(p)
+
+both <- graph_join(eds_phenos, fanconi_phenos)
+
+
+p <- ggraph(both, layout = 'fr') + 
+  geom_edge_link() + 
+  geom_node_point(aes(color = pcategory)) + 
+  theme(legend.position = 'bottom')
+
+plot(p)
+
+```
+
+
+
+
+
+
