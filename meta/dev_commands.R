@@ -1,8 +1,9 @@
 devtools::document()
 
+devtools::clean_vignettes()
+devtools::build_vignettes()
 devtools::build_site()
-#devtools::clean_vignettes()
-#devtools::build_vignettes()
+pkgdown::build_articles()
 
 devtools::test()
 

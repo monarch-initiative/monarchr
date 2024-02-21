@@ -26,6 +26,16 @@ a given query string within a specified category, returing a graph containg just
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/Basics.html">MonarchR Basics</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -79,15 +89,18 @@ Defaults to NULL, to search in any category.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">monarch_search</span><span class="op">(</span><span class="st">"Cystic Fibrosis"</span>, <span class="st">"biolink:Disease"</span>, <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 2 nodes and 0 edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 5 nodes and 0 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 2 trees</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 5 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 2 × 8 (active)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id           category pcategory selected synonym name  description provided_by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;named &gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;named&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;named lis&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:00090… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… FALSE    <span style="color: #949494;">&lt;chr&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:00054… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… FALSE    <span style="color: #949494;">&lt;chr&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 5 × 8 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id            category   pcategory iri   synonym name  description provided_by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;named li&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;named&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;named lis&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:0009061 <span style="color: #949494;">&lt;chr [6]&gt;</span>  biolink:… http… <span style="color: #949494;">&lt;chr&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:0005413 <span style="color: #949494;">&lt;chr [6]&gt;</span>  biolink:… http… <span style="color: #949494;">&lt;chr&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> MONDO:1010543 <span style="color: #949494;">&lt;chr [6]&gt;</span>  biolink:… http… <span style="color: #949494;">&lt;lgl&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> MONDO:1010544 <span style="color: #949494;">&lt;chr [6]&gt;</span>  biolink:… http… <span style="color: #949494;">&lt;lgl&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> MONDO:1010545 <span style="color: #949494;">&lt;chr [6]&gt;</span>  biolink:… http… <span style="color: #949494;">&lt;lgl&gt;</span>   cyst… Cystic fib… <span style="color: #949494;">&lt;chr [1]&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 0 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 variables: from &lt;int&gt;, to &lt;int&gt;</span></span>
