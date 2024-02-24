@@ -1,7 +1,7 @@
 Package: monarchr
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.0
+Version: 0.2.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -15,11 +15,21 @@ Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
+    assertthat,
+    colorDF,
+    dotenv,
     dplyr,
+    ggiraph,
+    ggraph,
     httr,
+    kableExtra,
     magrittr,
     memoise,
+    neo2R,
     progress,
     rlang,
+    rstackdeque,
     tibble,
-    tidygraph
+    tidygraph,
+    vcr,
+    yaml

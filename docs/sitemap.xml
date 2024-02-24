@@ -10,6 +10,12 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/articles/Basics.html</loc>
+  </url>
+  <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -17,6 +23,21 @@
   </url>
   <url>
     <loc>/reference/as.monarch_kg.html</loc>
+  </url>
+  <url>
+    <loc>/reference/as_monarch_kg.html</loc>
+  </url>
+  <url>
+    <loc>/reference/cypher_query.html</loc>
+  </url>
+  <url>
+    <loc>/reference/cypher_query_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/explode.tbl_kgx.html</loc>
+  </url>
+  <url>
+    <loc>/reference/fetch_edges.html</loc>
   </url>
   <url>
     <loc>/reference/get_association_all.html</loc>
@@ -34,7 +55,19 @@
     <loc>/reference/monarch_search.html</loc>
   </url>
   <url>
+    <loc>/reference/nodes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/normalize_categories.html</loc>
+  </url>
+  <url>
     <loc>/reference/null_to_na.html</loc>
+  </url>
+  <url>
+    <loc>/reference/query_graph.html</loc>
+  </url>
+  <url>
+    <loc>/reference/query_ids.html</loc>
   </url>
   <url>
     <loc>/reference/seed_graph.html</loc>
@@ -44,5 +77,17 @@
   </url>
   <url>
     <loc>/reference/select_nodes.monarch_kg.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summarize_neighborhood.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summarize_neighborhood_edges.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summarize_neighborhood_nodes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tbl_kgx.html</loc>
   </url>
 </urlset>

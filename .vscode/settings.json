@@ -1,0 +1,20 @@
+{
+    "r.linting.assignmentType": false,
+    "r.linting.closeCurlySeparateLine": false,
+    "r.linting.doubleQuotes": false,
+    "r.linting.multipleDots": false,
+    "r.linting.multipleStatements": false,
+    "r.linting.noSpaceAfterFunctionName": false,
+    "r.linting.noTabs": false,
+    "r.linting.openCurlyPosition": false,
+    "r.linting.pascalCase": false,
+    "r.linting.semicolons": false,
+    "r.linting.spaceBeforeOpenBrace": false,
+    "r.linting.spacesAroundComma": false,
+    "r.linting.spacesAroundOperators": false,
+    "r.linting.spacesInsideParenthesis": false,
+    "r.linting.trailingBlankLines": false,
+    "r.linting.trailingWhitespace": false,
+    "r.linting.trueFalseNames": false,
+    "r.linting.upperCase": false
+}

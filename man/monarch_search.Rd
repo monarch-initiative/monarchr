@@ -4,30 +4,23 @@
 \alias{monarch_search}
 \title{Search the Monarch Initiative}
 \usage{
-monarch_search(
-  query,
-  category = "biolink:Disease",
-  limit = 10,
-  results_per_request = 25
-)
+monarch_search(query, category = NULL, limit = 10)
 }
 \arguments{
 \item{query}{A character string representing the query term. Example terms:
 "Cystic Fibrosis", "CYP6B", "swelling of joints".}
 
-\item{category}{A character string indicating the entity category in which to search for the query term.
-Defaults to "biolink:Disease".}
+\item{category}{A character string indicating a single entity category in which to search for the query term.
+Defaults to NULL, to search in any category.}
 
 \item{limit}{An integer indicating the maximum number of search results to return. Defaults to 10.}
-
-\item{offset}{An integer indicating the number of search results to skip (for pagination). Defaults to 0.}
 }
 \value{
-A \code{monarch_kg} graph object containing the search results as nodes, with no edges.
+A \code{tbl_kgx} graph object containing the search results as nodes, with no edges.
 }
 \description{
 This function uses the Monarch Initiative API to search for entities matching
-a given query string within a specified category.
+a given query string within a specified category, returing a graph containg just the nodes in the search results.
 }
 \details{
 The returned graph will contain only nodes with no associations between them, even if they exist in the Monarch database.

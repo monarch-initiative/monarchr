@@ -17,22 +17,24 @@ select_nodes <- function(graph, ...) {
 	UseMethod("select_nodes")
 }
 
-#' Select nodes from a `monarch_kg` graph
+#' Select nodes from a `tbl_kgx` graph
 #'
 #' This is the method for `select_nodes` specific to `monarch_kg` graph objects.
 #' It selects nodes based on the conditions specified in the `...` argument,
 #' which are passed to `dplyr::filter`.
 #'
-#' @param graph An object of class `monarch_kg` from which nodes should be selected.
+#' @param graph An object of class `tbl_kgx` from which nodes should be selected.
 #' @param ... Further arguments passed to `dplyr::filter`. These define the conditions
 #'   for selecting nodes based on their properties.
 #'
-#' @return A `monarch_kg` graph object with the nodes selected.
+#' @return A `tbl_kgx` graph object with the nodes selected.
 #'
 #' @examples
 #' g <- monarch_search("Diabetes")
 #' g <- select_nodes(g, !is.na(inheritance_name) | id == "MONDO:0004782")
 #'
+#' @importFrom tidygraph activate
+#' @importFrom dplyr mutate
 #' @export
 select_nodes.monarch_kg <- function(graph, ...) {
 	expr <- rlang::enexprs(...)
