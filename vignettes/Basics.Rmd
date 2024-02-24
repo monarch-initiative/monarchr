@@ -6,14 +6,26 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+options(width = 300)
+source("../R/utils.R")
 knitr::opts_chunk$set(echo = TRUE)
+
+`%+%` <- function(a, b) {
+	paste0(a, b)
+}
+
+wrap <- function(labels, size = 20) {
+	wrapped <- labels %>% lapply(strwrap, size)
+	reformatted <- wrapped %>% lapply(paste, collapse = "\n")
+	return(as.character(reformatted))
+}
 ```
 
 ## Basic Usage
 
 The MonarchR package is designed to support interactive queries against the [Monarch Initiative](https://monarchinitiative.org) Knowledge Graph (KG). It is in early development and testing, and relies upon publicly-available services managed by the Monarch Initiative.
 
-Briefly, a graph stored in a local variable represents a subsets of nodes and/or edges from the larger KG. These local graphs are also [`tidygraph`](https://tidygraph.data-imaginist.com/) objects (which are [igraph](https://r.igraph.org/)s) providing a large range of graph-related functionality. 
+Briefly, a graph stored in a local variable represents a subsets of nodes and/or edges from the larger KG. These local graphs are also [`tidygraph`](https://tidygraph.data-imaginist.com/) objects (which are [igraph](https://r.igraph.org/)s) providing a large range of graph-related functionality.
 
 First, let's load some useful libraries:
 
@@ -23,130 +35,196 @@ suppressMessages({
 	library(dplyr)
 	library(tidygraph)
 	library(kableExtra) # for kbl() table output formatting
+	library(ggraph)
+	library(ggiraph)
 })
 ```
 
-
-The `monarch_search()` function uses the keyword search [API](https://api-v3.monarchinitiative.org/v3/docs), 
-returning up to `limit` nodes, and no edges connecting them:
+The `monarch_search()` function uses the keyword search [API](https://api-v3.monarchinitiative.org/v3/docs), returning up to `limit` nodes, and no edges connecting them:
 
 ```{r}
-g <- monarch_search("Ehlers-danlos syndrome", limit = 5)
+# ^ set output width for Rmd output
+eds_hits <- monarch_search("Ehlers-danlos syndrome", limit = 3)
 
-print(g)
+nodes(eds_hits)
+edges(eds_hits)
 ```
 
-```{r}
-library(visNetwork)
-library(igraph)
-
-x <- visNetwork(g %N>% as_tibble(), g %E>% as_tibble(), height = "400px")
-
-x
-```
-
-Tidygraphs are stored as node and edge dataframes; we can "activate" one or the other to manipulate it, 
-or extract it with `as_tibble()`. Let's add a `source` to these nodes of `"search"`, and print the node table. We leave off
-the `iri` to save a little space.
+Tidygraphs are stored as node and edge dataframes; we can "activate" one or the other to manipulate it, or extract it with `as_tibble()`. Let's add a `source` to these nodes of `"search"`, and print the node table.
 
 ```{r}
-g <- g |> 
+eds_hits <- eds_hits |> 
 	activate(nodes) |>
-	mutate(source = "search")
+	mutate(source = "search") |>
+	select(id, source, everything()) # move new source col to 2nd position
 
-g |>
-	activate(nodes) |>
-	as_tibble() |>
-	select(-iri) |>
-	kbl()
+nodes(eds_hits)
 ```
-The `pcategory` column is a unique addition of MonarchR: typically, nodes are annotated with multiple categories, 
-which is stored in the `category` field in the KG. These tend to relate to ontological concepts, in that 
-a `biolink:Disease` is also a `biolink:BiologicalEntity` and `biolink:NamedThing`, but in typical use we are interested in a "primary" category. Rather than try and determine the primary category of interest from the data, we set a priority list of categories to use, choosing the first available prioritized category, or the first category available as a fallback. This can be configured via the `kg_prefs` option should you so choose:
+
+The `pcategory` column is a unique addition of MonarchR: typically, nodes are annotated with multiple categories, which is stored in the `category` field in the KG. These tend to relate to ontological concepts, in that a `biolink:Disease` is also a `biolink:BiologicalEntity` and `biolink:NamedThing`. Typically, one of these is most of interest in application. Rather than try and determine this "primary" category of interest from the data, we set a priority list of categories to use, choosing the first available prioritized category, or the first category available as a fallback. This can be configured via the `kg_prefs` option should you so choose:
 
 ```{r}
 options("kg_prefs")
 ```
+
 Let's see what kinds of connections exist in the broader graph for these nodes, which is a good idea before we go and fetch some of them. We can summarize the nodes in the surrounding neighborhood, or the edges:
 
 ```{r}
 library(knitr)
-summarize_neighborhood(g, summarize = "nodes") %>% kbl()
-
-summarize_neighborhood(g, summarize = "edges") %>% kbl()
+summarize_neighborhood(eds_hits, summarize = "nodes")
+summarize_neighborhood(eds_hits, summarize = "edges")
 ```
 
+Looking at the neighborhood node summary, there are quite a few phenotypes connected to these diseases, 30 other diseases, and 3 genes.
 
+To see what kinds types of relationships these are, we can look at the neighborhood edge summary, which breaks down the set of edges connected to these nodes in a more complex way. Each row represents a set of connections from *query* nodes in our graph `g`, to *result* nodes in the surrounding neighborhood, broken out by the category of the query and result nodes. Note that predicate may be either direction here: result genes -cause-\> our query diseases, but our query diseases -have-\> result phenotypes. Finally, for accuracy the grouping is actually the full category list and the `pcategory` is defined from those, but in practice `pcategory` is a good descriptor.
 
+In this example we can see that there are two links from our diseases (potentially from the same one) to genes via `biolink:gene_associated_with_disease`, and one connected to a gene via `biolink:causes`. There are also two kinds of connections to Phenotypes: `biolink:has_phenotype` and `biolink:has_mode_of_inheritance`. Let's fetch the connections to genes:
 
-```{r eval=FALSE}
-subtypes <- g %>%
-	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
-
-with_phenos <- subtypes %>%
-  fetch_edges(predicates = "biolink:has_phenotype")
-
-# print(with_phenos)
-	
-with_genes <- subtypes %>%
+```{r}
+eds_with_genes <- eds_hits |>
 	fetch_edges(result_categories = "biolink:Gene")
 
-# print(with_genes)
-
-neighbors <- graph_join(with_phenos, with_genes)
-neighbors
+eds_with_genes
 ```
 
-```{r eval=FALSE}
-library(ggraph)
+Notice that our `source` column is still there: we added it as a custom column to the `nodes` data earlier, but now new nodes have been been filled with `NA` values. We can fix this up as we pull in the data. This ability to easily modify, filter and otherwise manipulate the graph data via tabular primitives is a powerful feature of `tidygraph`, this [blog post](https://www.data-imaginist.com/posts/2017-07-07-introducing-tidygraph/) is a good introduction to more.
 
-neighbors <- neighbors %>%
-	activate(nodes)
+```{r}
+eds_with_genes <- eds_hits |>
+	fetch_edges(result_categories = "biolink:Gene") |>
+	activate(nodes) |>
+	mutate(source = replace_na(source, "genelinks"))
 
-p <- ggraph(neighbors, layout = 'fr') + 
-  geom_edge_link() + 
-  geom_node_point(aes(color = pcategory)) + 
-  theme(legend.position = 'bottom')
-
-plot(p)
+eds_with_genes
+# summarize the outgoing edges connected to the graph so far
+# summarize_neighborhood(eds_with_genes, direction = "out", summarize = "edges")
 ```
 
+The `fetch_edges` function allows us to narrow which edges to fetch by specifying the directionality, as well as sets of predicates and result (neighborhood) node categories allowed. We have diseases and connected genes: let's pull in further connections to either Phenotypes or Genes, via outgoing has_phenotype or interacts_with relationships:
 
-```{r eval=FALSE}
-library(ggraph)
+```{r}
+eds_with_genes_phenos_expanded <- eds_with_genes |>
+	fetch_edges(direction = "out", 
+							predicates = c("biolink:has_phenotype", "biolink:interacts_with"),
+							result_categories = c("biolink:Gene", "biolink:PhenotypicFeature"))
 
-eds_phenos <- monarch_search("Ehlers-danlos syndrome", limit = 1) %>%
-	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+eds_with_genes_phenos_expanded
+```
 
-# eds_phenos
+Let's create a quick visualization:
 
-fanconi_phenos <- monarch_search("Fanconi anemia", limit = 1) %>%
-	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+```{r}
+ggraph(eds_with_genes_phenos_expanded, layout = "fr") +
+	geom_edge_link(aes(color = predicate)) +
+	geom_node_point(aes(color = pcategory))
+```
 
-# fanconi_phenos
+For our next trick, let's find all the phenotypes connected to genes associated with FA and Cystic Fibrosis. We'll then find the intersection of those phenotypes with an inner join on the nodes.
 
-inner <- inner_join(activate(eds_phenos, nodes), activate(fanconi_phenos, nodes) %>% as_tibble())
-print(inner)
+```{r}
+fa <- monarch_search("Fanconi anemia", limit = 1) %>%
+	fetch_edges(result_categories = "biolink:Gene") %>%
+	fetch_edges(direction = "out", predicates = "biolink:has_phenotype")
 
-p <- ggraph(inner, layout = 'fr') + 
-  geom_edge_link() + 
-  geom_node_point(aes(color = pcategory)) + 
-  theme(legend.position = 'bottom')
+cf <- monarch_search("Cystic Fibrosis", limit = 1) %>%
+	fetch_edges(result_categories = "biolink:Gene") %>%
+	fetch_edges(direction = "out", predicates = "biolink:has_phenotype")
 
-plot(p)
+shared_nodes <- inner_join(nodes(fa), nodes(cf))
+shared_nodes
+```
 
-both <- graph_join(eds_phenos, fanconi_phenos)
+Let's see these in context, by doing a full join on our EDS and CF graphs, then keeping only nodes that are either diseases, genes, or one of these shared phenotypes:
 
+```{r}
+merged <- fa %>%
+	graph_join(cf) %>%
+	activate(nodes) %>%
+	filter(pcategory %in% c("biolink:Gene", "biolink:Disease") | id %in% shared_nodes$id)
 
-p <- ggraph(both, layout = 'fr') + 
-  geom_edge_link() + 
-  geom_node_point(aes(color = pcategory)) + 
-  theme(legend.position = 'bottom')
+ggraph(merged, layout = "fr") +
+	geom_edge_link(aes(color = predicate)) +
+	geom_node_point(aes(color = pcategory))
+```
 
-plot(p)
+## Transitivity
 
+The `fetch_edges` function can also be used to fetch edges transitively. For example, if we were to try and look for genes connected to the first hit for Ehlers-Danlos Syndrome, we would find none. However, we can use the `transitive` parameter to find genes connected to diseases that are subclasses of Ehlers-Danlos Syndrome, and then pull in the genes from there.
+
+```{r}
+eds_with_subtypes <- monarch_search("Ehlers-danlos syndrome", limit = 1) |>
+	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) |>
+	fetch_edges(result_categories = "biolink:Gene")
+
+# plot
+ggraph(eds_with_subtypes, layout = "sugiyama") +
+	geom_edge_link(aes(color = predicate)) +
+	geom_node_point(aes(color = pcategory)) +
+	coord_flip()
+```
+
+When using `transitive = TRUE`, each relationship type will traversed separately and the results joined. It's always wise to use `transitive = TRUE` with caution, as it can result in a large number of edges being fetched, and always indicate a direction of `"in"` or `"out"` to avoid fetching the entire KG.
+
+With some creativity, we do quite quite a lot with these few primatives. For example, from an initial search of 5 hits for EDS, we can visualize all of their ancestors. We can do the same for descendants. Note that these will find edges between the nodes in the search results, as well as intermediate nodes.
+
+```{r}
+eds_search <- monarch_search("Ehlers-danlos syndrome", limit = 5) %>%
+	activate(nodes) %>%
+	mutate(source = "search")
+
+eds_search_ancestors <- eds_search |>
+	fetch_edges(direction = "out", predicates = "biolink:subclass_of", transitive = TRUE) %>%
+	activate(nodes) %>%
+	mutate(source = replace_na(source, "ancestors"))
+
+eds_search_descendants <- eds_search |>
+	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) %>%
+	activate(nodes) %>%
+	mutate(source = replace_na(source, "descendants"))
+
+ggraph(eds_search_ancestors, layout = "sugiyama") +
+		geom_edge_link(aes(color = predicate)) +
+		geom_node_point(aes(color = source)) +
+		coord_flip()
+
+ggraph(eds_search_descendants, layout = "sugiyama") +
+		geom_edge_link(aes(color = predicate)) +
+		geom_node_point(aes(color = source)) +
+		coord_flip()
+```
+
+Let's see the full join of this data, and if we take the inner join of the nodes, we should see just how our 5 search results are connected to each other (via intermediary nodes if necessary).
+
+```{r}
+merged <- eds_search_ancestors |> 
+	graph_join(eds_search_descendants)
+
+ggraph(merged, layout = "sugiyama") +
+		geom_edge_link(aes(color = predicate)) +
+		geom_node_point(aes(color = source)) +
+		coord_flip()
+
+inner <- eds_search_ancestors %>%
+	activate(nodes) %>%
+	inner_join(nodes(eds_search_descendants))
+
+ggraph(inner, layout = "sugiyama") +
+		geom_edge_link(aes(color = predicate)) +
+		geom_node_point(aes(color = source)) +
+		coord_flip()
+```
+
+As a functional language, R provides powerful features for working with lists of data. In this example
+we begin with a graph with 5 disease nodes of interest; we use `explode()` to split the graph into a list of 5 single-node graphs, then use `lapply()` to work with these in parallel, fetching neighborhoods, extracting the nodes
+data, and removing the original searched nodes based on the `source` column we added earlier.
+
+```{r}
+eds_search %>%                                                 # starting with a graph with 5 disease nodes
+	explode() %>%                                                # split into a list of 5 single-node graphs
+	lapply(fetch_edges) %>%                                      # fetch neighborhood edges for each graph 
+	lapply(nodes) %>%                                            # extract nodes df from each graph
+	lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original seached nodes from each df
 ```
 
 

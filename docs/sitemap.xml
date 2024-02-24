@@ -34,6 +34,9 @@
     <loc>/reference/cypher_query_df.html</loc>
   </url>
   <url>
+    <loc>/reference/explode.tbl_kgx.html</loc>
+  </url>
+  <url>
     <loc>/reference/fetch_edges.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>/reference/monarch_search.html</loc>
+  </url>
+  <url>
+    <loc>/reference/nodes.html</loc>
   </url>
   <url>
     <loc>/reference/normalize_categories.html</loc>

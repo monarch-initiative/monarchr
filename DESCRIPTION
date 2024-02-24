@@ -19,6 +19,7 @@ Imports:
     colorDF,
     dotenv,
     dplyr,
+    ggiraph,
     ggraph,
     httr,
     kableExtra,

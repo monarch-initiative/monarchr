@@ -73,7 +73,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>MonarchR provides a tidy interface to data hosted at <a href="https://monarchinitiative.org" class="external-link uri">https://monarchinitiative.org</a>. The package is currently in development and subject to significant change.</p>
+<p>MonarchR provides a tidy interface to data hosted at <a href="https://monarchinitiative.org" class="external-link uri">https://monarchinitiative.org</a>. The package is in early testing and the API may change.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -85,31 +85,7 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">monarchr</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/monarch_search.html">monarch_search</a></span><span class="op">(</span><span class="st">"Cystic Fibrosis"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">graph</span></span></code></pre></div>
-<p>Output:</p>
-<pre><code># A tbl_graph: 10 nodes and 0 edges
-#
-# A rooted forest with 10 trees
-#
-# A tibble: 10 × 10
-  id            categories label                                                   description              symbol synonyms taxon inheritance_id inheritance_name selected
-  &lt;chr&gt;         &lt;list&gt;     &lt;chr&gt;                                                   &lt;chr&gt;                    &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;            &lt;lgl&gt;   
-1 MONDO:0009061 &lt;chr [1]&gt;  cystic fibrosis                                         Cystic fibrosis (CF) is… NA     &lt;chr&gt;    NA    HP:0000007     HP:0000007       TRUE    
-2 MONDO:0005413 &lt;chr [1]&gt;  cystic fibrosis associated meconium ileus               Cystic fibrosis associa… NA     &lt;chr&gt;    NA    NA             NA               TRUE    
-3 MONDO:0009062 &lt;chr [1]&gt;  cystic fibrosis-gastritis-megaloblastic anemia syndrome A rare genetic disease … NA     &lt;chr&gt;    NA    NA             NA               TRUE    
-4 HGNC:51351    &lt;chr [1]&gt;  CFTR pseudogene 2                                       NA                       CFTRP2 &lt;chr&gt;    NA    NA             NA               TRUE    
-5 HGNC:51352    &lt;chr [1]&gt;  CFTR pseudogene 3                                       NA                       CFTRP3 &lt;chr&gt;    NA    NA             NA               TRUE    
-6 HGNC:16182    &lt;chr [1]&gt;  CFTR pseudogene 1                                       NA                       CFTRP1 &lt;chr&gt;    NA    NA             NA               TRUE    
-# ℹ 4 more rows
-# ℹ Use `print(n = ...)` to see more rows
-#
-# A tibble: 0 × 2
-# ℹ 2 variables: from &lt;int&gt;, to &lt;int&gt;</code></pre>
+<p>See the documentation.</p>
 </div>
 </div>
   </div>
