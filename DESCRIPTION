@@ -1,24 +1,35 @@
 Package: monarchr
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.2.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Monarch Knowledge Graph Queries
+Description: R package for easy access, manipulation, and analysis of
+		Monarch KG data Resources.
+Version: 0.2.1
+Authors@R:
+    c(
+  person(given = "Shawn",
+           family = "O'Neil",
+           role = c("aut","cre"),
+           email = "oneilsh@gmail.com",
+           comment = c(ORCID = "0000-0001-6220-7080")),
+    person(given = "Brian",
+           family = "Schilder",
+           role = c("aut","ctb"),
+           email = "brian_schilder@alumni.brown.edu",
+           comment = c(ORCID = "0000-0001-5949-2191"))
+     ) 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
+VignetteBuilder: knitr
 Imports: 
     assertthat,
     colorDF,
     dotenv,
     dplyr,
+    tidyr,
     ggiraph,
     ggraph,
     httr,
@@ -33,3 +44,6 @@ Imports:
     tidygraph,
     vcr,
     yaml
+Suggests: 
+    testthat (>= 3.0.0),
+    knitr
