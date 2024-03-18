@@ -3,6 +3,7 @@
 S3method(explode,tbl_kgx)
 S3method(select_nodes,monarch_kg)
 export(cypher_query)
+export(cypher_query_df)
 export(edges)
 export(fetch_edges)
 export(monarch_search)

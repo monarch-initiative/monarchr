@@ -21,6 +21,7 @@ This function takes a Cypher query and parameters, executes the query on the Mon
 }
 \examples{
 query <- "MATCH (n) RETURN n LIMIT 10"
-parameters <- list()
+ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
+parameters <- list(ids = ids)
 result <- cypher_query_df(query, parameters)
 }

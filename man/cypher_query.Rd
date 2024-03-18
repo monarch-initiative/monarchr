@@ -25,7 +25,7 @@ It also computes a priority category based on a preference list. Finally, it cre
 query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
 parameters <- NULL
 g <- cypher_query(query, parameters)
-
+ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
 query = "MATCH (n) WHERE n.id IN $ids RETURN n"
 parameters = list(ids = ids)
 g <- cypher_query(query, parameters)

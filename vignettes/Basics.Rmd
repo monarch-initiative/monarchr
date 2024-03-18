@@ -1,8 +1,13 @@
 ---
 title: "MonarchR Basics"
 author: "Shawn T O'Neil"
-date: "2024-02-17"
-output: html_document
+date: "<h4>Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{Basics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
@@ -243,5 +248,5 @@ eds_search %>%                                                 # starting with a
 	explode() %>%                                                # split into a list of 5 single-node graphs
 	lapply(fetch_edges) %>%                                      # fetch neighborhood edges for each graph 
 	lapply(nodes) %>%                                            # extract nodes df from each graph
-	lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original seached nodes from each df
+	lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original searched nodes from each df
 ```

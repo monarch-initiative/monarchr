@@ -63,7 +63,7 @@ stitch_vectors <- function(x) {
 #' query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
 #' parameters <- NULL
 #' g <- cypher_query(query, parameters)
-#'
+#' ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
 #' query = "MATCH (n) WHERE n.id IN $ids RETURN n"
 #' parameters = list(ids = ids)
 #' g <- cypher_query(query, parameters)
@@ -162,9 +162,11 @@ cypher_query <- function(query, parameters = NULL, ...) {
 #' @param parameters A list of parameters for the Cypher query. Default is an empty list.
 #' @param ... Additional arguments passed to the function.
 #' @return A data frame containing the result of the Cypher query.
+#' @export
 #' @examples
 #' query <- "MATCH (n) RETURN n LIMIT 10"
-#' parameters <- list()
+#' ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
+#' parameters <- list(ids = ids)
 #' result <- cypher_query_df(query, parameters)
 #' @importFrom neo2R cypher
 cypher_query_df <- function(query, parameters = list(), ...) {

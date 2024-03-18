@@ -3,3 +3,12 @@
 ^LICENSE\.md$
 ^meta$
 ^docs$
+
+^\.lintr$
+^\.github$
+^\.vscode$
+
+## For GitHub Actions Windows runner
+node_modules$
+package-lock\.json$
+package\.json$
