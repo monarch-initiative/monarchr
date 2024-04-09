@@ -19,6 +19,13 @@
 #' @export
 #' @importFrom tidygraph tbl_graph
 tbl_kgx <- function(nodes = NULL, edges = NULL, ...) {
+	# nodes can be empty, if so we need to create an empty data frame
+	if(nrow(nodes) == 0) {
+		nodes <- data.frame(id = character(0))
+		nodes$category <- list()
+		edges <- data.frame(subject = character(0), predicate = character(0), object = character(0))
+	 }
+
 	if(is.null(nodes$id)) { stop("Error: tbl_kgx nodes must have an 'id' column.") }
 	if(is.null(nodes$id)) { stop("Error: tbl_kgx nodes must have an 'category' column.") }
 

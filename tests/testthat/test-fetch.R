@@ -2,6 +2,11 @@ library(testthat)
 library(assertthat)
 library(tidyr)
 
+test_that("fetch_edges with no return results works", {
+    eds_hits <- query_ids(c("WB:WBGene00008083")) # no associations
+    g <- eds_hits %>% fetch_edges(result_categories = "biolink:Disease")
+})
+
 test_that("fetch_edges works as expected", {
     testthat::skip("temporary skip")
 
