@@ -20,12 +20,13 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-fetch_edges <- function(g,
-                        direction = "both",
-                        predicates = NULL,
-                        result_categories = NULL,
-                        transitive = FALSE,
-                        drop_unused_query_nodes = FALSE) {
+fetch_edges.neo4j_engine <- function(engine,
+                                        g,
+                                        direction = "both",
+                                        predicates = NULL,
+                                        result_categories = NULL,
+                                        transitive = FALSE,
+                                        drop_unused_query_nodes = FALSE) {
     assert_that(is.tbl_graph(g))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
@@ -106,7 +107,7 @@ fetch_edges <- function(g,
 
     query <- paste0(query, " RETURN n, r, m")
 
-    result <- cypher_query(query, parameters = list(nodes = node_ids,
+    result <- cypher_query(engine, query, parameters = list(nodes = node_ids,
                                                     predicates = predicates,
                                                     result_categories = result_categories))
 
@@ -120,6 +121,16 @@ fetch_edges <- function(g,
         result <- tidygraph::graph_join(g, result)
     }
 
+    attr(result, "last_engine") <- engine
     return(result)
 }
 
+fetch_edges.tbl_kgx <- function(g, ...) {
+    # check to see if g has a last_engine attribute
+    if(!is.null(attr(g, "last_engine"))) {
+        engine <- attr(g, "last_engine")
+        return(fetch_edges(engine, g, ...))
+    } else {
+        stop("Error: tbl_kgx object does not have a most recent engine. Use fetch_edges(engine, g, ...) instead.")
+    }
+}

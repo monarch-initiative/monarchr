@@ -70,13 +70,13 @@ stitch_vectors <- function(x) {
 #' @export
 #' @importFrom neo2R cypher
 #' @importFrom tibble tibble
-cypher_query <- function(query, parameters = NULL, ...) {
-	kg_name <- "monarch" # we can parameterize this in the future if desired
+cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {
+	# kg_name <- "monarch" # we can parameterize this in the future if desired
 
-	pkg_env <- parent.env(environment())
-	graph_connections <- get("graph_connections", envir = pkg_env)
+	# pkg_env <- parent.env(environment())
+	# graph_connections <- get("graph_connections", envir = pkg_env)
 
-	res <- neo2R::cypher(graph_connections[[kg_name]], query = query, parameters = parameters, result = "graph")
+	res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
 	res <- stitch_vectors(res)
 
 	## node info
@@ -89,6 +89,7 @@ cypher_query <- function(query, parameters = NULL, ...) {
 	})
 
 	nodes_df <- tibble::tibble(id = node_ids, category = node_categories)
+	nodes_df <- dplyr::mutate(nodes_df, engine = engine$name)
 
 	## compute a pcategory, or priority category, based on a preference list
 	nodes_df$pcategory <- normalize_categories(node_categories, options("kg_prefs")$kg_prefs$monarch_kg$category_priority)
@@ -112,7 +113,8 @@ cypher_query <- function(query, parameters = NULL, ...) {
 	}
 
 	if(is.null(res$relationships[[1]])) {
-		return(tbl_kgx(nodes_df))
+		g <- tbl_kgx(nodes_df, attach_engine = engine)
+		return(g)
 	}
 
 	## edge info
@@ -150,7 +152,7 @@ cypher_query <- function(query, parameters = NULL, ...) {
 	edges_df$from <- edge_subjects
 	edges_df$to <- edge_objects
 
-	g <- tbl_kgx(nodes_df, edges_df)
+	g <- tbl_kgx(nodes_df, edges_df, attach_engine = engine)
 	return(g)
 }
 
@@ -169,12 +171,12 @@ cypher_query <- function(query, parameters = NULL, ...) {
 #' parameters <- list(ids = ids)
 #' result <- cypher_query_df(query, parameters)
 #' @importFrom neo2R cypher
-cypher_query_df <- function(query, parameters = list(), ...) {
-    kg_name <- "monarch" # we can parameterize this in the future if desired
+cypher_query_df.neo4j_engine <- function(engine, query, parameters = list(), ...) {
+    # kg_name <- "monarch" # we can parameterize this in the future if desired
 
-	pkg_env <- parent.env(environment())
-	graph_connections <- get("graph_connections", envir = pkg_env)
-    result <- neo2R::cypher(graph_connections[[kg_name]], query = query, parameters = parameters, result = "row", arraysAsStrings = FALSE)
+	# pkg_env <- parent.env(environment())
+	# graph_connections <- get("graph_connections", envir = pkg_env)
+    result <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "row", arraysAsStrings = FALSE)
 
     return(result)
 }
