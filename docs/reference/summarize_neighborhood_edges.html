@@ -20,25 +20,27 @@ Note that the number of relationships returned may be larger than the number of 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/monarchr.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/monarch-initiative/monarchr/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Basics.html">MonarchR Basics</a>
-    </li>
-  </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -48,7 +50,7 @@ Note that the number of relationships returned may be larger than the number of 
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summarize neighborhood edges</h1>
-    
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/HEAD/R/summarize_neighborhood.R" class="external-link"><code>R/summarize_neighborhood.R</code></a></small>
     <div class="hidden name"><code>summarize_neighborhood_edges.Rd</code></div>
     </div>
 
@@ -84,15 +86,16 @@ Note that the number of relationships returned may be larger than the number of 
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="monarch_search.html">monarch_search</a></span><span class="op">(</span><span class="st">"fanconi anemia"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">summarize_neighborhood_edges</span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   count query_pcategory           predicate      result_pcategory query_category</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   115 biolink:BiologicalProcess biolink:parti… biolink:Gene     <span style="color: #949494;">&lt;list [10]&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   126 biolink:BiologicalProcess biolink:parti… biolink:Gene     <span style="color: #949494;">&lt;list [10]&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>   106 biolink:Disease           biolink:has_p… biolink:Phenoty… <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    30 biolink:Disease           biolink:subcl… biolink:Disease  <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>    22 biolink:Disease           biolink:gene_… biolink:Gene     <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>    17 biolink:BiologicalProcess biolink:parti… biolink:Chemica… <span style="color: #949494;">&lt;list [10]&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>     1 biolink:Disease           biolink:relat… biolink:Disease  <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>    23 biolink:BiologicalProcess biolink:parti… biolink:Chemica… <span style="color: #949494;">&lt;list [10]&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>    22 biolink:Disease           biolink:gene_… biolink:Gene     <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>     2 biolink:Disease           biolink:treat… biolink:Chemica… <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>     1 biolink:Disease           biolink:relat… biolink:Disease  <span style="color: #949494;">&lt;list [6]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: result_category &lt;list&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -105,7 +108,7 @@ Note that the number of relationships returned may be larger than the number of 
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by The package maintainer.</p>
+  <p></p><p>Developed by Shawn O’Neil, Brian Schilder.</p>
 </div>
 
 <div class="pkgdown">

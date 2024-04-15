@@ -5,7 +5,7 @@ date: "<h4>Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
   rmarkdown::html_document
 vignette: >
-  %\VignetteIndexEntry{Basics}
+  %\VignetteIndexEntry{monarchr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -34,22 +34,20 @@ Briefly, a graph stored in a local variable represents a subsets of nodes and/or
 
 First, let's load some useful libraries:
 
-```{r}
-suppressMessages({
-	library(monarchr)
-	library(dplyr)
-	library(tidygraph)
-	library(kableExtra) # for kbl() table output formatting
-	library(ggraph)
-	library(ggiraph)
-})
+```{r library, message=FALSE}
+library(monarchr)
+library(dplyr)
+library(tidygraph)
+library(kableExtra) # for kbl() table output formatting
+library(ggraph)
+library(ggiraph)
 ```
 
 ### Searching by ID or Keyword
 
 The `query_ids()` function returns matching nodes, while `monarch_search()` function uses the keyword search [API](https://api-v3.monarchinitiative.org/v3/docs), returning up to `limit` nodes. Neither function returns any edges that might exist between those nodes.
 
-```{r}
+```{r search}
 # id lookup
 eds_hits <- query_ids(c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021"))
 # or search
@@ -64,7 +62,7 @@ edges(eds_hits)
 
 Tidygraphs are stored as node and edge dataframes; we can "activate" one or the other to manipulate it, or extract it with `as_tibble()`. Let's add a `source` to these nodes of `"search"`, and print the node table.
 
-```{r}
+```{r manipulate}
 eds_hits <- eds_hits %>%
 	activate(nodes) %>%
 	mutate(source = "search") %>%
@@ -77,7 +75,7 @@ nodes(eds_hits)
 
 The `pcategory` column is a unique addition of MonarchR: typically, nodes are annotated with multiple categories, which is stored in the `category` field in the KG. These tend to relate to ontological concepts, in that a `biolink:Disease` is also a `biolink:BiologicalEntity` and `biolink:NamedThing`. Typically, one of these is most of interest in application. Rather than try and determine this "primary" category of interest from the data, we set a priority list of categories to use, choosing the first available prioritized category, or the first category available as a fallback. This can be configured via the `kg_prefs` option should you so choose:
 
-```{r}
+```{r pcategory}
 options("kg_prefs")
 ```
 
@@ -85,7 +83,7 @@ options("kg_prefs")
 
 Let's see what kinds of connections exist in the broader graph for these nodes, which is a good idea before we go and fetch some of them. We can summarize the nodes in the surrounding neighborhood, or the edges:
 
-```{r}
+```{r neighborhood}
 library(knitr)
 summarize_neighborhood(eds_hits, summarize = "nodes")
 summarize_neighborhood(eds_hits, summarize = "edges")
@@ -99,7 +97,7 @@ To see what kinds types of relationships these are, we can look at the neighborh
 
 In this example we can see that there are two links from our diseases (potentially from the same one) to genes via `biolink:gene_associated_with_disease`, and one connected to a gene via `biolink:causes`. There are also two kinds of connections to Phenotypes: `biolink:has_phenotype` and `biolink:has_mode_of_inheritance`. Let's fetch the connections to genes:
 
-```{r}
+```{r fetch-edges}
 eds_with_genes <- eds_hits |>
 	fetch_edges(result_categories = "biolink:Gene")
 
@@ -108,7 +106,7 @@ eds_with_genes
 
 Notice that our `source` column is still there: we added it as a custom column to the `nodes` data earlier, but now new nodes have been been filled with `NA` values. We can fix this up as we pull in the data. This ability to easily modify, filter and otherwise manipulate the graph data via tabular primitives is a powerful feature of `tidygraph`, this [blog post](https://www.data-imaginist.com/posts/2017-07-07-introducing-tidygraph/) is a good introduction to more.
 
-```{r}
+```{r fetch-deges-2}
 eds_with_genes <- eds_hits |>
 	fetch_edges(result_categories = "biolink:Gene") |>
 	activate(nodes) |>
@@ -121,7 +119,7 @@ eds_with_genes
 
 The `fetch_edges` function allows us to narrow which edges to fetch by specifying the directionality, as well as sets of predicates and result (neighborhood) node categories allowed. We have diseases and connected genes: let's pull in further connections to either Phenotypes or Genes, via outgoing has_phenotype or interacts_with relationships:
 
-```{r}
+```{r fetch-edges-3}
 eds_with_genes_phenos_expanded <- eds_with_genes |>
 	fetch_edges(direction = "out", 
 							predicates = c("biolink:has_phenotype", "biolink:interacts_with"),
@@ -134,7 +132,7 @@ eds_with_genes_phenos_expanded
 
 Let's create a quick visualization:
 
-```{r}
+```{r visualization}
 ggraph(eds_with_genes_phenos_expanded, layout = "fr") +
 	geom_edge_link(aes(color = predicate)) +
 	geom_node_point(aes(color = pcategory))
@@ -144,7 +142,7 @@ ggraph(eds_with_genes_phenos_expanded, layout = "fr") +
 
 For our next trick, let's find all the phenotypes connected to genes associated with FA and Cystic Fibrosis. We'll then find the intersection of those phenotypes with an inner join on the nodes.
 
-```{r}
+```{r graph-joins}
 fa <- monarch_search("Fanconi anemia", limit = 1) %>%
 	fetch_edges(result_categories = "biolink:Gene") %>%
 	fetch_edges(direction = "out", predicates = "biolink:has_phenotype")
@@ -159,7 +157,7 @@ shared_nodes
 
 Let's see these in context, by doing a full join on our EDS and CF graphs, then keeping only nodes that are either diseases, genes, or one of these shared phenotypes:
 
-```{r}
+```{r graph-joins-2}
 merged <- fa %>%
 	graph_join(cf) %>%
 	activate(nodes) %>%
@@ -174,7 +172,7 @@ ggraph(merged, layout = "fr") +
 
 The `fetch_edges` function can also be used to fetch edges transitively. For example, if we were to try and look for genes connected to the first hit for Ehlers-Danlos Syndrome, we would find none. However, we can use the `transitive` parameter to find genes connected to diseases that are subclasses of Ehlers-Danlos Syndrome, and then pull in the genes from there.
 
-```{r}
+```{r transitivity}
 eds_with_subtypes <- monarch_search("Ehlers-danlos syndrome", limit = 1) |>
 	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) |>
 	fetch_edges(result_categories = "biolink:Gene")
@@ -192,7 +190,7 @@ When using `transitive = TRUE`, each relationship type will traversed separately
 
 With some creativity, we do quite quite a lot with these few primitives. For example, from an initial search of 5 hits for EDS, we can visualize all of their ancestors. We can do the same for descendants. Note that these will find edges between the nodes in the search results, as well as intermediate nodes.
 
-```{r}
+```{r ancestors-descendants}
 eds_search <- monarch_search("Ehlers-danlos syndrome", limit = 5) %>%
 	activate(nodes) %>%
 	mutate(source = "search")
@@ -220,7 +218,7 @@ ggraph(eds_search_descendants, layout = "sugiyama") +
 
 Let's see the full join of this data, and if we take the inner join of the nodes, we should see just how our 5 search results are connected to each other (via intermediary nodes if necessary).
 
-```{r}
+```{r ancestors-descendants-2}
 merged <- eds_search_ancestors |> 
 	graph_join(eds_search_descendants)
 
@@ -243,10 +241,17 @@ ggraph(inner, layout = "sugiyama") +
 
 As a functional language, R provides powerful features for working with lists of data. In this example we begin with a graph with 5 disease nodes of interest; we use `explode()` to split the graph into a list of 5 single-node graphs, then use `lapply()` to work with these in parallel, fetching neighborhoods, extracting the nodes data, and removing the original searched nodes based on the `source` column we added earlier.
 
-```{r}
+```{r list-of-graphs}
 eds_search %>%                                                 # starting with a graph with 5 disease nodes
 	explode() %>%                                                # split into a list of 5 single-node graphs
 	lapply(fetch_edges) %>%                                      # fetch neighborhood edges for each graph 
 	lapply(nodes) %>%                                            # extract nodes df from each graph
 	lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original searched nodes from each df
 ```
+
+## Session info
+
+```{r}
+utils::sessionInfo()
+```
+

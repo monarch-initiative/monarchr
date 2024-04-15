@@ -17,25 +17,27 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/monarchr.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/monarch-initiative/monarchr/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Basics.html">MonarchR Basics</a>
-    </li>
-  </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -60,6 +62,14 @@
         </td>
         <td><p>Execute a Cypher Query and Return a Data Frame</p></td>
       </tr><tr><td>
+          <p><code><a href="edges.html">edges()</a></code> </p>
+        </td>
+        <td><p>Get graph edges table.</p></td>
+      </tr><tr><td>
+          <p><code><a href="edges.tbl_kgx.html">edges(<i>&lt;tbl_kgx&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get tbl_kgx graph edges table.</p></td>
+      </tr><tr><td>
           <p><code><a href="explode.tbl_kgx.html">explode(<i>&lt;tbl_kgx&gt;</i>)</a></code> </p>
         </td>
         <td><p>Explode a graph into a list of single-node graphs.</p></td>
@@ -75,6 +85,10 @@
           <p><code><a href="nodes.html">nodes()</a></code> </p>
         </td>
         <td><p>Get graph nodes table.</p></td>
+      </tr><tr><td>
+          <p><code><a href="nodes.tbl_kgx.html">nodes(<i>&lt;tbl_kgx&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get tbl_kgx graph nodes table.</p></td>
       </tr><tr><td>
           <p><code><a href="normalize_categories.html">normalize_categories()</a></code> </p>
         </td>
@@ -116,7 +130,7 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by The package maintainer.</p>
+  <p></p><p>Developed by Shawn O’Neil, Brian Schilder.</p>
 </div>
 
 <div class="pkgdown">
