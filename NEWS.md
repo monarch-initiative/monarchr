@@ -1,3 +1,18 @@
+# monarchr 0.2.2
+
+## New features
+
+* README:
+	- Create to README.Rmd to enable autofilling. 
+	- Add badges
+	- Add link to docs site
+* DESCRIPTION:
+	- Add URL/BugReports fields
+* vignettes
+	- Change Basics.Rmd --> monarchr.Rmd to match conventions.
+	- Name chunks in vignette
+	- Add session info to end of vignette
+
 # monarchr 0.2.1
 
 * Add rworkflows GHA for automated checking, site building, and Docker container creation.
