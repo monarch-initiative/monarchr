@@ -5,7 +5,7 @@ test_that("query_ids returns a tbl_kgx graph", {
      #testthat::skip("temporary skip")
 
     ids <- c("MONDO:0015780", "HP:0001903", "HGNC:2890")
-    e <- neo4j_engine()
+    e <- monarch_engine()
     result <- query_ids(e, ids)
     expect_s3_class(result, "tbl_kgx")
     nodes_df <- data.frame(tidygraph::activate(result, nodes))

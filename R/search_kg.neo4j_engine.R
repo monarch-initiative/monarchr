@@ -1,6 +1,6 @@
 # search function using neo4j
 
-search.neo4j_engine <- function(e, query_regex, field = "id", limit = 10, ...) {
+search_kg.neo4j_engine <- function(e, query_regex, field = "id", limit = 10, ...) {
     # returns a tbl_kgx graph
     # query is a string
     # field is a string

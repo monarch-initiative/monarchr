@@ -16,10 +16,11 @@
 #' search(e, "Cystic Fibrosis", category = "biolink:Disease", limit = 5)
 #'
 #' @export
-search.monarch_engine <- function(engine,
-                                  query,
-                                  category = NULL,
-                                  limit = 10) {
+search_kg.monarch_engine <- function(engine,
+                                     query,
+                                     category = NULL,
+                                     limit = 10) {
+
     api_url <- paste0(engine$preferences$monarch_api_url, "/search")
 
     params <- list(
@@ -49,9 +50,7 @@ search.monarch_engine <- function(engine,
         ids <- list(ids)
     }
 
-    e <- neo4j_engine()
-
-    g <- cypher_query(e, query = "MATCH (n) WHERE n.id IN $ids RETURN n",
+    g <- cypher_query(engine, query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                      parameters = list(ids = ids))
 
     return(g)

@@ -5,7 +5,7 @@ test_that("summarize_neighborhood returns reasonable results", {
     # skip for now
     #testthat::skip("temporary skip")
 
-    g <- monarch_search("fanconi anemia", limit = 1)
+    g <- monarch_engine() %>% search_kg("fanconi anemia", limit = 1)
     # result should be a tbl_kgx with 5 nodes and no edges
 
     result <- summarize_neighborhood(g, summarize = "edges")

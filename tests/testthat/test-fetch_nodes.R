@@ -5,12 +5,12 @@ library(tidyr)
 test_that("fetch_nodes works with the default neo4j engine", {
     #testthat::skip("temporary skip")
 
-    e <- neo4j_engine()
+    e <- monarch_engine()
     # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
+    # do so silently in the logs...
     expect_error(e %>% fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")))
 
-
-    e <- neo4j_engine()
+    e <- monarch_engine()
     g <- e %>% fetch_nodes(id == "MONDO:0007525")
 
     nodes_df <- g %>% activate(nodes) %>% as.data.frame()

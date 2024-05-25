@@ -12,4 +12,6 @@
 monarch_engine <- function() {
   e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
   e$preferences$monarch_api_url <- "https://api.monarchinitiative.org/v3/api"
+  class(e) <- c("monarch_engine", class(e))
+  return(e)
 }

@@ -5,7 +5,6 @@ library(tidyr)
 test_that("base_engine works", {
     # first, let's make sure the default preferences is loaded
     e <- base_engine()
-    str(e)
     expect_equal(e$name, "default_engine")
     # result should have a category_priority field
     expect_true("category_priority" %in% names(e$preferences))

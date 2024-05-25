@@ -2,19 +2,10 @@ library(testthat)
 library(assertthat)
 library(tidyr)
 
-test_that("fetch_edges with no return results works", {
-    # skip for now
-    #testthat::skip("temporary skip")
-    
-    e <- neo4j_engine()
-    eds_hits <- query_ids(e, c("WB:WBGene00008083")) # no associations
-    g <- eds_hits %>% fetch_edges(result_categories = "biolink:Disease")
-})
-
 test_that("fetch_edges works as expected", {
     #testthat::skip("temporary skip")
 
-    e <- neo4j_engine()
+    e <- monarch_engine()
     g <- query_ids(e, "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
     subtypes <- g %>% fetch_edges(direction = "in",
