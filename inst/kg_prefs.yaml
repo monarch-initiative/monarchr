@@ -1,12 +1,11 @@
-monarch_kg:
-  category_priority:
-    - biolink:Disease
-    - biolink:PhenotypicFeature
-    - biolink:Gene
-    - biolink:AnatomicalEntity
-    - biolink:BiologicalProcess
-    - biolink:Pathway
-    - biolink:Cell
-    - biolink:CellularComponent
-    - biolink:ChemicalEntity
-    - biolink:Drug
+category_priority:
+  - biolink:Disease
+  - biolink:PhenotypicFeature
+  - biolink:Gene
+  - biolink:AnatomicalEntity
+  - biolink:BiologicalProcess
+  - biolink:Pathway
+  - biolink:Cell
+  - biolink:CellularComponent
+  - biolink:ChemicalEntity
+  - biolink:Drug

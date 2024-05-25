@@ -4,7 +4,7 @@
 \alias{tbl_kgx}
 \title{Create a KGX graph object}
 \usage{
-tbl_kgx(nodes = NULL, edges = NULL, ...)
+tbl_kgx(nodes = NULL, edges = NULL, attach_engine = NULL, ...)
 }
 \arguments{
 \item{nodes}{A data frame containing the nodes of the graph. Must have 'id' and 'category' columns.}

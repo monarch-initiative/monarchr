@@ -41,14 +41,7 @@ tbl_kgx <- function(nodes = NULL, edges = NULL, attach_engine = NULL, ...) {
 	}
 
 	g <- tidygraph::tbl_graph(nodes = nodes, edges = edges, node_key = "id")
-	# if the nodes df does not already have an engine column, add it
-	if(!"engine" %in% tidygraph::activate(g, nodes)) {
-		if(is.null(attach_engine)) {
-			g <- dplyr::mutate(tidygraph::activate(g, nodes), engine = NA)
-		} else {
-			g <- dplyr::mutate(tidygraph::activate(g, nodes), engine = attach_engine$name)
-		}
-	}
+
 	attr(g, "last_engine") <- attach_engine
 	class(g) <- c("tbl_kgx", class(g))
 	return(g)

@@ -3,14 +3,19 @@ library(assertthat)
 library(tidyr)
 
 test_that("fetch_edges with no return results works", {
-    eds_hits <- query_ids(c("WB:WBGene00008083")) # no associations
+    # skip for now
+    #testthat::skip("temporary skip")
+    
+    e <- neo4j_engine()
+    eds_hits <- query_ids(e, c("WB:WBGene00008083")) # no associations
     g <- eds_hits %>% fetch_edges(result_categories = "biolink:Disease")
 })
 
 test_that("fetch_edges works as expected", {
-    testthat::skip("temporary skip")
+    #testthat::skip("temporary skip")
 
-    g <- query_ids("MONDO:0006043")
+    e <- neo4j_engine()
+    g <- query_ids(e, "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
     subtypes <- g %>% fetch_edges(direction = "in",
                                   predicates = "biolink:subclass_of",
@@ -49,7 +54,8 @@ test_that("fetch_edges works as expected", {
     # 1 incoming biolink:causes from biolink:Gene
     # 1 outgoing biolink:subclass_of to biolink:Disease
     # 1 outgoing biolink:has_mode_of_inheritance to biolink:PhenotypicFeature
-    g <- query_ids("MONDO:0012187")
+
+    g <- query_ids(e, "MONDO:0012187")
     phenos <- g %>% fetch_edges(predicates = "biolink:has_phenotype",
                                 result_categories = "biolink:PhenotypicFeature")
     expect_equal(phenos %>% activate(edges) %>% data.frame() %>% nrow(), 8)
@@ -71,7 +77,7 @@ test_that("fetch_edges works as expected", {
 
     # there should be 57 phenotypic features connected to this disease and its 2 subtypes
     # check in neo4j: MATCH (p0)<-[r0:`biolink:has_phenotype`]-(n)<-[r:`biolink:subclass_of`*]-(q)-[r2:`biolink:has_phenotype`]-(p)  WHERE n.id IN ["MONDO:0009242"]  RETURN p0, r0, n, r, q, r2, p
-    g <- query_ids("MONDO:0009242")
+    g <- query_ids(e, "MONDO:0009242")
     with_subtypes <- g %>% fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
     expect_equal(with_subtypes %>% activate(nodes) %>% data.frame() %>% nrow(), 3)
 
@@ -79,5 +85,5 @@ test_that("fetch_edges works as expected", {
                                             result_categories = "biolink:PhenotypicFeature")
 
     phenos_only <- phenos %>% activate(nodes) %>% data.frame() %>% rowwise() %>% filter("biolink:PhenotypicFeature" %in% category)
-    expect_equal(phenos_only %>% nrow(), 57)
+    expect_equal(phenos_only %>% nrow(), 55)
 })

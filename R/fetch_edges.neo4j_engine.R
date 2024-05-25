@@ -10,7 +10,8 @@
 #' @return A tbl_kgx graph
 #' @export
 #' @examples
-#' g <- monarch_search("fanconi anemia", limit = 1)
+#' e <- neo4j_engine()
+#' g <- e %>% field_search("id", "MONDO:0007525")
 #' phenos <- g %>%
 #'   fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
@@ -111,9 +112,11 @@ fetch_edges.neo4j_engine <- function(engine,
                                                     predicates = predicates,
                                                     result_categories = result_categories))
 
+    prefs <- engine$preferences
+
     result <- result %>%
         tidygraph::activate(nodes) %>%
-        mutate(pcategory = normalize_categories(category, options("kg_prefs")$kg_prefs$monarch_kg$category_priority))
+        mutate(pcategory = normalize_categories(category, prefs$category_priority))
 
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph
@@ -123,14 +126,4 @@ fetch_edges.neo4j_engine <- function(engine,
 
     attr(result, "last_engine") <- engine
     return(result)
-}
-
-fetch_edges.tbl_kgx <- function(g, ...) {
-    # check to see if g has a last_engine attribute
-    if(!is.null(attr(g, "last_engine"))) {
-        engine <- attr(g, "last_engine")
-        return(fetch_edges(engine, g, ...))
-    } else {
-        stop("Error: tbl_kgx object does not have a most recent engine. Use fetch_edges(engine, g, ...) instead.")
-    }
 }

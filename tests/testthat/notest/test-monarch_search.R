@@ -2,7 +2,9 @@ library(testthat)
 library(assertthat)
 
 test_that("monarch_search works", {
-    testthat::skip("temporary skip")
+    # skip for now
+    #testthat::skip("temporary skip")
+    
     g <- monarch_search("fanconi anemia", limit = 5)
     # result should be a tbl_kgx with 5 nodes and no edges
     expect_s3_class(g, "tbl_kgx")
