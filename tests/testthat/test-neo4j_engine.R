@@ -6,7 +6,7 @@ library(tidyr)
 test_that("monarch_engine works as expected", {
     #testthat::skip("temporary skip")
 
-    e <- monarch_engine()
+    e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
     g <- query_ids(e, "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
     subtypes <- g %>% fetch_edges(direction = "in",
