@@ -9,3 +9,8 @@ category_priority:
   - biolink:CellularComponent
   - biolink:ChemicalEntity
   - biolink:Drug
+node_search_properties:
+  - id
+  - description
+  - name
+  - nosuchprop
