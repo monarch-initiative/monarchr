@@ -1,18 +1,22 @@
 library(testthat)
 library(assertthat)
 
-test_that("search works for neo4j graphs", {
+test_that("search_kg works for neo4j graphs", {
     # skip for now
     #testthat::skip("temporary skip")
 
     e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
-    g <- search_kg(e, "MONDO:0007525", field = "id", limit = 1)
+    g <- search_kg(e, "fibrosis", category = "biolink:Disease", limit = 5)
 
+    # ok, there should be 5 nodes, and 0 edges
     nodes_df <- g %>% nodes()
-    expect_equal(nrow(nodes_df), 1)
+    expect_equal(nrow(nodes_df), 5)
+    edges_df <- g %>% edges()
+    expect_equal(nrow(edges_df), 0)
 
-    g <- search_kg(e, "MONDO:.*", field = "id", limit = 10)
+    # all the nodes should have a pcategory of biolink:Disease
+    expect_true(all(nodes_df$pcategory == "biolink:Disease"))
 
-    nodes_df <- g %>% nodes()
-    expect_equal(nrow(nodes_df), 10)
+    # the nodes should have a name or description that contains "fibrosis"
+    expect_true(all(grepl("fibrosis", nodes_df$name) | grepl("fibrosis", nodes_df$description)))
 })

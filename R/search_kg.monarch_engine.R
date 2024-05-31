@@ -3,11 +3,13 @@
 #' This function uses the Monarch Initiative API to search for entities matching
 #' a given query string within a specified category, returing a graph containg just the nodes in the search results.
 #'
+#' @param engine A Monarch engine object.
 #' @param query A character string representing the query term. Example terms:
 #'   "Cystic Fibrosis", "CYP6B", "swelling of joints".
 #' @param category A character string indicating a single entity category in which to search for the query term.
 #'   Defaults to NULL, to search in any category.
 #' @param limit An integer indicating the maximum number of search results to return. Defaults to 10.
+#' @param ... Additional arguments (unused).
 #' @details The returned graph will contain only nodes with no associations between them, even if they exist in the Monarch database.
 #' @return A `tbl_kgx` graph object containing the search results as nodes, with no edges.
 #'
@@ -19,7 +21,8 @@
 search_kg.monarch_engine <- function(engine,
                                      query,
                                      category = NULL,
-                                     limit = 10) {
+                                     limit = 10,
+                                     ...) {
 
     api_url <- paste0(engine$preferences$monarch_api_url, "/search")
 
