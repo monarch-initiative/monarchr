@@ -42,13 +42,38 @@ file_engine <- function(filename, preferences = NULL, ...) {
         stop("No edges file found.")
     }
 
-    nodes <- readr::read_tsv(archive::archive_read(filename, file = nodes_file))
-    edges <- readr::read_tsv(archive::archive_read(filename, file = edges_file))
+    # suppresses non-fatal warnings; it appears that many kgs in kghub
+    # have more column headers than columns which causes vroom to issue a warning
+    nodes <- suppressWarnings(classes = "vroom_parse_issue",
+                              readr::read_tsv(archive::archive_read(filename, file = nodes_file),
+                              col_types = readr::cols(id = readr::col_character(), category = readr::col_character()),
+                              show_col_types = FALSE)
+                             )
 
-    str(nodes)
-    str(edges)
+    edges <- suppressWarnings(classes = "vroom_parse_issue",
+                              readr::read_tsv(archive::archive_read(filename, file = edges_file),
+                              col_types = readr::cols(subject = readr::col_character(), predicate = readr::col_character(), object = readr::col_character()),
+                              show_col_types = FALSE)
+                             )
 
-    ofj$graph <- tbl_kgx(nodes = nodes, edges = edges)
+    # although we read category in as a character vector, it should be a list column
+    # if there are multiple categories for a node, they will be separated with | 
+    # characters per the KGX spec: https://github.com/biolink/kgx/blob/master/specification/kgx-format.md#core-node-record-elements
+    nodes$category <- strsplit(nodes$category, "\\|")
+
+    # let's also look for any other columns that are list columns, by seeing if they contain | characters
+    # we'll split these columns into list columns
+    list_cols <- names(nodes)[sapply(nodes, function(x) any(grepl("\\|", x)))]
+    # drop the 'description', 'name', and 'id' columns though, those should never be lists
+    list_cols <- list_cols[!list_cols %in% c("description", "name", "id")]
+
+    for(col in list_cols) {
+        nodes[[col]] <- strsplit(nodes[[col]], "\\|")
+    }
+
+    nodes$pcategory <- normalize_categories(nodes$category, obj$preferences$category_priority)
+
+    obj$graph <- tbl_kgx(nodes = nodes, edges = edges)
 
     class(obj) <- c("file_engine", class(obj))
     return(obj)
