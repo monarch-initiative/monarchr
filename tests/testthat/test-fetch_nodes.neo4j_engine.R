@@ -2,10 +2,27 @@ library(testthat)
 library(assertthat)
 library(tidyr)
 
-test_that("fetch_nodes works with the default neo4j engine", {
+test_that("fetch_nodes neo4j works with basid id query", {
     #testthat::skip("temporary skip")
 
     e <- monarch_engine()
+
+    # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
+    # do so silently in the logs...
+    g <- fetch_nodes(e, id = c("MONDO:0007525", "HGNC:4635"))
+
+    nodes_df <- g %>% activate(nodes) %>% as.data.frame()
+    # there should be an id column with 2 entries: MONDO:0007525 and HGNC:4635,
+    # but we can't gaurantee the order
+    expect_equal(nrow(nodes_df), 2)
+    expect_true(all(nodes_df$id %in% c("MONDO:0007525", "HGNC:4635")))
+
+    # there should be no edges
+    edges_df <- g %>% activate(edges) %>% as.data.frame()
+    expect_equal(nrow(edges_df), 0)
+})
+
+test_that("fetch_nodes neo4j works with complex query syntax", {
     # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
     # do so silently in the logs...
     expect_error(e %>% fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")))
