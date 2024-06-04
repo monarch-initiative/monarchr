@@ -9,7 +9,7 @@ test_that("fetch_nodes neo4j works with basid id query", {
 
     # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
     # do so silently in the logs...
-    g <- fetch_nodes(e, id = c("MONDO:0007525", "HGNC:4635"))
+    g <- fetch_nodes(e, query_ids = c("MONDO:0007525", "HGNC:4635"))
 
     nodes_df <- g %>% activate(nodes) %>% as.data.frame()
     # there should be an id column with 2 entries: MONDO:0007525 and HGNC:4635,

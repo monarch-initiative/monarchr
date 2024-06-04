@@ -82,8 +82,8 @@ generate_cypher_query <- function(..., limit = 10, skip = 0) {
 #' This function fetches nodes from a graph based on a set of conditions.
 #' 
 #' @param engine A graph engine object
-#' @param id A character vector of identifiers to fetch
-#' @param ... A set of conditions identifying the nodes to fetch, only used if id is NULL
+#' @param ... A set of conditions identifying the nodes to fetch, only used if query_ids is NULL
+#' @param query_ids A character vector of identifiers to fetch
 #' @return A tbl_kgx object containing the nodes
 #' @examples
 #' e <- neo4j_engine()
@@ -91,12 +91,13 @@ generate_cypher_query <- function(..., limit = 10, skip = 0) {
 #' g <- fetch_nodes(e, "biolink:Disease" %in% category | "biolink:Gene" %in% category)
 #' g <- fetch_nodes(e, "biolink:Disease" %in% category, limit = 5)
 #' @export
-fetch_nodes.neo4j_engine <- function(engine, id = NULL, ...) {
-    if(!is.null(id)) {
+fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
+    if(!is.null(query_ids)) {
         res <- cypher_query(engine,
                             query = "MATCH (n) WHERE n.id IN $id RETURN n",
-                            parameters = list(id = id))
+                            parameters = list(id = query_ids))
     } else {
+        print("generating cypher query")
         query <- generate_cypher_query(...)
         res <- cypher_query.neo4j_engine(engine, query)
     }
