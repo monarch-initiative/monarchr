@@ -1,0 +1,35 @@
+Basic functionality:
+
+Engines:
+- neo4j_engine   | dev [x] test [x]
+- file_engine    | dev [x] test [x]
+- monarch_engine | dev [x] test [x]
+
+Engine Features:
+- seach_kg
+  - neo4j_engine   | dev [x] test [x]
+  - file_engine    | dev [x] test [x]
+  - monarch_engine | dev [x] test [x]
+
+- fetch_nodes_by_property
+  - neo4j_engine   | dev [.] test [.]
+  - monarch_engine | (inherit from neo4j_engine)
+  - file_engine    | dev [ ] test [ ]
+
+- fetch_nodes_by_id
+  - neo4j_engine   | dev [.] test [.]
+  - monarch_engine | (inherit from neo4j_engine)
+  - file_engine    | dev [ ] test [ ]
+
+Query Graph Features:
+- fetch_edges
+  - neo4j_engine   | dev [x] test [x]
+  - monarch_engine | (inherit from neo4j_engine)
+  - file_engine    | dev [ ] test [ ]
+
+- summarize_neighborhood
+  - neo4j_engine   | dev [x] test [x]
+  - monarch_engine | (inherit from neo4j_engine)
+  - file_engine    | dev [ ] test [ ]
+
+  
