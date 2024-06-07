@@ -24,5 +24,7 @@ fetch_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
             filter(...)
     }
 
+    attr(res, "last_engine") <- engine
+
     return(res)
 }
