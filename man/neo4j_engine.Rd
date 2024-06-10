@@ -4,13 +4,7 @@
 \alias{neo4j_engine}
 \title{neo4j_engine}
 \usage{
-neo4j_engine(
-  url = "https://neo4j.monarchinitiative.org",
-  username = NA,
-  password = NA,
-  preferences = NULL,
-  ...
-)
+neo4j_engine(url, username = NA, password = NA, preferences = NULL, ...)
 }
 \arguments{
 \item{url}{A character string indicating the URL of the neo4j database.}
@@ -30,7 +24,6 @@ An object of class \code{neo4j_engine}
 Create a new neo4j engine object
 }
 \examples{
-neo4j_engine()
 neo4j_engine(url = "https://neo4j.monarchinitiative.org")
 neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
 }

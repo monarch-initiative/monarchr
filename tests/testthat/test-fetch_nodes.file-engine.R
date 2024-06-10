@@ -5,7 +5,7 @@ library(tidyr)
 test_that("fetch_nodes file_engine works with basid id query", {
     #testthat::skip("temporary skip")
 
-    filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
 
     g <- fetch_nodes(e, query_ids = c("MONDO:0007525", "MONDO:0007526"))
@@ -27,7 +27,7 @@ test_that("fetch_nodes file_engine works with basid id query", {
 })
 
 test_that("fetch_nodes file_engine works with complex query syntax", {
-    filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
 
     # fetch_nodes(id %in% c("MONDO:0007525", "MONDO:0007526")) actually does work with file_engine

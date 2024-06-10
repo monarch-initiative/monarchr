@@ -48,7 +48,7 @@ expr_to_cypher <- function(expr) {
 #' Also supported are the `!` (NOT) operator, `!=`, and paretheses for grouping. 
 #' Uses tidy syntax, and multiple conditions supplied as parameters are combined with `AND`.
 #' 
-#' Note that expression like fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) will *not* work; see query_ids().
+#' Note that expression like fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) will *not* work; see fetch_nodes().
 #' @return A string containing the Cypher query
 #' @examples
 #' generate_cypher_query(id == "MONDO:0007525")
@@ -93,11 +93,14 @@ generate_cypher_query <- function(..., limit = 10, skip = 0) {
 #' @export
 fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
     if(!is.null(query_ids)) {
+        # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
+        if(length(query_ids) == 1) {
+            query_ids <- list(query_ids)
+        }
         res <- cypher_query(engine,
                             query = "MATCH (n) WHERE n.id IN $id RETURN n",
                             parameters = list(id = query_ids))
     } else {
-        print("generating cypher query")
         query <- generate_cypher_query(...)
         res <- cypher_query.neo4j_engine(engine, query)
     }

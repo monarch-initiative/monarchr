@@ -4,7 +4,7 @@ library(assertthat)
 test_that("cypher_query returns a graph object", {
     # skip for now
     #testthat::skip("temporary skip")
-    
+
     e <- monarch_engine()
     g <- cypher_query(e, query = "MATCH (s) -[r]- (o) return s, r, o LIMIT 1")
     expect_s3_class(g, "tbl_kgx")

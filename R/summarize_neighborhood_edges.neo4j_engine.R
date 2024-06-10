@@ -44,7 +44,6 @@ summarize_neighborhood_edges.neo4j_engine <- function(e, g, direction = "both") 
 
     # create a pcategory column
     prefs <- e$preferences
-    str(prefs)
     result$query_pcategory <- normalize_categories(result$query_category, prefs$category_priority)
     result$result_pcategory <- normalize_categories(result$result_category, prefs$category_priority)
 

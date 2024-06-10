@@ -4,12 +4,14 @@
 \alias{fetch_nodes}
 \title{Fetch nodes from a graph}
 \usage{
-fetch_nodes(engine, ...)
+fetch_nodes(engine, ..., query_ids = NULL)
 }
 \arguments{
 \item{engine}{A graph engine object}
 
-\item{...}{A set of conditions}
+\item{...}{A set of conditions identifying the nodes to fetch, only used if query_ids is NULL}
+
+\item{query_ids}{A character vector of identifiers to fetch}
 }
 \value{
 A tbl_kgx object containing the nodes

@@ -25,7 +25,7 @@ is used to test for equality, and the \code{\%in\%} operator is used to test for
 Also supported are the \code{!} (NOT) operator, \code{!=}, and paretheses for grouping.
 Uses tidy syntax, and multiple conditions supplied as parameters are combined with \code{AND}.
 
-Note that expression like fetch_nodes(id \%in\% c("MONDO:0007525", "HGNC:4635")) will \emph{not} work; see query_ids().
+Note that expression like fetch_nodes(id \%in\% c("MONDO:0007525", "HGNC:4635")) will \emph{not} work; see fetch_nodes().
 }
 \examples{
 generate_cypher_query(id == "MONDO:0007525")

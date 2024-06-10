@@ -4,12 +4,14 @@
 \alias{fetch_nodes.neo4j_engine}
 \title{Fetch nodes from a graph}
 \usage{
-\method{fetch_nodes}{neo4j_engine}(engine, ...)
+\method{fetch_nodes}{neo4j_engine}(engine, ..., query_ids = NULL)
 }
 \arguments{
 \item{engine}{A graph engine object}
 
-\item{...}{A set of conditions}
+\item{...}{A set of conditions identifying the nodes to fetch, only used if query_ids is NULL}
+
+\item{query_ids}{A character vector of identifiers to fetch}
 }
 \value{
 A tbl_kgx object containing the nodes
@@ -19,7 +21,7 @@ This function fetches nodes from a graph based on a set of conditions.
 }
 \examples{
 e <- neo4j_engine()
-g <- fetch_nodes(e, id == "MONDO:0007525")
+g <- fetch_nodes(e, id == c()"MONDO:0007525", "MONDO:0007526"))
 g <- fetch_nodes(e, "biolink:Disease" \%in\% category | "biolink:Gene" \%in\% category)
 g <- fetch_nodes(e, "biolink:Disease" \%in\% category, limit = 5)
 }

@@ -5,7 +5,7 @@ test_that("search_kg works for file engine", {
     # skip for now
     # testthat::skip("temporary skip")
 
-    filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
 
     g <- search_kg(e, "fibrosis", category = "biolink:Disease", limit = 5)

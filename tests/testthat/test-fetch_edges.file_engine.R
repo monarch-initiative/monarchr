@@ -6,7 +6,7 @@ test_that("fetch_edges file_engine works with transitive", {
     #testthat::skip("temporary skip")
     options(width = 150)
 
-    filename <- system.file("extdata", "test/mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
 
     query_ids = c("MONDO:0007525", "MONDO:0007524", "SO:0000110") # SO:0000110 "sequence_feature" has no subclass_of in the test data
@@ -77,7 +77,7 @@ test_that("fetch_Edges file_engine works", {
     #testthat::skip("temporary skip")
     options(width = 150)
 
-    filename <- system.file("extdata", "test/mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
     query_ids = c("MONDO:0007525", "MONDO:0007524", "MONDO:0007523")
 
