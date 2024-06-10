@@ -12,22 +12,100 @@ fetch_edges.file_engine <- function(engine,
     assert_that(is.null(result_categories) | is.character(result_categories))
     assert_that(is.logical(transitive))
 
+    new_edges <- NULL
 
-    if(direction == "out" | direction == "in") { 
-        new_edges <- direction_fetch_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
-        return(new_edges)
-        # print(new_out_edges %>% activate(nodes) %>% as_tibble() %>% select(id, name, pcategory, category), n = 20)
-        # print(new_out_edges %>% activate(edges) %>% as_tibble() %>% select(subject, predicate, object), n = 20)
-    } else if(direction == "both") {
-        new_out_edges <- direction_fetch_internal(engine, g, "out", predicates, result_categories, drop_unused_query_nodes)
-        new_in_edges <- direction_fetch_internal(engine, g, "in", predicates, result_categories, drop_unused_query_nodes)
-        new_edges <- graph_join(new_out_edges, new_in_edges)
-        return(new_edges)
+    if(transitive && length(predicates) == 0) {
+        stop("Transitive closure requires specified predicates.")
+
+    } else if(transitive) {
+        new_edges <- transitive_query_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
+
+    } else {
+        if(direction == "out" | direction == "in") { 
+            new_edges <- direction_fetch_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
+        } else if(direction == "both") {
+            new_out_edges <- direction_fetch_internal(engine, g, "out", predicates, result_categories, drop_unused_query_nodes)
+            new_in_edges <- direction_fetch_internal(engine, g, "in", predicates, result_categories, drop_unused_query_nodes)
+            new_edges <- graph_join(new_out_edges, new_in_edges)
+        }
     }
 
+    return(new_edges)
+}
 
-    return(NULL)
 
+transitive_query_internal <- function(engine,
+                                      g,
+                                      direction = "out",
+                                      predicates = NULL,
+                                      result_categories = NULL,
+                                      drop_unused_query_nodes = FALSE) {
+
+    if(length(predicates) > 1) {
+        # we call recusively on each predicate
+        for(predicate in predicates) {
+            g2 <- transitive_query_internal(g,
+                                            direction = direction,
+                                            predicates = predicate,
+                                            result_categories = result_categories,
+                                            drop_unused_query_nodes = TRUE)
+            g <- tidygraph::graph_join(g, g2)
+        }
+    }
+
+    # assert that direction is "out" or "in"
+    assert_that(direction == "out" | direction == "in")
+
+    # first let's get the edges that match the predicate
+    engine_graph <- engine$graph
+
+    filtered_edges <- engine_graph %>%
+        activate(edges) %>%
+        filter(predicate %in% predicates)
+
+    # and as usual we'll get the nodes connected to those edges
+    filtered_edges_df <- filtered_edges %>% activate(edges) %>% as_tibble()
+    new_nodes <- c(filtered_edges_df$object, filtered_edges_df$subject)
+
+    # now we keep just those nodes
+    filtered_edges <- filtered_edges %>%
+        activate(nodes) %>%
+        filter(id %in% new_nodes)
+
+    query_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(g, nodes))$id)
+
+    # let's use igraph to get the node identifiers for each node listed in query_ids from the filtered_edges graph
+    igraph_ids <- igraph::V(as.igraph(filtered_edges))$id
+    igraph_id_nums <- seq_along(igraph_ids)
+    names(igraph_id_nums) <- igraph_ids
+    query_id_nums <- igraph_id_nums[query_ids]
+
+    # if there are query IDs that are not in the post-filtered graph, they will have NA values, we need to remove them
+    query_id_nums <- query_id_nums[!is.na(query_id_nums)]
+
+    # now we can do a breadth-first search from the query nodes
+    bfs_result <- filtered_edges %>%
+        activate(nodes) %>%
+        mutate(depth = bfs_dist(root = query_id_nums, mode = direction)) %>%
+        filter(depth >= 0) %>%
+        arrange(depth)
+
+    if(!is.null(result_categories)) {
+        bfs_result <- bfs_result %>%
+            filter(purrr::map_lgl(category, ~ any(.x %in% result_categories)))
+    }
+
+    # in this logic, unused query nodes (those without any connection) are kept by default
+    # so we need to remove them if drop_unused_query_nodes is TRUE
+    # we can identify them in the result as those with no connected edges
+    if(drop_unused_query_nodes) {
+        bfs_edges <- bfs_result %>% activate(edges) %>% as_tibble()
+        bfs_nodes <- c(bfs_edges$object, bfs_edges$subject)
+        bfs_result <- bfs_result %>%
+            filter(id %in% bfs_nodes)
+    }
+    
+    return(bfs_result)
 }
 
 # supports non-transitive, out or in only
@@ -71,10 +149,6 @@ direction_fetch_internal <- function(engine,
     new_edges <- new_edges %>%
         activate(nodes) %>%
         filter(id %in% new_nodes)
-
-    # print(new_edges %>% activate(nodes) %>% as_tibble() %>% select(id, name, pcategory, category), n = 20)
-    # print(new_edges %>% activate(edges) %>% as_tibble() %>% select(subject, predicate, object), n = 20)
-
 
     # if result categories is not NULL, we need to further filter the nodes
     # note that node category is a list column, each node can have multiple categories
