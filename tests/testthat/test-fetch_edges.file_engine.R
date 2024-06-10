@@ -8,20 +8,73 @@ test_that("fetch_edges file_engine works with transitive", {
 
     filename <- system.file("extdata", "test/mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
-    #query_ids = c("MONDO:0007525")
-    #query_ids = c("HGNC:2200")
+
     query_ids = c("MONDO:0007525", "MONDO:0007524", "SO:0000110") # SO:0000110 "sequence_feature" has no subclass_of in the test data
 
-    #g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(transitive = TRUE, predicate = "biolink:subclass_of")
-    #g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(transitive = TRUE, predicate = "biolink:subclass_of", result_categories = "biolink:Disease")
-    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(transitive = TRUE, predicate = "biolink:subclass_of", direction = "out")
-    #g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(transitive = TRUE, predicate = "biolink:subclass_of", direction = "out", drop_unused_query_nodes = TRUE, result_categories = "biolink:Disease")
-    print(g %>% activate(nodes) %>% as_tibble() %>% select(id, name, pcategory, category, depth), n = 30)
-    print(g %>% activate(edges) %>% as_tibble() %>% select(subject, predicate, object), n = 30)
+    ##### Check basic OUT transitive
+    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out")
+    # this should have 20 nodes, 14 of which are biolink:Disease
+    nodes_df <- g %>% activate(nodes) %>% as_tibble()
+    expect_equal(nrow(nodes_df), 20)
+    expect_equal(sum(nodes_df$pcategory == "biolink:Disease"), 14)
+
+    # there should be 25 subclass_of edges
+    edges_df <- g %>% activate(edges) %>% as_tibble()
+    expect_equal(nrow(edges_df), 25)
+
+    ##### Check basic OUT transitive with result_categories
+    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", result_categories = "biolink:Disease")
+    # now there should be 15 nodes; 14 of which are biolink:Disease and 1 of biolink:SequenceFeature (original query)
+    nodes_df <- g %>% activate(nodes) %>% as_tibble()
+    expect_equal(nrow(nodes_df), 15)
+    expect_equal(sum(nodes_df$pcategory == "biolink:Disease"), 14)
+    expect_equal(sum(nodes_df$pcategory == "biolink:SequenceFeature"), 1)
+
+    # and 20 edges, all subclass_of
+    edges_df <- g %>% activate(edges) %>% as_tibble()
+    expect_equal(nrow(edges_df), 20)
+    expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 20)
+
+    ##### Check basic OUT transitive with drop_unused_query_nodes
+    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", drop_unused_query_nodes = TRUE)
+    # this should have 19 nodes, 14 of biolink:Disease
+    nodes_df <- g %>% activate(nodes) %>% as_tibble()
+    expect_equal(nrow(nodes_df), 19)
+    expect_equal(sum(nodes_df$pcategory == "biolink:Disease"), 14)
+
+    # the same 25 edges
+    edges_df <- g %>% activate(edges) %>% as_tibble()
+    expect_equal(nrow(edges_df), 25)
+
+
+    ##### Check basic IN transitive
+    query_ids = c("MONDO:0007525", "MONDO:0007524") # don't want all SO:0000110 "sequence_feature" bringing all its descendants
+    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in")
+    # there should be 4 nodes, all biolink:Disease
+    nodes_df <- g %>% activate(nodes) %>% as_tibble()
+    expect_equal(nrow(nodes_df), 4)
+    expect_equal(sum(nodes_df$pcategory == "biolink:Disease"), 4)
+
+    # only 2 edges, both subclass_of
+    edges_df <- g %>% activate(edges) %>% as_tibble()
+    expect_equal(nrow(edges_df), 2)
+    expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 2)
+
+    ##### Check basic IN transitive with drop_unused_query_nodes
+    g <- fetch_nodes(e, query_ids = query_ids) %>% fetch_edges(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in", drop_unused_query_nodes = TRUE)
+    # this should have 3 nodes, all biolink:Disease
+    nodes_df <- g %>% activate(nodes) %>% as_tibble()
+    expect_equal(nrow(nodes_df), 3)
+    expect_equal(sum(nodes_df$pcategory == "biolink:Disease"), 3)
+
+    # still 2 edges
+    edges_df <- g %>% activate(edges) %>% as_tibble()
+    expect_equal(nrow(edges_df), 2)
+    expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 2)
 })
 
 test_that("fetch_Edges file_engine works", {
-    testthat::skip("temporary skip")
+    #testthat::skip("temporary skip")
     options(width = 150)
 
     filename <- system.file("extdata", "test/mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")

@@ -1,38 +1,4 @@
-fetch_edges.file_engine <- function(engine,
-                                    g,
-                                    direction = "both",
-                                    predicates = NULL,
-                                    result_categories = NULL,
-                                    transitive = FALSE,
-                                    drop_unused_query_nodes = FALSE) {
-
-    assert_that(is.tbl_graph(g))
-    assert_that(direction %in% c("in", "out", "both"))
-    assert_that(is.null(predicates) | is.character(predicates))
-    assert_that(is.null(result_categories) | is.character(result_categories))
-    assert_that(is.logical(transitive))
-
-    new_edges <- NULL
-
-    if(transitive && length(predicates) == 0) {
-        stop("Transitive closure requires specified predicates.")
-
-    } else if(transitive) {
-        new_edges <- transitive_query_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
-
-    } else {
-        if(direction == "out" | direction == "in") { 
-            new_edges <- direction_fetch_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
-        } else if(direction == "both") {
-            new_out_edges <- direction_fetch_internal(engine, g, "out", predicates, result_categories, drop_unused_query_nodes)
-            new_in_edges <- direction_fetch_internal(engine, g, "in", predicates, result_categories, drop_unused_query_nodes)
-            new_edges <- graph_join(new_out_edges, new_in_edges)
-        }
-    }
-
-    return(new_edges)
-}
-
+############ Internal functions for fetching edges from a file engine ############
 
 transitive_query_internal <- function(engine,
                                       g,
@@ -54,7 +20,7 @@ transitive_query_internal <- function(engine,
     }
 
     # assert that direction is "out" or "in"
-    assert_that(direction == "out" | direction == "in")
+    assert_that(direction == "out" | direction == "in", msg = "Direction must be 'out' or 'in' when using transitive closure.")
 
     # first let's get the edges that match the predicate
     engine_graph <- engine$graph
@@ -92,7 +58,7 @@ transitive_query_internal <- function(engine,
 
     if(!is.null(result_categories)) {
         bfs_result <- bfs_result %>%
-            filter(purrr::map_lgl(category, ~ any(.x %in% result_categories)))
+            filter(purrr::map_lgl(category, ~ any(.x %in% result_categories)) | id %in% query_ids)
     }
 
     # in this logic, unused query nodes (those without any connection) are kept by default
@@ -104,7 +70,7 @@ transitive_query_internal <- function(engine,
         bfs_result <- bfs_result %>%
             filter(id %in% bfs_nodes)
     }
-    
+
     return(bfs_result)
 }
 
@@ -171,3 +137,40 @@ direction_fetch_internal <- function(engine,
 
     return(new_edges)
 }
+
+
+fetch_edges.file_engine <- function(engine,
+                                    g,
+                                    direction = "both",
+                                    predicates = NULL,
+                                    result_categories = NULL,
+                                    transitive = FALSE,
+                                    drop_unused_query_nodes = FALSE) {
+
+    assert_that(is.tbl_graph(g))
+    assert_that(direction %in% c("in", "out", "both"))
+    assert_that(is.null(predicates) | is.character(predicates))
+    assert_that(is.null(result_categories) | is.character(result_categories))
+    assert_that(is.logical(transitive))
+
+    new_edges <- NULL
+
+    if(transitive && length(predicates) == 0) {
+        stop("Transitive closure requires specified predicates.")
+
+    } else if(transitive) {
+        new_edges <- transitive_query_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
+
+    } else {
+        if(direction == "out" | direction == "in") { 
+            new_edges <- direction_fetch_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
+        } else if(direction == "both") {
+            new_out_edges <- direction_fetch_internal(engine, g, "out", predicates, result_categories, drop_unused_query_nodes)
+            new_in_edges <- direction_fetch_internal(engine, g, "in", predicates, result_categories, drop_unused_query_nodes)
+            new_edges <- graph_join(new_out_edges, new_in_edges)
+        }
+    }
+
+    return(new_edges)
+}
+
