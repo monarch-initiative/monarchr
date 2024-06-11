@@ -7,7 +7,9 @@
 nodes(x, ...)
 }
 \arguments{
-\item{x}{A graph object}
+\item{x}{Input graph}
+
+\item{...}{Other options (unused)}
 }
 \value{
 A tibble with the nodes of the graph

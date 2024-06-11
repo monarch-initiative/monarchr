@@ -34,10 +34,10 @@ Expand a graph by fetching connected edges from the KG.
 }
 \examples{
 g <- monarch_search("fanconi anemia", limit = 1)
-phenos <- g \%>\%
+phenos <- g |>
   fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 
-ancestors <- g \%>\%
- fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE)
+ancestors <- g |>
+ fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE, direction = "out")
 
 }

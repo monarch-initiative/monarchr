@@ -11,11 +11,11 @@
 #' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
-#' phenos <- g %>%
+#' phenos <- g |>
 #'   fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
-#' ancestors <- g %>%
-#'  fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE)
+#' ancestors <- g |>
+#'  fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE, direction = "out")
 #'
 #' @import tidygraph
 #' @import dplyr
@@ -109,6 +109,7 @@ fetch_edges <- function(g,
     result <- cypher_query(query, parameters = list(nodes = node_ids,
                                                     predicates = predicates,
                                                     result_categories = result_categories))
+
 
     result <- result %>%
         tidygraph::activate(nodes) %>%

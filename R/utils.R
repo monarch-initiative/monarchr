@@ -1,6 +1,9 @@
 #' Get tbl_kgx graph nodes table.
 #'
 #' @importFrom tidygraph as_tibble
+#' @param x Input graph
+#' @param ... Other options (unused)
+#' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
 #' print(nodes(g))
@@ -11,6 +14,9 @@ nodes.tbl_kgx <- function(x, ...) {
 #' Get tbl_kgx graph edges table.
 #'
 #' @importFrom tidygraph as_tibble
+#' @param x Input graph
+#' @param ... Other options (unused)
+#' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
 #' print(edges(g))
@@ -21,7 +27,8 @@ edges.tbl_kgx <- function(x, ...) {
 
 #' Get graph nodes table.
 #'
-#' @param x A graph object
+#' @param x Input graph
+#' @param ... Other options (unused)
 #' @return A tibble with the nodes of the graph
 #' @importFrom tidygraph as_tibble
 #' @export
@@ -37,6 +44,8 @@ nodes <- function(x, ...) {
 #'
 #' @return A tibble with the edges of the graph
 #' @importFrom tidygraph as_tibble
+#' @param x Input graph
+#' @param ... Other options (unused)
 #' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
@@ -46,14 +55,23 @@ edges <- function(x, ...) {
   UseMethod("edges")
 }
 
-
+#' Explode a graph into a list of single-node graphs.
+#'
+#' @param x Input graph
+#' @param ... Other options (unused)
+#' @return A list of single-node graphs
+#' @export
+#' @examples
+#' g <- monarch_search("fanconi anemia", limit = 5)
+#' print(explode(g))
 explode <- function(x, ...) {
   UseMethod("explode")
 }
 
 #' Explode a graph into a list of single-node graphs.
 #'
-#' @param x A graph object
+#' @param x Input graph
+#' @param ... Other options (unused)
 #' @return A list of single-node graphs
 #' @importFrom tidygraph as_tibble
 #' @export

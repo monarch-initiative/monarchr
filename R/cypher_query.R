@@ -6,10 +6,6 @@
 #' @param cats_list A list of vectors of categories.
 #' @param cats_prefs An ordered preference list over categories.
 #' @return A vector of normalized categories.
-#' @examples
-#' categories_list <- list(c("A", "B", "C"), c("D", "E", "F"))
-#' categories_prefs <- c("B", "E", "A", "D", "C", "F")
-#' normalize_categories(categories_list, categories_prefs)
 normalize_categories <- function(cats_list, cats_prefs) {
 	normed <- unlist(lapply(cats_list, function(categories) {
 		positions <- match(categories, cats_prefs)

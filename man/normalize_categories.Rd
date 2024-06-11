@@ -18,8 +18,3 @@ A vector of normalized categories.
 This function takes a list of vectors of categories and an ordered preference list over categories.
 It selects the most preferred category from each vector, or the first category if no preferred categories are included.
 }
-\examples{
-categories_list <- list(c("A", "B", "C"), c("D", "E", "F"))
-categories_prefs <- c("B", "E", "A", "D", "C", "F")
-normalize_categories(categories_list, categories_prefs)
-}

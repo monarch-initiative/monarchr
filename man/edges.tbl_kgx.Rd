@@ -6,6 +6,11 @@
 \usage{
 \method{edges}{tbl_kgx}(x, ...)
 }
+\arguments{
+\item{x}{Input graph}
+
+\item{...}{Other options (unused)}
+}
 \description{
 Get tbl_kgx graph edges table.
 }

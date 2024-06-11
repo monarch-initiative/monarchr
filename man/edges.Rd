@@ -6,6 +6,11 @@
 \usage{
 edges(x, ...)
 }
+\arguments{
+\item{x}{Input graph}
+
+\item{...}{Other options (unused)}
+}
 \value{
 A tibble with the edges of the graph
 }
