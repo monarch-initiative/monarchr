@@ -3,6 +3,7 @@
 S3method(cypher_query,neo4j_engine)
 S3method(cypher_query_df,neo4j_engine)
 S3method(explode,tbl_kgx)
+S3method(fetch_edges,file_engine)
 S3method(fetch_edges,neo4j_engine)
 S3method(fetch_edges,tbl_kgx)
 S3method(fetch_nodes,file_engine)

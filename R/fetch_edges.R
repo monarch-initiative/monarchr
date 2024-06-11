@@ -1,17 +1,24 @@
-#' Expand a graph by fetching connected edges from the KG.
+#' Fetch additional knowledge graph edges connected to a query graph
 #'
-#' @param g A graph
+#' Given an optional KG engine (e.g. a `file_engine()`,
+#' `neo4j_engine()`, or `monarch_engine()`) and a query `tbl_kgx()` graph, fetches additional nodes and edges
+#' from the KG, expanding the query graph according to specific criteria. If the first parameter is an engine, that
+#' engine is used; if the first parameter is a query graph, the most recent engine associated with the graph is used.
+#'
+#'
+#' @param engine (Optional) An engine to use for fetching query graph edges.
+#' @param g A query `tbl_kgx()` graph.
 #' @param direction The direction of associations to fetch. Can be "in", "out", or "both". Default is "both".
 #' @param predicates A vector of relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the neighborhood. If NULL (default), all edges are considered.
-#' @param result_categories A vector of node categories, indicating which nodes in the larger KG (objects in the relationship) to consider as potential result nodes. If NULL (default), all object nodes in the larger KG are considered as potential nodes.
-#' @param transitive NOT IMPLEMENTED If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like `biolink:subclass_of`.
-#' @param drop_unused_query_nodes If TRUE, remove query nodes from the result, unless they are at the neighboorhood boundary, ie, required for connecting to the result nodes. Default is FALSE.
+#' @param result_categories A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.
+#' @param transitive If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like `biolink:subclass_of`.
+#' @param drop_unused_query_nodes If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.
 #'
-#' @return A tbl_kgx graph
+#' @return A `tbl_kgx()` graph
 #' @export
 #' @examples
-#' e <- neo4j_engine()
-#' g <- e %>% field_search("id", "MONDO:0007525")
+#' e <- monarch_engine()
+#' g <- e %>% fetch_nodes(query_ids = "MONDO:0007525")
 #' phenos <- g %>%
 #'   fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'

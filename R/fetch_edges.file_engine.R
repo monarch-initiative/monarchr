@@ -139,6 +139,12 @@ direction_fetch_internal <- function(engine,
 }
 
 
+
+#' @export
+#' @rdname fetch_edges
+#' @import tidygraph
+#' @import dplyr
+#' @importFrom assertthat assert_that
 fetch_edges.file_engine <- function(engine,
                                     g,
                                     direction = "both",
@@ -162,7 +168,7 @@ fetch_edges.file_engine <- function(engine,
         new_edges <- transitive_query_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
 
     } else {
-        if(direction == "out" | direction == "in") { 
+        if(direction == "out" | direction == "in") {
             new_edges <- direction_fetch_internal(engine, g, direction, predicates, result_categories, drop_unused_query_nodes)
         } else if(direction == "both") {
             new_out_edges <- direction_fetch_internal(engine, g, "out", predicates, result_categories, drop_unused_query_nodes)
