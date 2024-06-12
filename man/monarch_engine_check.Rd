@@ -4,7 +4,10 @@
 \alias{monarch_engine_check}
 \title{Check availability of Monarch Initiative database}
 \usage{
-monarch_engine_check(url, username = NA, password = NA)
+monarch_engine_check(warn = TRUE)
+}
+\arguments{
+\item{warn}{A logical indicating whether to print a warning message if with failure information if the database is not available or not properly formatted. Default is TRUE.}
 }
 \value{
 TRUE if the database is available and properly formatted, FALSE otherwise.

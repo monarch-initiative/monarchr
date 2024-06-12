@@ -4,7 +4,12 @@
 \alias{file_engine_check}
 \title{Check availability of a file-based engine}
 \usage{
-file_engine_check(filename)
+file_engine_check(filename, warn = TRUE)
+}
+\arguments{
+\item{filename}{A character string indicating the path to the file-based engine.}
+
+\item{warn}{A logical indicating whether to print a warning message if with failure information if the database is not available or not properly formatted. Default is TRUE.}
 }
 \value{
 TRUE if the database is available and properly formatted, FALSE otherwise.

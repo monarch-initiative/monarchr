@@ -4,7 +4,7 @@
 \alias{neo4j_engine_check}
 \title{Check if a neo4j database is available and properly formatted}
 \usage{
-neo4j_engine_check(url, username = NA, password = NA)
+neo4j_engine_check(url, username = NA, password = NA, warn = TRUE)
 }
 \arguments{
 \item{url}{A character string indicating the URL of the neo4j database.}
@@ -12,6 +12,8 @@ neo4j_engine_check(url, username = NA, password = NA)
 \item{username}{A character string indicating the username for the neo4j database (if needed).}
 
 \item{password}{A character string indicating the password for the neo4j database (if needed).}
+
+\item{warn}{A logical indicating whether to print a warning message if with failure information if the database is not available or not properly formatted. Default is TRUE.}
 }
 \value{
 TRUE if the database is available and properly formatted, FALSE otherwise.

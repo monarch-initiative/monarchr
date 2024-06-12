@@ -15,7 +15,7 @@ neo4j_engine(url, username = NA, password = NA, preferences = NULL, ...)
 
 \item{preferences}{A named list of preferences for the engine.}
 
-\item{...}{Additional arguments passed to the function.}
+\item{...}{Additional arguments passed to neo2R::startGraph.}
 }
 \value{
 An object of class \code{neo4j_engine}
@@ -24,6 +24,5 @@ An object of class \code{neo4j_engine}
 Create a new neo4j engine object
 }
 \examples{
-e <- neo4j_engine(url = "https://neo4j.monarchinitiative.orgs")
-#e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
+e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
 }

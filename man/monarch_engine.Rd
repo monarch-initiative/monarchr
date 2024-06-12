@@ -4,7 +4,10 @@
 \alias{monarch_engine}
 \title{monarch_engine}
 \usage{
-monarch_engine()
+monarch_engine(
+  url = "https://neo4j.monarchinitiative.org",
+  api_url = "https://api.monarchinitiative.org/v3/api"
+)
 }
 \value{
 An object of class \code{neo4j_engine} with the URL set to the Monarch Neo4j instance
@@ -14,7 +17,7 @@ Create a new neo4j engine object for the Monarch Neo4j instance
 }
 \examples{
 g <- monarch_engine() \%>\%
- search("Cystic fibrosis", limit = 1) \%>\%
+ search_kg("Cystic fibrosis", limit = 1) \%>\%
  fetch_edges(predicate = "biolink:subclass_of")
 g
 }
