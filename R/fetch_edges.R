@@ -7,7 +7,7 @@
 #'
 #'
 #' @param engine (Optional) An engine to use for fetching query graph edges.
-#' @param g A query `tbl_kgx()` graph.
+#' @param graph A query `tbl_kgx()` graph to query from.
 #' @param direction The direction of associations to fetch. Can be "in", "out", or "both". Default is "both".
 #' @param predicates A vector of relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the neighborhood. If NULL (default), all edges are considered.
 #' @param result_categories A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.
@@ -23,11 +23,17 @@
 #'   fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
 #' ancestors <- g %>%
-#'  fetch_edges(predicates = "biolink:subclass_of", transitive = TRUE)
+#'  fetch_edges(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE)
 #'
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-fetch_edges <- function(obj, ...) {
+fetch_edges <- function(engine = NULL,
+												graph,
+												direction = "both",
+												predicates = NULL,
+												result_categories = NULL,
+												transitive = FALSE,
+												drop_unused_query_nodes = FALSE) {
 	UseMethod("fetch_edges")
 }

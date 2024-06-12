@@ -24,6 +24,6 @@ An object of class \code{neo4j_engine}
 Create a new neo4j engine object
 }
 \examples{
-neo4j_engine(url = "https://neo4j.monarchinitiative.org")
-neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
+e <- neo4j_engine(url = "https://neo4j.monarchinitiative.orgs")
+#e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
 }

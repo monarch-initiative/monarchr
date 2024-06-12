@@ -9,8 +9,8 @@
 #' @return An object of class `neo4j_engine`
 #' @export
 #' @examples
-#' neo4j_engine(url = "https://neo4j.monarchinitiative.org")
-#' neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
+#' e <- neo4j_engine(url = "https://neo4j.monarchinitiative.orgs")
+#' #e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
 neo4j_engine <- function(url,
                          username = NA,
                          password = NA,

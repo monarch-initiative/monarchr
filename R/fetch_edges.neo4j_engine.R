@@ -1,16 +1,15 @@
 #' @export
-#' @rdname fetch_edges
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
 fetch_edges.neo4j_engine <- function(engine,
-                                        g,
+																		 graph,
                                         direction = "both",
                                         predicates = NULL,
                                         result_categories = NULL,
                                         transitive = FALSE,
                                         drop_unused_query_nodes = FALSE) {
-    assert_that(is.tbl_graph(g))
+    assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
     assert_that(is.null(result_categories) | is.character(result_categories))
@@ -23,17 +22,17 @@ fetch_edges.neo4j_engine <- function(engine,
     if(transitive && length(predicates) > 1) {
         # we call recusively on each predicate
         for(predicate in predicates) {
-            g2 <- fetch_edges(g,
+            g2 <- fetch_edges(graph,
                               direction = direction,
                               predicates = predicate,
                               result_categories = result_categories,
                               transitive = transitive,
                               drop_unused_query_nodes = TRUE)
-            g <- tidygraph::graph_join(g, g2)
+            graph <- tidygraph::graph_join(graph, g2)
         }
     }
 
-    node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(g, nodes))$id)
+    node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(graph, nodes))$id)
 
     # neo4j queries that use IN require a list of values, and a length-1 character vector is treated as a scalar
     if (length(node_ids) == 1) {
@@ -103,7 +102,7 @@ fetch_edges.neo4j_engine <- function(engine,
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph
     if(!drop_unused_query_nodes) {
-        result <- tidygraph::graph_join(g, result)
+        result <- tidygraph::graph_join(graph, result)
     }
 
     attr(result, "last_engine") <- engine

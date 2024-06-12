@@ -3,6 +3,18 @@
 #
 # filename <- "https://kghub.io/kg-obo/vbo/2023-06-02/vbo_kgx_tsv.tar.gz"
 
+#' File-based knowledge graph engine
+#'
+#' Returns a Knowledge Graph engine backed by a file hosted by kghub.io. Must be a `_tsv.tar.gz` file containing nodes and edges tab-separated files in KGX format. See https://kghub.io for details.
+#'
+#' @param filename The filename or URL to use.
+#' @param preferences Override default preferences.
+#' @param ... Other parameter (unused).
+#'
+#' @return
+#' @export
+#'
+#' @examples
 file_engine <- function(filename, preferences = NULL, ...) {
     obj <- base_engine(name = "file_engine")
     obj$filename <- filename
@@ -57,7 +69,7 @@ file_engine <- function(filename, preferences = NULL, ...) {
                              )
 
     # although we read category in as a character vector, it should be a list column
-    # if there are multiple categories for a node, they will be separated with | 
+    # if there are multiple categories for a node, they will be separated with |
     # characters per the KGX spec: https://github.com/biolink/kgx/blob/master/specification/kgx-format.md#core-node-record-elements
     nodes$category <- strsplit(nodes$category, "\\|")
 
