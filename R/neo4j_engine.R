@@ -5,12 +5,11 @@
 #' @param username A character string indicating the username for the neo4j database (if needed).
 #' @param password A character string indicating the password for the neo4j database (if needed).
 #' @param preferences A named list of preferences for the engine.
-#' @param ... Additional arguments passed to the function.
+#' @param ... Additional arguments passed to neo2R::startGraph.
 #' @return An object of class `neo4j_engine`
 #' @export
 #' @examples
-#' e <- neo4j_engine(url = "https://neo4j.monarchinitiative.orgs")
-#' #e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", username = "neo4j", password = "password")
+#' e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
 neo4j_engine <- function(url,
                          username = NA,
                          password = NA,
