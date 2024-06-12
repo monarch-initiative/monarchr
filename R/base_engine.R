@@ -1,13 +1,10 @@
+########### Internal functions ###########
+
 #' @title base_engine
 #' @description A base class for all engines
 #' @param name A character string indicating the name of the engine.
 #' @param preferences A named list of preferences for the engine.
 #' @return An object of class `base_engine`
-#' @export
-#' @examples
-#' base_engine()
-#' base_engine(name = "test")
-#' base_engine(preferences = "preferences.yaml")
 base_engine <- function(name = "default_engine", preferences = NULL, ...) {
     if(!is.null(preferences)) {
         # if preferences is a length-1 character vector ending with .yaml, and the file exists, read it
