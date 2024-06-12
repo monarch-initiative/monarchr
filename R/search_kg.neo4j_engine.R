@@ -38,7 +38,6 @@ search_kg.neo4j_engine <- function(e, query, category = NULL, limit = 10, ...) {
     # now we'll add the RETURN clause
     query <- paste0(query, " RETURN n LIMIT $limit")
 
-    print(query)
     result <- cypher_query(e, query, parameters = list(query_regex = query_regex, limit = limit))
     return(result)
 }
