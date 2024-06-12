@@ -167,7 +167,7 @@ fetch_edges.file_engine <- function(engine,
         new_edges <- transitive_query_internal(engine, graph, direction, predicates, result_categories, drop_unused_query_nodes)
 
     } else {
-        if(direction == "out" | direction == "in") {
+        if(direction == "out" || direction == "in") {
             new_edges <- direction_fetch_internal(engine, graph, direction, predicates, result_categories, drop_unused_query_nodes)
         } else if(direction == "both") {
             new_out_edges <- direction_fetch_internal(engine, graph, "out", predicates, result_categories, drop_unused_query_nodes)
