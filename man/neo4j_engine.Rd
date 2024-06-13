@@ -2,7 +2,7 @@
 % Please edit documentation in R/neo4j_engine.R
 \name{neo4j_engine}
 \alias{neo4j_engine}
-\title{neo4j_engine}
+\title{Create a knowledge graph engine object for a neo4j database}
 \usage{
 neo4j_engine(url, username = NA, password = NA, preferences = NULL, ...)
 }
@@ -15,14 +15,53 @@ neo4j_engine(url, username = NA, password = NA, preferences = NULL, ...)
 
 \item{preferences}{A named list of preferences for the engine.}
 
-\item{...}{Additional arguments passed to neo2R::startGraph.}
+\item{...}{Additional arguments passed to \code{neo2R::startGraph()}.}
 }
 \value{
 An object of class \code{neo4j_engine}
 }
 \description{
-Create a new neo4j engine object
+Creates a knowledge graph engine backed by a neo4j database, from a URL and optional username and password. Knowledge graph "engines"
+are objects that store information about how to connect to a (potentially large) knowledge graph, and can be used to fetch nodes and edges from the database as local
+graph objects.
+}
+\details{
+Engines store preference information specifying how data are fetched and manipulated; for example,
+while node \code{category} is multi-valued (nodes may have multiple categories, for example "biolink:Gene" and "biolink:NamedThing"),
+typically a single category is used to represent the node in a graph, and is returned as the nodes' \code{pcategory}. A preference list of categories to use for \code{pcategory} is
+stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
+but these can be overridden by the user.
+
+For \code{neo4j_engine()}s, preferences are also used to set the node properties to search when using \code{search_kg()}, defaulting to regex-based searches on id, name, and description. (The \code{monarch_engine()} is a type
+of \code{neo4j_engine()} with the URL set to the Monarch Neo4j instance, and overrides \code{search_kg()} to use the Monarch search API, see \code{monarch_engine()} for details).
 }
 \examples{
+\dontshow{if (neo4j_engine_check("https://neo4j.monarchinitiative.org")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+library(tidygraph)
+library(dplyr)
+
 e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
+print(e$preferences)   # print the default preferences
+
+# same search and fetch, different preferences
+search_kg(e, "fibrosis", limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(name, id, pcategory, category)
+
+# prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
+# followed by "biolink:NamedThing", otherwise use the first listed category.
+# Additionally, only search nodes' name property.
+e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", 
+                  preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
+                                     node_search_properties = c("name")))
+
+search_kg(e, "fibrosis", limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(name, id, pcategory, category)
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{file_engine()}, \code{monarch_engine()}
 }

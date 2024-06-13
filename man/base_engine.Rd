@@ -17,8 +17,3 @@ An object of class \code{base_engine}
 \description{
 A base class for all engines
 }
-\examples{
-base_engine()
-base_engine(name = "test")
-base_engine(preferences = "preferences.yaml")
-}
