@@ -6,6 +6,9 @@
 #' @param preferences A named list of preferences for the engine.
 #' @return An object of class `base_engine`
 base_engine <- function(name = "default_engine", preferences = NULL, ...) {
+    # read default prefs from the package
+    default_preferences <- options("default_prefs")$default_prefs
+
     if(!is.null(preferences)) {
         # if preferences is a length-1 character vector ending with .yaml, and the file exists, read it
         if(is.character(preferences) && 
@@ -18,13 +21,19 @@ base_engine <- function(name = "default_engine", preferences = NULL, ...) {
         } else if(is.list(preferences)) {
             preferences <- preferences
         }
-
     }
 
-    # if preferences is NULL, read it from the package
-    if(is.null(preferences)) {
-        preferences <- options("default_prefs")$default_prefs
+    # now, if preferences is still not null, we want to override the default entries
+    # that are provided in the preferences list
+    # but just those, leaving other defaults in place
+    if(!is.null(preferences)) {
+        for(p in names(preferences)) {
+            default_preferences[[p]] <- preferences[[p]]
+        }
     }
+
+    # now set preferences to the updated default preferences
+    preferences <- default_preferences
 
     obj <- list(name = name,
                 preferences = preferences)
