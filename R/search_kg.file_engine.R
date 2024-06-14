@@ -1,3 +1,4 @@
+#' @export
 search_kg.file_engine <- function(e, query, category = NULL, limit = 10, ...) {
     # the file engine contains a tidygraph object, so we need to get the nodes data and filter it
 
@@ -13,7 +14,7 @@ search_kg.file_engine <- function(e, query, category = NULL, limit = 10, ...) {
     for(p in prefs) {
         if(p %in% colnames(nodes_df)) {
             # ensure that col p is a character vector or factor; if not, skip it and warn the user
-            if(!is.character(nodes_df[[p]]) & !is.factor(nodes_df[[p]])) {
+            if(!is.character(nodes_df[[p]]) && !is.factor(nodes_df[[p]])) {
                 warning(paste0("Column ", p, " is not a character vector or factor; skipping."))
                 next
             }
@@ -26,6 +27,8 @@ search_kg.file_engine <- function(e, query, category = NULL, limit = 10, ...) {
     if(!is.null(category)) {
         # this isn't working...
         match_cats <- nodes_df$category %>% lapply(function(x) any(x %in% category)) %>% unlist()
+    } else {
+        match_cats <- TRUE
     }
 
     sub_nodes_df <- head(nodes_df[match_bools & match_cats, ], limit)
