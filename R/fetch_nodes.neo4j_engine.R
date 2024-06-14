@@ -1,12 +1,6 @@
 ######### Non-Exported Utility Functions #########
 
-#' This function takes an R expression and converts it to Cypher syntax.
-#' 
-#' @param expr An R expression
-#' @return A string containing the expression in Cypher syntax
-#' @examples
-#' expr_to_cypher(~ id == "MONDO:0007525")
-#' expr_to_cypher(~ id == "MONDO:0007525" & category == "biolink:Disease")
+#' @importFrom stringr str_replace_all
 expr_to_cypher <- function(expr) {
   # Convert expression to text, preserving structure
   expr <- rlang::expr_text(expr)
@@ -15,7 +9,7 @@ expr_to_cypher <- function(expr) {
   expr <- gsub("^~\\s*", "", expr)
 
   # Replace R operators with Cypher operators
-  expr <- stringr::str_replace_all(expr, stringr::fixed("%in%"), "IN")
+  expr <- stringr::str_replace_all(expr, stringr::fixed("%in_list%"), "IN")
   expr <- stringr::str_replace_all(expr, stringr::fixed("=="), "=")
   expr <- stringr::str_replace_all(expr, stringr::fixed("!="), "<>")
   expr <- stringr::str_replace_all(expr, stringr::fixed("=="), "=")
@@ -36,28 +30,11 @@ expr_to_cypher <- function(expr) {
 }
 
 
-
-#' This function generates a Cypher query based on a set of conditions.
-#' 
-#' @param ... A set of conditions
-#' @param limit The maximum number of results to return
-#' @details This function takes a set of conditions and generates a Cypher query that 
-#' can be used to query the Monarch knowledge graph. The conditions should be R expressions,
-#' and can be combined using the logical operators `&` (AND) and `|` (OR). The `==` operator
-#' is used to test for equality, and the `%in%` operator is used to test for membership in a list.
-#' Also supported are the `!` (NOT) operator, `!=`, and paretheses for grouping. 
-#' Uses tidy syntax, and multiple conditions supplied as parameters are combined with `AND`.
-#' 
-#' Note that expression like fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) will *not* work; see fetch_nodes().
-#' @return A string containing the Cypher query
-#' @examples
-#' generate_cypher_query(id == "MONDO:0007525")
-#' generate_cypher_query(id == "MONDO:0007525" & category == "biolink:Disease")
-#' generate_cypher_query("biolink:Disease" %in% category | "biolink:Gene" %in% category)
-generate_cypher_query <- function(..., limit = 10, skip = 0) {
+#' @importFrom rlang enquos
+#' @importFrom purrr map_chr
+generate_cypher_query <- function(...) {
   # Capture the expressions
   conditions <- rlang::enquos(...)
-  
 
   # Translate the conditions to Cypher syntax
   condition_strings <- purrr::map_chr(conditions, expr_to_cypher)
@@ -66,9 +43,7 @@ generate_cypher_query <- function(..., limit = 10, skip = 0) {
   query <- paste(
     "MATCH (n)",
     if (length(condition_strings) > 0) paste("WHERE", paste(condition_strings, collapse = " AND ")) else "",
-    "RETURN n",
-    "SKIP", skip,
-    "LIMIT", limit
+    "RETURN n"
   )
 
   # Return the complete Cypher query
@@ -77,20 +52,10 @@ generate_cypher_query <- function(..., limit = 10, skip = 0) {
 
 ######### Exported Functions #########
 
-#' Fetch nodes from a graph
-#' 
-#' This function fetches nodes from a graph based on a set of conditions.
-#' 
-#' @param engine A graph engine object
-#' @param ... A set of conditions identifying the nodes to fetch, only used if query_ids is NULL
-#' @param query_ids A character vector of identifiers to fetch
-#' @return A tbl_kgx object containing the nodes
-#' @examples
-#' e <- neo4j_engine()
-#' g <- fetch_nodes(e, id == c()"MONDO:0007525", "MONDO:0007526"))
-#' g <- fetch_nodes(e, "biolink:Disease" %in% category | "biolink:Gene" %in% category)
-#' g <- fetch_nodes(e, "biolink:Disease" %in% category, limit = 5)
 #' @export
+#' @import tidygraph
+#' @import dplyr
+#' @import stringr
 fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
     if(!is.null(query_ids)) {
         # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
