@@ -26,6 +26,9 @@ search_kg.monarch_engine <- function(engine,
 
     api_url <- paste0(engine$preferences$monarch_api_url, "/search")
 
+    # ensure that the limit is not null and is a length-1 integer <= 500
+    assert_that(!is.null(limit), is.numeric(limit), limit <= 500, msg = "limit must be a length-1 integer <= 500 for search_kg.monarch_engine()")
+
     params <- list(
         "q" = query,
         "limit" = limit,
@@ -36,7 +39,14 @@ search_kg.monarch_engine <- function(engine,
         params$category <- category
     }
 
+    # put the httr::GET call in a trycatch block to handle errors
     response <- httr::GET(api_url, query = params)
+
+    # if the response is not 200, throw an error
+    if(response$status_code != 200) {
+        stop(paste0("Error: ", response$status_code, " ", httr::http_status(response$status_code)$message))
+    }
+
     response_content <- httr::content(response, "parsed")
     total_available <- response_content$total
 
