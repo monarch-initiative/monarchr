@@ -2,29 +2,80 @@
 % Please edit documentation in R/search_kg.R
 \name{search_kg}
 \alias{search_kg}
-\title{search_kg}
+\title{Search for nodes in a knowledge graph}
 \usage{
-search_kg(obj, ...)
+search_kg(engine, query, category = NULL, limit = 10, ...)
 }
 \arguments{
-\item{obj}{a graph engine object}
+\item{engine}{A graph engine object}
 
-\item{...}{additional parameters}
+\item{query}{A length-1 character string representing the query term.}
+
+\item{category}{A character vector indicating the entity categories in which to search for the query term. Defaults to \code{NULL}, to search in any category.}
+
+\item{limit}{An integer indicating the maximum number of search results to return. Defaults to 10.}
+
+\item{...}{Additional arguments (unused).}
 }
 \value{
 a tbl_kgx graph
 }
 \description{
-Search a knowledge graph using a specific engine. Different engines
-support different search capabilities and parameters.
+Searches for nodes in a knowledge graph using a given query string, optionally restricting the search to specific node categories (e.g. biolink:Disease).
+}
+\details{
+The search functionality is specific to the engine hosting the knowledge graph (e.g. \code{file_engine()}, \code{neo4j_engine()}, \code{monarch_engine()}). For
+both the \code{file_engine()} and \code{neo4j_engine()}, the search is performed using regular expressions on specific node properties, defaulting to
+\code{id}, \code{name}, and \code{description}. A search for \verb{"Cystic fibrosis"`` is expanded to }".\emph{Cystic fibrosis.}"``, allowing the use of regular expressions
+such as \code{"[Cc]ystic fibrosis"}.
+
+The \code{monarch_engine()} uses the Monarch Initiative API to search for entities matching a given query string within a specified category, and supports a maximum of 500 search results.
+To use regular-expression based search with the hosted Monarch Iniative database, instantiate a \code{neo4j_engine()} with the appropriate URL (\verb{https://neo4j.monarchinitiative.org}).
 }
 \examples{
-# the monarch engine uses the Monarch initiative search api
-e <- monarch_engine()
-g <- search_kg(e, "cystic fibrosis", category = "biolink:Disease", limit = 20)
+library(dplyr)
+library(tidygraph)
 
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# the monarch engine uses the Monarch initiative search api
+monarch_engine() |>
+  search_kg("cystic fibrosis",
+            category = "biolink:Disease",
+            limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(id, name, pcategory)
+\dontshow{\}) # examplesIf}
+\dontshow{if (neo4j_engine_check("https://neo4j.monarchinitiative.org")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # the neo4j engine searches a given property for regex matches
-e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
-g <- search_kg(e, "MONDO:.*", field = "id", limit = 20)
+neo4j_engine(url = "https://neo4j.monarchinitiative.org") |>
+  search_kg("MONDO:*",
+            limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(id, name, pcategory)
+
+
+# we can change the search properties for the neo4j engine,
+# for example to search name only
+neo4j_engine(url = "https://neo4j.monarchinitiative.org",
+             preferences = list(node_search_properties = c("name"))) |>
+  search_kg("cystic fibrosis",
+            category = "biolink:Disease",
+            limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(id, name, pcategory)
+\dontshow{\}) # examplesIf}
+# file_engine supports the same features as neo4j_engine
+# (using the MONDO KGX file packaged with monarchr)
+filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+file_engine(filename) |>
+  search_kg("cystic fibrosis", 
+            category = "biolink:Disease",
+            limit = 5) |>
+  activate(nodes) |>
+  as.data.frame() |>
+  select(id, name, pcategory)
 
 }

@@ -1,6 +1,6 @@
-# search function using neo4j
-
 #' @export
+#' @import tidygraph
+#' @import dplyr
 search_kg.neo4j_engine <- function(e, query, category = NULL, limit = 10, ...) {
     # this function needs to generate a cypher query that uses a regex match against the properties listed
     # in the preferences in the node_search_properties from the kg_prefs.

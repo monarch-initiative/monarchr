@@ -1,23 +1,8 @@
-#' Search the Monarch Initiative
-#'
-#' This function uses the Monarch Initiative API to search for entities matching
-#' a given query string within a specified category, returing a graph containg just the nodes in the search results.
-#'
-#' @param engine A Monarch engine object.
-#' @param query A character string representing the query term. Example terms:
-#'   "Cystic Fibrosis", "CYP6B", "swelling of joints".
-#' @param category A character string indicating a single entity category in which to search for the query term.
-#'   Defaults to NULL, to search in any category.
-#' @param limit An integer indicating the maximum number of search results to return. Defaults to 10.
-#' @param ... Additional arguments (unused).
-#' @details The returned graph will contain only nodes with no associations between them, even if they exist in the Monarch database.
-#' @return A `tbl_kgx` graph object containing the search results as nodes, with no edges.
-#'
-#' @examples
-#' e <- monarch_engine()
-#' search(e, "Cystic Fibrosis", category = "biolink:Disease", limit = 5)
-#'
 #' @export
+#' @import tidygraph
+#' @import dplyr
+#' @importFrom assertthat assert_that
+#' @importFrom httr GET content http_status
 search_kg.monarch_engine <- function(engine,
                                      query,
                                      category = NULL,
@@ -40,14 +25,14 @@ search_kg.monarch_engine <- function(engine,
     }
 
     # put the httr::GET call in a trycatch block to handle errors
-    response <- httr::GET(api_url, query = params)
+    response <- GET(api_url, query = params)
 
     # if the response is not 200, throw an error
     if(response$status_code != 200) {
-        stop(paste0("Error: ", response$status_code, " ", httr::http_status(response$status_code)$message))
+        stop(paste0("Error: ", response$status_code, " ", http_status(response$status_code)$message))
     }
 
-    response_content <- httr::content(response, "parsed")
+    response_content <- content(response, "parsed")
     total_available <- response_content$total
 
     ids <- unlist(lapply(response_content$items, function(item) {
