@@ -4,7 +4,7 @@
 expr_to_cypher <- function(expr) {
   # Convert expression to text, preserving structure
   expr <- rlang::expr_text(expr)
-  
+
   # Remove the tilde (~) if present
   expr <- gsub("^~\\s*", "", expr)
 

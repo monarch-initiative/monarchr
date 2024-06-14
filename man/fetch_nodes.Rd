@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetch_nodes.R
 \name{fetch_nodes}
 \alias{fetch_nodes}
-\title{Fetch nodes from a graph}
+\title{Fetch nodes from a graph using a set of IDs or conditions}
 \usage{
 fetch_nodes(engine, ..., query_ids = NULL)
 }
@@ -17,10 +17,49 @@ fetch_nodes(engine, ..., query_ids = NULL)
 A tbl_kgx object containing the nodes
 }
 \description{
-This function fetches nodes from a graph based on a set of conditions.
+This function fetches nodes (and no edges) from a knowledge graph engine based on a set of
+conditions or a set of identifiers. If query_ids is provided, the function
+will fetch nodes with the specified identifiers. If query_ids is NULL, the
+function will fetch nodes based on the conditions provided. Only a limited
+set of condition expressions are supported, see details.
+}
+\details{
+If query_ids is provided, the function will fetch nodes with the specified.
+If query_ids is NULL, the function will fetch nodes based on a condition
+expression. The following features are supported:
+\itemize{
+\item Matching node properties with boolean operators, e.g. \code{in_taxon_label == "Homo sapiens"}.
+\item Matching multi-valued properties with \verb{\%in_list\%}, e.g. \code{"biolink:Gene" \%in_list\% category}. NOTE: using \verb{\%in_list\%} against vector queries, e.g. \code{in_taxon_label \%in_list\% c("Homo sapiens", "Mus musculus")} is \emph{not} supported. Nor does \verb{\%in_list\%} support multi-valued left hand sides; \code{c("biolink:Disease", "biolink:Gene") \%in_list\% category} will not work.
+\item Boolean connectives with \code{|}, \code{&}, and \code{!}, e.g. \code{in_taxon_lable == "Homo sapiens" | "biolink:Gene" \%in\% category}.
+}
+
+If more than one condition parameter is specified, they are combined with \code{&}; for example,
+\code{fetch_nodes(engine, in_taxon_lable == "Homo sapiens", "biolink:Gene" \%in\% category)} is equivalent to
+\code{fetch_nodes(engine, in_taxon_lable == "Homo sapiens" & "biolink:Gene" \%in\% category)}.
 }
 \examples{
-e <- neo4j_engine()
-g <- fetch_nodes(e, id == "MONDO:0007525")
-g <- fetch_nodes(e, "biolink:Disease" \%in\% category | "biolink:Gene" \%in\% category)
+library(tidygraph)
+library(dplyr)
+
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+monarch_engine() |>
+  fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+
+# a large query
+monarch_engine() |>
+  fetch_nodes("biolink:Disease" \%in_list\% category)
+
+\dontshow{\}) # examplesIf}
+# file_engine supports the same features as neo4j_engine
+# (using the MONDO KGX file packaged with monarchr)
+filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+
+file_engine(filename) |>
+  fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+
+# grab all rare diseases
+file_engine(filename) |>
+  fetch_nodes("rare" \%in_list\% subsets & "biolink:Disease" \%in_list\% category)
+
+stop("done")
 }
