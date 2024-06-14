@@ -1,22 +1,52 @@
-## Work in progress
-
-#
-# filename <- "https://kghub.io/kg-obo/vbo/2023-06-02/vbo_kgx_tsv.tar.gz"
-
-#' File-based knowledge graph engine
+#' Create a knowledge graph engine object from a KGX-based tsv file
 #'
-#' Returns a Knowledge Graph engine backed by a file hosted by kghub.io. Must be a `_tsv.tar.gz` file containing nodes and edges tab-separated files in KGX format. See https://kghub.io for details.
+#' Creates a knowledge graph engine backed by a KGX-based tab-separated file. This must be a filename or URL to a `.tar.gz` file containing a `*_nodes.tsv` and `*_edges.tsv` file. If a URL is provided, the file will be downloaded to the user's current working directory.
 #'
-#' @param filename The filename or URL to use.
-#' @param preferences Override default preferences.
-#' @param ... Other parameter (unused).
+#' Engines store preference information specifying how data are fetched and manipulated; for example, 
+#' while node `category` is multi-valued (nodes may have multiple categories, for example "biolink:Gene" and "biolink:NamedThing"),
+#' typically a single category is used to represent the node in a graph, and is returned as the nodes' `pcategory`. A preference list of categories to use for `pcategory` is
+#' stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
+#' but these can be overridden by the user.
 #'
-#' @return
+#' For `file_engine()`s, preferences are also used to set the node properties to search when using `search_kg()`, defaulting to regex-based searches on id, name, and description.
+#'
+#' @param filename A character string indicating the filename or URL of the KGX-based tsv file.
+#' @param preferences A named list of preferences for the engine.
+#' @param ... Additional arguments (unused).
+#' @seealso `neo4j_engine()`, `monarch_engine()`
+#' @return An object of class `file_engine`
 #' @export
-#'
 #' @examples
+#' library(tidygraph)
+#' library(dplyr)
+#'
+#' # Using a local MONDO KGX file (packaged with monarchr)
+#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' e <- file_engine(filename)
+#' print(e$preferences)   # print the default preferences
+#'
+#' # same search and fetch, different preferences
+#' search_kg(e, "fibrosis", limit = 5) |>
+#'   activate(nodes) |>
+#'   as.data.frame() |>
+#'   select(name, id, pcategory, category)
+#'
+#' # prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
+#' # followed by "biolink:NamedThing", otherwise use the first listed category.
+#' # Additionally, only search nodes' name property.
+#' # (Note that the MONDO KGX file does not provide multiple categories for
+#' # nodes, so the category_priority preference has no effect here.)
+#' e <- file_engine(filename,
+#'                  preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
+#'                                     node_search_properties = c("name")))
+#'
+#' search_kg(e, "fibrosis", limit = 5) |>
+#'   activate(nodes) |>
+#'   as.data.frame() |>
+#'   select(name, id, pcategory, category)
+#'
 file_engine <- function(filename, preferences = NULL, ...) {
-    obj <- base_engine(name = "file_engine")
+    obj <- base_engine(name = "file_engine", preferences = preferences)
     obj$filename <- filename
 
     # a .tar.gz file should have a *_nodes.tsv and *_edges.tsv file
