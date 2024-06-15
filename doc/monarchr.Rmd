@@ -10,9 +10,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE}
 options(width = 300)
-source("../R/utils.R")
 knitr::opts_chunk$set(echo = TRUE)
 
 `%+%` <- function(a, b) {
@@ -24,11 +23,52 @@ wrap <- function(labels, size = 20) {
 	reformatted <- wrapped %>% lapply(paste, collapse = "\n")
 	return(as.character(reformatted))
 }
+
+knitr::opts_chunk$set(eval = FALSE)
+library(tidygraph)
+library(monarchr)
 ```
 
-### Packages
+# Background: Biomedical Knowledge Graphs
 
-The MonarchR package is designed to support interactive queries against the [Monarch Initiative](https://monarchinitiative.org) Knowledge Graph (KG). It is in early development and testing, and relies upon publicly-available services managed by the Monarch Initiative.
+Before we introduce the tools in `monarchr`, it will be helpful to have an 
+overview of Knowledge Graphs (KGs), specifically those used to represent biomedical
+information similar to that found in the [Monarch Initiative](https://monarchinitiative.org) KG.
+
+Knowledge graphs represent entities (such as genes, diseases, or phenotypes) and
+the relationships between them; for example that the `CFTR` gene `causes` the disease
+`Cystic fibrosis`. This information is stored in a *labeled property graph*, with properties
+connected to the entity nodes and the edges connecting them. The [KGX format](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) specifies a 
+minimal set of properties for nodes and edges: nodes must have an `id` property and a multi-valued
+`category` property, and edges must have `subject`, `predicate`, and `object` properties
+indicating the source, relationship, and destination of the edge. Nodes and edges may have
+other properties as well, and some of these can also be multi-valued (lists of strings, integers, etc.)
+
+<center>![](assets/cftr_cf_edge.png){width=80%}</center>
+
+The `monarchr` package uses `tidygraph` to represent this information, which stores node and edge
+information in tables, containing list-columns for multi-valued properties:
+
+```{r welcome, eval=TRUE, echo=FALSE}
+monarch_engine() |>
+	get_nodes(query_ids = c("HGNC:1884")) |>
+	expand(predicates = "biolink:causes") |>
+	activate(nodes) |>
+	filter(id != "MONDO:0010178")
+```
+
+# Engines
+
+MonarchR is designed to support user-friendly queries against Knowledge Graphs
+(KGs), specifically the cloud-hosted [Monarch Initiative](https://monarchinitiative.org) KG,
+or other [KGX formatted](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) KGs available at [kghub.org](https://kghub.org).
+
+To support these different data sources, large knowledge graphs are represented
+as *engines*. The easiest engine to use is the `monarch_engine()`, which we
+can use to get nodes 
+
+
+It is in early development and testing, and relies upon publicly-available services managed by the Monarch Initiative.
 
 Briefly, a graph stored in a local variable represents a subsets of nodes and/or edges from the larger KG. These local graphs are also [`tidygraph`](https://tidygraph.data-imaginist.com/) objects (which are [igraph](https://r.igraph.org/)s) providing a large range of graph-related functionality.
 
@@ -38,9 +78,9 @@ First, let's load some useful libraries:
 library(monarchr)
 library(dplyr)
 library(tidygraph)
-library(kableExtra) # for kbl() table output formatting
-library(ggraph)
-library(ggiraph)
+#library(kableExtra) # for kbl() table output formatting
+#library(ggraph)
+#library(ggiraph)
 ```
 
 ### Searching by ID or Keyword
