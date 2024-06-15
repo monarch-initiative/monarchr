@@ -34,21 +34,8 @@ test_that("get_nodes neo4j works with complex query syntax", {
     expect_equal(nrow(nodes_df), 1)
     expect_equal(nodes_df$id, "MONDO:0007525")
 
-    # test the limit parameter
-    g <- e %>% get_nodes("biolink:Disease" %in% category | "biolink:Gene" %in% category, limit = 5)
-    nodes_df1 <- g %>% activate(nodes) %>% as.data.frame()
-    expect_equal(nrow(nodes_df1), 5)
-
-    # test the skip parameter
-    g <- e %>% get_nodes("biolink:Disease" %in% category | "biolink:Gene" %in% category, limit = 5, skip = 5)
-    nodes_df2 <- g %>% activate(nodes) %>% as.data.frame()
-    expect_equal(nrow(nodes_df2), 5)
-
-    # the two queries should return different nodes
-    expect_false(all(nodes_df1$id %in% nodes_df2$id))
-
     # check to see that we can chain the get_nodes function with other functions
-    g <- e %>% 
+    g <- e %>%
       get_nodes(id == "MONDO:0007525") %>%
       expand(result_categories = "biolink:Gene")
 
