@@ -14,7 +14,7 @@ monarch_engine(
 \arguments{
 \item{url}{(Optional) May be specified to override the default Monarch Neo4j URL.}
 
-\item{api_url}{(Optional) May be specified to override the default Monarch API URL (specifying the location of the \verb{/search} endpoint used by \code{search_kg()}).}
+\item{api_url}{(Optional) May be specified to override the default Monarch API URL (specifying the location of the \verb{/search} endpoint used by \code{search_nodes()}).}
 
 \item{preferences}{A named list of preferences for the engine.}
 
@@ -34,7 +34,7 @@ typically a single category is used to represent the node in a graph, and is ret
 stored in the engine's preferences. A default set of preferences is stored in the package for use with this and other KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
 but these can be overridden by the user.
 
-The \code{monarch_engine()} overrides \code{search_kg()} to use the Monarch search API, so setting \code{node_search_properties} in the preferences will not affect the search behavior. To use regex-based searching with the Monarch Neo4j instance, use \code{neo4j_engine()} instead and specify the Monarch Neo4j URL (https://neo4j.monarchinitiative.org).
+The \code{monarch_engine()} overrides \code{search_nodes()} to use the Monarch search API, so setting \code{node_search_properties} in the preferences will not affect the search behavior. To use regex-based searching with the Monarch Neo4j instance, use \code{neo4j_engine()} instead and specify the Monarch Neo4j URL (https://neo4j.monarchinitiative.org).
 }
 \examples{
 \dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -45,7 +45,7 @@ e <- monarch_engine()
 print(e$preferences)   # print the default preferences
 
 # same search and fetch, different preferences
-search_kg(e, "fibrosis", limit = 5) |>
+search_nodes(e, "fibrosis", limit = 5) |>
   activate(nodes) |>
   as.data.frame() |>
   select(name, id, pcategory, category)
@@ -55,7 +55,7 @@ search_kg(e, "fibrosis", limit = 5) |>
 # Additionally, only search nodes' name property.
 e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing")))
 
-search_kg(e, "fibrosis", limit = 5) |>
+search_nodes(e, "fibrosis", limit = 5) |>
   activate(nodes) |>
   as.data.frame() |>
   select(name, id, pcategory, category)
