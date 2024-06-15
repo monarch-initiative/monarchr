@@ -1,14 +1,14 @@
 library(testthat)
 library(assertthat)
 
-test_that("search_kg works for file engine", {
+test_that("search_nodes works for file engine", {
     # skip for now
     # testthat::skip("temporary skip")
 
     filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
     e <- file_engine(filename)
 
-    g <- search_kg(e, "fibrosis", category = "biolink:Disease", limit = 5)
+    g <- search_nodes(e, "fibrosis", category = "biolink:Disease", limit = 5)
 
     # ok, there should be 5 nodes, and 0 edges
     nodes_df <- g %>% nodes()

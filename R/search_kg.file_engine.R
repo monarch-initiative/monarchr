@@ -1,7 +1,7 @@
 #' @export
 #' @import tidygraph
 #' @import dplyr
-search_kg.file_engine <- function(e, query, category = NULL, limit = 10, ...) {
+search_nodes.file_engine <- function(e, query, category = NULL, limit = 10, ...) {
     # the file engine contains a tidygraph object, so we need to get the nodes data and filter it
 
     nodes_df <- e$graph %>% nodes()

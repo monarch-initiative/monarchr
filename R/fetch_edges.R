@@ -19,8 +19,8 @@
 #' @examplesIf monarch_engine_check()
 #' ## Using Monarch (hosted)
 #' phenos <- monarch_engine() |>
-#'           fetch_nodes(query_ids = "MONDO:0007525") |>
-#'           fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
+#'           get_nodes(query_ids = "MONDO:0007525") |>
+#'           expand(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #'
@@ -29,8 +29,8 @@
 #' @examples
 #' ## Using local MONDO KGX file (packaged with monarchr)
 #' phenos <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
-#'           fetch_nodes(query_ids = "MONDO:0007525") |>
-#'           fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
+#'           get_nodes(query_ids = "MONDO:0007525") |>
+#'           expand(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #'
@@ -39,8 +39,8 @@
 #' @examplesIf file_engine_check("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz")
 #' ## Using MONDO KGX file (remote) as an example
 #' phenos <- file_engine("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz") |>
-#'           fetch_nodes(query_ids = "MONDO:0007525") |>
-#'           fetch_edges(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
+#'           get_nodes(query_ids = "MONDO:0007525") |>
+#'           expand(predicates = "biolink:has_phenotype", result_categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #' 
@@ -48,12 +48,12 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-fetch_edges <- function(engine = NULL,
+expand <- function(engine = NULL,
 												graph,
 												direction = "both",
 												predicates = NULL,
 												result_categories = NULL,
 												transitive = FALSE,
 												drop_unused_query_nodes = FALSE) {
-	UseMethod("fetch_edges")
+	UseMethod("expand")
 }

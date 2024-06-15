@@ -3,7 +3,7 @@
 #' @import dplyr
 #' @importFrom assertthat assert_that
 #' @importFrom httr GET content http_status
-search_kg.monarch_engine <- function(engine,
+search_nodes.monarch_engine <- function(engine,
                                      query,
                                      category = NULL,
                                      limit = 10,
@@ -12,7 +12,7 @@ search_kg.monarch_engine <- function(engine,
     api_url <- paste0(engine$preferences$monarch_api_url, "/search")
 
     # ensure that the limit is not null and is a length-1 integer <= 500
-    assert_that(!is.null(limit), is.numeric(limit), limit <= 500, msg = "limit must be a length-1 integer <= 500 for search_kg.monarch_engine()")
+    assert_that(!is.null(limit), is.numeric(limit), limit <= 500, msg = "limit must be a length-1 integer <= 500 for search_nodes.monarch_engine()")
 
     params <- list(
         "q" = query,

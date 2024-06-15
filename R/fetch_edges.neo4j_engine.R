@@ -2,7 +2,7 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-fetch_edges.neo4j_engine <- function(engine,
+expand.neo4j_engine <- function(engine,
 																		 graph,
                                         direction = "both",
                                         predicates = NULL,
@@ -22,7 +22,7 @@ fetch_edges.neo4j_engine <- function(engine,
     if(transitive && length(predicates) > 1) {
         # we call recusively on each predicate
         for(predicate in predicates) {
-            g2 <- fetch_edges(graph,
+            g2 <- expand(graph,
                               direction = direction,
                               predicates = predicate,
                               result_categories = result_categories,

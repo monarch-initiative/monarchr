@@ -55,14 +55,14 @@ summarize_neighborhood(eds_hits, summarize = "edges")
 
 ## ----fetch-edges--------------------------------------------------------------
 eds_with_genes <- eds_hits |>
-	fetch_edges(result_categories = "biolink:Gene")
+	expand(result_categories = "biolink:Gene")
 
 eds_with_genes
 
 
 ## ----fetch-deges-2------------------------------------------------------------
 eds_with_genes <- eds_hits |>
-	fetch_edges(result_categories = "biolink:Gene") |>
+	expand(result_categories = "biolink:Gene") |>
 	activate(nodes) |>
 	mutate(source = replace_na(source, "genelinks"))
 
@@ -73,7 +73,7 @@ eds_with_genes
 
 ## ----fetch-edges-3------------------------------------------------------------
 eds_with_genes_phenos_expanded <- eds_with_genes |>
-	fetch_edges(direction = "out", 
+	expand(direction = "out", 
 							predicates = c("biolink:has_phenotype", "biolink:interacts_with"),
 							result_categories = c("biolink:Gene", "biolink:PhenotypicFeature"))
 
@@ -88,12 +88,12 @@ ggraph(eds_with_genes_phenos_expanded, layout = "fr") +
 
 ## ----graph-joins--------------------------------------------------------------
 fa <- monarch_search("Fanconi anemia", limit = 1) %>%
-	fetch_edges(result_categories = "biolink:Gene") %>%
-	fetch_edges(direction = "out", predicates = "biolink:has_phenotype")
+	expand(result_categories = "biolink:Gene") %>%
+	expand(direction = "out", predicates = "biolink:has_phenotype")
 
 cf <- monarch_search("Cystic Fibrosis", limit = 1) %>%
-	fetch_edges(result_categories = "biolink:Gene") %>%
-	fetch_edges(direction = "out", predicates = "biolink:has_phenotype")
+	expand(result_categories = "biolink:Gene") %>%
+	expand(direction = "out", predicates = "biolink:has_phenotype")
 
 shared_nodes <- inner_join(nodes(fa), nodes(cf))
 shared_nodes
@@ -112,8 +112,8 @@ ggraph(merged, layout = "fr") +
 
 ## ----transitivity-------------------------------------------------------------
 eds_with_subtypes <- monarch_search("Ehlers-danlos syndrome", limit = 1) |>
-	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) |>
-	fetch_edges(result_categories = "biolink:Gene")
+	expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) |>
+	expand(result_categories = "biolink:Gene")
 
 # plot
 ggraph(eds_with_subtypes, layout = "sugiyama") +
@@ -128,12 +128,12 @@ eds_search <- monarch_search("Ehlers-danlos syndrome", limit = 5) %>%
 	mutate(source = "search")
 
 eds_search_ancestors <- eds_search |>
-	fetch_edges(direction = "out", predicates = "biolink:subclass_of", transitive = TRUE) %>%
+	expand(direction = "out", predicates = "biolink:subclass_of", transitive = TRUE) %>%
 	activate(nodes) %>%
 	mutate(source = replace_na(source, "ancestors"))
 
 eds_search_descendants <- eds_search |>
-	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) %>%
+	expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE) %>%
 	activate(nodes) %>%
 	mutate(source = replace_na(source, "descendants"))
 
@@ -170,7 +170,7 @@ ggraph(inner, layout = "sugiyama") +
 ## ----list-of-graphs-----------------------------------------------------------
 eds_search %>%                                                 # starting with a graph with 5 disease nodes
 	explode() %>%                                                # split into a list of 5 single-node graphs
-	lapply(fetch_edges) %>%                                      # fetch neighborhood edges for each graph 
+	lapply(expand) %>%                                      # fetch neighborhood edges for each graph 
 	lapply(nodes) %>%                                            # extract nodes df from each graph
 	lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original searched nodes from each df
 

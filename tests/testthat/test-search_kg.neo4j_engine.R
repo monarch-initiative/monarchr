@@ -1,12 +1,12 @@
 library(testthat)
 library(assertthat)
 
-test_that("search_kg works for neo4j graphs", {
+test_that("search_nodes works for neo4j graphs", {
     # skip for now
     #testthat::skip("temporary skip")
 
     e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
-    g <- search_kg(e, "fibrosis", category = "biolink:Disease", limit = 5)
+    g <- search_nodes(e, "fibrosis", category = "biolink:Disease", limit = 5)
 
     # ok, there should be 5 nodes, and 0 edges
     nodes_df <- g %>% nodes()

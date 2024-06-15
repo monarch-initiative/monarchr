@@ -5,7 +5,7 @@ test_that("monarch_search works", {
     # skip for now
     #testthat::skip("temporary skip")
     
-    g <- monarch_engine() %>% search_kg("fanconi anemia", limit = 5)
+    g <- monarch_engine() %>% search_nodes("fanconi anemia", limit = 5)
     # result should be a tbl_kgx with 5 nodes and no edges
     expect_s3_class(g, "tbl_kgx")
     nodes_df <- data.frame(tidygraph::activate(g, nodes))
@@ -14,7 +14,7 @@ test_that("monarch_search works", {
     expect_equal(nrow(edges_df), 0)
 
     # limit = 1 should work
-    g <- monarch_engine() %>% search_kg("fanconi anemia", limit = 1)
+    g <- monarch_engine() %>% search_nodes("fanconi anemia", limit = 1)
     # result should be a tbl_kgx with 1 node and no edges
     nodes_df <- data.frame(tidygraph::activate(g, nodes))
     edges_df <- data.frame(tidygraph::activate(g, edges))
@@ -22,7 +22,7 @@ test_that("monarch_search works", {
     expect_equal(nrow(edges_df), 0)
 
     # no hits should work
-    g <- monarch_engine() %>% search_kg("this is not a real search term")
+    g <- monarch_engine() %>% search_nodes("this is not a real search term")
     # this should return a graph with no nodes
     nodes_df <- data.frame(tidygraph::activate(g, nodes))
     edges_df <- data.frame(tidygraph::activate(g, edges))

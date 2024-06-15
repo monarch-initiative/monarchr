@@ -1,12 +1,12 @@
 library(testthat)
 library(assertthat)
 
-test_that("search_kg works for the monarch engine", {
+test_that("search_nodes works for the monarch engine", {
     # skip for now
     #testthat::skip("temporary skip")
 
     e <- monarch_engine()
-    g <- search_kg(e, "fibrosis", category = "biolink:Disease", limit = 5)
+    g <- search_nodes(e, "fibrosis", category = "biolink:Disease", limit = 5)
 
     # ok, there should be 5 nodes, and 0 edges
     nodes_df <- g %>% nodes()

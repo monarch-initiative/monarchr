@@ -8,7 +8,7 @@
 #' stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
 #' but these can be overridden by the user.
 #'
-#' For `file_engine()`s, preferences are also used to set the node properties to search when using `search_kg()`, defaulting to regex-based searches on id, name, and description.
+#' For `file_engine()`s, preferences are also used to set the node properties to search when using `search_nodes()`, defaulting to regex-based searches on id, name, and description.
 #'
 #' @param filename A character string indicating the filename or URL of the KGX-based tsv file.
 #' @param preferences A named list of preferences for the engine.
@@ -26,7 +26,7 @@
 #' print(e$preferences)   # print the default preferences
 #'
 #' # same search and fetch, different preferences
-#' search_kg(e, "fibrosis", limit = 5) |>
+#' search_nodes(e, "fibrosis", limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)
@@ -40,7 +40,7 @@
 #'                  preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
 #'                                     node_search_properties = c("name")))
 #'
-#' search_kg(e, "fibrosis", limit = 5) |>
+#' search_nodes(e, "fibrosis", limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)

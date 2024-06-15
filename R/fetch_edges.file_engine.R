@@ -144,7 +144,7 @@ direction_fetch_internal <- function(engine,
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-fetch_edges.file_engine <- function(engine,
+expand.file_engine <- function(engine,
                                     graph,
                                     direction = "both",
                                     predicates = NULL,

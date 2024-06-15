@@ -1,7 +1,7 @@
 #' @export
 #' @import tidygraph
 #' @import dplyr
-fetch_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
+get_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
     if(!is.null(query_ids)) {
         res <- engine$graph %>%
             activate(nodes) %>%

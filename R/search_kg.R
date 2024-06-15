@@ -25,7 +25,7 @@
 #' @examplesIf monarch_engine_check()
 #' # the monarch engine uses the Monarch initiative search api
 #' monarch_engine() |>
-#'   search_kg("cystic fibrosis",
+#'   search_nodes("cystic fibrosis",
 #'             category = "biolink:Disease",
 #'             limit = 5) |>
 #'   activate(nodes) |>
@@ -35,7 +35,7 @@
 #' @examplesIf neo4j_engine_check("https://neo4j.monarchinitiative.org")
 #' # the neo4j engine searches a given property for regex matches
 #' neo4j_engine(url = "https://neo4j.monarchinitiative.org") |>
-#'   search_kg("MONDO:*",
+#'   search_nodes("MONDO:*",
 #'             limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
@@ -46,7 +46,7 @@
 #' # for example to search name only
 #' neo4j_engine(url = "https://neo4j.monarchinitiative.org",
 #'              preferences = list(node_search_properties = c("name"))) |>
-#'   search_kg("cystic fibrosis",
+#'   search_nodes("cystic fibrosis",
 #'             category = "biolink:Disease",
 #'             limit = 5) |>
 #'   activate(nodes) |>
@@ -58,13 +58,13 @@
 #' # (using the MONDO KGX file packaged with monarchr)
 #' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
 #' file_engine(filename) |>
-#'   search_kg("cystic fibrosis", 
+#'   search_nodes("cystic fibrosis", 
 #'             category = "biolink:Disease",
 #'             limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(id, name, pcategory)
 #'
-search_kg <- function(engine, query, category = NULL, limit = 10, ...) {
-    UseMethod("search_kg")
+search_nodes <- function(engine, query, category = NULL, limit = 10, ...) {
+    UseMethod("search_nodes")
 }

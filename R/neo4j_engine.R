@@ -11,8 +11,8 @@
 #' stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
 #' but these can be overridden by the user.
 #'
-#' For `neo4j_engine()`s, preferences are also used to set the node properties to search when using `search_kg()`, defaulting to regex-based searches on id, name, and description. (The `monarch_engine()` is a type
-#' of `neo4j_engine()` with the URL set to the Monarch Neo4j instance, and overrides `search_kg()` to use the Monarch search API, see `monarch_engine()` for details).
+#' For `neo4j_engine()`s, preferences are also used to set the node properties to search when using `search_nodes()`, defaulting to regex-based searches on id, name, and description. (The `monarch_engine()` is a type
+#' of `neo4j_engine()` with the URL set to the Monarch Neo4j instance, and overrides `search_nodes()` to use the Monarch search API, see `monarch_engine()` for details).
 #'
 #' @param url A character string indicating the URL of the neo4j database.
 #' @param username A character string indicating the username for the neo4j database (if needed).
@@ -30,7 +30,7 @@
 #' print(e$preferences)   # print the default preferences
 #'
 #' # same search and fetch, different preferences
-#' search_kg(e, "fibrosis", limit = 5) |>
+#' search_nodes(e, "fibrosis", limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)
@@ -42,7 +42,7 @@
 #'                   preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
 #'                                      node_search_properties = c("name")))
 #'
-#' search_kg(e, "fibrosis", limit = 5) |>
+#' search_nodes(e, "fibrosis", limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)

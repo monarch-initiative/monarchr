@@ -16,8 +16,8 @@
 #' - Boolean connectives with `|`, `&`, and `!`, e.g. `in_taxon_lable == "Homo sapiens" | "biolink:Gene" %in% category`.
 #'
 #' If more than one condition parameter is specified, they are combined with `&`; for example,
-#' `fetch_nodes(engine, in_taxon_lable == "Homo sapiens", "biolink:Gene" %in% category)` is equivalent to
-#' `fetch_nodes(engine, in_taxon_lable == "Homo sapiens" & "biolink:Gene" %in% category)`.
+#' `get_nodes(engine, in_taxon_lable == "Homo sapiens", "biolink:Gene" %in% category)` is equivalent to
+#' `get_nodes(engine, in_taxon_lable == "Homo sapiens" & "biolink:Gene" %in% category)`.
 #' @param engine A graph engine object
 #' @param ... A set of conditions identifying the nodes to fetch, only used if query_ids is NULL
 #' @param query_ids A character vector of identifiers to fetch
@@ -29,11 +29,11 @@
 #'
 #' @examplesIf monarch_engine_check()
 #' monarch_engine() |>
-#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'   get_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
 #' # a large query
 #' monarch_engine() |>
-#'   fetch_nodes("biolink:Disease" %in_list% category)
+#'   get_nodes("biolink:Disease" %in_list% category)
 #'
 #' @examples
 #' # file_engine supports the same features as neo4j_engine
@@ -41,13 +41,13 @@
 #' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
 #'
 #' file_engine(filename) |>
-#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'   get_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
 #' # grab all rare diseases
 #' file_engine(filename) |>
-#'   fetch_nodes("rare" %in_list% subsets & "biolink:Disease" %in_list% category)
+#'   get_nodes("rare" %in_list% subsets & "biolink:Disease" %in_list% category)
 #'
 #' @export
-fetch_nodes <- function(engine, ..., query_ids = NULL) {
-    UseMethod("fetch_nodes")
+get_nodes <- function(engine, ..., query_ids = NULL) {
+    UseMethod("get_nodes")
 }

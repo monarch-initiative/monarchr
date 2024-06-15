@@ -7,9 +7,9 @@ test_that("monarch_engine works as expected", {
     #testthat::skip("temporary skip")
 
     e <- monarch_engine()
-    g <- fetch_nodes(e, query_ids = "MONDO:0006043")
+    g <- get_nodes(e, query_ids = "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
-    subtypes <- g %>% fetch_edges(direction = "in",
+    subtypes <- g %>% expand(direction = "in",
                                   predicates = "biolink:subclass_of",
                                   transitive = TRUE)
 
