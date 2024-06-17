@@ -13,3 +13,11 @@ node_search_properties:
   - id
   - description
   - name
+node_property_priority:
+  - id
+  - pcategory
+  - name
+  - symbol
+  - in_taxon_label
+  - description
+  - synonym
