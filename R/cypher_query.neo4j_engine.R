@@ -67,7 +67,6 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 	})
 
 	nodes_df <- tibble::tibble(id = node_ids, category = node_categories)
-	nodes_df <- dplyr::mutate(nodes_df, engine = engine$name)
 
 	## compute a pcategory, or priority category, based on a preference list
 	prefs <- engine$preferences
