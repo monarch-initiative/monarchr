@@ -4,7 +4,7 @@
 \alias{print.tbl_kgx}
 \title{Print function for KGs.}
 \usage{
-\method{print}{tbl_kgx}(x, suppress_prefix = c("biolink:"), ...)
+\method{print}{tbl_kgx}(x, suppress_prefix = NULL, ...)
 }
 \arguments{
 \item{suppress_prefix}{A character vector of prefixes to suppress in the printed output}

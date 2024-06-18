@@ -11,6 +11,10 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE, message=FALSE}
+library(dplyr)
+library(tidygraph)
+library(monarchr)
+
 options(width = 300)
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -25,9 +29,8 @@ wrap <- function(labels, size = 20) {
 }
 
 knitr::opts_chunk$set(eval = FALSE)
-library(tidygraph)
-library(monarchr)
 ```
+
 
 # Background: Biomedical Knowledge Graphs
 
@@ -49,12 +52,14 @@ other properties as well, and some of these can also be multi-valued (lists of s
 The `monarchr` package uses `tidygraph` to represent this information, which stores node and edge
 information in tables, containing list-columns for multi-valued properties:
 
-```{r welcome, eval=TRUE, echo=FALSE}
+```{r welcome, eval=TRUE}
+devtools::load_all()
 monarch_engine() |>
-	get_nodes(query_ids = c("HGNC:1884")) |>
-	expand(predicates = "biolink:causes") |>
-	activate(nodes) |>
-	filter(id != "MONDO:0010178")
+	cypher_query("MATCH (n) -[r]-> (q) RETURN n, r, q LIMIT 10")
+# get_nodes(query_ids = c("HGNC:1884")) |>
+	# expand(predicates = "biolink:causes") |>
+	# activate(nodes) |>
+	# filter(id != "MONDO:0010178")
 ```
 
 # Engines

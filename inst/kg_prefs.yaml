@@ -21,3 +21,7 @@ node_property_priority:
   - in_taxon_label
   - description
   - synonym
+edge_property_priority:
+  - subject
+  - predicate
+  - object

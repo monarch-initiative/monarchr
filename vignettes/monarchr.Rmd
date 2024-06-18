@@ -52,11 +52,11 @@ other properties as well, and some of these can also be multi-valued (lists of s
 The `monarchr` package uses `tidygraph` to represent this information, which stores node and edge
 information in tables, containing list-columns for multi-valued properties:
 
-```{r welcome, eval=TRUE, echo=FALSE}
+```{r welcome, eval=TRUE}
 devtools::load_all()
 monarch_engine() |>
-	cypher_query("MATCH (n) -[r]-> (q) RETURN n, r, q LIMIT 100 ")
-	# get_nodes(query_ids = c("HGNC:1884")) |>
+	cypher_query("MATCH (n) -[r]-> (q) RETURN n, r, q LIMIT 10")
+# get_nodes(query_ids = c("HGNC:1884")) |>
 	# expand(predicates = "biolink:causes") |>
 	# activate(nodes) |>
 	# filter(id != "MONDO:0010178")
