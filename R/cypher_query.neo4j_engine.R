@@ -121,8 +121,14 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 	for(prop_name in edge_prop_names) {
 		# sapply!
 		# edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
-		edges_df[[prop_name]] <- lapply(res$relationships, function(edge) {
-				edge$properties[[prop_name]]
+		edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
+#				edge$properties[[prop_name]]
+				prop_value <- edge$properties[[prop_name]]
+				if(is.null(prop_value)) {
+					return(NA)
+				} else {
+					return(prop_value)
+				}
 		})
 	}
 
