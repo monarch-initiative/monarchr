@@ -1,11 +1,11 @@
 #' Create a KGX graph object
 #'
-#' This function creates a new tbl_kgx object which inherits from tidygraph::tbl_graph, from node and edge dataframes, ensuring they conform to the KGX specification 
+#' This function creates a new tbl_kgx object which inherits from tidygraph::tbl_graph, from node and edge dataframes, ensuring they conform to the KGX specification
 #' described at https://github.com/biolink/kgx/blob/master/specification/kgx-format.md. Specifically, nodes must have an 'id' and 'category' column,
 #' and edges, if provided, must have 'subject', 'predicate', and 'object' columns. The function allows graphs with no edges.
 #' The function sets 'from' and 'to' columns in the edges from 'subject' and 'object' respectively, and sets the node key to 'id'.
 #' Additional columns are allowed.
-#' 
+#'
 #' This function will generally be called internally.
 #'
 #' @param nodes A data frame containing the nodes of the graph. Must have 'id' and 'category' columns.
@@ -44,5 +44,12 @@ tbl_kgx <- function(nodes = NULL, edges = NULL, attach_engine = NULL, ...) {
 
 	attr(g, "last_engine") <- attach_engine
 	class(g) <- c("tbl_kgx", class(g))
+
+	# if we have an engine, use its preferences for setting df column order
+	# (order_cols uses the last attached engine)
+	if(!is.null(attach_engine)) {
+		g <- order_cols(g)
+	}
+
 	return(g)
 }

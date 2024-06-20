@@ -15,7 +15,7 @@ transitive_query_internal <- function(engine,
                                             predicates = predicate,
                                             result_categories = result_categories,
                                             drop_unused_query_nodes = TRUE)
-            g <- tidygraph::graph_join(g, g2)
+            suppressMessages(g <- tidygraph::graph_join(g, g2), classes = "message") # suppress joining info
         }
     }
 
@@ -132,7 +132,7 @@ direction_fetch_internal <- function(engine,
             activate(edges) %>%
             filter(FALSE)
 
-        new_edges <- graph_join(query_no_edges, new_edges)
+        suppressMessages(new_edges <- graph_join(query_no_edges, new_edges), classes = "message") # suppress joining info
     }
 
     return(new_edges)
@@ -172,7 +172,7 @@ expand.file_engine <- function(engine,
         } else if(direction == "both") {
             new_out_edges <- direction_fetch_internal(engine, graph, "out", predicates, result_categories, drop_unused_query_nodes)
             new_in_edges <- direction_fetch_internal(engine, graph, "in", predicates, result_categories, drop_unused_query_nodes)
-            new_edges <- graph_join(new_out_edges, new_in_edges)
+            suppressMessages(new_edges <- graph_join(new_out_edges, new_in_edges), classes = "message") # suppress joining info
         }
     }
 

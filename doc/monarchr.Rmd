@@ -34,35 +34,37 @@ knitr::opts_chunk$set(eval = FALSE)
 
 # Background: Biomedical Knowledge Graphs
 
-Before we introduce the tools in `monarchr`, it will be helpful to have an 
-overview of Knowledge Graphs (KGs), specifically those used to represent biomedical
-information similar to that found in the [Monarch Initiative](https://monarchinitiative.org) KG.
-
 Knowledge graphs represent entities (such as genes, diseases, or phenotypes) and
 the relationships between them; for example that the `CFTR` gene `causes` the disease
-`Cystic fibrosis`. This information is stored in a *labeled property graph*, with properties
-connected to the entity nodes and the edges connecting them. The [KGX format](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) specifies a 
-minimal set of properties for nodes and edges: nodes must have an `id` property and a multi-valued
-`category` property, and edges must have `subject`, `predicate`, and `object` properties
-indicating the source, relationship, and destination of the edge. Nodes and edges may have
-other properties as well, and some of these can also be multi-valued (lists of strings, integers, etc.)
+`Cystic fibrosis`. In the [Monarch Initiative](https://monarchiniative.org), this
+information is stored in a *labeled property graph*, with properties
+attached to the entities (nodes) and relationships (edges). The [KGX format](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) specifies a 
+minimal set of properties for knowledge graphs: nodes must have `id` and
+`category` properties (where `category` actually stores a multi-valued set of categories), and edges must 
+have `subject`, `predicate`, and `object` properties
+indicating the source, relationship, and destination of the edge. Both nodes and edges may have
+other properties as well, and these can also be multi-valued (lists of strings, integers, etc.)
 
-<center>![](assets/cftr_cf_edge.png){width=80%}</center>
+<center>![](assets/cftr_cf_edge.png){width=90%}</center>
 
 The `monarchr` package uses `tidygraph` to represent this information, which stores node and edge
-information in tables, containing list-columns for multi-valued properties:
+information in tables. List columns are used for multi-valued properties. The following query reveals that `CFTR` causes two diseases, *cystic fibrosis* (`MONDO:0009061`), and *congenital bilateral aplasia of vas deferens from CFTR mutation* (`MONDO:0010178`):
 
-```{r welcome, eval=TRUE}
-devtools::load_all()
+```{r welcome, eval=TRUE, echo=TRUE}
 monarch_engine() |>
-	cypher_query("MATCH (n) -[r]-> (q) RETURN n, r, q LIMIT 10")
-# get_nodes(query_ids = c("HGNC:1884")) |>
-	# expand(predicates = "biolink:causes") |>
-	# activate(nodes) |>
-	# filter(id != "MONDO:0010178")
+  get_nodes(query_ids = c("HGNC:1884")) |>
+  expand(predicates = "biolink:causes")
 ```
 
+As this example hints, `monarchr` supports different query "engines", fetching nodes by specified criteria, and expanding 
+on fetched subgraphs by following specified relationship criteria. 
+Because `monarchr` utilizes [`tidygraph`](https://tidygraph.data-imaginist.com/) which is built on on [`igraph`](https://r.igraph.org/), it is supported by a broad ecosystem, including [packages](https://ggraph.data-imaginist.com/) for [visualization](https://datastorm-open.github.io/visNetwork/), [exploratory analyses](https://r-ega.net/), graph [manipulation](https://tidygraph.data-imaginist.com/reference/index.html) and [algorithms](https://r.igraph.org/reference/index.html),  [matching](https://cran.r-project.org/web/packages/iGraphMatch/vignettes/iGraphMatch.html), and [graph neural networks](https://rpubs.com/giancarlo_vercellino/spinner).
+
+
 # Engines
+
+
+
 
 MonarchR is designed to support user-friendly queries against Knowledge Graphs
 (KGs), specifically the cloud-hosted [Monarch Initiative](https://monarchinitiative.org) KG,

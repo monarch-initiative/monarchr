@@ -1,6 +1,7 @@
 #' Get tbl_kgx graph nodes table.
 #'
 #' @importFrom tidygraph as_tibble
+#' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
 #' print(nodes(g))
@@ -11,6 +12,7 @@ nodes.tbl_kgx <- function(x, ...) {
 #' Get tbl_kgx graph edges table.
 #'
 #' @importFrom tidygraph as_tibble
+#' @export
 #' @examples
 #' g <- monarch_search("fanconi anemia", limit = 1)
 #' print(edges(g))

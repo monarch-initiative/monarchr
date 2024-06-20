@@ -28,7 +28,7 @@ expand.neo4j_engine <- function(engine,
                               result_categories = result_categories,
                               transitive = transitive,
                               drop_unused_query_nodes = TRUE)
-            graph <- tidygraph::graph_join(graph, g2)
+            suppressMessages(graph <- tidygraph::graph_join(graph, g2), classes = "message") # suppress joining info
         }
     }
 
@@ -102,7 +102,7 @@ expand.neo4j_engine <- function(engine,
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph
     if(!drop_unused_query_nodes) {
-        result <- tidygraph::graph_join(graph, result)
+        suppressMessages(result <- tidygraph::graph_join(graph, result), classes = "message") # suppress joining info
     }
 
     attr(result, "last_engine") <- engine
