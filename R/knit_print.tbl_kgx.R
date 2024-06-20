@@ -41,7 +41,8 @@ knit_print.tbl_kgx <- function(graph, ...) {
 		nodes_kbl <- nodes_kbl |> column_spec(colnum, width_min = "300px")
 	}
 
-	edges_kbl <- clean_df(edges(g)) |> kable("html", escape = FALSE) |> kable_styling(fixed_thead = TRUE)
+	edges_kbl <- clean_df(edges(g)) |> kable("html", escape = FALSE) |> kable_styling(fixed_thead = TRUE,
+																																										bootstrap_options = c("striped", "hover", "condensed"))
 
 	knitr::asis_output(knitr::knit_child(text = c(
 		'',
