@@ -17,9 +17,9 @@ order_cols <- function(g) {
 
 	res <- g |>
 		activate(nodes) |>
-		select(set_node_names) |>
+		select(all_of(set_node_names)) |>
 		activate(edges) |>
-		select(set_edge_names) |>
+		select(all_of(set_edge_names)) |>
 		activate(nodes)
 
 	return(res)
