@@ -63,6 +63,46 @@ Because `monarchr` utilizes [`tidygraph`](https://tidygraph.data-imaginist.com/)
 
 # Engines
 
+Two kinds of engines are supported, providing largely the same functionality: one supporting access to [Neo4j graph databases](https://neo4j.com/), and another supporting file-based access to TSV-formatted `.tar.gz` KGs hosted at [kghub.io](https://kghub.io). Regardless of source, KGs must conform to the [KGX specification](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md).
+
+The most accessible engine provided by `monarchr` is the `monarch_engine()`, designed to access the cloud-hosted [Monarch Initiative](https://monarchiniatiative.org) KG, with additional features such as Monarch's API-hosted search functionality.
+
+```{r monarch_engine, eval=TRUE, echo=TRUE}
+g <- monarch_engine() |>
+	search_nodes("cystic fibrosis", limit = 5)
+
+g
+```
+
+Using another Neo4j database is as simple as specifying a Neo4j [Bolt](https://neo4j.com/docs/operations-manual/current/configuration/ports/) endpoint, and username and password if required. This may be used to host your own Neo4j database for efficient KG access, based on the Monarch Neo4j [docker deployment](https://github.com/monarch-initiative/monarch-neo4j). When using generic Neo4j endpoints, `search_nodes()` falls back to regex-based search of a subset of node properties (see Engine Preferences below).
+
+```{r neo4j_engine, eval=FALSE, echo=TRUE}
+# not run:
+g <- neo4j_engine("http://localhost:7687", username = "user", password = "pass") |>
+	search_nodes("cystic fibrosis", limit = 5)
+
+g
+```
+
+
+Finally, the `file_engine()` provides KG access to KGX-formatted, `.tar.gz` files containing tab-separated `*_nodes.tsv` and `*_edges.tsv` files. The package comes bundled with a version of the MONDO ontology KG for demonstration purposes. You can also provide a local file path, or a URL to a remote file, which will be downloaded to the current working directory. 
+
+```{r file_engine, eval=TRUE, echo=TRUE}
+filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# filename <- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"
+
+print(filename)
+	
+g <- file_engine(filename) |>
+	search_nodes("cystic fibrosis", limit = 5)
+
+g
+```
+
+As with `neo4j_engine()`, the `search_nodes()` function uses a regex-based search against specific node properties, configurable via engine "preferences."
+
+## Engine Preferences
+
 
 
 

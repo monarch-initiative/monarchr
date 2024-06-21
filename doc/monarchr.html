@@ -576,7 +576,7 @@ display: none;
 <h1 class="title toc-ignore">MonarchR Basics</h1>
 <h4 class="author">Shawn T O’Neil</h4>
 <h4 class="date"><h4><br />
-Vignette updated: <i>Jun-19-2024</i><br />
+Vignette updated: <i>Jun-20-2024</i><br />
 </h4></h4>
 
 </div>
@@ -817,7 +817,7 @@ NA
 <div id="edges" class="section level4">
 <h4>Edges</h4>
 <div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -1000,6 +1000,569 @@ neural networks</a>.</p>
 </div>
 <div id="engines" class="section level1">
 <h1>Engines</h1>
+<p>Two kinds of engines are supported, providing largely the same
+functionality: one supporting access to <a href="https://neo4j.com/">Neo4j graph databases</a>, and another
+supporting file-based access to TSV-formatted <code>.tar.gz</code> KGs
+hosted at <a href="https://kghub.io">kghub.io</a>. Regardless of source,
+KGs must conform to the <a href="https://github.com/biolink/kgx/blob/master/specification/kgx-format.md">KGX
+specification</a>.</p>
+<p>The most accessible engine provided by <code>monarchr</code> is the
+<code>monarch_engine()</code>, designed to access the cloud-hosted <a href="https://monarchiniatiative.org">Monarch Initiative</a> KG, with
+additional features such as Monarch’s API-hosted search
+functionality.</p>
+<pre class="r"><code>g &lt;- monarch_engine() |&gt;
+    search_nodes(&quot;cystic fibrosis&quot;, limit = 5)
+
+g</code></pre>
+<div id="section-2" class="section level3 tabset">
+<h3 class="tabset"></h3>
+<div id="nodes-1" class="section level4">
+<h4>Nodes</h4>
+<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pcategory
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+description
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+synonym (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+category (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+iri
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+xref (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+provided_by (list)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009061”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis (CF) is a genetic disorder characterized by the
+production of sweat with a high salt content and mucus secretions with
+an abnormal viscosity.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“CF”, “cystic fibrosis”, “cystic fibrosis lung disease, modifier of”,
+“mucoviscidosis”, “pseudomonas aeruginosa, susceptibility to chronic
+infection by, in cystic fibrosis”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009061" class="uri">http://purl.obolibrary.org/obo/MONDO_0009061</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MESH:D003550”,
+“MedDRA:10011762”, “NANDO:1200922”, “NANDO:1201021”, “NANDO:2100035”,
+“NANDO:2200205”, “NCIT:C2975”, “NORD:1026”, “OMIM:219700”,
+“Orphanet:586”, “SCTID:190905008”, “UMLS:C0010674”,
+“icd11.foundation:514403112”)
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0005413”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis associated meconium ileus”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis associated meconium ileum is a thickening and
+congestion of the meconium in the ileum in newborns, often the first
+sign of cystic fibrosis. In cystic fibrosis, the meconium can form a
+bituminous black-green mechanical obstruction in a segment of the ileum.
+Beyond this there may be a few separate grey-white globular pellets.
+Below this level, the bowel is a narrow and empty micro-colon. Above the
+level of the obstruction, there are several loops of hypertrophied bowel
+distended with fluid. No meconium is passed, and abdominal distension
+and vomiting appear soon after birth. About 20% of cases of cystic
+fibrosis present with meconium ileus, while approximately 20% of one
+series of cases of meconium ileus did not have cystic fibrosis. The
+presence of meconium ileus is not related to the severity of the cystic
+fibrosis.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“cystic fibrosis associated meconium ileum”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0005413" class="uri">http://purl.obolibrary.org/obo/MONDO_0005413</a>”
+</td>
+<td style="text-align:left;">
+“EFO:0004608”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:1010543”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis, domestic ferret”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis that occurs in domestic ferret.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_1010543" class="uri">http://purl.obolibrary.org/obo/MONDO_1010543</a>”
+</td>
+<td style="text-align:left;">
+“OMIA:001794-9669”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:1010544”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis, pig”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis that occurs in pig.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_1010544" class="uri">http://purl.obolibrary.org/obo/MONDO_1010544</a>”
+</td>
+<td style="text-align:left;">
+“OMIA:001794-9823”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:1010545”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis, sheep”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis that occurs in sheep.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_1010545" class="uri">http://purl.obolibrary.org/obo/MONDO_1010545</a>”
+</td>
+<td style="text-align:left;">
+“OMIA:001794-9940”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="edges-1" class="section level4">
+<h4>Edges</h4>
+<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="section-3" class="section level3">
+<h3></h3>
+<p>Using another Neo4j database is as simple as specifying a Neo4j <a href="https://neo4j.com/docs/operations-manual/current/configuration/ports/">Bolt</a>
+endpoint, and username and password if required. This may be used to
+host your own Neo4j database for efficient KG access, based on the
+Monarch Neo4j <a href="https://github.com/monarch-initiative/monarch-neo4j">docker
+deployment</a>. When using generic Neo4j endpoints,
+<code>search_nodes()</code> falls back to regex-based search of a subset
+of node properties (see Engine Preferences below).</p>
+<pre class="r"><code># not run:
+g &lt;- neo4j_engine(&quot;http://localhost:7687&quot;, username = &quot;user&quot;, password = &quot;pass&quot;) |&gt;
+    search_nodes(&quot;cystic fibrosis&quot;, limit = 5)
+
+g</code></pre>
+<p>Finally, the <code>file_engine()</code> provides KG access to
+KGX-formatted, <code>.tar.gz</code> files containing tab-separated
+<code>*_nodes.tsv</code> and <code>*_edges.tsv</code> files. The package
+comes bundled with a version of the MONDO ontology KG for demonstration
+purposes. You can also provide a local file path, or a URL to a remote
+file, which will be downloaded to the current working directory.</p>
+<pre class="r"><code>filename &lt;- system.file(&quot;extdata&quot;, &quot;mondo_kgx_tsv.tar.gz&quot;, package = &quot;monarchr&quot;)
+# filename &lt;- &quot;https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz&quot;
+
+print(filename)</code></pre>
+<pre><code>## [1] &quot;/private/var/folders/5w/ph36xr3s2tdc5ckt3bjbm_kr0000gn/T/RtmpVPVgoM/temp_libpathede1e600f4c/monarchr/extdata/mondo_kgx_tsv.tar.gz&quot;</code></pre>
+<pre class="r"><code>g &lt;- file_engine(filename) |&gt;
+    search_nodes(&quot;cystic fibrosis&quot;, limit = 5)
+
+g</code></pre>
+</div>
+<div id="section-4" class="section level3 tabset">
+<h3 class="tabset"></h3>
+<div id="nodes-2" class="section level4">
+<h4>Nodes</h4>
+<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+category (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+description
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+xref (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+provided_by
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+synonym (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+iri
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+same_as (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+subsets (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pcategory
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+“MONDO:0800118”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“visceral botryomycosis”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“A botryomycosis that involves internal organs such as lungs, liver, or
+brain. It is a rare disease and has been described mainly in patients
+with underlying diseases such as diabetes mellitus, cystic fibrosis, or
+HIV infection. It is most commonly affecting the lungs, although
+involvement of other organs including liver, spleen, kidney, and brain
+has also been described.”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“mondo.json”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“pulmonary botromycosis”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0800118" class="uri">http://purl.obolibrary.org/obo/MONDO_0800118</a>”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0013423”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“immunodeficiency due to MASP-2 deficiency”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Immunodeficiency due to MASP-2 deficiency is a rare, genetic
+immunodeficiency due to a complement cascade protein anomaly
+characterized by low serum levels of MASP-2 and a variable
+susceptibility to bacterial infections (e.g. pulmonary tuberculosis,
+pneumococcal pneumonia, skin abscesses and sepsis), and autoimmune
+diseases (e.g. inflammatory lung disease, cystic fibrosis, systemic
+lupus erythematosus). In many cases it remains asymptomatic.”
+</td>
+<td style="text-align:left;">
+c(“OMIM:613791”, “MESH:C565360”, “GARD:17512”, “UMLS:C3151085”,
+“Orphanet:331187”)
+</td>
+<td style="text-align:left;">
+“mondo.json”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“MASP2 deficiency”, “lectin complement activation pathway, defect in,
+2”, “immunodeficiency due to MASP-2 deficiency”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0013423" class="uri">http://purl.obolibrary.org/obo/MONDO_0013423</a>”
+</td>
+<td style="text-align:left;">
+c(“<a href="https://omim.org/entry/613791" class="uri">https://omim.org/entry/613791</a>”, “UMLS:C3151085”, “<a href="http://identifiers.org/mesh/C565360" class="uri">http://identifiers.org/mesh/C565360</a>”, “Orphanet:331187”)
+</td>
+<td style="text-align:left;">
+c(“otar”, “orphanet_rare”, “ordo_disease”, “gard_rare”, “rare”,
+“nord_rare”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0037398”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“pneumonia caused by pseudomonas aeruginosa infection”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“A rare pulmonary disease characterized by primary or nonbacteremic
+pneumonia most frequently arising in an intensive care setting, or
+bacteremic pneumonia, which is typically associated with neutropenia.
+Chronic lower respiratory tract infection with development of episodes
+of pneumonia is common in patients with cystic fibrosis. Acute
+infections are potentially life-threatening. Patients present with
+fever, chills, dyspnea, cyanosis, productive cough, as well as signs of
+severe systemic toxicity. Alveolar hemorrhage, necrosis, and,
+eventually, cavity formation, are commonly seen.”
+</td>
+<td style="text-align:left;">
+c(“GARD:13613”, “icd11.foundation:801706385”, “Orphanet:90066”)
+</td>
+<td style="text-align:left;">
+“mondo.json”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0037398" class="uri">http://purl.obolibrary.org/obo/MONDO_0037398</a>”
+</td>
+<td style="text-align:left;">
+“Orphanet:90066”
+</td>
+<td style="text-align:left;">
+c(“orphanet_rare”, “ordo_disease”, “rare”, “ordo_disorder”, “nord_rare”,
+“gard_rare”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009476”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“atresia of small intestine”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Atresia of small intestine is a special form of intestinal atresia with
+absence of mesentery, which is most likely due to an intrauterine
+intestinal vascular accident. Newborns are usually preterm infants with
+low birth-weights, that encounter feeding difficulties (including
+vomiting with initial feeds, which may later worsened and the abdomen
+becomes progressively distended) as well as failure to thrive. Affected
+children present disrupted bowel loops assuming a spiral configuration
+resembling an ‘apple peel’ and may have less than half of the normal
+length of the small bowel and a physiologically short bowel. Atresia of
+small intestine is characterized by jejunal atresia near the ligament of
+Treitz, foreshortened bowel, and a large mesenteric gap. The bowel
+distal to the atresia is precariously supplied. Atresia of small
+intestine may be a manifestation of cystic fibrosis. The most important
+cause of mortality is short bowel syndrome, encountered in 65% of
+cases.”
+</td>
+<td style="text-align:left;">
+c(“UMLS:C0021828”, “MESH:C538260”, “NCIT:C98828”,
+“icd11.foundation:1949256262”, “NORD:1309”, “GARD:140”, “UMLS:C0266172”,
+“Orphanet:1201”, “MedDRA:10010626”, “OMIM:243600”)
+</td>
+<td style="text-align:left;">
+“mondo.json”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“familial apple peel jejunal atresia”, “APSB”, “congenital small
+intestine atresia”, “jejunal atresia”, “small intestinal atresia”,
+“Jejunoileal atresia”, “atresia of the small intestine”, “congenital
+atresia of the small intestine”, “apple peel syndrome”, “small intestine
+atresia”, “intestinal atresia type IIIb”, “apple-peel intestinal
+atresia”, “apple peel small bowel syndrome”, “Jejunal Atresia”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009476" class="uri">http://purl.obolibrary.org/obo/MONDO_0009476</a>”
+</td>
+<td style="text-align:left;">
+c(“<a href="http://identifiers.org/mesh/C538260" class="uri">http://identifiers.org/mesh/C538260</a>”, “UMLS:C0266172”,
+“<a href="https://omim.org/entry/243600" class="uri">https://omim.org/entry/243600</a>”, “Orphanet:1201”,
+“NCIT:C98828”)
+</td>
+<td style="text-align:left;">
+c(“gard_rare”, “orphanet_rare”, “ordo_disease”, “rare”,
+“ordo_morphological_anomaly”, “otar”, “nord_rare”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:1010544”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis, pig”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis that occurs in pig.”
+</td>
+<td style="text-align:left;">
+“OMIA:001794-9823”
+</td>
+<td style="text-align:left;">
+“mondo.json”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_1010544" class="uri">http://purl.obolibrary.org/obo/MONDO_1010544</a>”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="edges-2" class="section level4">
+<h4>Edges</h4>
+<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="section-5" class="section level3">
+<h3></h3>
+<p>As with <code>neo4j_engine()</code>, the <code>search_nodes()</code>
+function uses a regex-based search against specific node properties,
+configurable via engine “preferences.”</p>
+</div>
+<div id="engine-preferences" class="section level2">
+<h2>Engine Preferences</h2>
 <p>MonarchR is designed to support user-friendly queries against
 Knowledge Graphs (KGs), specifically the cloud-hosted <a href="https://monarchinitiative.org">Monarch Initiative</a> KG, or other
 <a href="https://github.com/biolink/kgx/blob/master/specification/kgx-format.md">KGX
@@ -1250,6 +1813,7 @@ data, and removing the original searched nodes based on the
     lapply(fetch_edges) %&gt;%                                      # fetch neighborhood edges for each graph 
     lapply(nodes) %&gt;%                                            # extract nodes df from each graph
     lapply(function(nodes_df) {filter(nodes_df, is.na(source))}) # remove original searched nodes from each df</code></pre>
+</div>
 </div>
 <div id="session-info" class="section level2">
 <h2>Session info</h2>
