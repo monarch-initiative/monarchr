@@ -20,5 +20,7 @@ get_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
 
     attr(res, "last_engine") <- engine
 
+    res <- order_cols(res)
+
     return(res)
 }

@@ -35,7 +35,7 @@ search_nodes.file_engine <- function(e, query, category = NULL, limit = 10, ...)
 
     sub_nodes_df <- head(nodes_df[match_bools & match_cats, ], limit)
 
-    ret_graph <- tbl_kgx(nodes = sub_nodes_df)
+    ret_graph <- tbl_kgx(nodes = sub_nodes_df, attach_engine = e)
 
     return(ret_graph)
 }
