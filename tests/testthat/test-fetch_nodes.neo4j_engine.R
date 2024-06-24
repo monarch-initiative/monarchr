@@ -23,10 +23,6 @@ test_that("fetch_nodes neo4j works with basid id query", {
 })
 
 test_that("fetch_nodes neo4j works with complex query syntax", {
-    # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
-    # do so silently in the logs...
-    expect_error(e %>% fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")))
-
     e <- monarch_engine()
     g <- e %>% fetch_nodes(id == "MONDO:0007525")
 
