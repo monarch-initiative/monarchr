@@ -4,7 +4,7 @@
 \alias{fetch_nodes}
 \title{Fetch nodes from a graph using a set of IDs or conditions}
 \usage{
-fetch_nodes(engine, ..., query_ids = NULL)
+fetch_nodes(engine, ..., query_ids = NULL, limit = NULL)
 }
 \arguments{
 \item{engine}{A graph engine object}
@@ -12,6 +12,8 @@ fetch_nodes(engine, ..., query_ids = NULL)
 \item{...}{A set of conditions identifying the nodes to fetch, only used if query_ids is NULL}
 
 \item{query_ids}{A character vector of identifiers to fetch}
+
+\item{limit}{An integer specifying the maximum number of nodes to fetch. Default to NULL, no limit.}
 }
 \value{
 A tbl_kgx object containing the nodes

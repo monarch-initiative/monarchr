@@ -42,3 +42,17 @@ test_that("fetch_nodes neo4j works with complex query syntax", {
     edges_df <- g %>% activate(edges) %>% as.data.frame()
     expect_equal(nrow(edges_df), 3)
 })
+
+test_that("fetch_nodes limit works with neo4j_engine", {
+	e <- monarch_engine()
+	g <- e %>% fetch_nodes(in_taxon_label == "Homo sapiens", limit = 10)
+
+	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
+	expect_equal(nrow(nodes_df), 10)
+
+	e <- monarch_engine()
+	g <- e %>% fetch_nodes(in_taxon_label == "Homo sapiens", limit = 5)
+
+	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
+	expect_equal(nrow(nodes_df), 5)
+})

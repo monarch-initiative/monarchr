@@ -21,6 +21,7 @@
 #' @param engine A graph engine object
 #' @param ... A set of conditions identifying the nodes to fetch, only used if query_ids is NULL
 #' @param query_ids A character vector of identifiers to fetch
+#' @param limit An integer specifying the maximum number of nodes to fetch. Default to NULL, no limit.
 #' @return A tbl_kgx object containing the nodes
 #'
 #' @examples
@@ -48,6 +49,6 @@
 #'   fetch_nodes("rare" %in_list% subsets & "biolink:Disease" %in_list% category)
 #'
 #' @export
-fetch_nodes <- function(engine, ..., query_ids = NULL) {
+fetch_nodes <- function(engine, ..., query_ids = NULL, limit = NULL) {
     UseMethod("fetch_nodes")
 }

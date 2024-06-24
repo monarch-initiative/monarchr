@@ -49,7 +49,7 @@ test_that("fetch_nodes file_engine works with complex query syntax", {
 
     # check to see that we can chain the fetch_nodes function with other functions
     # TODO: expand is not implemented for file_engine
-    # g <- e %>% 
+    # g <- e %>%
     #   fetch_nodes(id == "MONDO:0007525") %>%
     #   expand(result_categories = "biolink:Gene")
 
@@ -60,3 +60,20 @@ test_that("fetch_nodes file_engine works with complex query syntax", {
     # edges_df <- g %>% activate(edges) %>% as.data.frame()
     # expect_equal(nrow(edges_df), 3)
 })
+
+test_that("fetch_nodes limit works with file_engine", {
+	filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+	e <- file_engine(filename)
+	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 10)
+
+	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
+	expect_equal(nrow(nodes_df), 10)
+
+	filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+	e <- file_engine(filename)
+	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 5)
+
+	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
+	expect_equal(nrow(nodes_df), 5)
+})
+

@@ -186,22 +186,22 @@ g <- monarch_engine() |>
 
 str(g)
 ```
+
 We can also get nodes in bulk by specifying an expression over node properties. We'll use the example MONDO kg for
 this example; let's first get a few nodes to see what this KG supports:
 
 ```{r mondo_nodes_explore, eval=FALSE, echo=TRUE}
-#g <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
-#	search_nodes("cystic fibrosis", limit = 5)
+g <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
+     search_nodes("cystic fibrosis", limit = 5)
 
-g <- monarch_engine() |>
-	fetch_nodes(in_taxon_label == "Homo sapiens") |>
-	expand(result_categories = "biolink:PhenotypicFeature")
+#g <- monarch_engine() |>
+#	fetch_nodes(in_taxon_label == "Homo sapiens") |>
+#	expand(result_categories = "biolink:PhenotypicFeature")
 	
 g
 ```
 
-As described by [MONDO](https://mondo.readthedocs.io/en/stable/editors-guide/rare-disease-subset/), the `subsets` column defines lists which rare-disease subsets each disease
-belongs to (see the corresponding MONDO documentation for details).
+As described by [MONDO](https://mondo.readthedocs.io/en/stable/editors-guide/rare-disease-subset/), the `subsets` column lists which rare-disease subsets each disease belongs to.
 
 
 <!-- MonarchR is designed to support user-friendly queries against Knowledge Graphs -->

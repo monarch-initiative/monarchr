@@ -1,7 +1,7 @@
 #' @export
 #' @import tidygraph
 #' @import dplyr
-fetch_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
+fetch_nodes.file_engine <- function(engine, ..., query_ids = NULL, limit = NULL) {
     if(!is.null(query_ids)) {
         res <- engine$graph %>%
             activate(nodes) %>%
@@ -17,6 +17,10 @@ fetch_nodes.file_engine <- function(engine, ..., query_ids = NULL) {
         activate(edges) %>%
         filter(FALSE) %>%
         activate(nodes)
+
+    if(!is.null(limit)) {
+    	res <- res %>% activate(nodes) %>% slice_head(n = limit)
+    }
 
     attr(res, "last_engine") <- engine
 

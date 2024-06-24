@@ -56,19 +56,32 @@ generate_cypher_query <- function(...) {
 #' @import tidygraph
 #' @import dplyr
 #' @import stringr
-fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
+fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, limit = NULL) {
     if(!is.null(query_ids)) {
         # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
         if(length(query_ids) == 1) {
             query_ids <- list(query_ids)
         }
-        res <- cypher_query(engine,
-                            query = "MATCH (n) WHERE n.id IN $id RETURN n",
-                            parameters = list(id = query_ids))
+    	  query <- "MATCH (n) WHERE n.id IN $id RETURN n"
+    	  params <- list(id = query_ids)
     } else {
         query <- generate_cypher_query(...)
-        res <- cypher_query.neo4j_engine(engine, query)
+        params <- list()
     }
+
+		if(!is.null(limit)) {
+			query <- paste0(query, " LIMIT $fetch_limit")
+			params$fetch_limit = limit
+		}
+
+		# cypher_query can't handle no-param param lists, replace with NULL if empty
+		if(length(params) == 0) {
+			params <- NULL
+		}
+
+		res <- cypher_query(engine,
+												query = query,
+												parameters = params)
 
     return(res)
 }
