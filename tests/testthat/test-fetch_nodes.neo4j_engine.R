@@ -2,14 +2,14 @@ library(testthat)
 library(assertthat)
 library(tidyr)
 
-test_that("get_nodes neo4j works with basid id query", {
+test_that("fetch_nodes neo4j works with basid id query", {
     #testthat::skip("temporary skip")
 
     e <- monarch_engine()
 
-    # get_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
+    # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
     # do so silently in the logs...
-    g <- get_nodes(e, query_ids = c("MONDO:0007525", "HGNC:4635"))
+    g <- fetch_nodes(e, query_ids = c("MONDO:0007525", "HGNC:4635"))
 
     nodes_df <- g %>% activate(nodes) %>% as.data.frame()
     # there should be an id column with 2 entries: MONDO:0007525 and HGNC:4635,
@@ -22,21 +22,21 @@ test_that("get_nodes neo4j works with basid id query", {
     expect_equal(nrow(edges_df), 0)
 })
 
-test_that("get_nodes neo4j works with complex query syntax", {
-    # get_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
+test_that("fetch_nodes neo4j works with complex query syntax", {
+    # fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")) should result in an error
     # do so silently in the logs...
-    expect_error(e %>% get_nodes(id %in% c("MONDO:0007525", "HGNC:4635")))
+    expect_error(e %>% fetch_nodes(id %in% c("MONDO:0007525", "HGNC:4635")))
 
     e <- monarch_engine()
-    g <- e %>% get_nodes(id == "MONDO:0007525")
+    g <- e %>% fetch_nodes(id == "MONDO:0007525")
 
     nodes_df <- g %>% activate(nodes) %>% as.data.frame()
     expect_equal(nrow(nodes_df), 1)
     expect_equal(nodes_df$id, "MONDO:0007525")
 
-    # check to see that we can chain the get_nodes function with other functions
+    # check to see that we can chain the fetch_nodes function with other functions
     g <- e %>%
-      get_nodes(id == "MONDO:0007525") %>%
+      fetch_nodes(id == "MONDO:0007525") %>%
       expand(result_categories = "biolink:Gene")
 
     # this result should have 3 nodes and 3 edges

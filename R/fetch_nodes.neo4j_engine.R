@@ -56,7 +56,7 @@ generate_cypher_query <- function(...) {
 #' @import tidygraph
 #' @import dplyr
 #' @import stringr
-get_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
+fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL) {
     if(!is.null(query_ids)) {
         # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
         if(length(query_ids) == 1) {

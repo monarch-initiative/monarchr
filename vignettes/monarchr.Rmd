@@ -18,10 +18,6 @@ library(monarchr)
 options(width = 300)
 knitr::opts_chunk$set(echo = TRUE)
 
-`%+%` <- function(a, b) {
-	paste0(a, b)
-}
-
 wrap <- function(labels, size = 20) {
 	wrapped <- labels %>% lapply(strwrap, size)
 	reformatted <- wrapped %>% lapply(paste, collapse = "\n")
@@ -34,31 +30,66 @@ knitr::opts_chunk$set(eval = FALSE)
 
 # Background: Biomedical Knowledge Graphs
 
-Knowledge graphs represent entities (such as genes, diseases, or phenotypes) and
+Knowledge graphs (KGs) represent entities (such as genes, diseases, or phenotypes) and
 the relationships between them; for example that the `CFTR` gene `causes` the disease
-`Cystic fibrosis`. In the [Monarch Initiative](https://monarchiniative.org), this
-information is stored in a *labeled property graph*, with properties
-attached to the entities (nodes) and relationships (edges). The [KGX format](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) specifies a 
-minimal set of properties for knowledge graphs: nodes must have `id` and
-`category` properties (where `category` actually stores a multi-valued set of categories), and edges must 
-have `subject`, `predicate`, and `object` properties
-indicating the source, relationship, and destination of the edge. Both nodes and edges may have
-other properties as well, and these can also be multi-valued (lists of strings, integers, etc.)
+`Cystic fibrosis`. In the [Monarch Initiative](https://monarchiniative.org) KG, this
+information is stored in a *directed, labeled property graph*, with properties
+attached to the entities (nodes) and relationships (edges), illustrated in the following figure.
 
 <center>![](assets/cftr_cf_edge.png){width=90%}</center>
 
+The [KGX format](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md) used by 
+Monarch is a flexible KG specification:
+
+* Nodes must have an `id` property
+* Nodes must have a `category` property, as a multi-valued set of category labels
+* Edges must have `subject`, `predicate`, and `object` properties, representing the source, relationship, and destination of the edge.
+* Nodes and edges may have additional properties, and these may be multi-valued.
+* Most properties are generally listed laksj f;laskj f;lkasj f;lkASDFASFs
+
 The `monarchr` package uses `tidygraph` to represent this information, which stores node and edge
-information in tables. List columns are used for multi-valued properties. The following query reveals that `CFTR` causes two diseases, *cystic fibrosis* (`MONDO:0009061`), and *congenital bilateral aplasia of vas deferens from CFTR mutation* (`MONDO:0010178`):
+information in tables. List columns are used for multi-valued properties. The following query finds all
+of the sub-types of [Neimann-Pick Disease](https://monarchinitiative.org/MONDO:0001982), and all of the
+genes associated with those.
+
 
 ```{r welcome, eval=TRUE, echo=TRUE}
-monarch_engine() |>
-  get_nodes(query_ids = c("HGNC:1884")) |>
-  expand(predicates = "biolink:causes")
+	# MONDO:0001982 Niemann-Pick Disease (13 subtypes)
+
+g <- monarch_engine() |>
+  fetch_nodes(query_ids = c("MONDO:0001982")) |>
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
+	expand(result_categories = "biolink:Gene")
+
+g
 ```
 
-As this example hints, `monarchr` supports different query "engines", fetching nodes by specified criteria, and expanding 
-on fetched subgraphs by following specified relationship criteria. 
-Because `monarchr` utilizes [`tidygraph`](https://tidygraph.data-imaginist.com/) which is built on on [`igraph`](https://r.igraph.org/), it is supported by a broad ecosystem, including [packages](https://ggraph.data-imaginist.com/) for [visualization](https://datastorm-open.github.io/visNetwork/), [exploratory analyses](https://r-ega.net/), graph [manipulation](https://tidygraph.data-imaginist.com/reference/index.html) and [algorithms](https://r.igraph.org/reference/index.html),  [matching](https://cran.r-project.org/web/packages/iGraphMatch/vignettes/iGraphMatch.html), and [graph neural networks](https://rpubs.com/giancarlo_vercellino/spinner).
+A basic visualization with [`ggraph`](https://ggraph.data-imaginist.com/):
+
+```{r welcome_plot, eval=TRUE, echo=TRUE, fig.width=10, warning=FALSE, message=FALSE}
+library(ggraph)
+library(stringr) # for str_wrap()
+
+ggraph(g, layout = "sugiyama") +
+	geom_edge_link(aes(color = predicate),
+								 arrow = arrow(length = unit(2, 'mm'), type = "closed"),
+								 end_cap = circle(2.5, 'mm')) +
+	geom_node_point(aes(color = pcategory),
+									size = 3) +
+	geom_node_label(aes(label = str_wrap(name, 20)), 
+								 size = 2, 
+								 repel = TRUE, 
+								 check_overlap = TRUE,
+								 fill = "#FFFFFF88")
+```
+
+As this example hints, `monarchr` supports different query "engines", 
+fetching nodes by specified criteria, and expanding on fetched subgraphs by 
+following specified relationship criteria. The primary `monarch_engine()` is backed
+by the Monarch Initiative cloud-hosted Neo4j database, 
+
+
+Because `monarchr` utilizes [`tidygraph`](https://tidygraph.data-imaginist.com/) which is built on on [`igraph`](https://r.igraph.org/), it is supported by a broad ecosystem, including [packages](https://ggraph.data-imaginist.com/) for [visualization](https://datastorm-open.github.io/visNetwork/), [exploratory analyses](https://r-ega.net/), graph [manipulation](https://tidygraph.data-imaginist.com/reference/index.html) and [algorithms](https://r.igraph.org/reference/index.html),  [matching](https://cran.r-project.org/web/packages/iGraphMatch/vignettes/iGraphMatch.html), and [graph neural networks](https://rpubs.com/giancarlo_vercellino/spinner). (This package also relies on the efficient [`neo2R`](https://cran.r-project.org/web/packages/neo2R/index.html) client for Neo4j queries.)
 
 
 # Engines
@@ -87,7 +118,7 @@ g
 
 Finally, the `file_engine()` provides KG access to KGX-formatted, `.tar.gz` files containing tab-separated `*_nodes.tsv` and `*_edges.tsv` files. The package comes bundled with a version of the MONDO ontology KG for demonstration purposes. You can also provide a local file path, or a URL to a remote file, which will be downloaded to the current working directory. 
 
-```{r file_engine, eval=TRUE, echo=TRUE}
+```{r file_engine_demo, eval=TRUE, echo=TRUE}
 filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
 # filename <- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"
 
@@ -134,7 +165,11 @@ g
 
 # Searching and Getting Nodes
 
-As mentioned above, `search_nodes()` uses the Monarch search API when used with a `monarch_engine()`, but a regex-based field search when using a file-based or generic Neo4j engine. In these latter cases, the search term is expanded as `.*<search term>.*` to match within longer text, and allows the inclusion of regular expression syntax, e.g. `(cystic fibrosis)|(CFTR)`. For all engines, `search_nodes()` provides a `category` parameter to limit the matching nodes to those with one of the specified categories, and a `limit` parameter to limit the number of resulting nodes.
+*Note: the functions described here fetch nodes from a knowledge graph, but not any edges between them. See `expand()` below for querying relationships.*
+
+As mentioned above, `search_nodes()` uses the Monarch search API when used with a `monarch_engine()`, but a regex-based field search when using a file-based or generic Neo4j engine. In these latter cases, the search term is expanded as `.*<search term>.*` to match within longer text, and allows the inclusion of regular expression syntax, e.g. `(cystic fibrosis)|(CFTR)`. 
+
+For all engines, `search_nodes()` provides a `category` parameter to limit the matching nodes to those with one of the specified categories, and a `limit` parameter to limit the number of resulting nodes.
 
 ```{r search_fancy, eval=TRUE, echo=TRUE}
 g <- monarch_engine() |>
@@ -143,13 +178,30 @@ g <- monarch_engine() |>
 g
 ```
 
+Nodes can also be fetched with the `fetch_nodes()` function. Specifying a set of `query_ids` fetches just those nodes:
 
+```{r fetch_nodes_query_ids, eval=TRUE, echo=TRUE}
+g <- monarch_engine() |>
+	fetch_nodes(query_ids = c("MONDO:0009061", "HGNC:1884"))
 
+str(g)
+```
+We can also get nodes in bulk by specifying an expression over node properties. We'll use the example MONDO kg for
+this example; let's first get a few nodes to see what this KG supports:
 
+```{r mondo_nodes_explore, eval=FALSE, echo=TRUE}
+#g <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
+#	search_nodes("cystic fibrosis", limit = 5)
 
+g <- monarch_engine() |>
+	fetch_nodes(in_taxon_label == "Homo sapiens") |>
+	expand(result_categories = "biolink:PhenotypicFeature")
+	
+g
+```
 
-
-
+As described by [MONDO](https://mondo.readthedocs.io/en/stable/editors-guide/rare-disease-subset/), the `subsets` column defines lists which rare-disease subsets each disease
+belongs to (see the corresponding MONDO documentation for details).
 
 
 <!-- MonarchR is designed to support user-friendly queries against Knowledge Graphs -->

@@ -6,7 +6,7 @@ test_that("expand works as expected", {
     #testthat::skip("temporary skip")
 
     e <- monarch_engine()
-    g <- get_nodes(e, query_ids = "MONDO:0006043")
+    g <- fetch_nodes(e, query_ids = "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
     subtypes <- g %>% expand(direction = "in",
                                   predicates = "biolink:subclass_of",
@@ -46,7 +46,7 @@ test_that("expand works as expected", {
     # 1 outgoing biolink:subclass_of to biolink:Disease
     # 1 outgoing biolink:has_mode_of_inheritance to biolink:PhenotypicFeature
 
-    g <- get_nodes(e, query_ids = "MONDO:0012187")
+    g <- fetch_nodes(e, query_ids = "MONDO:0012187")
     phenos <- g %>% expand(predicates = "biolink:has_phenotype",
                                 result_categories = "biolink:PhenotypicFeature")
     expect_equal(phenos %>% activate(edges) %>% data.frame() %>% nrow(), 8)
@@ -68,7 +68,7 @@ test_that("expand works as expected", {
 
     # there should be 57 phenotypic features connected to this disease and its 2 subtypes
     # check in neo4j: MATCH (p0)<-[r0:`biolink:has_phenotype`]-(n)<-[r:`biolink:subclass_of`*]-(q)-[r2:`biolink:has_phenotype`]-(p)  WHERE n.id IN ["MONDO:0009242"]  RETURN p0, r0, n, r, q, r2, p
-    g <- get_nodes(e, query_ids = "MONDO:0009242")
+    g <- fetch_nodes(e, query_ids = "MONDO:0009242")
     with_subtypes <- g %>% expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
     expect_equal(with_subtypes %>% activate(nodes) %>% data.frame() %>% nrow(), 3)
 

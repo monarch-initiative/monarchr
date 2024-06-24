@@ -12,7 +12,7 @@ test_that("expand file_engine works with transitive", {
     query_ids = c("MONDO:0007525", "MONDO:0007524", "SO:0000110") # SO:0000110 "sequence_feature" has no subclass_of in the test data
 
     ##### Check basic OUT transitive
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out")
     # this should have 20 nodes, 14 of which are biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 20)
@@ -23,7 +23,7 @@ test_that("expand file_engine works with transitive", {
     expect_equal(nrow(edges_df), 25)
 
     ##### Check basic OUT transitive with result_categories
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", result_categories = "biolink:Disease")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", result_categories = "biolink:Disease")
     # now there should be 15 nodes; 14 of which are biolink:Disease and 1 of biolink:SequenceFeature (original query)
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 15)
@@ -36,7 +36,7 @@ test_that("expand file_engine works with transitive", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 20)
 
     ##### Check basic OUT transitive with drop_unused_query_nodes
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "out", drop_unused_query_nodes = TRUE)
     # this should have 19 nodes, 14 of biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 19)
@@ -49,7 +49,7 @@ test_that("expand file_engine works with transitive", {
 
     ##### Check basic IN transitive
     query_ids = c("MONDO:0007525", "MONDO:0007524") # don't want all SO:0000110 "sequence_feature" bringing all its descendants
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in")
     # there should be 4 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 4)
@@ -61,7 +61,7 @@ test_that("expand file_engine works with transitive", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 2)
 
     ##### Check basic IN transitive with drop_unused_query_nodes
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:subclass_of", transitive = TRUE, direction = "in", drop_unused_query_nodes = TRUE)
     # this should have 3 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 3)
@@ -130,7 +130,7 @@ test_that("fetch_Edges file_engine works", {
 
 
     ##### Check basic OUT
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(direction = "out")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(direction = "out")
     # this result should have: 8 nodes; 6 of which have pcategory of biolink:Disease, 1 biolink:PhenotypicFeature, 1 biolink:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 8)
@@ -145,7 +145,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:related_to"), 3)
 
     ##### Check basic IN
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(direction = "in")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(direction = "in")
     # this result should have 5 nodes all of type biolink:Disease (3 original plus 2 new)
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 5)
@@ -156,7 +156,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(nrow(edges_df), 2)
 
     ##### Check drop_unused_query_nodes with IN
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(direction = "in", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(direction = "in", drop_unused_query_nodes = TRUE)
     # this result should have 3 nodes all of type biolink:Disease (1 plus 2 new; two of the originals are unused)
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 3)
@@ -167,7 +167,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(nrow(edges_df), 2)
 
     #### Check basic BOTH
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(direction = "both")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(direction = "both")
     # this result shold have 10 nodes, 8 biolink:Disease, 1 bio:PhenotypicFeature, 1 bio:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 10)
@@ -182,7 +182,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:related_to"), 3)
 
     #### Check drop_unused_query_nodes with BOTH
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(direction = "both", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(direction = "both", drop_unused_query_nodes = TRUE)
     # all the query nodes are used, so the result should be the same as the basic BOTH
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 10)
@@ -195,7 +195,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 6)
 
     # Check OUT with related_to
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", direction = "out")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", direction = "out")
     # this result should have 5 nodes, 3 biolink:Disease, 1 bio:PhenotypicFeature, 1 bio:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 5)
@@ -209,7 +209,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:related_to"), 3)
 
     ##### Check OUT with resulted_to and drop_unused_query_nodes
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", direction = "out", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", direction = "out", drop_unused_query_nodes = TRUE)
     # this result should have 4 nodes, 2 biolink:Disease, 1 bio:PhenotypicFeature, 1 bio:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 4)
@@ -222,7 +222,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:related_to"), 3)
 
     ##### Check OUT with result_categories biolink:Disease
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "out")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "out")
     # this result should have 6 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 6)
@@ -234,7 +234,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 4)
 
     ##### Check IN with result_categories biolink:Disease
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "in")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "in")
     # this result should have 5 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 5)
@@ -246,7 +246,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 2)
 
     ##### Check IN with result_categories biolink:Disease and drop_unused_query_nodes
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "in", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "in", drop_unused_query_nodes = TRUE)
     # this result should have 3 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 3)
@@ -258,7 +258,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 2)
 
     ##### Check BOTH with result_categories biolink:Disease
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "both")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(result_categories = "biolink:Disease", direction = "both")
     # this result should have 8 nodes, all biolink:Disease
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 8)
@@ -270,7 +270,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:subclass_of"), 6)
 
     ##### Check OUT with predicates biolink:related_to and result_categories biolink:Gene
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", result_categories = "biolink:Gene", direction = "out")
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", result_categories = "biolink:Gene", direction = "out")
     # this result should have 4 node, 3 biolink:Disease, 1 biolink:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 4)
@@ -283,7 +283,7 @@ test_that("fetch_Edges file_engine works", {
     expect_equal(sum(edges_df$predicate == "biolink:related_to"), 2)
 
     ###### Check OUT with predicates biolink:related_to and result_categories biolink:Gene and drop_unused_query_nodes
-    g <- get_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", result_categories = "biolink:Gene", direction = "out", drop_unused_query_nodes = TRUE)
+    g <- fetch_nodes(e, query_ids = query_ids) %>% expand(predicate = "biolink:related_to", result_categories = "biolink:Gene", direction = "out", drop_unused_query_nodes = TRUE)
     # this result should have 3 node, 2 biolink:Disease, 1 biolink:Gene
     nodes_df <- g %>% activate(nodes) %>% as_tibble()
     expect_equal(nrow(nodes_df), 3)
