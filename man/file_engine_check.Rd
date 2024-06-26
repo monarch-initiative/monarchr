@@ -18,8 +18,10 @@ TRUE if the database is available and properly formatted, FALSE otherwise.
 Attempts to connect to the specified file-based engine. Returns FALSE if the file is not available or not properly formatted.
 }
 \examples{
+\dontshow{if (file_engine_check("https://kghub.io/kg-obo/sepio/2023-06-13/sepio_kgx_tsv.tar.gz")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 print(file_engine_check("https://kghub.io/kg-obo/sepio/2023-06-13/sepio_kgx_tsv.tar.gz"))
 print(file_engine_check("https://no-such-host.kghub.io/sepio_kgx_tsv.tar.gz"))
 print(file_engine_check(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")))
 print(file_engine_check(system.file("extdata", "nosuch_kgx_tsv.tar.gz", package = "monarchr")))
+\dontshow{\}) # examplesIf}
 }

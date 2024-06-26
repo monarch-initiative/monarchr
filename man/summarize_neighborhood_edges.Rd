@@ -7,7 +7,7 @@
 summarize_neighborhood_edges(obj, ...)
 }
 \arguments{
-\item{e}{A graph engine object}
+\item{e}{A graph engine object (optional - the recent engine used by the graph will be used if not supplied)}
 
 \item{g}{A graph}
 
@@ -23,8 +23,9 @@ nodes in the larger KG. Counts are broken down by source and target node categor
 Note that the number of relationships returned may be larger than the number of nodes they connect to.
 }
 \examples{
-e <- neo4j_engine()
-g <- monarch_search("fanconi anemia")
-summarize_neighborhood_edges(g, direction = "both")
-
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+g <- monarch_engine() |>
+  search_nodes("fanconi anemia", limit = 5) |>
+  summarize_neighborhood_edges(direction = "both")
+\dontshow{\}) # examplesIf}
 }

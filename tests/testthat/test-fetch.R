@@ -1,6 +1,6 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
+
 
 test_that("expand works as expected", {
     #testthat::skip("temporary skip")

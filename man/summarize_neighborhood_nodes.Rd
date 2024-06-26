@@ -7,17 +7,22 @@
 summarize_neighborhood_nodes(obj, ...)
 }
 \arguments{
-\item{obj}{An object of class 'neighborhood'.}
+\item{e}{A graph engine object (optional - the recent engine used by the graph will be used if not supplied)}
 
-\item{...}{Additional arguments to be passed to methods.}
+\item{g}{A graph}
+
+\item{direction}{The direction of edges to follow in the neighborhood}
+}
+\value{
+A tbl_kgx graph
 }
 \description{
-This is a generic function to summarize neighborhood nodes. It is used by the
-'summarize_neighborhood' function to summarize the neighborhood nodes of the
-input object.
+Summarizes the nodes in the neighborhood of a given graph.
 }
 \examples{
-g <- monarch_search("fanconi anemia")
-summarize_neighborhood_nodes(g)
-
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+g <- monarch_engine() |>
+  search_nodes("fanconi anemia", limit = 5) |>
+  summarize_neighborhood_nodes(direction = "both")
+\dontshow{\}) # examplesIf}
 }

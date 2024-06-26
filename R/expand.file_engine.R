@@ -1,5 +1,6 @@
 ############ Internal functions for fetching edges from a file engine ############
 
+#' @importFrom igraph V
 transitive_query_internal <- function(engine,
                                       g,
                                       direction = "out",

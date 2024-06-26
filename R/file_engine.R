@@ -2,7 +2,7 @@
 #'
 #' Creates a knowledge graph engine backed by a KGX-based tab-separated file. This must be a filename or URL to a `.tar.gz` file containing a `*_nodes.tsv` and `*_edges.tsv` file. If a URL is provided, the file will be downloaded to the user's current working directory.
 #'
-#' Engines store preference information specifying how data are fetched and manipulated; for example, 
+#' Engines store preference information specifying how data are fetched and manipulated; for example,
 #' while node `category` is multi-valued (nodes may have multiple categories, for example "biolink:Gene" and "biolink:NamedThing"),
 #' typically a single category is used to represent the node in a graph, and is returned as the nodes' `pcategory`. A preference list of categories to use for `pcategory` is
 #' stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
@@ -37,7 +37,8 @@
 #' # (Note that the MONDO KGX file does not provide multiple categories for
 #' # nodes, so the category_priority preference has no effect here.)
 #' e <- file_engine(filename,
-#'                  preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
+#'                  preferences = list(category_priority = c("biolink:ThingWithTaxon",
+#'                                                           "biolink:NamedThing"),
 #'                                     node_search_properties = c("name")))
 #'
 #' search_nodes(e, "fibrosis", limit = 5) |>
@@ -45,6 +46,12 @@
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)
 #'
+#' @importFrom archive archive_read
+#' @importFrom readr col_character
+#' @importFrom readr read_tsv
+#' @importFrom readr cols
+#' @importFrom utils download.file
+#' @importFrom utils untar
 file_engine <- function(filename, preferences = NULL, ...) {
     obj <- base_engine(name = "file_engine", preferences = preferences)
     obj$filename <- filename

@@ -1,3 +1,4 @@
+#' @importFrom utils capture.output
 clean_df <- function(df) {
 	new_df <- list()
 	for(colname in colnames(df)) {

@@ -26,26 +26,22 @@ Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 VignetteBuilder: knitr
-Imports: 
+Imports:
     assertthat,
-    colorDF,
-    dotenv,
     dplyr,
-    tidyr,
-    ggiraph,
-    ggraph,
     httr,
     kableExtra,
-    magrittr,
-    memoise,
     neo2R,
-    progress,
     rlang,
-    rstackdeque,
+    igraph,
     tibble,
     tidygraph,
-    vcr,
-    yaml
+    yaml,
+    knitr,
+    purrr,
+    stringr,
+    archive,
+    readr
 Suggests: 
-    testthat (>= 3.0.0),
-    knitr
+		ggraph,
+    testthat (>= 3.0.0)

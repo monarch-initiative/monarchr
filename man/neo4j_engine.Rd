@@ -52,8 +52,9 @@ search_nodes(e, "fibrosis", limit = 5) |>
 # prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
 # followed by "biolink:NamedThing", otherwise use the first listed category.
 # Additionally, only search nodes' name property.
-e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org", 
-                  preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
+e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org",
+                  preferences = list(category_priority = c("biolink:ThingWithTaxon",
+                                                           "biolink:NamedThing"),
                                      node_search_properties = c("name")))
 
 search_nodes(e, "fibrosis", limit = 5) |>

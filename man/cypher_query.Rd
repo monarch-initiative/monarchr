@@ -7,6 +7,8 @@
 cypher_query(engine, ...)
 }
 \arguments{
+\item{engine}{A neo4j KG engine}
+
 \item{...}{Additional arguments passed to the function.}
 
 \item{query}{A string representing the Cypher query.}
@@ -20,8 +22,14 @@ The result of the Cypher query as a tbl_kgx graph.
 This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a tbl_kgx graph.
 }
 \examples{
-query <- "MATCH (n) RETURN n LIMIT 10"
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+engine <- monarch_engine()
+
+query <- "MATCH (n) WHERE n.id IN $ids RETURN n LIMIT 10"
 ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
 parameters <- list(ids = ids)
-result <- cypher_query(query, parameters)
+
+result <- cypher_query(engine, query, parameters)
+print(result)
+\dontshow{\}) # examplesIf}
 }

@@ -1,6 +1,6 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
+
 
 test_that("fetch_nodes neo4j works with basid id query", {
     #testthat::skip("temporary skip")

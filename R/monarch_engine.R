@@ -3,7 +3,7 @@
 #' Creates a knowledge graph engine backed by the publicly hosted Monarch Neo4j database, used to fetch nodes and edges from the database as local
 #' graph objects.
 #'
-#' Engines store preference information specifying how data are fetched and manipulated; for example, 
+#' Engines store preference information specifying how data are fetched and manipulated; for example,
 #' while node `category` is multi-valued (nodes may have multiple categories, for example "biolink:Gene" and "biolink:NamedThing"),
 #' typically a single category is used to represent the node in a graph, and is returned as the nodes' `pcategory`. A preference list of categories to use for `pcategory` is
 #' stored in the engine's preferences. A default set of preferences is stored in the package for use with this and other KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
@@ -34,14 +34,15 @@
 #' # prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
 #' # followed by "biolink:NamedThing", otherwise use the first listed category.
 #' # Additionally, only search nodes' name property.
-#' e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing")))
+#' e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon",
+#'                                                              "biolink:NamedThing")))
 #'
 #' search_nodes(e, "fibrosis", limit = 5) |>
 #'   activate(nodes) |>
 #'   as.data.frame() |>
 #'   select(name, id, pcategory, category)
 #'
-monarch_engine <- function(url = "https://neo4j.monarchinitiative.org", 
+monarch_engine <- function(url = "https://neo4j.monarchinitiative.org",
                            api_url = "https://api.monarchinitiative.org/v3/api",
                            preferences = NULL,
                            ...) {

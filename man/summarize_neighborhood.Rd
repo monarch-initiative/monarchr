@@ -11,7 +11,7 @@ summarize_neighborhood(g, direction = "both", summarize = "edges")
 
 \item{direction}{The direction of edges to include in the neighborhood}
 
-\item{summarize}{Whether to summarize edges, nodes, or both}
+\item{summarize}{Whether to summarize edges or nodes (default "edges")}
 }
 \value{
 A tbl_kgx graph
@@ -34,8 +34,9 @@ neighborhood, using the direction parameter. The default is "both", which
 includes both incoming and outgoing edges.
 }
 \examples{
-g <- monarch_search("fanconi anemia")
-summarize_neighborhood(g, summarize = "edges") # default
-summarize_neighborhood(g, summarize = "nodes")
-
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+g <- monarch_engine() |>
+  search_nodes("fanconi anemia", limit = 5) |>
+  summarize_neighborhood(direction = "both", summarize = "edges")
+\dontshow{\}) # examplesIf}
 }

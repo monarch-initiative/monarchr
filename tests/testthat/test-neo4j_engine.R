@@ -1,6 +1,5 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
 
 
 test_that("monarch_engine works as expected", {

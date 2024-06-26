@@ -1,21 +1,12 @@
-#' Get tbl_kgx graph nodes table.
-#'
-#' @importFrom tidygraph as_tibble
 #' @export
-#' @examples
-#' g <- monarch_search("fanconi anemia", limit = 1)
-#' print(nodes(g))
+#' @importFrom tidygraph as_tibble
 nodes.tbl_kgx <- function(x, ...) {
   tidygraph::as_tibble(x, active = "nodes")
 }
 
-#' Get tbl_kgx graph edges table.
-#'
-#' @importFrom tidygraph as_tibble
+
 #' @export
-#' @examples
-#' g <- monarch_search("fanconi anemia", limit = 1)
-#' print(edges(g))
+#' @importFrom tidygraph as_tibble
 edges.tbl_kgx <- function(x, ...) {
   tidygraph::as_tibble(x, active = "edges")
 }
@@ -23,49 +14,63 @@ edges.tbl_kgx <- function(x, ...) {
 
 #' Get graph nodes table.
 #'
-#' @param x A graph object
+#' @param g A graph object
 #' @return A tibble with the nodes of the graph
 #' @importFrom tidygraph as_tibble
 #' @export
 #' @examples
-#' g <- monarch_search("fanconi anemia", limit = 1)
+#' # (using the MONDO KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#'
+#' g <- file_engine(filename) |>
+#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'
 #' print(nodes(g))
-#' print(edges(g))
-nodes <- function(x, ...) {
+nodes <- function(g, ...) {
   UseMethod("nodes")
 }
 
 #' Get graph edges table.
 #'
+#' @param g A tbl_kgx graph.
 #' @return A tibble with the edges of the graph
 #' @importFrom tidygraph as_tibble
 #' @export
 #' @examples
-#' g <- monarch_search("fanconi anemia", limit = 1)
-#' print(nodes(g))
+#' # (using the MONDO KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#'
+#' g <- file_engine(filename) |>
+#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'
 #' print(edges(g))
-edges <- function(x, ...) {
+edges <- function(g, ...) {
   UseMethod("edges")
 }
 
-
-explode <- function(x, ...) {
+#' Explode a graph into a list of single-node graphs
+#'
+#' @param g A tbl_kgx graph.
+#' @return A list of tbl_kgx graphs.
+#' @examples
+#' # (using the MONDO KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#'
+#' g <- file_engine(filename) |>
+#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'
+#' print(explode(g))
+#' @export
+explode <- function(g, ...) {
   UseMethod("explode")
 }
 
-#' Explode a graph into a list of single-node graphs.
-#'
-#' @param x A graph object
-#' @return A list of single-node graphs
-#' @importFrom tidygraph as_tibble
 #' @export
-#' @examples
-#' g <- monarch_search("fanconi anemia", limit = 5)
-#' print(explode(g))
-explode.tbl_kgx <- function(x, ...) {
-  nodes <- as_tibble(x, active = "nodes")
+#' @importFrom tidygraph activate
+explode.tbl_kgx <- function(g, ...) {
+  nodes <- as_tibble(g, active = "nodes")
   graphs <- lapply(nodes$id, function(node_id) {
-    filter(tidygraph::activate(x, nodes), id == node_id)
+    filter(tidygraph::activate(g, nodes), id == node_id)
   })
   return(graphs)
 }

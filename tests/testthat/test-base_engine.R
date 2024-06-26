@@ -1,6 +1,5 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
 
 test_that("base_engine works", {
     # first, let's make sure the default preferences is loaded

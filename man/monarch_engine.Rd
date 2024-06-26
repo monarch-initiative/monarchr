@@ -53,7 +53,8 @@ search_nodes(e, "fibrosis", limit = 5) |>
 # prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
 # followed by "biolink:NamedThing", otherwise use the first listed category.
 # Additionally, only search nodes' name property.
-e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing")))
+e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon",
+                                                             "biolink:NamedThing")))
 
 search_nodes(e, "fibrosis", limit = 5) |>
   activate(nodes) |>

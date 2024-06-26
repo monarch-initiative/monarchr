@@ -1,10 +1,10 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
+
 
 test_that("we can load data from url with file_engine", {
     #filename <- "https://kghub.io/kg-obo/sepio/2023-06-13/sepio_kgx_tsv.tar.gz"
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
 
     e <- file_engine(filename)
 

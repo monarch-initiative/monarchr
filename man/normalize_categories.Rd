@@ -19,7 +19,9 @@ This function takes a list of vectors of categories and an ordered preference li
 It selects the most preferred category from each vector, or the first category if no preferred categories are included.
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 categories_list <- list(c("A", "B", "C"), c("D", "E", "F"))
 categories_prefs <- c("B", "E", "A", "D", "C", "F")
 normalize_categories(categories_list, categories_prefs)
+\dontshow{\}) # examplesIf}
 }

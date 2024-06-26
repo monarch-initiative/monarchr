@@ -49,7 +49,8 @@ search_nodes(e, "fibrosis", limit = 5) |>
 # (Note that the MONDO KGX file does not provide multiple categories for
 # nodes, so the category_priority preference has no effect here.)
 e <- file_engine(filename,
-                 preferences = list(category_priority = c("biolink:ThingWithTaxon", "biolink:NamedThing"),
+                 preferences = list(category_priority = c("biolink:ThingWithTaxon",
+                                                          "biolink:NamedThing"),
                                     node_search_properties = c("name")))
 
 search_nodes(e, "fibrosis", limit = 5) |>

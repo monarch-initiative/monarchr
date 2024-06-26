@@ -1,6 +1,5 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
 
 
 test_that("file_engine_check works as expected", {

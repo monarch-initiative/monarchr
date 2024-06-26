@@ -1,18 +1,4 @@
-
-#' Summarize neighborhood nodes
-#'
-#' Summarizes the nodes in the neighborhood of a given graph. Specifically,
-#' this function retrieves counts of different node categories in the neighborhood of the given graph.
-#'
-#' @param g A graph
-#' @param direction The direction of edges to include in the neighborhood
-#'
-#' @return A tbl_kgx graph
-#'
-#' @examples
-#' g <- monarch_search("fanconi anemia")
-#' summarize_neighborhood_nodes(g)
-#'
+#' @export
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that

@@ -5,8 +5,8 @@ test_that("search_nodes works for file engine", {
     # skip for now
     # testthat::skip("temporary skip")
 
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
-    e <- file_engine(filename)
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+	e <- file_engine(filename)
 
     g <- search_nodes(e, "fibrosis", category = "biolink:Disease", limit = 5)
 

@@ -1,12 +1,11 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
 
 test_that("expand file_engine works with transitive", {
     #testthat::skip("temporary skip")
     options(width = 150)
 
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+    filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
     e <- file_engine(filename)
 
     query_ids = c("MONDO:0007525", "MONDO:0007524", "SO:0000110") # SO:0000110 "sequence_feature" has no subclass_of in the test data
@@ -77,8 +76,8 @@ test_that("fetch_Edges file_engine works", {
     #testthat::skip("temporary skip")
     options(width = 150)
 
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
-    e <- file_engine(filename)
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+	e <- file_engine(filename)
     query_ids = c("MONDO:0007525", "MONDO:0007524", "MONDO:0007523")
 
     ## Neighborhood of these nodes:
@@ -88,9 +87,9 @@ test_that("fetch_Edges file_engine works", {
     # connected_edges <- engine_graph %>%
     #     activate(edges) %>%
     #     filter(subject %in% query_ids | object %in% query_ids)
-    
+
     # edge_nodes <- connected_edges %>% as_tibble() %>% select(subject, object) %>% gather()
-    
+
     # connected_edges <- connected_edges %>%
     #     activate(nodes) %>%
     #     filter(id %in% edge_nodes$value)
@@ -102,8 +101,8 @@ test_that("fetch_Edges file_engine works", {
     # return(NULL)
 
     # # A tibble: 10 x 4
-    #    id            name                                                     pcategory                 category 
-    #    <chr>         <chr>                                                    <chr>                     <list>   
+    #    id            name                                                     pcategory                 category
+    #    <chr>         <chr>                                                    <chr>                     <list>
     #  1 MONDO:0007524 autosomal dominant Ehlers-Danlos syndrome, vascular type biolink:Disease           <chr [1]>
     #  2 MONDO:0007525 Ehlers-Danlos syndrome, arthrochalasia type              biolink:Disease           <chr [1]>
     #  3 MONDO:0007523 Ehlers-Danlos syndrome, hypermobility type               biolink:Disease           <chr [1]>
@@ -115,18 +114,18 @@ test_that("fetch_Edges file_engine works", {
     #  9 HGNC:2201     COL3A1                                                   biolink:Gene              <chr [2]>
     # 10 MONDO:0020066 Ehlers-Danlos syndrome                                   biolink:Disease           <chr [1]>
     # # A tibble: 9 x 3
-    #   subject       predicate           object       
-    #   <chr>         <chr>               <chr>        
+    #   subject       predicate           object
+    #   <chr>         <chr>               <chr>
     # 1 MONDO:0007524 biolink:subclass_of MONDO:0000426
     # 2 MONDO:0007524 biolink:subclass_of MONDO:0017314
-    # 3 MONDO:0007524 biolink:related_to  HGNC:2201    
-    # 4 MONDO:0007524 biolink:related_to  HP:0000006   
+    # 3 MONDO:0007524 biolink:related_to  HGNC:2201
+    # 4 MONDO:0007524 biolink:related_to  HP:0000006
     # 5 MONDO:0007525 biolink:subclass_of MONDO:0020066
     # 6 MONDO:0007523 biolink:subclass_of MONDO:0020066
-    # 7 MONDO:0007523 biolink:related_to  HGNC:2201    
+    # 7 MONDO:0007523 biolink:related_to  HGNC:2201
     # 8 MONDO:0020522 biolink:subclass_of MONDO:0007525
     # 9 MONDO:0020521 biolink:subclass_of MONDO:0007525
-    # ✔ |      1   0 | expand.file_engine              
+    # ✔ |      1   0 | expand.file_engine
 
 
     ##### Check basic OUT

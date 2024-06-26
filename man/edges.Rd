@@ -4,7 +4,10 @@
 \alias{edges}
 \title{Get graph edges table.}
 \usage{
-edges(x, ...)
+edges(g, ...)
+}
+\arguments{
+\item{g}{A tbl_kgx graph.}
 }
 \value{
 A tibble with the edges of the graph
@@ -13,7 +16,11 @@ A tibble with the edges of the graph
 Get graph edges table.
 }
 \examples{
-g <- monarch_search("fanconi anemia", limit = 1)
-print(nodes(g))
+# (using the MONDO KGX file packaged with monarchr)
+filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+
+g <- file_engine(filename) |>
+  fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+
 print(edges(g))
 }

@@ -10,9 +10,6 @@
 #'
 #' @param x An element to be stitched.
 #' @return A list of single-character vectors.
-#' @examples
-#' x <- list("A", "B", "C")
-#' stitch_vectors(x)
 stitch_vectors <- function(x) {
 	# Check if the element is a list
 	if (is.list(x)) {
@@ -32,24 +29,6 @@ stitch_vectors <- function(x) {
 
 ########### Public functions ###########
 
-#' Query Graph
-#'
-#' This function takes a cypher query and returns a tbl_kgx graph. It retrieves the graph connection and knowledge graph preferences from the parent environment.
-#' It then executes the cypher query and stitches the vectors. It creates a data frame for nodes and edges and adds all other node and edge properties as columns.
-#' It also computes a priority category based on a preference list. Finally, it creates a tbl_kgx graph from the nodes and edges data frames.
-#'
-#' @param query A string representing the cypher query.
-#' @param parameters Parameters for the cypher query. Default is NULL.
-#' @param ... Additional arguments passed to the function (unused).
-#' @return A tbl_kgx graph.
-#' @examples
-#' query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
-#' parameters <- NULL
-#' g <- cypher_query(query, parameters)
-#' ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
-#' query = "MATCH (n) WHERE n.id IN $ids RETURN n"
-#' parameters = list(ids = ids)
-#' g <- cypher_query(query, parameters)
 #' @export
 #' @importFrom neo2R cypher
 #' @importFrom tibble tibble

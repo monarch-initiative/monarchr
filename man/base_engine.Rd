@@ -10,6 +10,8 @@ base_engine(name = "default_engine", preferences = NULL, ...)
 \item{name}{A character string indicating the name of the engine.}
 
 \item{preferences}{A named list of preferences for the engine.}
+
+\item{...}{Other parameters (unused)}
 }
 \value{
 An object of class \code{base_engine}

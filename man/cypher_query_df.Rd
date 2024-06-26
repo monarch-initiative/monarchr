@@ -20,8 +20,13 @@ The result of the Cypher query as a data frame.
 This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a data frame.
 }
 \examples{
-query <- "MATCH (n) RETURN n LIMIT 10"
-ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
-parameters <- list(ids = ids)
-result <- cypher_query(query, parameters)
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+engine <- monarch_engine()
+
+query <- "MATCH (n) WHERE n.id IN $ids RETURN n LIMIT 10"
+parameters <- list(ids = c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021"))
+
+result <- cypher_query_df(engine, query, parameters)
+print(result)
+\dontshow{\}) # examplesIf}
 }

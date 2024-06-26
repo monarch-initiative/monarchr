@@ -1,12 +1,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^README\.Rmd$
 ^meta$
 ^docs$
 
 ^\.lintr$
 ^\.github$
 ^\.vscode$
+^\.env$
 
 ## For GitHub Actions Windows runner
 node_modules$

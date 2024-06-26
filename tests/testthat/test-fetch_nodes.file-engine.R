@@ -1,12 +1,11 @@
 library(testthat)
 library(assertthat)
-library(tidyr)
 
 test_that("fetch_nodes file_engine works with basid id query", {
     #testthat::skip("temporary skip")
 
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
-    e <- file_engine(filename)
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+	e <- file_engine(filename)
 
     g <- fetch_nodes(e, query_ids = c("MONDO:0007525", "MONDO:0007526"))
 
@@ -27,8 +26,8 @@ test_that("fetch_nodes file_engine works with basid id query", {
 })
 
 test_that("fetch_nodes file_engine works with complex query syntax", {
-    filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
-    e <- file_engine(filename)
+		filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+		e <- file_engine(filename)
 
     # fetch_nodes(id %in% c("MONDO:0007525", "MONDO:0007526")) actually does work with file_engine
     g <- e %>% fetch_nodes(id %in% c("MONDO:0007525", "MONDO:0007526"))
@@ -62,14 +61,14 @@ test_that("fetch_nodes file_engine works with complex query syntax", {
 })
 
 test_that("fetch_nodes limit works with file_engine", {
-	filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
 	e <- file_engine(filename)
 	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 10)
 
 	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
 	expect_equal(nrow(nodes_df), 10)
 
-	filename <- system.file("tests/testthat/data", "mondo_kgx_tsv-test-10JUNE2024.tar.gz", package = "monarchr")
+	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
 	e <- file_engine(filename)
 	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 5)
 

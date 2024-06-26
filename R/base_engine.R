@@ -4,6 +4,7 @@
 #' @description A base class for all engines
 #' @param name A character string indicating the name of the engine.
 #' @param preferences A named list of preferences for the engine.
+#' @param ... Other parameters (unused)
 #' @return An object of class `base_engine`
 base_engine <- function(name = "default_engine", preferences = NULL, ...) {
     # read default prefs from the package
@@ -11,9 +12,9 @@ base_engine <- function(name = "default_engine", preferences = NULL, ...) {
 
     if(!is.null(preferences)) {
         # if preferences is a length-1 character vector ending with .yaml, and the file exists, read it
-        if(is.character(preferences) && 
-           length(preferences) == 1 && 
-           grepl("\\.yaml$", preferences) && 
+        if(is.character(preferences) &&
+           length(preferences) == 1 &&
+           grepl("\\.yaml$", preferences) &&
            file.exists(preferences)) {
                 preferences <- yaml::read_yaml(preferences)
 

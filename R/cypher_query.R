@@ -2,16 +2,21 @@
 #'
 #' This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a tbl_kgx graph.
 #'
+#' @param engine A neo4j KG engine
 #' @param query A string representing the Cypher query.
 #' @param parameters A list of parameters for the Cypher query. Default is an empty list.
 #' @param ... Additional arguments passed to the function.
 #' @return The result of the Cypher query as a tbl_kgx graph.
 #' @export
-#' @examples
-#' query <- "MATCH (n) RETURN n LIMIT 10"
+#' @examplesIf monarch_engine_check()
+#' engine <- monarch_engine()
+#'
+#' query <- "MATCH (n) WHERE n.id IN $ids RETURN n LIMIT 10"
 #' ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
 #' parameters <- list(ids = ids)
-#' result <- cypher_query(query, parameters)
+#'
+#' result <- cypher_query(engine, query, parameters)
+#' print(result)
 #' @importFrom neo2R cypher
 cypher_query <- function(engine, ...) {
     UseMethod("cypher_query")

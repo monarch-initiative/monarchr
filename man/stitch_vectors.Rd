@@ -18,7 +18,3 @@ these need to be stitched together to length-N character vectors.
 We leave these in a list element to distinguish sets of size 1 from
 scalar strings
 }
-\examples{
-x <- list("A", "B", "C")
-stitch_vectors(x)
-}

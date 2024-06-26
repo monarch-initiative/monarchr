@@ -1,16 +1,19 @@
-# given a tbl_kgx graph, retrieve the last-used engine
-# if there is no engine, fail if fail_if_missing is TRUE (default)
-
-#' Get engine
-#' 
+#' Get most recent engine from a graph.
+#'
 #' Given a tbl_kgx graph, retrieve the last-used engine.
-#' 
+#'
 #' @param g A tbl_kgx graph.
 #' @param fail_if_missing If TRUE, fail if there is no engine associated with the graph.
 #' @return A graph engine object.
 #' @examples
-#' g <- monarch_search("fanconi anemia", limit = 5)
-#' engine <- get_engine(g)
+#' # (using the MONDO KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#'
+#' g <- file_engine(filename) |>
+#'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+#'
+#' print(get_engine(g))
+#'
 #' @export
 get_engine <- function(g, fail_if_missing = TRUE) {
     engine <- attr(g, "last_engine")

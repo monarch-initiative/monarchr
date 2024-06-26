@@ -163,7 +163,7 @@ g <- file_engine(filename,
 g
 ```
 
-# Searching and Getting Nodes
+# Searching and Fetching Nodes
 
 *Note: the functions described here fetch nodes from a knowledge graph, but not any edges between them. See `expand()` below for querying relationships.*
 
@@ -184,25 +184,55 @@ Nodes can also be fetched with the `fetch_nodes()` function. Specifying a set of
 g <- monarch_engine() |>
 	fetch_nodes(query_ids = c("MONDO:0009061", "HGNC:1884"))
 
-str(g)
+g
 ```
-We can also get nodes in bulk by specifying an expression over node properties. We'll use the example MONDO kg for
-this example; let's first get a few nodes to see what this KG supports:
 
-```{r mondo_nodes_explore, eval=FALSE, echo=TRUE}
-#g <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
-#	search_nodes("cystic fibrosis", limit = 5)
+We can also get nodes in bulk by specifying an expression over node properties; `fetch_nodes()` also supports a `limit` parameter,
+which we use here just to keep the size of the query small (the `monarch_engine()` will fetch large numbers of nodes, but this is 
+slow compared to file-based KGs).
 
+```{r fetch_nodes_taxon, eval=TRUE, echo=TRUE}
 g <- monarch_engine() |>
-	fetch_nodes(in_taxon_label == "Homo sapiens") |>
-	expand(result_categories = "biolink:PhenotypicFeature")
+fetch_nodes(in_taxon_label == "Homo sapiens", limit = 5)
 	
 g
 ```
 
-As described by [MONDO](https://mondo.readthedocs.io/en/stable/editors-guide/rare-disease-subset/), the `subsets` column defines lists which rare-disease subsets each disease
-belongs to (see the corresponding MONDO documentation for details).
+The `%in_list%` infix function to query for existence of an entry in a multi-valued property like `category`.^[R's `%in%` isn't appropriate in this case, because it does not work as a membership filter values in list columns.] Let's get some diseases.
 
+
+```{r fetch_nodes_diseases, eval=TRUE, echo=TRUE}
+g <- monarch_engine() |>
+fetch_nodes("biolink:Disease" %in_list% category, limit = 5)
+	
+g
+```
+
+This special `%in_list%` operator is limited: it only supports length-one vectors on the left hand side and node property names on the right hand side. A query like `c("biolink:Disease", "biolink:Gene") %in_list% category` will not work, neither will something like `in_taxon_label %in_list% c("Homo sapiens", "Mus musculus")`. Fortunately, the query syntax supports combinations with `&` and `|` like regular R syntax:
+
+```{r fetch_nodes_diseases_multi, eval=TRUE, echo=TRUE}
+g <- monarch_engine() |>
+  fetch_nodes("biolink:Disease" %in_list% category | ("biolink:Gene" %in_list% category & in_taxon_label == "Homo sapiens"), limit = 5)
+	
+g
+```
+
+See `help(fetch_nodes)` for more details. Finally, note that `pcategory` (the "primary category") is not a queryable property, since it is not part of the knowledge graph being accessed by the engine, but rather added by the engine as part of the fetched result.
+
+
+# Expanding on a Query Graph
+
+The `search_nodes()` and `fetch_nodes()` functions retrieve sets of nodes from a knowledge graph engine, but they do not provide any associated edges. Instead, edges (and the nodes they connect to) are added to a query graph by "expanding" into the larger KG provided by the engine. This example first fetches the node for cystic fibrosis, and then expands the resulting graph by fetching all nodes connected by `biolink:has_phenotype` relationships.^[Actually, an engine does this expansion, by taking a query graph and expanding into it's backing KG. We can call `expand()` directly on a previously generated graph however, because graphs remember their most-recent engine, and pass the request onto that engine. In theory, this architecture allows connecting information across multiple engines and knowledge graphs, but this has not been developed or tested yet.]
+
+```{r expand_1, eval=TRUE, echo=TRUE}
+g <- monarch_engine() |>
+  fetch_nodes(query_ids = c("MONDO:0009061")) |>
+	expand(predicates = "biolink:has_phenotype")
+
+g
+```
+
+Here, `fetch_nodes()` is used to fetch a single node from the engine; this is passed to `expand()` to find nodes 
 
 <!-- MonarchR is designed to support user-friendly queries against Knowledge Graphs -->
 <!-- (KGs), specifically the cloud-hosted [Monarch Initiative](https://monarchinitiative.org) KG, -->

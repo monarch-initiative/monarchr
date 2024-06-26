@@ -18,15 +18,15 @@
 #'
 #' @param g A graph
 #' @param direction The direction of edges to include in the neighborhood
-#' @param summarize Whether to summarize edges, nodes, or both
+#' @param summarize Whether to summarize edges or nodes (default "edges")
 #'
 #' @return A tbl_kgx graph
 #'
 #' @export
-#' @examples
-#' g <- monarch_search("fanconi anemia")
-#' summarize_neighborhood(g, summarize = "edges") # default
-#' summarize_neighborhood(g, summarize = "nodes")
+#' @examplesIf monarch_engine_check()
+#' g <- monarch_engine() |>
+#'   search_nodes("fanconi anemia", limit = 5) |>
+#'   summarize_neighborhood(direction = "both", summarize = "edges")
 #'
 #' @import tidygraph
 #' @import dplyr
