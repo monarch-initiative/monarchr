@@ -4,7 +4,7 @@
 \alias{knit_print.tbl_kgx}
 \title{Specialized print function for KGX graphs in knitted documents}
 \usage{
-\method{knit_print}{tbl_kgx}(graph, ...)
+\method{knit_print}{tbl_kgx}(graph, show = 100, ...)
 }
 \description{
 Specialized print function for KGX graphs in knitted documents

@@ -26,12 +26,19 @@ clean_df <- function(df) {
 #' @importFrom kableExtra kable
 #' @importFrom kableExtra kable_styling
 #' @importFrom kableExtra column_spec
-knit_print.tbl_kgx <- function(graph, ...) {
+#' @importFrom dplyr slice_head
+knit_print.tbl_kgx <- function(graph, show = 100, ...) {
 	g <- order_cols(graph)
 
 	nodes_colnames <- colnames(nodes(g))
-	nodes_kbl <- clean_df(nodes(g)) |> kable("html", escape = FALSE) |> kable_styling(fixed_thead = TRUE,
-																																										bootstrap_options = c("striped", "hover", "condensed"))
+
+	nodes_sub <- clean_df(nodes(g)) |>
+		slice_head(n = show)
+
+	nodes_kbl <- nodes_sub |>
+		kable("html", escape = FALSE) |>
+		kable_styling(fixed_thead = TRUE,
+		              bootstrap_options = c("striped", "hover", "condensed"))
 
 	if("description" %in% nodes_colnames) {
 		colnum <- seq_along(nodes_colnames)[nodes_colnames == "description"]
@@ -42,20 +49,32 @@ knit_print.tbl_kgx <- function(graph, ...) {
 		nodes_kbl <- nodes_kbl |> column_spec(colnum, width_min = "300px")
 	}
 
-	edges_kbl <- clean_df(edges(g)) |> kable("html", escape = FALSE) |> kable_styling(fixed_thead = TRUE,
-																																										bootstrap_options = c("striped", "hover", "condensed"))
+	edges_sub <- clean_df(edges(g)) |>
+		slice_head(n = show)
+
+	edges_kbl <- edges_sub |>
+		kable("html", escape = FALSE) |>
+		kable_styling(fixed_thead = TRUE,
+									bootstrap_options = c("striped", "hover", "condensed"))
+
+	nodes_total <- nrow(nodes(g))
+	edges_total <- nrow(edges(g))
+	nodes_showing <- nrow(nodes_sub)
+	edges_showing <- nrow(edges_sub)
 
 	knitr::asis_output(knitr::knit_child(text = c(
 		'',
 		'### {.tabset}',
 		'',
 		'#### Nodes',
+		paste0("Showing ", nodes_showing, " of ", nodes_total, " nodes:"),
 		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'nodes_kbl',
 		'```',
 		'</div>',
 		'#### Edges',
+		paste0("Showing ", edges_showing, " of ", edges_total, " edges:"),
 		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'edges_kbl',
