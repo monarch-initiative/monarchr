@@ -8,7 +8,8 @@ expand.neo4j_engine <- function(engine,
                                         predicates = NULL,
                                         result_categories = NULL,
                                         transitive = FALSE,
-                                        drop_unused_query_nodes = FALSE) {
+                                        drop_unused_query_nodes = FALSE,
+																				page_size = 1000) {
     assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
@@ -73,7 +74,7 @@ expand.neo4j_engine <- function(engine,
         query_r <- "[r:`" %+% predicates %+% "`]"
     }
 
-    query <- "MATCH (n)" %+% query_pre %+% query_r %+% query_post %+% "(m) WHERE n.id IN $nodes"
+    query <- "MATCH path = (n)" %+% query_pre %+% query_r %+% query_post %+% "(m) WHERE n.id IN $nodes"
     parameters <- list(nodes = node_ids)
 
     if(length(predicates) > 1) {
@@ -87,24 +88,65 @@ expand.neo4j_engine <- function(engine,
        parameters$result_categories <- result_categories
     }
 
-    query <- paste0(query, " RETURN n, r, m")
+    if(transitive) {
+    	query <- paste0(query, " UNWIND relationships(path) AS r2")
+    	query <- paste0(query, " WITH DISTINCT r2 WITH startNode(r2) AS n2, r2, endNode(r2) AS m2")
+    } else {
+    	query <- paste0(query, " WITH n as n2, r as r2, m as m2")
+    }
 
-    result <- cypher_query(engine, query, parameters = list(nodes = node_ids,
-                                                    predicates = predicates,
-                                                    result_categories = result_categories))
+
+    ## preflight check - how many results are we going to fetch in total?
+		preflight_query <- paste0(query, " WITH DISTINCT id(r2) as relID RETURN COUNT(relID) as total_results")
+
+		preflight_result <- cypher_query_df(engine,
+																				preflight_query,
+																				parameters = list(nodes = node_ids,
+																											    predicates = predicates,
+																												  result_categories = result_categories))
+
+		total_results <- preflight_result$total_results
+
+		## ok, now we fetch
+		# start with an empty graph
+		last_max_relationship_id <- -1
+		result_cumulative <- tbl_kgx(nodes = data.frame())
+
+		last_result_size <- -1
+		total_fetched <- 0
+
+		while(last_result_size != 0) {
+			result_query <- paste0(query, " WHERE id(r2) > $last_max_relationship_id RETURN r2 ORDER BY id(r2) ASC LIMIT $page_size")
+
+	    result <- cypher_query(engine, result_query, parameters = list(nodes = node_ids,
+	                                                    predicates = predicates,
+	                                                    result_categories = result_categories,
+	    																								last_max_relationship_id = last_max_relationship_id,
+	    																								page_size = page_size))
+
+			last_result_size <- nrow(edges(result))
+
+			if(last_result_size > 0) {
+				total_fetched <- total_fetched + last_result_size
+				last_max_relationship_id <- max(attr(result, "relationship_ids"))
+				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
+				message(paste("Expanding; fetched", total_fetched, "of", total_results, "edges."))
+			}
+		}
+
 
     prefs <- engine$preferences
 
-    result <- result %>%
+    result_cumulative <- result_cumulative %>%
         tidygraph::activate(nodes) %>%
         mutate(pcategory = normalize_categories(category, prefs$category_priority))
 
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph
     if(!drop_unused_query_nodes) {
-        suppressMessages(result <- tidygraph::graph_join(graph, result), classes = "message") # suppress joining info
+        suppressMessages(result_cumulative <- tidygraph::graph_join(graph, result_cumulative), classes = "message") # suppress joining info
     }
 
-    attr(result, "last_engine") <- engine
-    return(result)
+    attr(result_cumulative, "last_engine") <- engine
+    return(result_cumulative)
 }

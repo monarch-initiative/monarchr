@@ -2,6 +2,60 @@ library(testthat)
 library(assertthat)
 
 
+test_that("paging works as expected", {
+	# there should MONDO:0008678 has ~ 234 phenotypes
+	g <- monarch_engine() |>
+		fetch_nodes(query_ids = "MONDO:0008678") |>
+		expand(result_categories = "biolink:PhenotypicFeature")
+
+	g2 <- monarch_engine() |>
+		fetch_nodes(query_ids = "MONDO:0008678") |>
+		expand(result_categories = "biolink:PhenotypicFeature",
+					 page_size = 100)
+
+	expect_equal(nrow(nodes(g)), nrow(nodes(g2)))
+	expect_equal(nrow(edges(g)), nrow(edges(g2)))
+
+	g_node_ids <- nodes(g)$id
+	g2_node_ids <- nodes(g2)$id
+
+	expect_true(all(g_node_ids %in% g2_node_ids))
+	expect_true(all(g2_node_ids %in% g_node_ids))
+
+	g_edge_ids <- paste(edges(g)$subject, edges(g)$predicate, edges(g)$object)
+	g2_edge_ids <- paste(edges(g2)$subject, edges(g2)$predicate, edges(g2)$object)
+
+	expect_true(all(g_edge_ids %in% g2_edge_ids))
+	expect_true(all(g2_edge_ids %in% g_edge_ids))
+})
+
+
+test_that("paging works as expected", {
+	# there should MONDO:0008678 has ~ 234 phenotypes
+	g <- monarch_engine() |>
+		fetch_nodes(query_ids = "MONDO:0008678") |>
+		expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE)
+
+	g2 <- monarch_engine() |>
+		fetch_nodes(query_ids = "MONDO:0008678") |>
+		expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE, page_size = 10)
+
+	expect_equal(nrow(nodes(g)), nrow(nodes(g2)))
+	expect_equal(nrow(edges(g)), nrow(edges(g2)))
+
+	g_node_ids <- nodes(g)$id
+	g2_node_ids <- nodes(g2)$id
+
+	expect_true(all(g_node_ids %in% g2_node_ids))
+	expect_true(all(g2_node_ids %in% g_node_ids))
+
+	g_edge_ids <- paste(edges(g)$subject, edges(g)$predicate, edges(g)$object)
+	g2_edge_ids <- paste(edges(g2)$subject, edges(g2)$predicate, edges(g2)$object)
+
+	expect_true(all(g_edge_ids %in% g2_edge_ids))
+	expect_true(all(g2_edge_ids %in% g_edge_ids))
+})
+
 test_that("expand works as expected", {
     #testthat::skip("temporary skip")
 

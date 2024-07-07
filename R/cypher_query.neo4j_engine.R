@@ -34,6 +34,8 @@ stitch_vectors <- function(x) {
 #' @importFrom tibble tibble
 cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 	res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
+	relationship_ids_contained <- as.integer(unlist(res$paths))
+
 	res <- stitch_vectors(res)
 
 	## node info
@@ -116,5 +118,6 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 	edges_df$to <- edge_objects
 
 	g <- tbl_kgx(nodes_df, edges_df, attach_engine = engine)
+	attr(g, "relationship_ids") <- relationship_ids_contained
 	return(g)
 }
