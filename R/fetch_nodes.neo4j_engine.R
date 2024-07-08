@@ -9,6 +9,7 @@ expr_to_cypher <- function(expr) {
   expr <- gsub("^~\\s*", "", expr)
 
   # Replace R operators with Cypher operators
+  expr <- stringr::str_replace_all(expr, stringr::fixed("%~%"), "=~")
   expr <- stringr::str_replace_all(expr, stringr::fixed("%in_list%"), "IN")
   expr <- stringr::str_replace_all(expr, stringr::fixed("=="), "=")
   expr <- stringr::str_replace_all(expr, stringr::fixed("!="), "<>")
