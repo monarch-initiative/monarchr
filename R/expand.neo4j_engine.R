@@ -1,8 +1,8 @@
-#' @export
+##' @export
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-expand.neo4j_engine <- function(engine,
+expand_neo4j_engine <- function(engine,
 																		 graph,
                                         direction = "both",
                                         predicates = NULL,
@@ -113,7 +113,7 @@ expand.neo4j_engine <- function(engine,
 		result_cumulative <- tbl_kgx(nodes = data.frame())
 
 		last_result_size <- -1
-		total_fetched <- 0
+		total_edges_fetched <- 0
 
 		while(last_result_size != 0) {
 			result_query <- paste0(query, " WHERE id(r2) > $last_max_relationship_id RETURN r2 ORDER BY id(r2) ASC LIMIT $page_size")
@@ -127,10 +127,10 @@ expand.neo4j_engine <- function(engine,
 			last_result_size <- nrow(edges(result))
 
 			if(last_result_size > 0) {
-				total_fetched <- total_fetched + last_result_size
+				total_edges_fetched <- total_edges_fetched + last_result_size
 				last_max_relationship_id <- max(attr(result, "relationship_ids"))
 				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
-				message(paste("Expanding; fetched", total_fetched, "of", total_results, "edges."))
+				message(paste("Expanding; fetched", total_edges_fetched, "of", total_results, "edges."))
 			}
 		}
 

@@ -141,11 +141,11 @@ direction_fetch_internal <- function(engine,
 
 
 
-#' @export
+##' @export
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-expand.file_engine <- function(engine,
+expand_file_engine <- function(engine,
                                     graph,
                                     direction = "both",
                                     predicates = NULL,

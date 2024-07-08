@@ -5,19 +5,20 @@
 \title{Fetch additional knowledge graph edges connected to a query graph}
 \usage{
 expand(
-  engine = NULL,
   graph,
+  engine = NULL,
   direction = "both",
   predicates = NULL,
   result_categories = NULL,
   transitive = FALSE,
-  drop_unused_query_nodes = FALSE
+  drop_unused_query_nodes = FALSE,
+  ...
 )
 }
 \arguments{
-\item{engine}{(Optional) An engine to use for fetching query graph edges.}
+\item{graph}{A query \code{tbl_kgx()} graph ot query with.}
 
-\item{graph}{A query \code{tbl_kgx()} graph to query from.}
+\item{engine}{(Optional) An engine to use for fetching query graph edges. If not provided, the graph's most recent engine is used.}
 
 \item{direction}{The direction of associations to fetch. Can be "in", "out", or "both". Default is "both".}
 
@@ -28,6 +29,8 @@ expand(
 \item{transitive}{If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like \code{biolink:subclass_of}.}
 
 \item{drop_unused_query_nodes}{If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.}
+
+\item{...}{Other parameters passed to methods.}
 }
 \value{
 A \code{tbl_kgx()} graph
