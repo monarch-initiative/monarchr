@@ -18,9 +18,11 @@ expr_to_cypher <- function(expr) {
   expr <- stringr::str_replace_all(expr, stringr::fixed("!"), "NOT")
 
   # Properly handle property referencing for equality
+  # this looks for patterns like `property_name = *****`, where ***** can be anything; it becomes `n.property_name = *****`
   expr <- stringr::str_replace_all(expr, stringr::regex("\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*=)"), "n.\\1")
 
   # Handle IN where the property name should be on the right side
+  ## pattern: `IN property_name` -> `IN n.property_name`
   expr <- stringr::str_replace_all(expr, stringr::regex("(IN\\s+)(\\b[a-zA-Z_][a-zA-Z0-9_]*\\b)"), "\\1n.\\2")
 
   # Handle string literals correctly
@@ -32,19 +34,14 @@ expr_to_cypher <- function(expr) {
 
 #' @importFrom rlang enquos
 #' @importFrom purrr map_chr
-generate_cypher_query <- function(...) {
+generate_cypher_conditionals <- function(...) {
   # Capture the expressions
   conditions <- rlang::enquos(...)
 
   # Translate the conditions to Cypher syntax
   condition_strings <- purrr::map_chr(conditions, expr_to_cypher)
 
-  # Build the Cypher query
-  query <- paste(
-    "MATCH (n)",
-    if (length(condition_strings) > 0) paste("WHERE", paste(condition_strings, collapse = " AND ")) else "",
-    "RETURN n"
-  )
+  query <- ifelse(length(condition_strings) > 0, paste(condition_strings, collapse = " AND "), "true")
 
   # Return the complete Cypher query
   return(query)
@@ -56,32 +53,57 @@ generate_cypher_query <- function(...) {
 #' @import tidygraph
 #' @import dplyr
 #' @import stringr
-fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, limit = NULL) {
+fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 10000, limit = NULL) {
     if(!is.null(query_ids)) {
         # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
         if(length(query_ids) == 1) {
             query_ids <- list(query_ids)
         }
-    	  query <- "MATCH (n) WHERE n.id IN $id RETURN n"
+    	  query <- "MATCH (n) WHERE n.id IN $id"
     	  params <- list(id = query_ids)
     } else {
-        query <- generate_cypher_query(...)
+        query <- paste0("MATCH (n) WHERE ", generate_cypher_conditionals(...))
         params <- list()
     }
 
-		if(!is.null(limit)) {
-			query <- paste0(query, " LIMIT $fetch_limit")
-			params$fetch_limit = limit
-		}
+		preflight_query <- paste0(query, " RETURN COUNT(n) as total_results")
 
 		# cypher_query can't handle no-param param lists, replace with NULL if empty
-		if(length(params) == 0) {
-			params <- NULL
+		if(length(params) == 0) { params <- NULL}
+
+		last_max_node_id <- ""
+		result_cumulative <- tbl_kgx(nodes = data.frame())
+
+		last_result_size <- -1
+		total_nodes_fetched <- 0
+
+		if(!is.null(limit)) {
+			page_size <- min(page_size, limit)
 		}
 
-		res <- cypher_query(engine,
-												query = query,
-												parameters = params)
+		while(last_result_size != 0) {
+			result_query <- paste0(query, " AND n.id > $last_max_node_id RETURN n ORDER BY n.id ASC LIMIT $page_size")
 
-    return(res)
+			params$last_max_node_id <- last_max_node_id
+			params$page_size <- page_size
+
+			if(page_size != 0) { message("Fetching; ", appendLF = FALSE) }
+			result <- cypher_query(engine, result_query, parameters = params)
+
+			last_result_size <- nrow(nodes(result))
+
+			if(last_result_size > 0) {
+				total_nodes_fetched <- total_nodes_fetched + last_result_size
+				last_max_node_id <- max(nodes(result)$id)
+				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
+				message(paste("fetched", total_nodes_fetched))
+			}
+
+			if(!is.null(limit)) {
+				limit <- limit - page_size
+				page_size <- min(page_size, limit)
+			}
+		}
+
+		return(result_cumulative)
 }
