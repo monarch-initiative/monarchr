@@ -54,7 +54,7 @@ generate_cypher_conditionals <- function(...) {
 #' @import tidygraph
 #' @import dplyr
 #' @import stringr
-fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 10000, limit = NULL) {
+fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 5000, limit = NULL) {
     if(!is.null(query_ids)) {
         # if query_ids is of length 1, we need to wrap it in a list for it to be sent as an array param
         if(length(query_ids) == 1) {
@@ -67,10 +67,27 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
         params <- list()
     }
 
-		preflight_query <- paste0(query, " RETURN COUNT(n) as total_results")
-
 		# cypher_query can't handle no-param param lists, replace with NULL if empty
 		if(length(params) == 0) { params <- NULL}
+
+
+		preflight_query <- paste0(query, " RETURN COUNT(n) as total_results")
+
+		message("Fetching; checking available results...", appendLF = FALSE)
+		preflight_result <- cypher_query_df(engine,
+																				preflight_query,
+																				parameters = params)
+
+		total_results <- preflight_result$total_results
+
+
+		message(" total available: ", total_results, ".")
+		if(!is.null(limit)) {
+			if(limit < total_results) {
+				warning("Specified limit (", limit, ") is less than total available, returning first ", limit, " entries ordered by id.", immediate. = TRUE, call. = FALSE)
+				total_results <- limit
+			}
+		}
 
 		last_max_node_id <- ""
 		result_cumulative <- tbl_kgx(nodes = data.frame())
@@ -88,7 +105,6 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 			params$last_max_node_id <- last_max_node_id
 			params$page_size <- page_size
 
-			if(page_size != 0) { message("Fetching; ", appendLF = FALSE) }
 			result <- cypher_query(engine, result_query, parameters = params)
 
 			last_result_size <- nrow(nodes(result))
@@ -97,7 +113,7 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 				total_nodes_fetched <- total_nodes_fetched + last_result_size
 				last_max_node_id <- max(nodes(result)$id)
 				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
-				message(paste("fetched", total_nodes_fetched))
+				message(paste("Fetching; fetched", total_nodes_fetched, "of", total_results))
 			}
 
 			if(!is.null(limit)) {
@@ -105,6 +121,8 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 				page_size <- min(page_size, limit)
 			}
 		}
+
+		attr(result_cumulative, "last_engine") <-engine
 
 		return(result_cumulative)
 }
