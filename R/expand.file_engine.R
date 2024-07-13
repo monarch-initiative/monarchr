@@ -161,8 +161,8 @@ expand_file_engine <- function(engine,
 
     new_edges <- NULL
 
-    if(transitive && length(predicates) == 0) {
-        stop("Transitive closure requires specified predicates.")
+    if(transitive && length(predicates) != 0) {
+      stop("Transitive closure requires exactly one specified predicate.")
 
     } else if(transitive) {
         new_edges <- transitive_query_internal(engine, graph, direction, predicates, result_categories, drop_unused_query_nodes)

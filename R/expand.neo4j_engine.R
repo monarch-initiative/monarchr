@@ -17,22 +17,10 @@ expand_neo4j_engine <- function(engine,
     assert_that(is.null(result_categories) | is.character(result_categories))
     assert_that(is.logical(transitive))
 
-    if(transitive && length(predicates) == 0) {
-        stop("Transitive closure requires specified predicates.")
+    if(transitive && length(predicates) != 0) {
+        stop("Transitive closure requires exactly one specified predicate.")
     }
 
-    if(transitive && length(predicates) > 1) {
-        # we call recusively on each predicate
-        for(predicate in predicates) {
-            g2 <- expand(graph,
-                              direction = direction,
-                              predicates = predicate,
-                              result_categories = result_categories,
-                              transitive = transitive,
-                              drop_unused_query_nodes = TRUE)
-            suppressMessages(graph <- tidygraph::graph_join(graph, g2), classes = "message") # suppress joining info
-        }
-    }
 
     node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(graph, nodes))$id)
 
