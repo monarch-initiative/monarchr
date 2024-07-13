@@ -38,6 +38,10 @@ tbl_kgx <- function(nodes = NULL, edges = NULL, attach_engine = NULL, ...) {
 		# set canonical to and from columns
 		edges$from <- edges$subject
 		edges$to <- edges$object
+	} else {
+		# but if given no edges, we spec out subject, predicate, object cols at least (and to and from)
+		edges <- data.frame(subject = character(), predicate = character(), object = character(),
+												to = character(), from = character())
 	}
 
 	g <- tidygraph::tbl_graph(nodes = nodes, edges = edges, node_key = "id")

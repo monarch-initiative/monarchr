@@ -73,7 +73,7 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 
 		preflight_query <- paste0(query, " RETURN COUNT(n) as total_results")
 
-		message("Fetching; checking available results...", appendLF = FALSE)
+		message("Fetching; counting matching nodes... ", appendLF = FALSE)
 		preflight_result <- cypher_query_df(engine,
 																				preflight_query,
 																				parameters = params)
@@ -81,10 +81,10 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 		total_results <- preflight_result$total_results
 
 
-		message(" total available: ", total_results, ".")
+		message(" total: ", total_results, ".")
 		if(!is.null(limit)) {
 			if(limit < total_results) {
-				warning("Specified limit (", limit, ") is less than total available, returning first ", limit, " entries ordered by id.", immediate. = TRUE, call. = FALSE)
+				warning("Specified limit (", limit, ") is less than total, returning first ", limit, " ordered by id.", immediate. = TRUE, call. = FALSE)
 				total_results <- limit
 			}
 		}

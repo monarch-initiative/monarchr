@@ -9,7 +9,8 @@ expand_neo4j_engine <- function(engine,
                                         result_categories = NULL,
                                         transitive = FALSE,
                                         drop_unused_query_nodes = FALSE,
-																				page_size = 1000) {
+																				page_size = 1000,
+																				limit = NULL) {
     assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
@@ -95,6 +96,7 @@ expand_neo4j_engine <- function(engine,
     	query <- paste0(query, " WITH n as n2, r as r2, m as m2")
     }
 
+    message("Expanding; counting matching edges... ", appendLF = FALSE)
 
     ## preflight check - how many results are we going to fetch in total?
 		preflight_query <- paste0(query, " WITH DISTINCT id(r2) as relID RETURN COUNT(relID) as total_results")
@@ -107,13 +109,30 @@ expand_neo4j_engine <- function(engine,
 
 		total_results <- preflight_result$total_results
 
-		## ok, now we fetch
-		# start with an empty graph
+		message(" total: ", total_results, ".")
+		if(!is.null(limit)) {
+			if(limit < total_results) {
+				warning("Specified limit (", limit, ") is less than total; attempting to fetch ", limit, " arbitrary new edges not present in query.", immediate. = TRUE, call. = FALSE)
+				total_results <- limit
+			}
+		}
+
+
+
+		# get a listing of the edges in the query graph for determining new edge pulls
+		query_edges_df <- edges(graph)
+		query_edges_triples <- paste(query_edges_df$subject, query_edges_df$predicate, query_edges_df$object)
+
+		# initializations before loop:
+		# last_max fetched, a (empty) cumulative graph
 		last_max_relationship_id <- -1
 		result_cumulative <- tbl_kgx(nodes = data.frame())
 
-		last_result_size <- -1
+		# for keeping track of total and new info fetched
 		total_edges_fetched <- 0
+		new_triples_fetched <- character()
+
+		last_result_size <- -1
 
 		while(last_result_size != 0) {
 			result_query <- paste0(query, " WHERE id(r2) > $last_max_relationship_id RETURN r2 ORDER BY id(r2) ASC LIMIT $page_size")
@@ -124,13 +143,44 @@ expand_neo4j_engine <- function(engine,
 	    																								last_max_relationship_id = last_max_relationship_id,
 	    																								page_size = page_size))
 
-			last_result_size <- nrow(edges(result))
+	    result_edges_df <- edges(result)
+	    last_result_size <- nrow(result_edges_df)
+
 
 			if(last_result_size > 0) {
-				total_edges_fetched <- total_edges_fetched + last_result_size
 				last_max_relationship_id <- max(attr(result, "relationship_ids"))
 				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
+
+				total_edges_fetched <- total_edges_fetched + last_result_size
+
+				result_edges_triples <- paste(result_edges_df$subject, result_edges_df$predicate, result_edges_df$object)
+				# this is not ideal computationally, since it is like O(n^2) in R
+				# but they aren't massive - and these vectorized ops are fast, so very likely swamped by query time
+				# could be optimized with a proper hash/set-like data structure
+				new_result_edges_triples <- result_edges_triples[!result_edges_triples %in% query_edges_triples]
+				new_triples_fetched <- union(new_triples_fetched, new_result_edges_triples)
+
 				message(paste("Expanding; fetched", total_edges_fetched, "of", total_results, "edges."))
+
+				# the number of new triples has likely increased - if there's a limit
+				# we should consider whether we are now over it; if so, trim the new result
+				# to just <limit> edges and corresponding nodes, and break
+				if(!is.null(limit)) {
+					if(length(new_triples_fetched) >= limit) {
+						keep_triple_ids <- head(new_triples_fetched, n = limit)
+
+						result_cumulative <- result_cumulative %>%
+							activate(edges) %>%
+							filter(paste(subject, predicate, object) %in% keep_triple_ids)
+
+						keep_node_ids <- c(edges(result_cumulative)$subject, edges(result_cumulative)$object)
+						result_cumulative <- result_cumulative %>%
+							activate(nodes) %>%
+							filter(id %in% keep_node_ids)
+
+						break
+					}
+				}
 			}
 		}
 
