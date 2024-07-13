@@ -18,7 +18,7 @@ expand_neo4j_engine <- function(engine,
     assert_that(is.null(result_categories) | is.character(result_categories))
     assert_that(is.logical(transitive))
 
-    if(transitive && length(predicates) != 0) {
+    if(transitive && length(predicates) != 1) {
         stop("Transitive closure requires exactly one specified predicate.")
     }
 
