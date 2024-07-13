@@ -11,6 +11,7 @@ expand_neo4j_engine <- function(engine,
                                         drop_unused_query_nodes = FALSE,
 																				page_size = 1000,
 																				limit = NULL) {
+	  ## Sanity checks
     assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
@@ -21,10 +22,10 @@ expand_neo4j_engine <- function(engine,
         stop("Transitive closure requires exactly one specified predicate.")
     }
 
-
-    node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(graph, nodes))$id)
+		## Get and fix query params: node_ids in query, predicates requested, result categories requested
 
     # neo4j queries that use IN require a list of values, and a length-1 character vector is treated as a scalar
+    node_ids <- as.character(tidygraph::as_tibble(tidygraph::activate(graph, nodes))$id)
     if (length(node_ids) == 1) {
         node_ids <- list(node_ids)
     }
@@ -41,6 +42,10 @@ expand_neo4j_engine <- function(engine,
         }
     }
 
+    # utility function, inline paste
+    `%+%` <- function(a, b) { paste0(a, b) }
+
+    ## Build the cypher relationship query
     query_pre <- "-"
     query_post <- "->"
     if(direction == "in") {
@@ -51,10 +56,6 @@ expand_neo4j_engine <- function(engine,
         query_post <- "-"
     }
 
-    `%+%` <- function(a, b) {
-        paste0(a, b)
-    }
-
     query_r <- "[r]"
     if(transitive) {
         # if transitive is TRUE here, we know that predicates is a length-1 character vector
@@ -63,9 +64,11 @@ expand_neo4j_engine <- function(engine,
         query_r <- "[r:`" %+% predicates %+% "`]"
     }
 
+    ## build the query prefix and parameters list
     query <- "MATCH path = (n)" %+% query_pre %+% query_r %+% query_post %+% "(m) WHERE n.id IN $nodes"
     parameters <- list(nodes = node_ids)
 
+    ## append additional conditionals
     if(length(predicates) > 1) {
        query <- paste0(query, " AND r.predicate IN $predicates")
        parameters$predicates <- predicates
@@ -77,6 +80,10 @@ expand_neo4j_engine <- function(engine,
        parameters$result_categories <- result_categories
     }
 
+    ## in order to do paging, if the query is transitive things are tricky -
+    # we need to get all of the distinct relationships in the result path set, and order by their id()
+    # so here we get those relationships, ids, and nodes on either end (for later ordering)
+    # if it's not transitive, we can just get the relationships matched directly
     if(transitive) {
     	query <- paste0(query, " UNWIND relationships(path) AS r2")
     	query <- paste0(query, " WITH DISTINCT r2 WITH startNode(r2) AS n2, r2, endNode(r2) AS m2")
@@ -86,7 +93,7 @@ expand_neo4j_engine <- function(engine,
 
     message("Expanding; counting matching edges... ", appendLF = FALSE)
 
-    ## preflight check - how many results are we going to fetch in total?
+    ## PREFLIGHT QUERY - how many results are we going to fetch in total?
 		preflight_query <- paste0(query, " WITH DISTINCT id(r2) as relID RETURN COUNT(relID) as total_results")
 
 		preflight_result <- cypher_query_df(engine,
@@ -106,18 +113,18 @@ expand_neo4j_engine <- function(engine,
 		}
 
 
+		## FULL QUERY - with paging and limiting
 
-		# get a listing of the edges in the query graph for determining new edge pulls
+		## get a listing of the edges in the query graph for determining new edge pulls
 		query_edges_df <- edges(graph)
 		query_edges_triples <- paste(query_edges_df$subject, query_edges_df$predicate, query_edges_df$object)
 
-		# initializations before loop:
-		# last_max fetched, a (empty) cumulative graph
+		# initializations before loop
 		last_max_relationship_id <- -1
 		result_cumulative <- tbl_kgx(nodes = data.frame())
 
-		# for keeping track of total and new info fetched
 		total_edges_fetched <- 0
+		# for keeping track of which new edges have been fetched (that are not in the query graph)
 		new_triples_fetched <- character()
 
 		last_result_size <- -1
@@ -131,21 +138,21 @@ expand_neo4j_engine <- function(engine,
 	    																								last_max_relationship_id = last_max_relationship_id,
 	    																								page_size = page_size))
 
+	    ## how many edges did we just fetch?
 	    result_edges_df <- edges(result)
 	    last_result_size <- nrow(result_edges_df)
 
-
 			if(last_result_size > 0) {
+				## main work: keep track of max relationship fetched, update running graph
 				last_max_relationship_id <- max(attr(result, "relationship_ids"))
 				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
-
 				total_edges_fetched <- total_edges_fetched + last_result_size
 
+				## which new edges (not present in the query graph) did we fetch?
 				result_edges_triples <- paste(result_edges_df$subject, result_edges_df$predicate, result_edges_df$object)
-				# this is not ideal computationally, since it is like O(n^2) in R
-				# but they aren't massive - and these vectorized ops are fast, so very likely swamped by query time
-				# could be optimized with a proper hash/set-like data structure
+				# this is not ideal, could be optimized with a proper hash/set-like data structure
 				new_result_edges_triples <- result_edges_triples[!result_edges_triples %in% query_edges_triples]
+				# update running pool of new fetched eddges
 				new_triples_fetched <- union(new_triples_fetched, new_result_edges_triples)
 
 				message(paste("Expanding; fetched", total_edges_fetched, "of", total_results, "edges."))
@@ -172,9 +179,8 @@ expand_neo4j_engine <- function(engine,
 			}
 		}
 
-
+		# set pcategory
     prefs <- engine$preferences
-
     result_cumulative <- result_cumulative %>%
         tidygraph::activate(nodes) %>%
         mutate(pcategory = normalize_categories(category, prefs$category_priority))
