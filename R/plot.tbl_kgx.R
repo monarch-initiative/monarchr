@@ -16,7 +16,6 @@ plot.tbl_kgx <- function(g, ...) {
 		geom_node_label(aes(label = str_wrap(name, 20)),
 										size = 2,
 										repel = TRUE,
-										check_overlap = TRUE,
 										fill = "#FFFFFF88")
 
 	return(g)
