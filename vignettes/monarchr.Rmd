@@ -10,6 +10,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+
+
 ```{r, include=FALSE, message=FALSE}
 library(dplyr)
 library(tidygraph)
@@ -20,7 +25,7 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width=10)
 ```
 
 
-# Background: Biomedical Knowledge Graphs
+### Background: Biomedical Knowledge Graphs
 
 Knowledge graphs (KGs) represent entities (such as genes, diseases, or phenotypes) and
 the relationships between them; for example that the `CFTR` gene `causes` the disease
@@ -78,17 +83,21 @@ Backed by `tidygraph` and `igraph`, `monarchr` is part of a larger ecosystem of 
   - ... others in the reverse imports for [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html)
   
 
-# Engines
+<div class = "blue">
+*Note*: The default `plot()` provided by `monarchr` is a work in progress with limited features. 
+</div>
+
+### Engines
 
 Two kinds of engines are supported, providing largely the same functionality: one supporting access to [Neo4j graph databases](https://neo4j.com/), and another supporting file-based access to TSV-formatted `.tar.gz` KGs hosted at [kghub.io](https://kghub.io). Regardless of source, KGs must conform to the [KGX specification](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md).
 
-The most accessible (and feature-rich) engine provided by `monarchr` is the `monarch_engine()`, designed to access the cloud-hosted [Monarch Initiative](https://monarchiniatiative.org) KG.
+The most accessible engine provided by `monarchr` is the `monarch_engine()`, designed specifically to access the cloud-hosted [Monarch Initiative](https://monarchiniatiative.org) KG.
 
 ```{r}
 monarch <- monarch_engine()
 ```
 
-Using another Neo4j database is as simple as specifying a Neo4j [Bolt](https://neo4j.com/docs/operations-manual/current/configuration/ports/) endpoint, and username and password if required. This may be used to host your own Neo4j database for efficient KG access, based on the Monarch Neo4j [docker deployment](https://github.com/monarch-initiative/monarch-neo4j). 
+Using another Neo4j database via `neo4j_engine()` is as simple as specifying a Neo4j [Bolt](https://neo4j.com/docs/operations-manual/current/configuration/ports/) endpoint, and username and password if required. This may be used to host your own Neo4j database for efficient KG access, based on the Monarch Neo4j [docker deployment](https://github.com/monarch-initiative/monarch-neo4j). 
 
 ```{r eval=FALSE}
 neodb <- neo4j_engine("http://localhost:7687", username = "user", password = "pass")
@@ -103,7 +112,7 @@ filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
 mondo <- file_engine(filename)
 ```
 
-# Fetching Nodes
+### Fetching Nodes
 
 Engines support a `fetch_nodes()` function for pulling nodes by specified criteria. It returns a `tidygraph`-based graph, but only nodes, not any edges that may connect them. These can be specified as a set of IDs:
 
@@ -136,7 +145,7 @@ human_genes <- monarch |>
 human_genes
 ```
 
-Also provided is a `%~%` operator, which provides regular-expression matching against node properties (but not multi-valued
+A convenience `%~%` operator provides regular-expression matching against node properties (but not multi-valued
 ones like `category`).
 
 ```{r}
@@ -145,9 +154,9 @@ fibrosis_disease_matches <- monarch |>
 							limit = 20)
 fibrosis_disease_matches
 ```
-# Expanding
+### Expanding
 
-From a set of nodes (and possibly edges that connect them), we can "expand" by fetching their collective neighborhood from the KG. Here we fetch 10 Gene nodes, and in the first call to `expand()` fetch nodes connected by `biolink:causes` or `biolink:gene_associated_with_condition` predicates. We then take the resulting graph (which contains both disease and gene nodes), and fetch the neighborhood of nodes of type `biolink:PhenotypicFeature`. Since there are many such results, we add a `limit` for the visualization.^[The `limit` parameter for `expand()` is more complex than for `fetch_nodes()`, because the query graph also contains edges which may be part of the neighborhood that would be fetched; `expand()` attempts to fetch `limit` new edges that are not part of the query already. Further, unlike in `fetch_nodes()` where nodes are ordered by ID, edges returned by `expand()` have no explicit order, and results with `limit` should not be considered reproducible or representative.]
+From a set of nodes (and possibly edges that connect them), we can "expand" by fetching their collective neighborhood from the KG engine. Here we fetch 10 Gene nodes, and in the first call to `expand()` fetch nodes connected by `biolink:causes` or `biolink:gene_associated_with_condition` predicates. We then take the resulting graph (which contains both disease and gene nodes), and fetch the neighborhood of nodes with category `biolink:PhenotypicFeature`. Since there are many such results, we add a `limit` for the visualization.^[The `limit` parameter for `expand()` is more complex than for `fetch_nodes()`, because the query graph also contains edges which may be part of the neighborhood that would be fetched; `expand()` attempts to fetch `limit` new edges that are not part of the query already. Further, unlike in `fetch_nodes()` where nodes are ordered by ID, edges returned by `expand()` have no explicit order, and results with `limit` should not be considered reproducible or representative.]
 
 ```{r}
 # MONDO:0018982, MONDO:0011871: Neimann-Pick type B and C
@@ -165,10 +174,9 @@ We can limit the expansion based on several factors, which are combined in an "a
 - `predicates`: a character vector of edge predicates to fetch (all if unspecified)
 - `result_categories`: a character vector of node category labels to fetch in the connected neighborhood (all if unspecified)
 
-The `drop_unused_query_nodes` parameter (which defaults to `FALSE`) keeps only the nodes that are part of the recently-expanded neighborhood. For example, given a query graph with many diseases, if we try to fetch neighboring phenotypes, setting this to `TRUE` removes disease nodes without any phenotypes.
+The `drop_unused_query_nodes` parameter (which defaults to `FALSE`) keeps only the nodes that are part of the recently-expanded neighborhood. For example, given a query graph with many diseases, if we try to fetch neighboring phenotypes, setting this to `TRUE` removes those disease nodes without any phenotypes.
 
-Lastly, the `transitive` parameter (which defaults to `FALSE`) can be used to fetch hierarchical, transitive relationships like
-`biolink:subclass_of`. When using `transitive = TRUE`, direction must be `"in"` or `"out"`, and `predicates` must be a single entry. The first example above illustrated this; here we explore the super-types and sub-types of Niemann-Pick, by first fetching all of its subtypes, and then considering the collective ancestry of those nodes in the KG. Not all ancestors are diseases (e.g. `biolink:Entity`), so we restrict the result set of the second expansion.
+Lastly, the `transitive` parameter (which defaults to `FALSE`) can be used to fetch hierarchical, transitive relationships like `biolink:subclass_of`. When using `transitive = TRUE`, direction must be `"in"` or `"out"`, and `predicates` must be a single entry. The first example above illustrated this; here we explore the super-types and sub-types of Niemann-Pick, by first fetching all of its subtypes, and then considering the collective ancestry of those nodes in the KG. Not all ancestors are diseases (e.g. `biolink:Entity`), so we restrict the result set of the second expansion.
 
 ```{r}
 # MONDO:0001982 Niemann-Pick Disease (13 subtypes)
@@ -180,7 +188,17 @@ hierarchy <- monarch |>
 
 plot(hierarchy)
 ```
-# Monarch Engine Features
+
+### Monarch Features
+
+While `fetch_nodes()` and `expand()` apply to all types of engines, `monarchr` also exposes functionality specific
+to the Monarch Initiatives' API services. The first of these is `monarch_search()`, which uses the same search API as the Monarch [website](https://monarchinitiative.org), returning a graph with matching nodes backed by a `monarch_engine()`.
+
+```{r}
+cf_hits <- monarch_search("Cystic fibrosis", category = "biolink:Disease", limit = 5)
+
+cf_hits
+```
 
 
 
