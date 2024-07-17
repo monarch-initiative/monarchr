@@ -2,6 +2,7 @@
 #'
 #' This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a data frame.
 #'
+#' @param engine A neo4j_engine() or derivative providing access to a Neo4j database.
 #' @param query A string representing the Cypher query, which should return a table.
 #' @param parameters A list of parameters for the Cypher query. Default is an empty list.
 #' @param ... Additional arguments passed to the function.

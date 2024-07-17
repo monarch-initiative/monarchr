@@ -1,4 +1,3 @@
-##' @export
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that

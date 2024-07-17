@@ -41,7 +41,9 @@ Imports:
     purrr,
     stringr,
     archive,
-    readr
+    readr,
+    ggraph,
+    ggplot2
 Suggests: 
 		ggraph,
     testthat (>= 3.0.0)

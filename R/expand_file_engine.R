@@ -141,7 +141,6 @@ direction_fetch_internal <- function(engine,
 
 
 
-##' @export
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that

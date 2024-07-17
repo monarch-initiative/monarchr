@@ -7,6 +7,8 @@
 cypher_query_df(engine, ...)
 }
 \arguments{
+\item{engine}{A neo4j_engine() or derivative providing access to a Neo4j database.}
+
 \item{...}{Additional arguments passed to the function.}
 
 \item{query}{A string representing the Cypher query, which should return a table.}
