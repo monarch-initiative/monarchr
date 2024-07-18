@@ -2,12 +2,13 @@
 #'
 #' @export
 #' @param g A tbl_kgx graph.
+#' @param layout The layout to use for the plot. Default is "sugiyama".
 #' @param ... other parameters (not used).
 #' @import ggraph
 #' @import ggplot2
 #' @importFrom stringr str_wrap
-plot.tbl_kgx <- function(g, ...) {
-	g <- ggraph(g, layout = "sugiyama") +
+plot.tbl_kgx <- function(g, layout = "sugiyama", ...) {
+	g <- ggraph(g, layout = layout) +
 		geom_edge_link(aes(color = predicate),
 									 arrow = arrow(length = unit(2, 'mm'), type = "closed"),
 									 end_cap = circle(2.5, 'mm')) +

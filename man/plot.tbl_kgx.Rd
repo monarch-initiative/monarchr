@@ -4,10 +4,12 @@
 \alias{plot.tbl_kgx}
 \title{Specialized plot() function for KGX graphs}
 \usage{
-\method{plot}{tbl_kgx}(g, ...)
+\method{plot}{tbl_kgx}(g, layout = "sugiyama", ...)
 }
 \arguments{
 \item{g}{A tbl_kgx graph.}
+
+\item{layout}{The layout to use for the plot. Default is "sugiyama".}
 
 \item{...}{other parameters (not used).}
 }
