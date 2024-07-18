@@ -4,10 +4,17 @@
 \alias{summarize_neighborhood}
 \title{Summarize neighborhood}
 \usage{
-summarize_neighborhood(g, direction = "both", summarize = "edges")
+summarize_neighborhood(
+  graph,
+  engine = NULL,
+  direction = "both",
+  summarize = "edges"
+)
 }
 \arguments{
-\item{g}{A graph}
+\item{graph}{A query graph to summarize the surrounding neighborhood for}
+
+\item{engine}{(Optional) An engine to use. If not provided, the graph's most recent engine is used.}
 
 \item{direction}{The direction of edges to include in the neighborhood}
 
@@ -29,14 +36,16 @@ of nodes they connect to; use summarize = "edges" to see edge counts between
 nodes of different categories, and summarize = "nodes" to see counts of connected
 node categories.
 
+Additionally, when using \code{summarize = "edges"}, the summary will include
+edges that may already be present in the query graph.
+
 It is also possible to specify the direction of edges to include in the
 neighborhood, using the direction parameter. The default is "both", which
 includes both incoming and outgoing edges.
 }
 \examples{
 \dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-g <- monarch_engine() |>
-  search_nodes("fanconi anemia", limit = 5) |>
+g <- monarch_search("fanconi anemia", limit = 5) |>
   summarize_neighborhood(direction = "both", summarize = "edges")
 \dontshow{\}) # examplesIf}
 }

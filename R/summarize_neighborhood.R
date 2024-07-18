@@ -10,13 +10,17 @@
 #' of nodes they connect to; use summarize = "edges" to see edge counts between
 #' nodes of different categories, and summarize = "nodes" to see counts of connected
 #' node categories.
+#' 
+#' Additionally, when using `summarize = "edges"`, the summary will include 
+#' edges that may already be present in the query graph.
 #'
 #' It is also possible to specify the direction of edges to include in the
 #' neighborhood, using the direction parameter. The default is "both", which
 #' includes both incoming and outgoing edges.
 #'
 #'
-#' @param g A graph
+#' @param graph A query graph to summarize the surrounding neighborhood for
+#' @param engine (Optional) An engine to use. If not provided, the graph's most recent engine is used.
 #' @param direction The direction of edges to include in the neighborhood
 #' @param summarize Whether to summarize edges or nodes (default "edges")
 #'
@@ -24,20 +28,12 @@
 #'
 #' @export
 #' @examplesIf monarch_engine_check()
-#' g <- monarch_engine() |>
-#'   search_nodes("fanconi anemia", limit = 5) |>
+#' g <- monarch_search("fanconi anemia", limit = 5) |>
 #'   summarize_neighborhood(direction = "both", summarize = "edges")
 #'
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
-summarize_neighborhood <- function(g, direction = "both", summarize = "edges") {
-    assert_that(summarize %in% c("edges", "nodes"))
-    assert_that(direction %in% c("both", "in", "out"))
-    e <- get_engine(g)
-    if (summarize == "edges") {
-        return(summarize_neighborhood_edges(e, g, direction))
-    } else if (summarize == "nodes") {
-        return(summarize_neighborhood_nodes(e, g, direction))
-    }
+summarize_neighborhood <- function(graph, engine = NULL, direction = "both", summarize = "edges") {
+    UseMethod("summarize_neighborhood")
 }
