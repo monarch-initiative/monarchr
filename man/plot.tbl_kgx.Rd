@@ -4,12 +4,22 @@
 \alias{plot.tbl_kgx}
 \title{Specialized plot() function for KGX graphs}
 \usage{
-\method{plot}{tbl_kgx}(g, layout = "sugiyama", ...)
+\method{plot}{tbl_kgx}(
+  g,
+  layout = "sugiyama",
+  node_color = pcategory,
+  edge_color = predicate,
+  ...
+)
 }
 \arguments{
 \item{g}{A tbl_kgx graph.}
 
 \item{layout}{The layout to use for the plot. Default is "sugiyama".}
+
+\item{node_color}{The column to use for node color. Default is pcategory.}
+
+\item{edge_color}{The column to use for edge color. Default is predicate.}
 
 \item{...}{other parameters (not used).}
 }
