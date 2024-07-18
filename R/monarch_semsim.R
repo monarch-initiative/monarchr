@@ -79,6 +79,5 @@ monarch_semsim <- function(graph1, graph2, metric = "ancestor_information_conten
         filter(id %in% mentioned_ids)
 
     g <- tbl_kgx(nodes = nodes_df, edges = edges_df, attach_engine = monarch_engine())
-    print(g)
-    plot(g)
+    g
 }
