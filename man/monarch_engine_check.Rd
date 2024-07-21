@@ -2,18 +2,20 @@
 % Please edit documentation in R/monarch_engine_check.R
 \name{monarch_engine_check}
 \alias{monarch_engine_check}
-\title{Check availability of Monarch Initiative database}
+\title{Check availability of Monarch Initiative API}
 \usage{
-monarch_engine_check(warn = TRUE)
+monarch_engine_check(warn = TRUE, service = "graph")
 }
 \arguments{
 \item{warn}{A logical indicating whether to print a warning message if with failure information if the database is not available or not properly formatted. Default is TRUE.}
+
+\item{service}{The service to check: "search", "semsim", "graph", or a vector of these. Default is "graph".}
 }
 \value{
-TRUE if the database is available and properly formatted, FALSE otherwise.
+TRUE if the available features are online, FALSE otherwise.
 }
 \description{
-Attempts to connect to the Monarch Iniative Neo4J database and run a query to see if it is properly formatted. Returns FALSE if the database is not available or not properly formatted.
+Attempts to connect to the Monarch Initiative API and use the specified functionality. Returns FALSE if the API is not available the result is not as expected.
 }
 \examples{
 print(monarch_engine_check())
