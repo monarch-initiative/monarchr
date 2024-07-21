@@ -9,7 +9,7 @@
 #' @import ggraph
 #' @import ggplot2
 #' @importFrom stringr str_wrap
-plot.tbl_kgx <- function(g, layout = "sugiyama", node_color = pcategory, edge_color = predicate, ...) {
+plot.tbl_kgx <- function(g, layout = "auto", node_color = pcategory, edge_color = predicate, ...) {
 	g <- ggraph(g, layout = layout) +
 		geom_edge_fan(aes(color = {{edge_color}}),
 									 arrow = arrow(length = unit(2, 'mm'), type = "closed"),

@@ -4,13 +4,7 @@
 \alias{plot.tbl_kgx}
 \title{Specialized plot() function for KGX graphs}
 \usage{
-\method{plot}{tbl_kgx}(
-  g,
-  layout = "sugiyama",
-  node_color = pcategory,
-  edge_color = predicate,
-  ...
-)
+\method{plot}{tbl_kgx}(g, layout = "auto", node_color = pcategory, edge_color = predicate, ...)
 }
 \arguments{
 \item{g}{A tbl_kgx graph.}
