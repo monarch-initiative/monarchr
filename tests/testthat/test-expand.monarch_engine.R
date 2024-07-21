@@ -6,11 +6,11 @@ test_that("paging works as expected", {
 	# there should MONDO:0008678 has ~ 234 phenotypes
 	g <- monarch_engine() |>
 		fetch_nodes(query_ids = "MONDO:0008678") |>
-		expand(result_categories = "biolink:PhenotypicFeature")
+		expand(categories = "biolink:PhenotypicFeature")
 
 	g2 <- monarch_engine() |>
 		fetch_nodes(query_ids = "MONDO:0008678") |>
-		expand(result_categories = "biolink:PhenotypicFeature",
+		expand(categories = "biolink:PhenotypicFeature",
 					 page_size = 100)
 
 	expect_equal(nrow(nodes(g)), nrow(nodes(g2)))
@@ -102,7 +102,7 @@ test_that("expand works as expected", {
 
     g <- fetch_nodes(e, query_ids = "MONDO:0012187")
     phenos <- g %>% expand(predicates = "biolink:has_phenotype",
-                                result_categories = "biolink:PhenotypicFeature")
+                                categories = "biolink:PhenotypicFeature")
     expect_equal(phenos %>% activate(edges) %>% data.frame() %>% nrow(), 8)
 
     ancestors <- g %>% expand(direction = "out", predicates = "biolink:subclass_of")
@@ -113,7 +113,7 @@ test_that("expand works as expected", {
     expect_equal(outs %>% activate(edges) %>% data.frame() %>% nrow(), 2)
 
     # should be 9 phenotypic feature result nodes
-    phenos <- g %>% expand(result_categories = "biolink:PhenotypicFeature")
+    phenos <- g %>% expand(categories = "biolink:PhenotypicFeature")
     expect_equal(phenos %>% activate(nodes) %>% data.frame() %>% nrow(), 10)
 
     # whole neighborhood should be 11 nodes
@@ -127,7 +127,7 @@ test_that("expand works as expected", {
     expect_equal(with_subtypes %>% activate(nodes) %>% data.frame() %>% nrow(), 3)
 
     phenos <- with_subtypes %>% expand(predicates = "biolink:has_phenotype",
-                                            result_categories = "biolink:PhenotypicFeature")
+                                            categories = "biolink:PhenotypicFeature")
 
     phenos_only <- phenos %>% activate(nodes) %>% data.frame() %>% rowwise() %>% filter("biolink:PhenotypicFeature" %in% category)
     expect_equal(phenos_only %>% nrow(), 55)

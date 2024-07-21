@@ -57,7 +57,7 @@ identify IDs for genes, diseases, phenotypes and more, or `search_nodes()` descr
 g <- monarch_engine() |>
   fetch_nodes(query_ids = c("MONDO:0001982")) |>
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
-	expand(result_categories = "biolink:Gene")
+	expand(categories = "biolink:Gene")
 
 plot(g)
 g
@@ -164,7 +164,7 @@ From a set of nodes (and possibly edges that connect them), we can "expand" by f
 g <- monarch |>
 	fetch_nodes(query_ids = c("MONDO:0018982", "MONDO:0011871")) |>
 	expand(predicates = c("biolink:causes", "biolink:gene_associated_with_condition")) |>
-	expand(result_categories = c("biolink:PhenotypicFeature"), limit = 10)
+	expand(categories = c("biolink:PhenotypicFeature"), limit = 10)
 
 plot(g)
 ```
@@ -172,7 +172,7 @@ We can limit the expansion based on several factors, which are combined in an "a
 
 - `direction`: `"in`", `"out"`, or `"both"` (default): which direction edges should point from the query graph nodes
 - `predicates`: a character vector of edge predicates to fetch (all if unspecified)
-- `result_categories`: a character vector of node category labels to fetch in the connected neighborhood (all if unspecified)
+- `categories`: a character vector of node category labels to fetch in the connected neighborhood (all if unspecified)
 
 The `drop_unused_query_nodes` parameter (which defaults to `FALSE`) keeps only the nodes that are part of the recently-expanded neighborhood. For example, given a query graph with many diseases, if we try to fetch neighboring phenotypes, setting this to `TRUE` removes those disease nodes without any phenotypes.
 
@@ -184,7 +184,7 @@ Lastly, the `transitive` parameter (which defaults to `FALSE`) can be used to fe
 hierarchy <- monarch |>
   fetch_nodes(query_ids = c("MONDO:0001982")) |>
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
-	expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE, result_categories = "biolink:Disease")
+	expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE, categories = "biolink:Disease")
 
 plot(hierarchy)
 ```

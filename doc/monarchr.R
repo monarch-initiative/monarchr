@@ -18,7 +18,7 @@ edges_kbl
 g <- monarch_engine() |>
   fetch_nodes(query_ids = c("MONDO:0001982")) |>
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
-	expand(result_categories = "biolink:Gene")
+	expand(categories = "biolink:Gene")
 
 plot(g)
 g
@@ -89,7 +89,7 @@ fibrosis_disease_matches
 g <- monarch |>
 	fetch_nodes(query_ids = c("MONDO:0018982", "MONDO:0011871")) |>
 	expand(predicates = c("biolink:causes", "biolink:gene_associated_with_condition")) |>
-	expand(result_categories = c("biolink:PhenotypicFeature"), limit = 10)
+	expand(categories = c("biolink:PhenotypicFeature"), limit = 10)
 
 plot(g)
 
@@ -99,7 +99,7 @@ plot(g)
 hierarchy <- monarch |>
   fetch_nodes(query_ids = c("MONDO:0001982")) |>
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
-	expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE, result_categories = "biolink:Disease")
+	expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE, categories = "biolink:Disease")
 
 plot(hierarchy)
 
@@ -138,13 +138,5 @@ sim
 eds_phenos |>
 	graph_join(marfan_phenos) |>
 	graph_join(sim) |>
-	plot()
-
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-eds_phenos |>
-	# compute semantic similarity edges
-	monarch_semsim(marfan_phenos, include_reverse = TRUE) |>
-	graph_join(eds_phenos) |>
-	graph_join(marfan_phenos) |>
 	plot()
 

@@ -50,7 +50,7 @@ test_that("fetch_nodes file_engine works with complex query syntax", {
     # TODO: expand is not implemented for file_engine
     # g <- e %>%
     #   fetch_nodes(id == "MONDO:0007525") %>%
-    #   expand(result_categories = "biolink:Gene")
+    #   expand(categories = "biolink:Gene")
 
     # # this result should have 3 nodes and 3 edges
     # nodes_df <- g %>% activate(nodes) %>% as.data.frame()

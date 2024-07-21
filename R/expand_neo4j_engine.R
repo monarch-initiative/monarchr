@@ -5,7 +5,7 @@ expand_neo4j_engine <- function(engine,
 																		 graph,
                                         direction = "both",
                                         predicates = NULL,
-                                        result_categories = NULL,
+                                        categories = NULL,
                                         transitive = FALSE,
                                         drop_unused_query_nodes = FALSE,
 																				page_size = 1000,
@@ -14,7 +14,7 @@ expand_neo4j_engine <- function(engine,
     assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
-    assert_that(is.null(result_categories) | is.character(result_categories))
+    assert_that(is.null(categories) | is.character(categories))
     assert_that(is.logical(transitive))
 
     if(transitive && length(predicates) != 1) {
@@ -29,15 +29,15 @@ expand_neo4j_engine <- function(engine,
         node_ids <- list(node_ids)
     }
 
-    # do the same length checks for predicates and result_categories
+    # do the same length checks for predicates and categories
     if (!is.null(predicates)) {
         if (length(predicates) == 1) {
             predicates <- list(predicates)
         }
     }
-    if (!is.null(result_categories)) {
-        if (length(result_categories) == 1) {
-            result_categories <- list(result_categories)
+    if (!is.null(categories)) {
+        if (length(categories) == 1) {
+            categories <- list(categories)
         }
     }
 
@@ -73,10 +73,10 @@ expand_neo4j_engine <- function(engine,
        parameters$predicates <- predicates
     }
 
-    if(!is.null(result_categories)) {
+    if(!is.null(categories)) {
        # remember, m.category is an array of strings
-       query <- paste0(query, " AND ANY(category IN m.category WHERE category IN $result_categories)")
-       parameters$result_categories <- result_categories
+       query <- paste0(query, " AND ANY(category IN m.category WHERE category IN $categories)")
+       parameters$categories <- categories
     }
 
     ## in order to do paging, if the query is transitive things are tricky -
@@ -99,7 +99,7 @@ expand_neo4j_engine <- function(engine,
 																				preflight_query,
 																				parameters = list(nodes = node_ids,
 																											    predicates = predicates,
-																												  result_categories = result_categories))
+																												  categories = categories))
 
 		total_results <- preflight_result$total_results
 
@@ -133,7 +133,7 @@ expand_neo4j_engine <- function(engine,
 
 	    result <- cypher_query(engine, result_query, parameters = list(nodes = node_ids,
 	                                                    predicates = predicates,
-	                                                    result_categories = result_categories,
+	                                                    categories = categories,
 	    																								last_max_relationship_id = last_max_relationship_id,
 	    																								page_size = page_size))
 

@@ -6,7 +6,7 @@ test_that("monarch_semsim works", {
     suppressWarnings({
         g1 <- monarch_engine() |> 
            fetch_nodes(query_ids = "MONDO:0007947") |> # Marfan syndrome
-           expand(result_categories = "biolink:PhenotypicFeature", limit = 5) |>
+           expand(categories = "biolink:PhenotypicFeature", limit = 5) |>
            activate(nodes) |>
            filter(pcategory == "biolink:PhenotypicFeature") |>
            mutate(source = "g1")
@@ -14,7 +14,7 @@ test_that("monarch_semsim works", {
     # MONDO:0007522 EDS classic type
         g2 <- monarch_engine() |> 
            fetch_nodes(query_ids = "MONDO:0007522") |> # EDS classic type
-           expand(result_categories = "biolink:PhenotypicFeature", limit = 5) |>
+           expand(categories = "biolink:PhenotypicFeature", limit = 5) |>
            activate(nodes) |>
            mutate(source = "g2")
      })

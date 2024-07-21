@@ -5,7 +5,7 @@ transitive_query_internal <- function(engine,
                                       g,
                                       direction = "out",
                                       predicates = NULL,
-                                      result_categories = NULL,
+                                      categories = NULL,
                                       drop_unused_query_nodes = FALSE) {
 
     if(length(predicates) > 1) {
@@ -14,7 +14,7 @@ transitive_query_internal <- function(engine,
             g2 <- transitive_query_internal(g,
                                             direction = direction,
                                             predicates = predicate,
-                                            result_categories = result_categories,
+                                            categories = categories,
                                             drop_unused_query_nodes = TRUE)
             suppressMessages(g <- tidygraph::graph_join(g, g2), classes = "message") # suppress joining info
         }
@@ -57,9 +57,9 @@ transitive_query_internal <- function(engine,
         filter(depth >= 0) %>%
         arrange(depth)
 
-    if(!is.null(result_categories)) {
+    if(!is.null(categories)) {
         bfs_result <- bfs_result %>%
-            filter(purrr::map_lgl(category, ~ any(.x %in% result_categories)) | id %in% query_ids)
+            filter(purrr::map_lgl(category, ~ any(.x %in% categories)) | id %in% query_ids)
     }
 
     # in this logic, unused query nodes (those without any connection) are kept by default
@@ -80,7 +80,7 @@ direction_fetch_internal <- function(engine,
                                      g,
                                      direction = "out",
                                      predicates = NULL,
-                                     result_categories = NULL,
+                                     categories = NULL,
                                      drop_unused_query_nodes = FALSE) {
 
     engine_graph <- engine$graph
@@ -119,11 +119,11 @@ direction_fetch_internal <- function(engine,
 
     # if result categories is not NULL, we need to further filter the nodes
     # note that node category is a list column, each node can have multiple categories
-    # we need to use map_lgl from the purrr package to check if any of the categories are in the result_categories
+    # we need to use map_lgl from the purrr package to check if any of the categories are in the categories
     # we also need to keep all the query nodes
-    if(!is.null(result_categories)) {
+    if(!is.null(categories)) {
         new_edges <- new_edges %>%
-            filter(purrr::map_lgl(category, ~ any(.x %in% result_categories)) | id %in% node_ids)
+            filter(purrr::map_lgl(category, ~ any(.x %in% categories)) | id %in% node_ids)
     }
 
     # the logic above drops unused query nodes, but we can keep them if desired
@@ -148,14 +148,14 @@ expand_file_engine <- function(engine,
                                     graph,
                                     direction = "both",
                                     predicates = NULL,
-                                    result_categories = NULL,
+                                    categories = NULL,
                                     transitive = FALSE,
                                     drop_unused_query_nodes = FALSE) {
 
     assert_that(is.tbl_graph(graph))
     assert_that(direction %in% c("in", "out", "both"))
     assert_that(is.null(predicates) | is.character(predicates))
-    assert_that(is.null(result_categories) | is.character(result_categories))
+    assert_that(is.null(categories) | is.character(categories))
     assert_that(is.logical(transitive))
 
     new_edges <- NULL
@@ -164,14 +164,14 @@ expand_file_engine <- function(engine,
       stop("Transitive closure requires exactly one specified predicate.")
 
     } else if(transitive) {
-        new_edges <- transitive_query_internal(engine, graph, direction, predicates, result_categories, drop_unused_query_nodes)
+        new_edges <- transitive_query_internal(engine, graph, direction, predicates, categories, drop_unused_query_nodes)
 
     } else {
         if(direction == "out" || direction == "in") {
-            new_edges <- direction_fetch_internal(engine, graph, direction, predicates, result_categories, drop_unused_query_nodes)
+            new_edges <- direction_fetch_internal(engine, graph, direction, predicates, categories, drop_unused_query_nodes)
         } else if(direction == "both") {
-            new_out_edges <- direction_fetch_internal(engine, graph, "out", predicates, result_categories, drop_unused_query_nodes)
-            new_in_edges <- direction_fetch_internal(engine, graph, "in", predicates, result_categories, drop_unused_query_nodes)
+            new_out_edges <- direction_fetch_internal(engine, graph, "out", predicates, categories, drop_unused_query_nodes)
+            new_in_edges <- direction_fetch_internal(engine, graph, "in", predicates, categories, drop_unused_query_nodes)
             suppressMessages(new_edges <- graph_join(new_out_edges, new_in_edges), classes = "message") # suppress joining info
         }
     }

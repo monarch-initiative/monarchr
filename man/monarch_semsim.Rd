@@ -48,11 +48,11 @@ The engine attached to the return graph is that of the query.
 
 g1 <- monarch_engine() |>
   fetch_nodes(query_ids = "MONDO:0007947") |>
-  expand(result_categories = "biolink:PhenotypicFeature")
+  expand(categories = "biolink:PhenotypicFeature")
 
 g2 <- monarch_engine() |>
   fetch_nodes(query_ids = "MONDO:0007522") |>
-  expand(result_categories = "biolink:PhenotypicFeature")
+  expand(categories = "biolink:PhenotypicFeature")
 
 sim <- monarch_semsim(g1, g2)
 print(sim)

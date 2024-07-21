@@ -79,7 +79,7 @@ print(colors)
 
 
 jexp <- joined |>
-	expand(result_categories = "biolink:PhenotypicFeature")
+	expand(categories = "biolink:PhenotypicFeature")
 
 library(visNetwork)
 visNetwork(nodes(joined) #%>%
@@ -124,7 +124,7 @@ with_phenos <- subtypes %>%
 # print(with_phenos)
 
 with_genes <- subtypes %>%
-	expand(result_categories = "biolink:Gene")
+	expand(categories = "biolink:Gene")
 
 # print(with_genes)
 
@@ -151,13 +151,13 @@ library(ggraph)
 
 eds_phenos <- monarch_search("Ehlers-danlos syndrome", limit = 1) %>%
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(result_categories = "biolink:PhenotypicFeature")
+	expand(categories = "biolink:PhenotypicFeature")
 
 # eds_phenos
 
 fanconi_phenos <- monarch_search("Fanconi anemia", limit = 1) %>%
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(result_categories = "biolink:PhenotypicFeature")
+	expand(categories = "biolink:PhenotypicFeature")
 
 # fanconi_phenos
 
@@ -194,7 +194,7 @@ library(ggraph)
 # 	visNodes(color = list(background = ""))
 g <- monarch_search("Fanconi anemia", limit = 1) %>%
 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(result_categories = "biolink:PhenotypicFeature")
+	expand(categories = "biolink:PhenotypicFeature")
 
 g <- g %>%
 	activate(nodes) %>%

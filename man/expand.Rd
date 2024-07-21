@@ -9,7 +9,7 @@ expand(
   engine = NULL,
   direction = "both",
   predicates = NULL,
-  result_categories = NULL,
+  categories = NULL,
   transitive = FALSE,
   drop_unused_query_nodes = FALSE,
   ...
@@ -24,7 +24,7 @@ expand(
 
 \item{predicates}{A vector of relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the neighborhood. If NULL (default), all edges are considered.}
 
-\item{result_categories}{A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.}
+\item{categories}{A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.}
 
 \item{transitive}{If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like \code{biolink:subclass_of}.}
 
@@ -47,7 +47,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 phenos <- monarch_engine() |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
-                 result_categories = "biolink:PhenotypicFeature")
+                 categories = "biolink:PhenotypicFeature")
 
 print(phenos)
 
@@ -58,7 +58,7 @@ phenos <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
                       package = "monarchr")) |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
-                 result_categories = "biolink:PhenotypicFeature")
+                 categories = "biolink:PhenotypicFeature")
 
 print(phenos)
 
@@ -69,7 +69,7 @@ print(phenos)
 phenos <- file_engine("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz") |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
-                 result_categories = "biolink:PhenotypicFeature")
+                 categories = "biolink:PhenotypicFeature")
 
 print(phenos)
 

@@ -10,7 +10,7 @@
 #' @param engine (Optional) An engine to use for fetching query graph edges. If not provided, the graph's most recent engine is used.
 #' @param direction The direction of associations to fetch. Can be "in", "out", or "both". Default is "both".
 #' @param predicates A vector of relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the neighborhood. If NULL (default), all edges are considered.
-#' @param result_categories A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.
+#' @param categories A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.
 #' @param transitive If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like `biolink:subclass_of`.
 #' @param drop_unused_query_nodes If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.
 #' @param ... Other parameters passed to methods.
@@ -22,7 +22,7 @@
 #' phenos <- monarch_engine() |>
 #'           fetch_nodes(query_ids = "MONDO:0007525") |>
 #'           expand(predicates = "biolink:has_phenotype",
-#'                  result_categories = "biolink:PhenotypicFeature")
+#'                  categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #'
@@ -34,7 +34,7 @@
 #'                       package = "monarchr")) |>
 #'           fetch_nodes(query_ids = "MONDO:0007525") |>
 #'           expand(predicates = "biolink:has_phenotype",
-#'                  result_categories = "biolink:PhenotypicFeature")
+#'                  categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #'
@@ -45,7 +45,7 @@
 #' phenos <- file_engine("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz") |>
 #'           fetch_nodes(query_ids = "MONDO:0007525") |>
 #'           expand(predicates = "biolink:has_phenotype",
-#'                  result_categories = "biolink:PhenotypicFeature")
+#'                  categories = "biolink:PhenotypicFeature")
 #'
 #' print(phenos)
 #'
@@ -57,7 +57,7 @@ expand <- function(graph,
   								 engine = NULL,
 									 direction = "both",
 									 predicates = NULL,
-									 result_categories = NULL,
+									 categories = NULL,
 									 transitive = FALSE,
 									 drop_unused_query_nodes = FALSE,
 									 ...) {
