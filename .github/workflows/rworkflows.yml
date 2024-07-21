@@ -27,16 +27,6 @@ jobs:
           r: auto
           cont: ghcr.io/bioconductor/bioconductor_docker:devel
           rspm: ~
-        - os: macOS-latest
-          bioc: release
-          r: auto
-          cont: ~
-          rspm: ~
-        - os: windows-latest
-          bioc: release
-          r: auto
-          cont: ~
-          rspm: ~
     steps:
     - uses: neurogenomics/rworkflows@master
       with:

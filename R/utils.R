@@ -35,6 +35,8 @@ nodes <- function(g, ...) {
 #' @param g A tbl_kgx graph.
 #' @return A tibble with the edges of the graph
 #' @importFrom tidygraph as_tibble
+#' @param x Input graph
+#' @param ... Other options (unused)
 #' @export
 #' @examples
 #' # (using the MONDO KGX file packaged with monarchr)
