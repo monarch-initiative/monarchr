@@ -1,78 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/monarchr.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cypher_query.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cypher_query_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/edges.html</loc>
-  </url>
-  <url>
-    <loc>/reference/edges.tbl_kgx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/explode.html</loc>
-  </url>
-  <url>
-    <loc>/reference/explode.tbl_kgx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fetch_edges.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/monarch_search.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nodes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nodes.tbl_kgx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normalize_categories.html</loc>
-  </url>
-  <url>
-    <loc>/reference/query_ids.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_neighborhood.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_neighborhood_edges.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_neighborhood_nodes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tbl_kgx.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/monarchr.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/base_engine.html</loc></url>
+<url><loc>/reference/cypher_query.html</loc></url>
+<url><loc>/reference/cypher_query_df.html</loc></url>
+<url><loc>/reference/edges.html</loc></url>
+<url><loc>/reference/edges.tbl_kgx.html</loc></url>
+<url><loc>/reference/expand.html</loc></url>
+<url><loc>/reference/explode.html</loc></url>
+<url><loc>/reference/explode.tbl_kgx.html</loc></url>
+<url><loc>/reference/fetch_edges.html</loc></url>
+<url><loc>/reference/fetch_nodes.html</loc></url>
+<url><loc>/reference/file_engine.html</loc></url>
+<url><loc>/reference/file_engine_check.html</loc></url>
+<url><loc>/reference/get_engine.html</loc></url>
+<url><loc>/reference/grapes-in_list-grapes.html</loc></url>
+<url><loc>/reference/grapes-twiddle-grapes.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/knit_print.tbl_kgx.html</loc></url>
+<url><loc>/reference/monarch_engine.html</loc></url>
+<url><loc>/reference/monarch_engine_check.html</loc></url>
+<url><loc>/reference/monarch_search.html</loc></url>
+<url><loc>/reference/monarch_semsim.html</loc></url>
+<url><loc>/reference/neo4j_engine.html</loc></url>
+<url><loc>/reference/neo4j_engine_check.html</loc></url>
+<url><loc>/reference/nodes.html</loc></url>
+<url><loc>/reference/nodes.tbl_kgx.html</loc></url>
+<url><loc>/reference/normalize_categories.html</loc></url>
+<url><loc>/reference/order_cols.html</loc></url>
+<url><loc>/reference/plot.tbl_kgx.html</loc></url>
+<url><loc>/reference/stitch_vectors.html</loc></url>
+<url><loc>/reference/summarize_neighborhood.html</loc></url>
+<url><loc>/reference/tbl_kgx.html</loc></url>
 </urlset>
+
