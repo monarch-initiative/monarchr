@@ -76,16 +76,16 @@ test_that("expand works as expected", {
 
     nodes_df <- subtypes %>% activate(nodes) %>% as.data.frame()
     edges_df <- subtypes %>% activate(edges) %>% as.data.frame()
-    expect_equal(nrow(nodes_df), 4)
-    expect_equal(nrow(edges_df), 3)
+    expect_equal(nrow(nodes_df), 5)
+    expect_equal(nrow(edges_df), 4)
 
     # there are two in and one out edges (all subclass_of)
     subtypes <- g %>% expand(direction = "in")
 
     nodes_df <- subtypes %>% activate(nodes) %>% as.data.frame()
     edges_df <- subtypes %>% activate(edges) %>% as.data.frame()
-    expect_equal(nrow(nodes_df), 3)
-    expect_equal(nrow(edges_df), 2)
+    expect_equal(nrow(nodes_df), 4)
+    expect_equal(nrow(edges_df), 3)
 
     # there are two in and one out edges (all subclass_of)
     subtypes <- g %>% expand(direction = "out")
