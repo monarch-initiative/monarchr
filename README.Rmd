@@ -22,14 +22,15 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 ### `r description`
  
 MonarchR provides a tidy interface to data hosted at https://monarchinitiative.org.
-It is an alpha: functionality is in early testing, the API is likely to change, 
-and the code and documentation are incomplete.
+ 
+- [Website](https://`r owner`.github.io/`r pkg`) 
+- [Get started](https://`r owner`.github.io/`r pkg`/articles/`r pkg`) 
  
 <!-- If you use ``r pkg``, please cite:  -->
 <!-- Modify this by editing the file: inst/CITATION  -->
 <!-- > `r utils::citation(pkg)$textVersion` -->
 
-## Installation 
+Installation:
 
 ```R
 if(!require("remotes")) install.packages("remotes")
@@ -37,12 +38,7 @@ if(!require("remotes")) install.packages("remotes")
 remotes::install_github("`r URL`")
 library(`r pkg`)
 ```
-## Documentation 
 
-### [Website](https://`r owner`.github.io/`r pkg`) 
-### [Get started](https://`r owner`.github.io/`r pkg`/articles/`r pkg`) 
-
-<br>
  
  
 

@@ -2,22 +2,25 @@
 % Please edit documentation in R/utils.R
 \name{explode}
 \alias{explode}
-\title{Explode a graph into a list of single-node graphs.}
+\title{Explode a graph into a list of single-node graphs}
 \usage{
-explode(x, ...)
+explode(g, ...)
 }
 \arguments{
-\item{x}{Input graph}
-
-\item{...}{Other options (unused)}
+\item{g}{A tbl_kgx graph.}
 }
 \value{
-A list of single-node graphs
+A list of tbl_kgx graphs.
 }
 \description{
-Explode a graph into a list of single-node graphs.
+Explode a graph into a list of single-node graphs
 }
 \examples{
-g <- monarch_search("fanconi anemia", limit = 5)
+# (using the MONDO KGX file packaged with monarchr)
+filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+
+g <- file_engine(filename) |>
+  fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
+
 print(explode(g))
 }

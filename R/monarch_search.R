@@ -1,24 +1,34 @@
-#' Search the Monarch Initiative
+
+#' Search for KG nodes using the Monarch Initiative search API
 #'
-#' This function uses the Monarch Initiative API to search for entities matching
-#' a given query string within a specified category, returing a graph containg just the nodes in the search results.
+#' This function is a wrapper around the Monarch-hosted
+#' [search API](https://api.monarchinitiative.org/v3/docs#/search/search_v3_api_search_get).
+#' It returns nodes (no edges) from the Monarch KG, fetched via an instance of `monarch_engine()`.
 #'
-#' @param query A character string representing the query term. Example terms:
-#'   "Cystic Fibrosis", "CYP6B", "swelling of joints".
-#' @param category A character string indicating a single entity category in which to search for the query term.
-#'   Defaults to NULL, to search in any category.
-#' @param limit An integer indicating the maximum number of search results to return. Defaults to 10.
-#' @details The returned graph will contain only nodes with no associations between them, even if they exist in the Monarch database.
-#' @return A `tbl_kgx` graph object containing the search results as nodes, with no edges.
-#'
-#' @examples
-#' monarch_search("Cystic Fibrosis", "biolink:Disease", 5)
-#'
+#' @param query Search query string, e.g. "Cystic fibrosis"
+#' @param category A set of node category labels to limit the search to, e.g. c("biolink:Disease", "biolink:Gene")
+#' @param limit Maximum number of nodes to return. Default 10.
+#' @param ... Other parameters (unused).
+#' @return A local tbl_kgx graph with no edges.
 #' @export
+#' @import tidygraph
+#' @import dplyr
+#' @importFrom assertthat assert_that
+#' @importFrom httr GET content http_status
+#' @examplesIf monarch_engine_check()
+#' cf_hits <- monarch_search("Cystic fibrosis", category = "biolink:Disease", limit = 5)
+#' print(cf_hits)
+#'
 monarch_search <- function(query,
                            category = NULL,
-                           limit = 10) {
-    api_url <- paste0(getOption("monarch_base_api_url"), "/search")
+                           limit = 10,
+                           ...) {
+
+		engine <- monarch_engine()
+    api_url <- paste0(engine$preferences$monarch_api_url, "/search")
+
+    # ensure that the limit is not null and is a length-1 integer <= 500
+    assert_that(!is.null(limit), is.numeric(limit), limit <= 500, msg = "limit must be a length-1 integer <= 500 for search_nodes.monarch_engine()")
 
     params <- list(
         "q" = query,
@@ -30,8 +40,15 @@ monarch_search <- function(query,
         params$category <- category
     }
 
-    response <- httr::GET(api_url, query = params)
-    response_content <- httr::content(response, "parsed")
+    # put the httr::GET call in a trycatch block to handle errors
+    response <- GET(api_url, query = flatten_body_for_httr(params))
+
+    # if the response is not 200, throw an error
+    if(response$status_code != 200) {
+        stop(paste0("Error: ", response$status_code, " ", http_status(response$status_code)$message))
+    }
+
+    response_content <- content(response, "parsed")
     total_available <- response_content$total
 
     ids <- unlist(lapply(response_content$items, function(item) {
@@ -47,7 +64,7 @@ monarch_search <- function(query,
         ids <- list(ids)
     }
 
-    g <- cypher_query(query = "MATCH (n) WHERE n.id IN $ids RETURN n",
+    g <- cypher_query(engine, query = "MATCH (n) WHERE n.id IN $ids RETURN n",
                      parameters = list(ids = ids))
 
     return(g)

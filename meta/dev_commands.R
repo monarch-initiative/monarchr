@@ -1,3 +1,5 @@
+devtools::load_all()
+
 devtools::document()
 
 devtools::clean_vignettes()

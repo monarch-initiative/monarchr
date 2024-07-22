@@ -1,11 +1,11 @@
 #' Create a KGX graph object
 #'
-#' This function creates a new tbl_kgx object which inherits from tidygraph::tbl_graph, from node and edge dataframes, ensuring they conform to the KGX specification 
+#' This function creates a new tbl_kgx object which inherits from tidygraph::tbl_graph, from node and edge dataframes, ensuring they conform to the KGX specification
 #' described at https://github.com/biolink/kgx/blob/master/specification/kgx-format.md. Specifically, nodes must have an 'id' and 'category' column,
 #' and edges, if provided, must have 'subject', 'predicate', and 'object' columns. The function allows graphs with no edges.
 #' The function sets 'from' and 'to' columns in the edges from 'subject' and 'object' respectively, and sets the node key to 'id'.
 #' Additional columns are allowed.
-#' 
+#'
 #' This function will generally be called internally.
 #'
 #' @param nodes A data frame containing the nodes of the graph. Must have 'id' and 'category' columns.
@@ -18,7 +18,7 @@
 #' g <- tbl_kgx(nodes, edges)
 #' @export
 #' @importFrom tidygraph tbl_graph
-tbl_kgx <- function(nodes = NULL, edges = NULL, ...) {
+tbl_kgx <- function(nodes = NULL, edges = NULL, attach_engine = NULL, ...) {
 	# nodes can be empty, if so we need to create an empty data frame
 	if(nrow(nodes) == 0) {
 		nodes <- data.frame(id = character(0))
@@ -38,9 +38,22 @@ tbl_kgx <- function(nodes = NULL, edges = NULL, ...) {
 		# set canonical to and from columns
 		edges$from <- edges$subject
 		edges$to <- edges$object
+	} else {
+		# but if given no edges, we spec out subject, predicate, object cols at least (and to and from)
+		edges <- data.frame(subject = character(), predicate = character(), object = character(),
+												to = character(), from = character())
 	}
 
 	g <- tidygraph::tbl_graph(nodes = nodes, edges = edges, node_key = "id")
+
+	attr(g, "last_engine") <- attach_engine
 	class(g) <- c("tbl_kgx", class(g))
+
+	# if we have an engine, use its preferences for setting df column order
+	# (order_cols uses the last attached engine)
+	if(!is.null(attach_engine)) {
+		g <- order_cols(g)
+	}
+
 	return(g)
 }

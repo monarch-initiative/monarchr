@@ -2,31 +2,34 @@
 % Please edit documentation in R/cypher_query.R
 \name{cypher_query}
 \alias{cypher_query}
-\title{Query Graph}
+\title{Execute a Cypher Query}
 \usage{
-cypher_query(query, parameters = NULL, ...)
+cypher_query(engine, ...)
 }
 \arguments{
-\item{query}{A string representing the cypher query.}
+\item{engine}{A neo4j KG engine}
 
-\item{parameters}{Parameters for the cypher query. Default is NULL.}
+\item{...}{Additional arguments passed to the function.}
 
-\item{...}{Additional arguments passed to the function (unused).}
+\item{query}{A string representing the Cypher query.}
+
+\item{parameters}{A list of parameters for the Cypher query. Default is an empty list.}
 }
 \value{
-A tbl_kgx graph.
+The result of the Cypher query as a tbl_kgx graph.
 }
 \description{
-This function takes a cypher query and returns a tbl_kgx graph. It retrieves the graph connection and knowledge graph preferences from the parent environment.
-It then executes the cypher query and stitches the vectors. It creates a data frame for nodes and edges and adds all other node and edge properties as columns.
-It also computes a priority category based on a preference list. Finally, it creates a tbl_kgx graph from the nodes and edges data frames.
+This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a tbl_kgx graph.
 }
 \examples{
-query <- "MATCH (s) -[p]- (o) return s, p, o LIMIT 2"
-parameters <- NULL
-g <- cypher_query(query, parameters)
+\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+engine <- monarch_engine()
+
+query <- "MATCH (n) WHERE n.id IN $ids RETURN n LIMIT 10"
 ids <- c("MONDO:0007525", "MONDO:0020066", "MONDO:0034021")
-query = "MATCH (n) WHERE n.id IN $ids RETURN n"
-parameters = list(ids = ids)
-g <- cypher_query(query, parameters)
+parameters <- list(ids = ids)
+
+result <- cypher_query(engine, query, parameters)
+print(result)
+\dontshow{\}) # examplesIf}
 }

@@ -1,12 +1,12 @@
 
 
-The `fetch_edges` function will fetch edges edges between nodes in the query as well; for example, if we want to see if any of the top 5 hits for Fanconi anemia are directly connected, we can begin by getting all of the edges associated with them, storing the result in a separate graph, and taking the intersection of their node sets to filter back down to keep just the original nodes but all the edges between them.
+The `expand` function will fetch edges edges between nodes in the query as well; for example, if we want to see if any of the top 5 hits for Fanconi anemia are directly connected, we can begin by getting all of the edges associated with them, storing the result in a separate graph, and taking the intersection of their node sets to filter back down to keep just the original nodes but all the edges between them.
 
 ```{r}
 g <- monarch_search("Ehlers-danlos syndrome", limit = 5)
 
 expanded <- g |>
-	fetch_edges()
+	expand()
 
 joined <- expanded |>
 	activate(nodes) |>
@@ -19,7 +19,7 @@ Let's do something more complicated: let's fetch all the genes related to FA and
 
 ```{r}
 fa <- monarch_search("Fanconi anemia", limit = 1) %>%
-	fetch_edges(result_)
+	expand(result_)
 ```
 
 Let's visualize that:
@@ -79,7 +79,7 @@ print(colors)
 
 
 jexp <- joined |>
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+	expand(categories = "biolink:PhenotypicFeature")
 
 library(visNetwork)
 visNetwork(nodes(joined) #%>%
@@ -116,15 +116,15 @@ str(z)
 
 ```{r eval=FALSE}
 subtypes <- g %>%
-	fetch_edges(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
+	expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
 
 with_phenos <- subtypes %>%
-	fetch_edges(predicates = "biolink:has_phenotype")
+	expand(predicates = "biolink:has_phenotype")
 
 # print(with_phenos)
 
 with_genes <- subtypes %>%
-	fetch_edges(result_categories = "biolink:Gene")
+	expand(categories = "biolink:Gene")
 
 # print(with_genes)
 
@@ -150,14 +150,14 @@ plot(p)
 library(ggraph)
 
 eds_phenos <- monarch_search("Ehlers-danlos syndrome", limit = 1) %>%
-	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+	expand(categories = "biolink:PhenotypicFeature")
 
 # eds_phenos
 
 fanconi_phenos <- monarch_search("Fanconi anemia", limit = 1) %>%
-	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+	expand(categories = "biolink:PhenotypicFeature")
 
 # fanconi_phenos
 
@@ -193,8 +193,8 @@ library(ggraph)
 # x <- visNetwork(g %N>% as_tibble(), g %E>% as_tibble(), height = "400px") %>%
 # 	visNodes(color = list(background = ""))
 g <- monarch_search("Fanconi anemia", limit = 1) %>%
-	fetch_edges(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	fetch_edges(result_categories = "biolink:PhenotypicFeature")
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+	expand(categories = "biolink:PhenotypicFeature")
 
 g <- g %>%
 	activate(nodes) %>%
