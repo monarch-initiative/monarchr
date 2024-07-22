@@ -1,0 +1,40 @@
+---
+title: "Test 3 Vignette"
+author: "Shawn T O'Neil"
+date: "<h4>Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{monarchr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+
+
+```{r, include=FALSE, message=FALSE}
+library(dplyr)
+library(tidygraph)
+library(monarchr)
+
+options(width = 300)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+This is a test.
+
+
+```{r, message = TRUE, warning = TRUE}
+# MONDO:0001982 Niemann-Pick Disease (13 subtypes)
+
+g <- monarch_engine() |>
+  fetch_nodes(query_ids = c("MONDO:0001982")) |>
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
+	expand(categories = "biolink:Gene")
+
+plot(g)
+g
+```
