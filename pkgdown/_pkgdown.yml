@@ -1,0 +1,10 @@
+# template:
+#   bootstrap: 5
+#   # bslib:
+#   #   font-size-root: 12px
+
+articles:
+- title: Examples
+  navbar: Examples
+  contents:
+  - examples/alzheimers_phenotypes

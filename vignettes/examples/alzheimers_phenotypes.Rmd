@@ -1,0 +1,207 @@
+---
+title: "Categorizing Alzheimers Phenotypes"
+author: "Shawn T O'Neil"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{monarchr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include=FALSE, message=FALSE}
+options(width = 300)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+# Motivation
+
+This example explores the question: "what are the behavioral phenotypes of Alzheimer's disease"?^[Many thanks to [Monica Munoz-Torres](https://tislab.org/members/monica-munoz-torres.html) for suggesting this example!] As we'll see, because Alzheimer's is associated with a variety of phenotypes of different kinds, we take an exploratory approach that highlights the functionality provided by `monarchr` and `tidygraph`.
+
+# Exploring Alzheimer's
+
+To start, we load `monarchr`, `tidygraph`, and `dplyr`:
+
+```{r}
+library(monarchr)
+library(tidygraph)
+library(dplyr)
+```
+
+
+Let's start by finding the disease node for Alzheimer's itself with `monarch_search()`, which uses the Monarch search API:
+
+```{r}
+alz_search <- monarch_search("Alzheimer's", limit = 5)
+alz_search
+```
+
+From these results we see that `MONDO:0004975` is the ID for the primary Alzheimer's disease node (information also available on the Monarch Initiative [website](https://monarchinitiative.org/explore?search=Alzheimer%27s#search)). We also see other types of Alzheimer's, which appear to be distinct subtypes.
+
+Let's fetch `MONDO:0004975` and all of its transitive subtypes. We'll plot the result, specifying `layout = "sugiyama"` (appropriate for directed acyclic graphs such as this):
+
+```{r}
+# get an engine to query the graph with
+monarch <- monarch_engine()
+
+alz_diseases <- monarch |>
+	fetch_nodes(query_ids = "MONDO:0004975") |>
+	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE)
+
+plot(alz_diseases, layout = "sugiyama")
+```
+Let's also quickly fetch all of the phenotypes associated with any of these; we'll do so with `expand()` specifying that we want all connected `biolink:PhenotypicFeature` nodes.
+
+```{r}
+alz_disease_phenos <- alz_diseases |>
+	expand(categories = "biolink:PhenotypicFeature")
+
+plot(alz_disease_phenos, layout = "sugiyama")
+
+```
+
+There are quite a number of phenotypes associated with Alzheimer's or its subtypes. Most of these are associated via the `biolink:has_phenotype` predicate, but there's also a few `biolink:has_mode_of_inheritance` connections. Let's explore those using `tidygraph`'s filtering features:
+
+```{r}
+alz_disease_phenos |>
+	activate(edges) |>
+	filter(predicate == "biolink:has_mode_of_inheritance")
+```
+Reviewing the resulting edges, the connected phenotype is `HP:0000006`, "Autosomal dominant inheritance". Instead of finding all connected phenotypes, we can redefine our query to fetch nodes connected specifically by `biolink:has_phenotype` edges.
+
+```{r}
+alz_disease_phenos <- alz_diseases |>
+	expand(predicates = "biolink:has_phenotype")
+
+plot(alz_disease_phenos, layout = "sugiyama")
+```
+
+# Exploring Behavioral Phenotypes
+
+Next, let's look for behavior-related phenotypes.
+
+```{r}
+behavior_search <- monarch_search("behavior", category = "biolink:PhenotypicFeature", limit = 5)
+behavior_search
+```
+
+Of these results, "Atypical behavior" is the most general, but there may be an even more general phenotype that we should use. Let's get all of the ancestors of these nodes to see their super-types.
+
+```{r}
+behavior_ancestors <- behavior_search |>
+	expand(predicate = "biolink:subclass_of", direction = "out", transitive = TRUE)
+
+behavior_ancestors
+```
+
+Some of these are not phenotypes, e.g. `owl:Thing` which is a `biolink:Entity`. We'll repeat this query limiting to phenotypes and visualize the result. We'll also use `tidygraph`'s dynamic mutation features to add labels to our original search nodes for easy identification in the plot.
+
+```{r}
+behavior_ancestors <- behavior_search |>
+	activate(nodes) |>
+	mutate(search_result = TRUE) |>
+	expand(predicate = "biolink:subclass_of",
+				 direction = "out",
+				 transitive = TRUE,
+				 categories = "biolink:PhenotypicFeature")
+
+plot(behavior_ancestors, node_color = search_result)
+```
+Reviewing this plot, we can see that "Atypical behavior" is a subtype of three phenotypes: "Abnormality of mental function", and two nodes with name "abnormal behavior process", both of which are subtypes of just "abnormal behavior".
+
+The distinction between abnormal *mental function* and abnormal *behavior* may be important in context of Alzheimer's, so we'll begin by finding all of the phenotypes that are subtypes of each of these independently. First, let's get the IDs for these two nodes:
+
+```{r}
+behavior_ancestors |>
+	activate(nodes) |>
+	filter(name == "Abnormality of mental function" | name == "abnormal behavior")
+```
+Now we can fetch all of the subtypes for both of these. Note that many phenotypes will be present in both results, and there will likely be many phenotypes, so we'll list them rather than plot them. First, abnormalities of mental function:
+
+```{r}
+mental_phenos <- monarch |>
+	fetch_nodes(query_ids = "HP:0011446") |>
+	expand(predicate = "biolink:subclass_of",
+				 direction = "in",
+				 transitive = TRUE)
+
+mental_phenos
+```
+Next, abnormal behaviors:
+
+```{r}
+behavior_phenos <- monarch |>
+	fetch_nodes(query_ids = "UPHENO:0049622") |>
+	expand(predicate = "biolink:subclass_of",
+				 direction = "in",
+				 transitive = TRUE)
+
+behavior_phenos
+```
+
+There are a large number of phenotypes in these sets, and some (like Aggressive behavior plotted above) are both behavioral and mental abnormalities. Let's combine these graphs into one with `tidygraph`'s `graph_join()`, first classifying each node as either "mental", "behavioral", or "both".
+
+```{r}
+mental_pheno_ids <- nodes(mental_phenos) |>
+	pull(id)
+
+behavior_pheno_ids <- nodes(behavior_phenos) |>
+	pull(id)
+
+# for mental_phenos, add a node class attribute set to "both"
+# if the ID is also in behavior_phenos, otherwise set to "mental"
+mental_phenos <- mental_phenos |>
+	activate(nodes) |>
+	mutate(class = ifelse(id %in% behavior_pheno_ids,
+												"both",
+												"mental"))
+
+# for behavior_phenos, add a node class attribute set to "both"
+# if the ID is also in mental_phenos, otherwise set to "behavioral"
+behavior_phenos <- behavior_phenos |>
+	activate(nodes) |>
+	mutate(class = ifelse(id %in% mental_pheno_ids,
+												"both",
+												"behavioral"))
+
+# join the two graphs together
+mental_behaviorial_phenos <- graph_join(mental_phenos, behavior_phenos)
+
+# review how many there are each class
+mental_behaviorial_phenos |>
+	activate(nodes) |>
+	pull(class) |>
+	sort() |>
+	rle()
+```
+And there we are; 1,458 behavioral-only phenotoypes, 98 mental-only phenotypes, and 723 that are both.
+
+# Classifying Alzheimers Phenotypes
+
+With this categorization in hand, let's bring the information into the Alzheimer's phenotypes we identified earlier. We can do this with a simple left join of the Alzheimer's phenotypes graph nodes with the collected result. Of course,
+there may be Alzheimer's phenotypes that are neither behavioral nor mental--we'll set these to "neither". We'll color the nodes by both their `pcategory` (disease or phenotype) and their class (for phenotypes as defined above).
+
+```{r}
+alz_disease_phenos <- alz_disease_phenos |>
+	activate(nodes) |>
+	left_join(nodes(mental_behaviorial_phenos)) |>
+	mutate(class = ifelse(is.na(class),
+												"neither",
+												class))
+
+plot(alz_disease_phenos, node_color = paste(pcategory, class))
+```
+As this plot shows, while there are phenotypes of Alzheimer's that are mental abnormalities, and some that are both
+behaviorial and mental abnormalities, there are none that are behavioral-only.
+
+To finish up, let's see the full tabular version of this graph, and answer the original question by selecting the 16 phenotypes that are behavioral in nature (classified as either "both" or "behavioral", even though we know there are none of the latter).
+
+```{r}
+alz_disease_phenos
+
+nodes(alz_disease_phenos) |>
+	filter(class %in% c("both", "behavioral")) |>
+	select(id, name, class)
+```
