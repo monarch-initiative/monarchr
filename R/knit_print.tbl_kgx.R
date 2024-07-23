@@ -64,23 +64,23 @@ knit_print.tbl_kgx <- function(graph, show = 100, ...) {
 
 	knitr::asis_output(knitr::knit_child(text = c(
 		'',
-		'##### {.tabset}',
-		'',
-		'###### Nodes',
-		paste0("Showing ", nodes_showing, " of ", nodes_total, " nodes:"),
-		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
+		paste0("<pre>Graph with ", nodes_total, " nodes and ", edges_total, " edges. Expand sections below for details.</pre>"),
+		'<details><summary><b>Node Data</b></summary>',
+		paste0("<p>Showing ", nodes_showing, " of ", nodes_total, " nodes:</p>"),
+		'<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'nodes_kbl',
 		'```',
 		'</div>',
-		'###### Edges',
-		paste0("Showing ", edges_showing, " of ", edges_total, " edges:"),
-		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
+		'</details>',
+		'<details><summary><b>Edge Data</b></summary>',
+		paste0("<p>Showing ", edges_showing, " of ", edges_total, " edges:</p>"),
+		'<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'edges_kbl',
 		'```',
 		'</div>',
-		'#####',
-		''
+		'</details>',
+		'<br />'
 	), envir = environment(), quiet = TRUE))
 }
