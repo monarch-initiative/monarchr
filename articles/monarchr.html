@@ -11,7 +11,8 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="MonarchR Basics">
+<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="MonarchR Basics">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,6 +45,21 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="divider">
+    </li>
+<li class="dropdown-header">Examples</li>
+    <li>
+      <a href="../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -73,24 +89,20 @@
                         <h4 data-toc-skip class="author">Shawn T
 O’Neil</h4>
             
-            <h4 data-toc-skip class="date"><h4>
-<br>
-Vignette updated: <i>Jul-22-2024</i><br>
-</h4></h4>
+            <h4 data-toc-skip class="date">Vignette updated:
+<i>Jul-23-2024</i>
+</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/engines/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
       <div class="hidden name"><code>monarchr.Rmd</code></div>
 
     </div>
 
     
     
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class="section level3">
-<h3 id="background-biomedical-knowledge-graphs">Background: Biomedical Knowledge Graphs<a class="anchor" aria-label="anchor" href="#background-biomedical-knowledge-graphs"></a>
-</h3>
+<div class="section level2">
+<h2 id="background-biomedical-knowledge-graphs">Background: Biomedical Knowledge Graphs<a class="anchor" aria-label="anchor" href="#background-biomedical-knowledge-graphs"></a>
+</h2>
 <p>Knowledge graphs (KGs) represent entities (such as genes, diseases,
 or phenotypes) and the relationships between them; for example that the
 <code>CFTR</code> gene <code>causes</code> the disease
@@ -142,14 +154,12 @@ identify IDs for genes, diseases, phenotypes and more, or
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">g</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section"></h3>
-<div class="section level4">
-<h4 id="nodes">Nodes<a class="anchor" aria-label="anchor" href="#nodes"></a>
-</h4>
+<pre>Graph with 17 nodes and 29 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 17 of 17 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -251,55 +261,6 @@ NULL
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“NPC is a complex lipid storage disease mainly characterized by the
-accumulation of unesterified cholesterol in the late endosomal/lysosomal
-compartment.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:7207”, “MESH:D052556”, “NANDO:1200063”, “NORD:1509”,
-“Orphanet:646”, “SCTID:66751000”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NULL
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 “MONDO:0011873”
 </td>
 <td style="text-align:left;">
@@ -356,6 +317,55 @@ NA
 </td>
 <td style="text-align:left;">
 NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“NPC is a complex lipid storage disease mainly characterized by the
+accumulation of unesterified cholesterol in the late endosomal/lysosomal
+compartment.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC”, “Niemann Pick Disease Type C”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:7207”, “MESH:D052556”, “NANDO:1200063”, “NORD:1509”,
+“Orphanet:646”, “SCTID:66751000”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NULL
 </td>
 </tr>
 <tr>
@@ -903,16 +913,16 @@ NULL
 </tr>
 <tr>
 <td style="text-align:left;">
-“HGNC:11120”
+“HGNC:7897”
 </td>
 <td style="text-align:left;">
 “biolink:Gene”
 </td>
 <td style="text-align:left;">
-“SMPD1”
+“NPC1”
 </td>
 <td style="text-align:left;">
-“SMPD1”
+“NPC1”
 </td>
 <td style="text-align:left;">
 “Homo sapiens”
@@ -921,8 +931,7 @@ NULL
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“ASM”, “Niemann-Pick type A/B”, “acid sphingomyelinase”,
-“sphingomyelin phosphodiesterase 1, acid lysosomal”)
+c(“Niemann-Pick disease, type C1”, “SLC65A1”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”,
@@ -936,7 +945,7 @@ c(“biolink:BiologicalEntity”,
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
+c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
 </td>
 <td style="text-align:left;">
 “HGNC”
@@ -945,7 +954,7 @@ c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
-“sphingomyelin phosphodiesterase 1”
+“NPC intracellular cholesterol transporter 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -1003,16 +1012,16 @@ c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HGNC:7897”
+“HGNC:11120”
 </td>
 <td style="text-align:left;">
 “biolink:Gene”
 </td>
 <td style="text-align:left;">
-“NPC1”
+“SMPD1”
 </td>
 <td style="text-align:left;">
-“NPC1”
+“SMPD1”
 </td>
 <td style="text-align:left;">
 “Homo sapiens”
@@ -1021,7 +1030,8 @@ c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann-Pick disease, type C1”, “SLC65A1”)
+c(“ASM”, “Niemann-Pick type A/B”, “acid sphingomyelinase”,
+“sphingomyelin phosphodiesterase 1, acid lysosomal”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”,
@@ -1035,7 +1045,7 @@ c(“biolink:BiologicalEntity”,
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
+c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
 </td>
 <td style="text-align:left;">
 “HGNC”
@@ -1044,7 +1054,7 @@ c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
-“NPC intracellular cholesterol transporter 1”
+“sphingomyelin phosphodiesterase 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -1053,12 +1063,11 @@ c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges">Edges<a class="anchor" aria-label="anchor" href="#edges"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 29 of 29 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -1110,10 +1119,10 @@ original_object
 <tbody>
 <tr>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0011873”
@@ -1143,7 +1152,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:63be3453-fd68-4518-8e51-46c17acac22c" class="uri">urn:uuid:63be3453-fd68-4518-8e51-46c17acac22c</a>”
+“<a href="urn:uuid:869fd120-310a-4482-8e77-3016a318325b" class="uri">urn:uuid:869fd120-310a-4482-8e77-3016a318325b</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1190,7 +1199,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:8ef7b420-2d10-48e1-900b-1cc7a7fc0ca5" class="uri">urn:uuid:8ef7b420-2d10-48e1-900b-1cc7a7fc0ca5</a>”
+“<a href="urn:uuid:5d8b3ff4-8ec8-44bc-8e76-46fff5ad11cd" class="uri">urn:uuid:5d8b3ff4-8ec8-44bc-8e76-46fff5ad11cd</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1207,7 +1216,7 @@ NA
 6
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0009757”
@@ -1237,7 +1246,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:30e6e956-cec3-4827-b0c1-5c162f30737b" class="uri">urn:uuid:30e6e956-cec3-4827-b0c1-5c162f30737b</a>”
+“<a href="urn:uuid:fbebb7de-1cb9-4f90-932a-46819db221e8" class="uri">urn:uuid:fbebb7de-1cb9-4f90-932a-46819db221e8</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1284,7 +1293,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:561516e7-bbbd-4184-a989-613ea4e72073" class="uri">urn:uuid:561516e7-bbbd-4184-a989-613ea4e72073</a>”
+“<a href="urn:uuid:3ca10a53-3a7d-42cb-b9b2-2278ef8504ba" class="uri">urn:uuid:3ca10a53-3a7d-42cb-b9b2-2278ef8504ba</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1301,7 +1310,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -1331,7 +1340,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:9815e8fd-8e32-4c32-90c1-f4cec64f154e" class="uri">urn:uuid:9815e8fd-8e32-4c32-90c1-f4cec64f154e</a>”
+“<a href="urn:uuid:4df66b1f-981b-4d05-a0eb-9986122673fc" class="uri">urn:uuid:4df66b1f-981b-4d05-a0eb-9986122673fc</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1348,7 +1357,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -1378,7 +1387,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:ee4ea204-3ca3-429b-9232-d81e0238cc79" class="uri">urn:uuid:ee4ea204-3ca3-429b-9232-d81e0238cc79</a>”
+“<a href="urn:uuid:448c936b-6c74-4340-8d52-593f1835da95" class="uri">urn:uuid:448c936b-6c74-4340-8d52-593f1835da95</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1395,7 +1404,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -1425,7 +1434,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:efd80e12-87d3-460e-ad8e-248182335bbf" class="uri">urn:uuid:efd80e12-87d3-460e-ad8e-248182335bbf</a>”
+“<a href="urn:uuid:12b0ebc5-a33b-4b05-943f-528d753c2ccd" class="uri">urn:uuid:12b0ebc5-a33b-4b05-943f-528d753c2ccd</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1442,7 +1451,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0016310”
@@ -1472,7 +1481,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:f122650c-5c49-4bad-a027-9c53796e04f2" class="uri">urn:uuid:f122650c-5c49-4bad-a027-9c53796e04f2</a>”
+“<a href="urn:uuid:966840e8-2184-48fa-9aaf-56b47c501352" class="uri">urn:uuid:966840e8-2184-48fa-9aaf-56b47c501352</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1489,7 +1498,7 @@ NA
 12
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -1519,7 +1528,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:d0075f2c-823c-497d-b6bb-7bf08c5a4cc1" class="uri">urn:uuid:d0075f2c-823c-497d-b6bb-7bf08c5a4cc1</a>”
+“<a href="urn:uuid:c88be317-99f7-4031-9aed-647ce2bbbc88" class="uri">urn:uuid:c88be317-99f7-4031-9aed-647ce2bbbc88</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1533,54 +1542,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-“MONDO:0100464”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0001982”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:58f59265-57d5-41af-b5e7-15faba1250b7" class="uri">urn:uuid:58f59265-57d5-41af-b5e7-15faba1250b7</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 1
@@ -1613,7 +1575,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:44aee51d-0bd9-4c32-980a-ffbe0ecf9e9f" class="uri">urn:uuid:44aee51d-0bd9-4c32-980a-ffbe0ecf9e9f</a>”
+“<a href="urn:uuid:3450e760-7666-43ec-819c-19d114fa9a88" class="uri">urn:uuid:3450e760-7666-43ec-819c-19d114fa9a88</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1660,7 +1622,54 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:11184cfd-ce68-4ff2-83e4-c6e99242e2f0" class="uri">urn:uuid:11184cfd-ce68-4ff2-83e4-c6e99242e2f0</a>”
+“<a href="urn:uuid:7ca6492d-0697-4a4f-8383-9c53e58add1e" class="uri">urn:uuid:7ca6492d-0697-4a4f-8383-9c53e58add1e</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+“MONDO:0100464”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0001982”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:a62ee5a6-011c-44b2-b48e-2f0ab595dadb" class="uri">urn:uuid:a62ee5a6-011c-44b2-b48e-2f0ab595dadb</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1707,7 +1716,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:aa4dab6a-2450-4e72-8af4-2b4f646f2e41" class="uri">urn:uuid:aa4dab6a-2450-4e72-8af4-2b4f646f2e41</a>”
+“<a href="urn:uuid:834c7761-1f42-454b-8726-9b85c3ab2bd5" class="uri">urn:uuid:834c7761-1f42-454b-8726-9b85c3ab2bd5</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1722,831 +1731,6 @@ NA
 <tr>
 <td style="text-align:left;">
 15
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-“HGNC:11120”
-</td>
-<td style="text-align:left;">
-“biolink:causes”
-</td>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
-</td>
-<td style="text-align:left;">
-“infores:omim”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bd6acd94-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
-</td>
-<td style="text-align:left;">
-“OMIM:607616”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-“HGNC:11120”
-</td>
-<td style="text-align:left;">
-“biolink:causes”
-</td>
-<td style="text-align:left;">
-“MONDO:0009756”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
-</td>
-<td style="text-align:left;">
-“infores:omim”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bd8804e2-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
-</td>
-<td style="text-align:left;">
-“OMIM:257200”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-“HGNC:11120”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdcb5c3b-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
-</td>
-<td style="text-align:left;">
-“Orphanet:77293”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-“HGNC:11120”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0009756”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdcb5c3c-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
-</td>
-<td style="text-align:left;">
-“Orphanet:77292”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016306”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c81-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“Orphanet:216972”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016307”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c83-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“Orphanet:216975”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016308”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c87-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“Orphanet:216978”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-11
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8cc9-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“Orphanet:216986”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016309”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8cd5-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“Orphanet:216981”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016306”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c82-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“Orphanet:216972”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016307”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c84-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“Orphanet:216975”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016308”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8c88-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“Orphanet:216978”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-11
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8cca-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“Orphanet:216986”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:gene_associated_with_condition”
-</td>
-<td style="text-align:left;">
-“MONDO:0016309”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:monarchinitiative”
-</td>
-<td style="text-align:left;">
-“infores:orphanet”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bdae8cd6-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“Orphanet:216981”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-“HGNC:14537”
-</td>
-<td style="text-align:left;">
-“biolink:causes”
-</td>
-<td style="text-align:left;">
-“MONDO:0011873”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
-</td>
-<td style="text-align:left;">
-“infores:omim”
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:bd6acd79-3a2d-11ef-94af-77f710a749fc”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
-</td>
-<td style="text-align:left;">
-“OMIM:607625”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
 </td>
 <td style="text-align:left;">
 6
@@ -2579,7 +1763,7 @@ c(“infores:medgen”, “infores:monarchinitiative”)
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:bd880450-3a2d-11ef-94af-77f710a749fc”
+“uuid:6337715f-400a-11ef-89e7-6fe0be41fbbf”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
@@ -2599,13 +1783,835 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “OMIM:257220”
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:causes”
+</td>
+<td style="text-align:left;">
+“MONDO:0011873”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+c(“infores:medgen”, “infores:monarchinitiative”)
+</td>
+<td style="text-align:left;">
+“infores:omim”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:631aaa18-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“OMIM:607625”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“HGNC:11120”
+</td>
+<td style="text-align:left;">
+“biolink:causes”
+</td>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+c(“infores:medgen”, “infores:monarchinitiative”)
+</td>
+<td style="text-align:left;">
+“infores:omim”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:631aaa33-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
+</td>
+<td style="text-align:left;">
+“OMIM:607616”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+“HGNC:11120”
+</td>
+<td style="text-align:left;">
+“biolink:causes”
+</td>
+<td style="text-align:left;">
+“MONDO:0009756”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+c(“infores:medgen”, “infores:monarchinitiative”)
+</td>
+<td style="text-align:left;">
+“infores:omim”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:633771f1-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
+</td>
+<td style="text-align:left;">
+“OMIM:257200”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016306”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9131-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+<td style="text-align:left;">
+“Orphanet:216972”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016307”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9133-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+<td style="text-align:left;">
+“Orphanet:216975”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016308”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9137-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+<td style="text-align:left;">
+“Orphanet:216978”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9179-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+<td style="text-align:left;">
+“Orphanet:216986”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016309”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9185-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+<td style="text-align:left;">
+“Orphanet:216981”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016306”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9130-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“Orphanet:216972”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016307”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9132-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“Orphanet:216975”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016308”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9136-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“Orphanet:216978”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9178-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“Orphanet:216986”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+“HGNC:14537”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0016309”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:635d9184-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
+</td>
+<td style="text-align:left;">
+“Orphanet:216981”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“HGNC:11120”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:6379fea2-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
+</td>
+<td style="text-align:left;">
+“Orphanet:77293”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+“HGNC:11120”
+</td>
+<td style="text-align:left;">
+“biolink:gene_associated_with_condition”
+</td>
+<td style="text-align:left;">
+“MONDO:0009756”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative”
+</td>
+<td style="text-align:left;">
+“infores:orphanet”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:6379fea3-400a-11ef-89e7-6fe0be41fbbf”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
+“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
+“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
+“biolink:EntityToPhenotypicFeatureAssociationMixin”,
+“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
+“biolink:GeneToDiseaseAssociation”,
+“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
+“biolink:GeneToEntityAssociationMixin”,
+“biolink:RelationshipQuantifier”)
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
+</td>
+<td style="text-align:left;">
+“Orphanet:77292”
+</td>
+</tr>
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="section-1"></h3>
+</details><p><br></p>
 <p>Backed by <code>tidygraph</code> and <code>igraph</code>,
 <code>monarchr</code> is part of a larger ecosystem of graph analyses in
 R:</p>
@@ -2649,14 +2655,10 @@ R:</p>
 </ul>
 </li>
 </ul>
-<div class="blue">
-<p><em>Note</em>: The default <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> provided by
-<code>monarchr</code> is a work in progress with limited features.</p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="engines">Engines<a class="anchor" aria-label="anchor" href="#engines"></a>
-</h3>
+<div class="section level2">
+<h2 id="engines">Engines<a class="anchor" aria-label="anchor" href="#engines"></a>
+</h2>
 <p>Two kinds of engines are supported, providing largely the same
 functionality: one supporting access to <a href="https://neo4j.com/" class="external-link">Neo4j graph databases</a>, and another
 supporting file-based access to TSV-formatted <code>.tar.gz</code> KGs
@@ -2689,9 +2691,9 @@ file, which will be downloaded to the current working directory.</p>
 <span></span>
 <span><span class="va">mondo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="fetching-nodes">Fetching Nodes<a class="anchor" aria-label="anchor" href="#fetching-nodes"></a>
-</h3>
+<div class="section level2">
+<h2 id="fetching-nodes">Fetching Nodes<a class="anchor" aria-label="anchor" href="#fetching-nodes"></a>
+</h2>
 <p>Engines support a <code><a href="../reference/fetch_nodes.html">fetch_nodes()</a></code> function for pulling
 nodes by specified criteria. It returns a <code>tidygraph</code>-based
 graph, but only nodes, not any edges that may connect them. These can be
@@ -2701,14 +2703,12 @@ specified as a set of IDs:</p>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0009061"</span>, <span class="st">"HGNC:1884"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g</span></span></code></pre></div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-2"></h3>
-<div class="section level4">
-<h4 id="nodes-1">Nodes<a class="anchor" aria-label="anchor" href="#nodes-1"></a>
-</h4>
+<pre>Graph with 2 nodes and 0 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 2 of 2 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -2864,34 +2864,27 @@ NA
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-1">Edges<a class="anchor" aria-label="anchor" href="#edges-1"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 0 of 0 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"><tbody><tr></tr></tbody></table>
 </div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="section-3"></h3>
-<p>Nodes can also be fetched in bulk. For example, we can fetch all of
-the nodes where <code>in_taxon_label</code> equals
+</details><p><br> Nodes can also be fetched in bulk. For example, we can fetch
+all of the nodes where <code>in_taxon_label</code> equals
 <code>"Homo sapiens"</code>. For demonstration purposes, we’ll limit the
 number of results to 20 (ordered by node ID).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_sapiens_nodes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">h_sapiens_nodes</span></span></code></pre></div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-4"></h3>
-<div class="section level4">
-<h4 id="nodes-2">Nodes<a class="anchor" aria-label="anchor" href="#nodes-2"></a>
-</h4>
+<pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 20 of 20 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -3566,18 +3559,14 @@ c(“biolink:BiologicalEntity”, “biolink:Entity”, “biolink:GenomicEntity
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-2">Edges<a class="anchor" aria-label="anchor" href="#edges-2"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 0 of 0 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"><tbody><tr></tr></tbody></table>
 </div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="section-5"></h3>
+</details><p><br></p>
 <p>While the syntax does not support all R expressions (for
 compatibility with database-backed engines), standard comparisons
 <code>==</code>, <code>!=</code>, <code>&lt;=</code>,
@@ -3590,18 +3579,16 @@ operator to allow exact match against entries. Here we fetch all the
 the multi-valued nature of node <code>category</code>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">human_genes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>, </span>
+<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">human_genes</span></span></code></pre></div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-6"></h3>
-<div class="section level4">
-<h4 id="nodes-3">Nodes<a class="anchor" aria-label="anchor" href="#nodes-3"></a>
-</h4>
+<pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 20 of 20 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -4525,18 +4512,14 @@ c(“ENSEMBL:ENSG00000104312”, “OMIM:603455”)
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-3">Edges<a class="anchor" aria-label="anchor" href="#edges-3"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 0 of 0 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"><tbody><tr></tr></tbody></table>
 </div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="section-7"></h3>
+</details><p><br></p>
 <p>A convenience <code>%~%</code> operator provides regular-expression
 matching against node properties (but not multi-valued ones like
 <code>category</code>).</p>
@@ -4545,14 +4528,12 @@ matching against node properties (but not multi-valued ones like
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">description</span> <span class="op"><a href="../reference/grapes-twiddle-grapes.html">%~%</a></span> <span class="st">".*[fF]ibrosis.*"</span> <span class="op">&amp;</span> <span class="st">"biolink:Disease"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">fibrosis_disease_matches</span></span></code></pre></div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-8"></h3>
-<div class="section level4">
-<h4 id="nodes-4">Nodes<a class="anchor" aria-label="anchor" href="#nodes-4"></a>
-</h4>
+<pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 20 of 20 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -5412,22 +5393,18 @@ c(“DOID:13767”, “EFO:0007210”, “ICD10CM:B66.1”, “ICD9:121.1”,
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-4">Edges<a class="anchor" aria-label="anchor" href="#edges-4"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 0 of 0 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"><tbody><tr></tr></tbody></table>
 </div>
+</details><p><br></p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="section-9"></h3>
-</div>
-<div class="section level3">
-<h3 id="expanding">Expanding<a class="anchor" aria-label="anchor" href="#expanding"></a>
-</h3>
+<div class="section level2">
+<h2 id="expanding">Expanding<a class="anchor" aria-label="anchor" href="#expanding"></a>
+</h2>
 <p>From a set of nodes (and possibly edges that connect them), we can
 “expand” by fetching their collective neighborhood from the KG engine.
 Here we fetch 10 Gene nodes, and in the first call to
@@ -5490,12 +5467,12 @@ second expansion.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">hierarchy</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-11-1.png" width="960"></p>
 </div>
+<div class="section level2">
+<h2 id="monarch-features">Monarch Features<a class="anchor" aria-label="anchor" href="#monarch-features"></a>
+</h2>
 <div class="section level3">
-<h3 id="monarch-features">Monarch Features<a class="anchor" aria-label="anchor" href="#monarch-features"></a>
+<h3 id="searching">Searching<a class="anchor" aria-label="anchor" href="#searching"></a>
 </h3>
-<div class="section level4">
-<h4 id="searching">Searching<a class="anchor" aria-label="anchor" href="#searching"></a>
-</h4>
 <p>While <code><a href="../reference/fetch_nodes.html">fetch_nodes()</a></code> and <code><a href="../reference/expand.html">expand()</a></code> apply to
 all types of engines, <code>monarchr</code> also exposes functionality
 specific to the Monarch Initiatives’ API services. The first of these is
@@ -5506,15 +5483,12 @@ graph with matching nodes backed by a <code><a href="../reference/monarch_engine
 <code class="sourceCode R"><span><span class="va">cf_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_search.html">monarch_search</a></span><span class="op">(</span><span class="st">"Cystic fibrosis"</span>, category <span class="op">=</span> <span class="st">"biolink:Disease"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cf_hits</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-10"></h3>
-<div class="section level4">
-<h4 id="nodes-5">Nodes<a class="anchor" aria-label="anchor" href="#nodes-5"></a>
-</h4>
+<pre>Graph with 5 nodes and 0 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
 Showing 5 of 5 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -5730,21 +5704,18 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-5">Edges<a class="anchor" aria-label="anchor" href="#edges-5"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 0 of 0 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"><tbody><tr></tr></tbody></table>
 </div>
-</div>
+</details><p><br></p>
 </div>
 <div class="section level3">
-<h3 id="section-11"></h3>
-<div class="section level4">
-<h4 id="semantic-similarity">Semantic Similarity<a class="anchor" aria-label="anchor" href="#semantic-similarity"></a>
-</h4>
+<h3 id="semantic-similarity">Semantic Similarity<a class="anchor" aria-label="anchor" href="#semantic-similarity"></a>
+</h3>
 <p>Monarch’s <a href="https://monarchinitiative.org/explore#phenotype-explorer" class="external-link">Semantic
 Similarity</a> tool provides matches between given query and target
 nodes, based on their semantic similarity in the KG. Here we grab a few
@@ -5755,11 +5726,11 @@ phenotype for each EDS phenotype. The result is returned as a graph,
 containing only computed <code>"computed:best_matches"</code> edges:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">marfan_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007947"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007947"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_semsim.html">monarch_semsim</a></span><span class="op">(</span><span class="va">eds_phenos</span>, <span class="va">marfan_phenos</span><span class="op">)</span></span>
@@ -5767,15 +5738,12 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span><span class="va">sim</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-13-1.png" width="960"></p>
-</div>
-</div>
-<div class="section level3 tabset">
-<h3 class="tabset" id="section-12"></h3>
-<div class="section level4">
-<h4 id="nodes-6">Nodes<a class="anchor" aria-label="anchor" href="#nodes-6"></a>
-</h4>
-Showing 16 of 16 nodes:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+<pre>Graph with 19 nodes and 11 edges. Expand sections below for details.</pre>
+<details><summary><b>Node Data</b>
+</summary><p>
+Showing 19 of 19 nodes:
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -6276,24 +6244,21 @@ c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MESH:D008382”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0001377”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Pes planus”
+“Limited elbow extension”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“A foot where the longitudinal arch of the foot is in contact with the
-ground or floor when the individual is standing; or, in a patient lying
-supine, a foot where the arch is in contact with the surface of a flat
-board pressed against the sole of the foot by the examiner with a
-pressure similar to that expected from weight bearing; or, the height of
-the arch is reduced.”
+“Limited ability to straighten the arm at the elbow joint.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Dropped arches”, “Fallen arches”, “Flat feet”, “Flat foot”)
+c(“Decreased elbow extension”, “Elbow limited extension”, “Limitation of
+elbow extension”, “Limited elbow extension”, “Limited extension at
+elbows”, “Limited forearm extension”, “Restricted elbow extension”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6301,11 +6266,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0001763" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001763</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0001377" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001377</a>”
 </td>
 <td style="text-align:left;">
-c(“MSH:D005413”, “SNOMEDCT_US:203534009”, “SNOMEDCT_US:53226007”,
-“UMLS:C0016202”, “UMLS:C0264133”)
+“UMLS:C1867103”
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6316,19 +6280,24 @@ c(“MSH:D005413”, “SNOMEDCT_US:203534009”, “SNOMEDCT_US:53226007”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0000486”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Spontaneous pneumothorax”
+“Strabismus”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Pneumothorax occurring without traumatic injury to the chest or lung.”
+“A misalignment of the eyes so that the visual axes deviate from
+bifoveal fixation. The classification of strabismus may be based on a
+number of features including the relative position of the eyes, whether
+the deviation is latent or manifest, intermittent or constant,
+concomitant or otherwise and according to the age of onset and the
+relevance of any associated refractive error.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Spontaneous collapsed lung”
+c(“Cross-eyed”, “Squint”, “Squint eyes”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6336,10 +6305,11 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0002108" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002108</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0000486" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000486</a>”
 </td>
 <td style="text-align:left;">
-c(“MSH:D011030”, “SNOMEDCT_US:80423007”, “UMLS:C0149781”)
+c(“MSH:D013285”, “SNOMEDCT_US:128602000”, “SNOMEDCT_US:22066006”,
+“UMLS:C0038379”)
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6350,20 +6320,20 @@ c(“MSH:D011030”, “SNOMEDCT_US:80423007”, “UMLS:C0149781”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0002616”
+“HP:0005136”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Aortic root aneurysm”
+“Mitral annular calcification”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“An abnormal localized widening (dilatation) of the aortic root.”
+“Mitral annular calcification (MAC) results from progressive calcium
+deposition along and beneath the mitral valve annulus.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Aortic root dilatation”, “Bulge in wall of root of large artery that
-carries blood away from heart”, “Increased aortic root diameter”)
+“Premature calcification of mitral annulus”
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6371,10 +6341,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0002616" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002616</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0005136" class="external-link uri">http://purl.obolibrary.org/obo/HP_0005136</a>”
 </td>
 <td style="text-align:left;">
-c(“SNOMEDCT_US:251036003”, “UMLS:C0238669”)
+“UMLS:C1835130”
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6385,26 +6355,23 @@ c(“SNOMEDCT_US:251036003”, “UMLS:C0238669”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0000275”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Narrow face”
+“Flexion contracture”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Bizygomatic (upper face) and bigonial (lower face) width are both more
-than 2 standard deviations below the mean (objective); or, an apparent
-reduction in the width of the upper and lower face (subjective).”
+“A flexion contracture is a bent (flexed) joint that cannot be
+straightened actively or passively. It is thus a chronic loss of joint
+motion due to structural changes in muscle, tendons, ligaments, or skin
+that prevents normal movement of joints.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Decreased breadth of face”, “Decreased horizontal dimension of face”,
-“Decreased transverse dimension of face”, “Decreased width of face”,
-“Horizontal deficiency of face”, “Horizontal hypoplasia of face”,
-“Horizontal insufficiency of face”, “Narrow face”, “Narrow facies”,
-“Thin face”, “Thin facies”, “Transverse deficiency of face”, “Transverse
-hypoplasia of face”, “Transverse insufficiency of face”)
+c(“Flexed joint that cannot be straightened”, “Flexion contractures”,
+“Flexion contractures of joints”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6412,10 +6379,117 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000275" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000275</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0001371" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001371</a>”
 </td>
 <td style="text-align:left;">
-c(“UMLS:C1837463”, “UMLS:C1849121”)
+c(“MSH:D003286”, “SNOMEDCT_US:203598005”, “SNOMEDCT_US:385522000”,
+“SNOMEDCT_US:55033002”, “SNOMEDCT_US:57048009”, “SNOMEDCT_US:7890003”,
+“SNOMEDCT_US:88565003”, “UMLS:C0009917”, “UMLS:C0009918”,
+“UMLS:C0333068”, “UMLS:C1850530”)
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0003199”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Decreased muscle mass”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Decreased muscle mass”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0003199" class="external-link uri">http://purl.obolibrary.org/obo/HP_0003199</a>”
+</td>
+<td style="text-align:left;">
+“UMLS:C1837108”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0025586”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Hypertropia”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“A type of strabismus characterized by permanent upward deviation of the
+visual axis of one eye.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0025586" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025586</a>”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0002816”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Genu recurvatum”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An abnormally increased extension of the knee joint, so that the knee
+can bend backwards.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Back knee”, “Genu recurvata”, “Knee hyperextension”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0002816" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002816</a>”
+</td>
+<td style="text-align:left;">
+c(“MEDDRA:10018194”, “UMLS:C0546964”)
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6427,12 +6501,11 @@ c(“UMLS:C1837463”, “UMLS:C1849121”)
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level4">
-<h4 id="edges-6">Edges<a class="anchor" aria-label="anchor" href="#edges-6"></a>
-</h4>
+</details><details><summary><b>Edge Data</b>
+</summary><p>
 Showing 11 of 11 edges:
-<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
+</p>
+<div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -6466,7 +6539,7 @@ ancestor_id
 9
 </td>
 <td style="text-align:left;">
-13
+19
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -6475,7 +6548,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0002816”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6492,7 +6565,7 @@ ancestor_id
 2
 </td>
 <td style="text-align:left;">
-15
+14
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6501,7 +6574,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002616”
+“HP:0000486”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6518,7 +6591,7 @@ ancestor_id
 3
 </td>
 <td style="text-align:left;">
-15
+14
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6527,7 +6600,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002616”
+“HP:0000486”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6544,7 +6617,7 @@ ancestor_id
 4
 </td>
 <td style="text-align:left;">
-14
+17
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -6553,7 +6626,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0003199”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6570,7 +6643,7 @@ ancestor_id
 10
 </td>
 <td style="text-align:left;">
-15
+18
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -6579,7 +6652,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002616”
+“HP:0025586”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6605,7 +6678,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000275”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6622,7 +6695,7 @@ ancestor_id
 6
 </td>
 <td style="text-align:left;">
-13
+16
 </td>
 <td style="text-align:left;">
 “HP:0001073”
@@ -6631,16 +6704,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-5.9026671929441
+9.87469715486756
 </td>
 <td style="text-align:left;">
-“HP:0033127”
+“HP:0003549”
 </td>
 </tr>
 <tr>
@@ -6648,7 +6721,7 @@ ancestor_id
 7
 </td>
 <td style="text-align:left;">
-13
+15
 </td>
 <td style="text-align:left;">
 “HP:0001075”
@@ -6657,16 +6730,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0005136”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-5.9026671929441
+9.87469715486756
 </td>
 <td style="text-align:left;">
-“HP:0033127”
+“HP:0003549”
 </td>
 </tr>
 <tr>
@@ -6674,7 +6747,7 @@ ancestor_id
 11
 </td>
 <td style="text-align:left;">
-13
+16
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6683,16 +6756,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-5.9026671929441
+8.69625474174526
 </td>
 <td style="text-align:left;">
-“HP:0033127”
+“HP:0003011”
 </td>
 </tr>
 <tr>
@@ -6709,16 +6782,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0001377”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-6.11663061914441
+9.98265640300348
 </td>
 <td style="text-align:left;">
-“HP:0000924”
+“HP:0011729”
 </td>
 </tr>
 <tr>
@@ -6750,10 +6823,7 @@ ancestor_id
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="section-13"></h3>
+</details><p><br></p>
 <p>Note that the Disease nodes were included in the match as well.
 Although not displayed by <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, edges also include the
 metric, similarity score, and ID of the least common ancestor relating
@@ -6766,6 +6836,7 @@ this result in the context of the original query and target graphs.</p>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-14-1.png" width="960"></p>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr>

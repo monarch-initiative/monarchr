@@ -2,6 +2,7 @@
 <url><loc>/404.html</loc></url>
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/examples/alzheimers_phenotypes.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/articles/monarchr.html</loc></url>
 <url><loc>/authors.html</loc></url>
@@ -11,11 +12,8 @@
 <url><loc>/reference/cypher_query.html</loc></url>
 <url><loc>/reference/cypher_query_df.html</loc></url>
 <url><loc>/reference/edges.html</loc></url>
-<url><loc>/reference/edges.tbl_kgx.html</loc></url>
 <url><loc>/reference/expand.html</loc></url>
 <url><loc>/reference/explode.html</loc></url>
-<url><loc>/reference/explode.tbl_kgx.html</loc></url>
-<url><loc>/reference/fetch_edges.html</loc></url>
 <url><loc>/reference/fetch_nodes.html</loc></url>
 <url><loc>/reference/file_engine.html</loc></url>
 <url><loc>/reference/file_engine_check.html</loc></url>
@@ -31,7 +29,6 @@
 <url><loc>/reference/neo4j_engine.html</loc></url>
 <url><loc>/reference/neo4j_engine_check.html</loc></url>
 <url><loc>/reference/nodes.html</loc></url>
-<url><loc>/reference/nodes.tbl_kgx.html</loc></url>
 <url><loc>/reference/normalize_categories.html</loc></url>
 <url><loc>/reference/order_cols.html</loc></url>
 <url><loc>/reference/plot.tbl_kgx.html</loc></url>
