@@ -64,23 +64,23 @@ knit_print.tbl_kgx <- function(graph, show = 100, ...) {
 
 	knitr::asis_output(knitr::knit_child(text = c(
 		'',
-		'### {.tabset}',
+		'##### {.tabset}',
 		'',
-		'#### Nodes',
+		'###### Nodes',
 		paste0("Showing ", nodes_showing, " of ", nodes_total, " nodes:"),
 		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'nodes_kbl',
 		'```',
 		'</div>',
-		'#### Edges',
+		'###### Edges',
 		paste0("Showing ", edges_showing, " of ", edges_total, " edges:"),
 		'<div style="max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">',
 		'```{r eval=TRUE, echo=FALSE}',
 		'edges_kbl',
 		'```',
 		'</div>',
-		'###',
+		'#####',
 		''
 	), envir = environment(), quiet = TRUE))
 }
