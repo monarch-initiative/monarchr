@@ -1,7 +1,7 @@
 ---
 title: "`r read.dcf('DESCRIPTION', fields = 'Package')[1]`"  
 author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE)`" 
-date: "<h4>README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+date: "README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   github_document
 ---
@@ -16,29 +16,27 @@ description <- read.dcf("DESCRIPTION", fields = "Description")[1]|>
 URL <- read.dcf('DESCRIPTION', fields = 'URL')[1]
 owner <- tolower(strsplit(URL,"/")[[1]][4])
 ```
- 
-## ``r pkg``: `r title`
+
+## `r pkg`: `r title`
 
 ### `r description`
- 
-MonarchR provides a tidy interface to data hosted at https://monarchinitiative.org.
- 
-- [Website](https://`r owner`.github.io/`r pkg`) 
-- [Get started](https://`r owner`.github.io/`r pkg`/articles/`r pkg`) 
- 
+
+MonarchR provides a tidy interface to data hosted at <https://monarchinitiative.org>.
+
+-   [Website](https://%60r%20owner%60.github.io/%60r%20pkg%60)
+-   [Get started](https://%60r%20owner%60.github.io/%60r%20pkg%60/articles/%60r%20pkg%60)
+
 <!-- If you use ``r pkg``, please cite:  -->
+
 <!-- Modify this by editing the file: inst/CITATION  -->
+
 <!-- > `r utils::citation(pkg)$textVersion` -->
 
 Installation:
 
-```R
+``` r
 if(!require("remotes")) install.packages("remotes")
 
 remotes::install_github("`r URL`")
 library(`r pkg`)
 ```
-
- 
- 
-

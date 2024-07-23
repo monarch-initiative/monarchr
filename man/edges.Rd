@@ -8,11 +8,10 @@ edges(g, ...)
 }
 \arguments{
 \item{g}{A tbl_kgx graph.}
-}
-\arguments{
-\item{x}{Input graph}
 
 \item{...}{Other options (unused)}
+
+\item{x}{Input graph}
 }
 \value{
 A tibble with the edges of the graph

@@ -1,7 +1,7 @@
 ---
 title: "MonarchR Basics"
 author: "Shawn T O'Neil"
-date: "<h4>Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   rmarkdown::html_document
 vignette: >
@@ -9,10 +9,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
 
 
 ```{r, include=FALSE, message=FALSE}
@@ -25,7 +21,7 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE,
 ```
 
 
-### Background: Biomedical Knowledge Graphs
+# Background: Biomedical Knowledge Graphs
 
 Knowledge graphs (KGs) represent entities (such as genes, diseases, or phenotypes) and
 the relationships between them; for example that the `CFTR` gene `causes` the disease
@@ -81,13 +77,8 @@ Backed by `tidygraph` and `igraph`, `monarchr` is part of a larger ecosystem of 
 - Other:
   - Particle/force-based simulation: [`particles`](https://github.com/thomasp85/particles)
   - ... others in the reverse imports for [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html)
-  
 
-<div class = "blue">
-*Note*: The default `plot()` provided by `monarchr` is a work in progress with limited features. 
-</div>
-
-### Engines
+# Engines
 
 Two kinds of engines are supported, providing largely the same functionality: one supporting access to [Neo4j graph databases](https://neo4j.com/), and another supporting file-based access to TSV-formatted `.tar.gz` KGs hosted at [kghub.io](https://kghub.io). Regardless of source, KGs must conform to the [KGX specification](https://github.com/biolink/kgx/blob/master/specification/kgx-format.md).
 
@@ -97,7 +88,7 @@ The most accessible engine provided by `monarchr` is the `monarch_engine()`, des
 monarch <- monarch_engine()
 ```
 
-Using another Neo4j database via `neo4j_engine()` is as simple as specifying a Neo4j [Bolt](https://neo4j.com/docs/operations-manual/current/configuration/ports/) endpoint, and username and password if required. This may be used to host your own Neo4j database for efficient KG access, based on the Monarch Neo4j [docker deployment](https://github.com/monarch-initiative/monarch-neo4j). 
+Using another Neo4j database via `neo4j_engine()` is as simple as specifying a Neo4j [Bolt](https://neo4j.com/docs/operations-manual/current/configuration/ports/) endpoint, and username and password if required. This may be used to host your own Neo4j database for efficient KG access, based on the Monarch Neo4j [docker deployment](https://github.com/monarch-initiative/monarch-neo4j).
 
 ```{r eval=FALSE}
 neodb <- neo4j_engine("http://localhost:7687", username = "user", password = "pass")
@@ -112,7 +103,7 @@ filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
 mondo <- file_engine(filename)
 ```
 
-### Fetching Nodes
+# Fetching Nodes
 
 Engines support a `fetch_nodes()` function for pulling nodes by specified criteria. It returns a `tidygraph`-based graph, but only nodes, not any edges that may connect them. These can be specified as a set of IDs:
 
@@ -130,7 +121,7 @@ h_sapiens_nodes <- monarch |>
 h_sapiens_nodes
 ```
 
-While the syntax does not support all R expressions (for compatibility with database-backed engines), 
+While the syntax does not support all R expressions (for compatibility with database-backed engines),
 standard comparisons `==`, `!=`, `<=`, `>=`, `<`, and `>` are, as are logical operators `&`, `|`, and `!`,
 and grouping with `()`s. Since many node properties are multi-valued, we provide a special `%in_list%`
 operator to allow exact match against entries. Here we fetch all the *Homo sapiens* Genes, using `%in_list%` to account for the multi-valued nature of node `category`.^[The `%in_list%` and other operators work the same
@@ -139,7 +130,7 @@ node property name in the KG.]
 
 ```{r}
 human_genes <- monarch |>
-	fetch_nodes(in_taxon_label == "Homo sapiens" & "biolink:Gene" %in_list% category, 
+	fetch_nodes(in_taxon_label == "Homo sapiens" & "biolink:Gene" %in_list% category,
 							limit = 20)
 
 human_genes
@@ -154,7 +145,8 @@ fibrosis_disease_matches <- monarch |>
 							limit = 20)
 fibrosis_disease_matches
 ```
-### Expanding
+
+# Expanding
 
 From a set of nodes (and possibly edges that connect them), we can "expand" by fetching their collective neighborhood from the KG engine. Here we fetch 10 Gene nodes, and in the first call to `expand()` fetch nodes connected by `biolink:causes` or `biolink:gene_associated_with_condition` predicates. We then take the resulting graph (which contains both disease and gene nodes), and fetch the neighborhood of nodes with category `biolink:PhenotypicFeature`. Since there are many such results, we add a `limit` for the visualization.^[The `limit` parameter for `expand()` is more complex than for `fetch_nodes()`, because the query graph also contains edges which may be part of the neighborhood that would be fetched; `expand()` attempts to fetch `limit` new edges that are not part of the query already. Further, unlike in `fetch_nodes()` where nodes are ordered by ID, edges returned by `expand()` have no explicit order, and results with `limit` should not be considered reproducible or representative.]
 
@@ -189,9 +181,9 @@ hierarchy <- monarch |>
 plot(hierarchy)
 ```
 
-### Monarch Features
+# Monarch Features
 
-#### Searching
+## Searching
 
 While `fetch_nodes()` and `expand()` apply to all types of engines, `monarchr` also exposes functionality specific to the Monarch Initiatives' API services. The first of these is `monarch_search()`, which uses the same search API as the Monarch [website](https://monarchinitiative.org), returning a graph with matching nodes backed by a `monarch_engine()`.
 
@@ -201,7 +193,7 @@ cf_hits <- monarch_search("Cystic fibrosis", category = "biolink:Disease", limit
 cf_hits
 ```
 
-#### Semantic Similarity
+## Semantic Similarity
 
 Monarch's [Semantic Similarity](https://monarchinitiative.org/explore#phenotype-explorer) tool
 provides matches between given query and target nodes, based on their semantic similarity in the KG. Here we grab a few phenotypes of Ehlers-Danlos syndrome, classic type (`"MONDO:0007522"`) and Marfan Syndrome (`"MONDO:0007947"`), and we find the best matching Marfan phenotype for each EDS phenotype. The
@@ -209,11 +201,11 @@ result is returned as a graph, containing only computed `"computed:best_matches"
 
 ```{r}
 eds_phenos <- monarch |>
-	fetch_nodes(query_ids = "MONDO:0007522") |> 
+	fetch_nodes(query_ids = "MONDO:0007522") |>
 	expand(predicates = "biolink:has_phenotype", limit = 10)
 
 marfan_phenos <- monarch |>
-	fetch_nodes(query_ids = "MONDO:0007947") |> 
+	fetch_nodes(query_ids = "MONDO:0007947") |>
 	expand(predicates = "biolink:has_phenotype", limit = 10)
 
 sim <- monarch_semsim(eds_phenos, marfan_phenos)
@@ -227,7 +219,7 @@ displayed by `plot()`, edges also include the metric, similarity score, and
 ID of the least common ancestor relating the nodes.
 
 
-We can use `tidygraph`'s `graph_join()` to see this result in the context 
+We can use `tidygraph`'s `graph_join()` to see this result in the context
 of the original query and target graphs.
 
 ```{r}
