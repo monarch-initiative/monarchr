@@ -14,6 +14,9 @@ plot.tbl_kgx <- function(g, layout = "auto", node_color = pcategory, edge_color 
 		geom_edge_fan(aes(color = {{edge_color}}),
 									 arrow = arrow(length = unit(2, 'mm'), type = "closed"),
 									 end_cap = circle(2.5, 'mm')) +
+		geom_edge_loop(aes(color = {{edge_color}}),
+									 arrow = arrow(length = unit(2, 'mm'), type = "closed"),
+									 end_cap = circle(2.5, 'mm')) +
 		geom_node_point(aes(color = {{node_color}}),
 										size = 3) +
 		geom_node_label(aes(label = str_wrap(name, 20)),
