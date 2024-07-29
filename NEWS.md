@@ -1,3 +1,6 @@
+
+1.0.1: Fix missing self loops in plot
+
 # monarchr 1.0.0
 
 1.0.0 is a major update to `monarchr` functionality and APIs.
