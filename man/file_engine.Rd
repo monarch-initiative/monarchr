@@ -25,8 +25,6 @@ while node \code{category} is multi-valued (nodes may have multiple categories, 
 typically a single category is used to represent the node in a graph, and is returned as the nodes' \code{pcategory}. A preference list of categories to use for \code{pcategory} is
 stored in the engine's preferences. A default set of preferences is stored in the package for use with KGX (BioLink-compatible) graphs (see https://github.com/biolink/kgx/blob/master/specification/kgx-format.md),
 but these can be overridden by the user.
-
-For \code{file_engine()}s, preferences are also used to set the node properties to search when using \code{search_nodes()}, defaulting to regex-based searches on id, name, and description.
 }
 \examples{
 library(tidygraph)
@@ -34,29 +32,10 @@ library(dplyr)
 
 # Using a local MONDO KGX file (packaged with monarchr)
 filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
-e <- file_engine(filename)
-print(e$preferences)   # print the default preferences
+engine <- file_engine(filename)
 
-# same search and fetch, different preferences
-search_nodes(e, "fibrosis", limit = 5) |>
-  activate(nodes) |>
-  as.data.frame() |>
-  select(name, id, pcategory, category)
-
-# prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
-# followed by "biolink:NamedThing", otherwise use the first listed category.
-# Additionally, only search nodes' name property.
-# (Note that the MONDO KGX file does not provide multiple categories for
-# nodes, so the category_priority preference has no effect here.)
-e <- file_engine(filename,
-                 preferences = list(category_priority = c("biolink:ThingWithTaxon",
-                                                          "biolink:NamedThing"),
-                                    node_search_properties = c("name")))
-
-search_nodes(e, "fibrosis", limit = 5) |>
-  activate(nodes) |>
-  as.data.frame() |>
-  select(name, id, pcategory, category)
+res <- engine |> fetch_nodes(query_ids = c("MONDO:0007522", "MONDO:0007947"))
+print(res)
 
 }
 \seealso{

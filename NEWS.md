@@ -1,4 +1,15 @@
 
+
+# monarchr 1.1.0
+
+## New features
+
+* New `kg_join()` function
+
+## Bug fixes
+
+* Fix `expand()` to include new edges when multiple nodes with the same `id` are part of the query.
+
 1.0.1: Fix missing self loops in plot
 
 # monarchr 1.0.0

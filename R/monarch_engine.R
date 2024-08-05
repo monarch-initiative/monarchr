@@ -22,25 +22,9 @@
 #' library(tidygraph)
 #' library(dplyr)
 #'
-#' e <- monarch_engine()
-#' print(e$preferences)   # print the default preferences
-#'
-#' # same search and fetch, different preferences
-#' search_nodes(e, "fibrosis", limit = 5) |>
-#'   activate(nodes) |>
-#'   as.data.frame() |>
-#'   select(name, id, pcategory, category)
-#'
-#' # prefer to set pcategory to "biolink:ThingWithTaxon" if it applies,
-#' # followed by "biolink:NamedThing", otherwise use the first listed category.
-#' # Additionally, only search nodes' name property.
-#' e <- monarch_engine(preferences = list(category_priority = c("biolink:ThingWithTaxon",
-#'                                                              "biolink:NamedThing")))
-#'
-#' search_nodes(e, "fibrosis", limit = 5) |>
-#'   activate(nodes) |>
-#'   as.data.frame() |>
-#'   select(name, id, pcategory, category)
+#' monarch <- monarch_engine()
+#' res <- monarch |> fetch_nodes(query_ids = c("MONDO:0007522", "MONDO:0007947"))
+#' print(res)
 #'
 monarch_engine <- function(url = "https://neo4j.monarchinitiative.org",
                            api_url = "https://api.monarchinitiative.org/v3/api",
