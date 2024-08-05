@@ -1,6 +1,6 @@
 #' Join two KGX graphs by their nodes and edges.
 #'
-#' Given two KGX graphs, returns a new KGX graph that is the union of the two input graphs, 
+#' Given two KGX graphs, returns a new KGX graph that is the union of the two input graphs,
 #' with any edges between nodes repeated for aother nodes with the same subject and object `id`.
 #' The engine of the first graph is used for the new graph.
 #'
@@ -21,14 +21,15 @@
 #' @export
 #' @examples
 #' ## Using local MONDO KGX file (packaged with monarchr)
-#' eds_and_phenos <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
-#'                               package = "monarchr")) |>
+#' monarch <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
+#'                               package = "monarchr"))
+#'
+#' eds_and_phenos <- monarch |>
 #'                   fetch_nodes(query_ids = "MONDO:0007525") |>
 #'                   expand(predicates = "biolink:has_phenotype",
 #'                          categories = "biolink:PhenotypicFeature")
 #'
-#' marfan_and_phenos <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
-#'                                  package = "monarchr")) |>
+#' marfan_and_phenos <- monarch |>
 #'                      fetch_nodes(query_ids = "MONDO:0007947") |>
 #'                      expand(predicates = "biolink:has_phenotype",
 #'                             categories = "biolink:PhenotypicFeature")
