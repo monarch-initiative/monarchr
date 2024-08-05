@@ -187,7 +187,7 @@ expand_neo4j_engine <- function(engine,
     # if drop_unused_query_nodes is FALSE, we'll keep them by
     # joining the result with the original graph
     if(!drop_unused_query_nodes) {
-        suppressMessages(result_cumulative <- tidygraph::graph_join(graph, result_cumulative), classes = "message") # suppress joining info
+        suppressMessages(result_cumulative <- kg_join(graph, result_cumulative), classes = "message") # suppress joining info
     }
 
     attr(result_cumulative, "last_engine") <- engine

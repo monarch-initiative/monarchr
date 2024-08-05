@@ -8,10 +8,12 @@ transitive_query_internal <- function(engine,
                                       categories = NULL,
                                       drop_unused_query_nodes = FALSE) {
 
+    # TODO: this block will never trigger; the check is done in the main function, remove
     if(length(predicates) > 1) {
         # we call recusively on each predicate
         for(predicate in predicates) {
-            g2 <- transitive_query_internal(g,
+            g2 <- transitive_query_internal(engine,
+                                            g,
                                             direction = direction,
                                             predicates = predicate,
                                             categories = categories,
@@ -133,7 +135,7 @@ direction_fetch_internal <- function(engine,
             activate(edges) %>%
             filter(FALSE)
 
-        suppressMessages(new_edges <- graph_join(query_no_edges, new_edges), classes = "message") # suppress joining info
+        suppressMessages(new_edges <- kg_join(query_no_edges, new_edges), classes = "message") # suppress joining info
     }
 
     return(new_edges)
@@ -172,7 +174,7 @@ expand_file_engine <- function(engine,
         } else if(direction == "both") {
             new_out_edges <- direction_fetch_internal(engine, graph, "out", predicates, categories, drop_unused_query_nodes)
             new_in_edges <- direction_fetch_internal(engine, graph, "in", predicates, categories, drop_unused_query_nodes)
-            suppressMessages(new_edges <- graph_join(new_out_edges, new_in_edges), classes = "message") # suppress joining info
+            suppressMessages(new_edges <- kg_join(new_out_edges, new_in_edges), classes = "message") # suppress joining info
         }
     }
 
