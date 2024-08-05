@@ -15,9 +15,8 @@ kg_join.tbl_kgx <- function(g1, g2) {
                  mutate(idx = row_number())  # add an index column to the nodes
 
 
-    all_edges <- unique(edges_g1 |> 
+    all_edges <- unique(edges_g1 |>
                           full_join(edges_g2))
-
 
 
 
@@ -37,12 +36,19 @@ kg_join.tbl_kgx <- function(g1, g2) {
         return(row_df)
     }
 
-    filled_edges <- all_edges |>
-      mutate(edge_idx = row_number()) |>
-      group_by(edge_idx) |>
-      do(fill_edges(.)) |>
-      as_tibble() |>
-      select(-edge_idx)  # remove the edge_idx column
+    filled_edges <- NULL
+
+    # not using rowwise() here so that each row is nicely contained including list columns as a df row (not a list)
+    # but maybe group_by() isn't right either - this triggers the call to fill_edges(.) even if there are no rows in the df
+    # so we have a guard here
+    if(nrow(all_edges) > 0) {
+	    filled_edges <- all_edges |>
+	      mutate(edge_idx = row_number()) |>
+	      group_by(edge_idx) |>
+	      do(fill_edges(.)) |>
+	      as_tibble() |>
+	      select(-edge_idx)  # remove the edge_idx column
+    }
 
     all_nodes <- all_nodes |>
       select(-idx)  # remove the idx column

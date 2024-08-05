@@ -5,7 +5,7 @@ test_that("kg_join works", {
 
     g1 <- tbl_kgx(nodes = tibble(id = c("a", "b", "c"),
                                  category = c("gene", "gene", "disease"),
-                                 source = c("g1", "g1", "g1")), 
+                                 source = c("g1", "g1", "g1")),
                   edges = tibble(subject = c("a", "b"),
                                  predicate = c("interacts_with", "interacts_with"),
                                  object = c("b", "c")))
@@ -28,4 +28,14 @@ test_that("kg_join works", {
     expect_equal(nrow(edges(res) |> filter(subject == "a")), 1)
     expect_equal(nrow(edges(res) |> filter(subject == "b")), 2)
     expect_equal(nrow(edges(res) |> filter(object == "b")), 1)
+
+
+    res2 <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
+    	        fetch_nodes(query_ids = "MONDO:0007525")
+
+    # there should be no edges and one node
+    expect_equal(nrow(nodes(res2)), 1)
+    expect_equal(nrow(edges(res2)), 0)
+
+
 })
