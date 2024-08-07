@@ -45,6 +45,6 @@ marfan_and_phenos <- monarch |>
                      expand(predicates = "biolink:has_phenotype",
                             categories = "biolink:PhenotypicFeature")
 
-combined <- graph_join(eds_and_phenos, marfan_and_phenos)
+combined <- kg_join(eds_and_phenos, marfan_and_phenos)
 print(combined)
 }
