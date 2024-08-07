@@ -4,14 +4,12 @@
 \alias{edges}
 \title{Get graph edges table.}
 \usage{
-edges(g, ...)
+edges(graph, ...)
 }
 \arguments{
-\item{g}{A tbl_kgx graph.}
+\item{graph}{Input graph}
 
 \item{...}{Other options (unused)}
-
-\item{x}{Input graph}
 }
 \value{
 A tibble with the edges of the graph

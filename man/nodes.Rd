@@ -4,10 +4,12 @@
 \alias{nodes}
 \title{Get graph nodes table.}
 \usage{
-nodes(g, ...)
+nodes(graph, ...)
 }
 \arguments{
-\item{g}{A graph object}
+\item{graph}{A graph object}
+
+\item{...}{Other options (unused)}
 }
 \value{
 A tibble with the nodes of the graph

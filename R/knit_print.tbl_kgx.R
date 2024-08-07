@@ -20,7 +20,9 @@ clean_df <- function(df) {
 
 
 #' Specialized print function for KGX graphs in knitted documents
-#'
+#' @param graph A `tbl_kgx` graph to display.
+#' @param show The maximum number of rows and edges to display.
+#' @param ... Other arguments (unused).
 #' @export
 #' @import knitr
 #' @importFrom kableExtra kable

@@ -18,7 +18,7 @@
 #' result <- cypher_query(engine, query, parameters)
 #' print(result)
 #' @importFrom neo2R cypher
-cypher_query <- function(engine, ...) {
+cypher_query <- function(engine, query, parameters = NULL, ...) {
     UseMethod("cypher_query")
 }
 

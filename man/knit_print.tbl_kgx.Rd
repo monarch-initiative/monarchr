@@ -6,6 +6,13 @@
 \usage{
 \method{knit_print}{tbl_kgx}(graph, show = 100, ...)
 }
+\arguments{
+\item{graph}{A \code{tbl_kgx} graph to display.}
+
+\item{show}{The maximum number of rows and edges to display.}
+
+\item{...}{Other arguments (unused).}
+}
 \description{
 Specialized print function for KGX graphs in knitted documents
 }
