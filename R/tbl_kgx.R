@@ -10,6 +10,7 @@
 #'
 #' @param nodes A data frame containing the nodes of the graph. Must have 'id' and 'category' columns.
 #' @param edges A data frame containing the edges of the graph. Must have 'subject', 'predicate', and 'object' columns. Can be NULL.
+#' @param attach_engine An engine to attach to the newly created graph for use in future queries based on the graph.
 #' @param ... Additional arguments passed to the function.
 #' @return A KGX graph object.
 #' @examples

@@ -4,16 +4,16 @@
 \alias{cypher_query}
 \title{Execute a Cypher Query}
 \usage{
-cypher_query(engine, ...)
+cypher_query(engine, query, parameters = NULL, ...)
 }
 \arguments{
 \item{engine}{A neo4j KG engine}
 
-\item{...}{Additional arguments passed to the function.}
-
 \item{query}{A string representing the Cypher query.}
 
 \item{parameters}{A list of parameters for the Cypher query. Default is an empty list.}
+
+\item{...}{Additional arguments passed to the function.}
 }
 \value{
 The result of the Cypher query as a tbl_kgx graph.

@@ -11,6 +11,8 @@ tbl_kgx(nodes = NULL, edges = NULL, attach_engine = NULL, ...)
 
 \item{edges}{A data frame containing the edges of the graph. Must have 'subject', 'predicate', and 'object' columns. Can be NULL.}
 
+\item{attach_engine}{An engine to attach to the newly created graph for use in future queries based on the graph.}
+
 \item{...}{Additional arguments passed to the function.}
 }
 \value{

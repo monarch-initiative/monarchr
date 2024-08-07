@@ -45,6 +45,5 @@ Imports:
     ggraph,
     ggplot2
 Suggests: 
-		ggraph,
     testthat (>= 3.0.0),
     rworkflows

@@ -4,16 +4,16 @@
 \alias{cypher_query_df}
 \title{Execute a Cypher Query}
 \usage{
-cypher_query_df(engine, ...)
+cypher_query_df(engine, query, parameters = list(), ...)
 }
 \arguments{
 \item{engine}{A neo4j_engine() or derivative providing access to a Neo4j database.}
 
-\item{...}{Additional arguments passed to the function.}
-
 \item{query}{A string representing the Cypher query, which should return a table.}
 
 \item{parameters}{A list of parameters for the Cypher query. Default is an empty list.}
+
+\item{...}{Additional arguments passed to the function.}
 }
 \value{
 The result of the Cypher query as a data frame.

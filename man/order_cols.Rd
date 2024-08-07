@@ -6,6 +6,9 @@
 \usage{
 order_cols(g)
 }
+\arguments{
+\item{g}{A \code{tbl_kgx} graph.}
+}
 \description{
 Set edge/row data column order according to most recent engine preferences
 }

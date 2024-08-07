@@ -21,7 +21,7 @@ monarch_semsim(
 
 \item{include_reverse}{Whether to include the best matches from the target graph to the query graph. Default is \code{FALSE}.}
 
-\item{keep_unmatched_targets}{Whether to keep nodes in the target graph that do not have a match. Default is \code{FALSE}.}
+\item{keep_unmatched}{Whether to keep nodes in the target graph that do not have a match. Default is \code{FALSE}.}
 }
 \value{
 A tbl_kgx graph with \code{"computed:best_matches"} edges between the nodes of the two input graphs.

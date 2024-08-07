@@ -4,10 +4,12 @@
 \alias{explode}
 \title{Explode a graph into a list of single-node graphs}
 \usage{
-explode(g, ...)
+explode(graph, ...)
 }
 \arguments{
-\item{g}{A tbl_kgx graph.}
+\item{graph}{A tbl_kgx graph.}
+
+\item{...}{Other options (unused)}
 }
 \value{
 A list of tbl_kgx graphs.
