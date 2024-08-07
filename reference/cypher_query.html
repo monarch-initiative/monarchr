@@ -59,7 +59,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Execute a Cypher Query</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/cypher_query.R" class="external-link"><code>R/cypher_query.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks_pass/R/cypher_query.R" class="external-link"><code>R/cypher_query.R</code></a></small>
     <div class="hidden name"><code>cypher_query.Rd</code></div>
     </div>
 
@@ -68,7 +68,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cypher_query</span><span class="op">(</span><span class="va">engine</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cypher_query</span><span class="op">(</span><span class="va">engine</span>, <span class="va">query</span>, parameters <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,16 +79,16 @@
 <dd><p>A neo4j KG engine</p></dd>
 
 
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to the function.</p></dd>
-
-
 <dt id="arg-query">query<a class="anchor" aria-label="anchor" href="#arg-query"></a></dt>
 <dd><p>A string representing the Cypher query.</p></dd>
 
 
 <dt id="arg-parameters">parameters<a class="anchor" aria-label="anchor" href="#arg-parameters"></a></dt>
 <dd><p>A list of parameters for the Cypher query. Default is an empty list.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Additional arguments passed to the function.</p></dd>
 
 </dl></div>
     <div id="value">
