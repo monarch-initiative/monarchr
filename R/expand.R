@@ -60,6 +60,7 @@ expand <- function(graph,
 									 categories = NULL,
 									 transitive = FALSE,
 									 drop_unused_query_nodes = FALSE,
-									 ...) {
+
+									 					 ...) {
 	UseMethod("expand")
 }

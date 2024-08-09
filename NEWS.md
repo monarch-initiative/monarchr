@@ -1,5 +1,11 @@
 
 
+# monarchr 1.2.0
+
+## New features
+
+* New `save_kgx()` and `load_kgx()` for saving/loading graphs.
+
 # monarchr 1.1.0
 
 ## New features
