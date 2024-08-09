@@ -4,8 +4,13 @@
 #' @import tidygraph
 order_cols <- function(g) {
 	e <- attr(g, "last_engine")
-	node_prefs <- e$preferences$node_property_priority
-	edge_prefs <- e$preferences$edge_property_priority
+	node_prefs <- c("id", "pcategory", "name")
+	edge_prefs <- c("subject", "predicate", "object")
+
+	if(!is.null(e)) {
+		node_prefs <- e$preferences$node_property_priority
+		edge_prefs <- e$preferences$edge_property_priority
+	}
 
 	current_node_names <- colnames(nodes(g))
 	used_prefs_node_names <- node_prefs[node_prefs %in% current_node_names]
