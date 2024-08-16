@@ -101,7 +101,6 @@ filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 # filename <- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"
 
 eds_marfan <- file_engine(filename)
-eds_marfan
 ```
 
 # Fetching Nodes
