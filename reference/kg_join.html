@@ -19,7 +19,7 @@ The engine of the first graph is used for the new graph."><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
       </span>
     </div>
 
@@ -108,39 +108,66 @@ method repeats edges across nodes with the same <code>id</code>.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Using local MONDO KGX file (packaged with monarchr)</span></span></span>
-<span class="r-in"><span><span class="va">monarch</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"mondo_kgx_tsv.tar.gz"</span>,</span></span>
-<span class="r-in"><span>                              package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Using example KGX file packaged with monarchr</span></span></span>
+<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">eds_and_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">eds_and_phenos</span> <span class="op">&lt;-</span> <span class="va">engine</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                  <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                  <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
 <span class="r-in"><span>                         categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">marfan_and_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">marfan_and_phenos</span> <span class="op">&lt;-</span> <span class="va">engine</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                     <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007947"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                     <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
 <span class="r-in"><span>                            categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">combined</span> <span class="op">&lt;-</span> <span class="fu">kg_join</span><span class="op">(</span><span class="va">eds_and_phenos</span>, <span class="va">marfan_and_phenos</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(id, pcategory, name, description, synonym, category,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> xref, provided_by, iri, same_as, subsets)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(subject, predicate, object)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(id, pcategory, name, symbol, in_taxon_label,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> description, synonym, category, iri, xref, namespace, provided_by, in_taxon,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> full_name, type, has_gene)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(subject, predicate, object, agent_type,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> knowledge_level, knowledge_source, aggregator_knowledge_source,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> primary_knowledge_source, provided_by, id, category, original_object,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> original_subject, frequency_qualifier, has_evidence, has_total, has_quotient,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> has_count, has_percentage, onset_qualifier, publications, qualifiers,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> original_predicate)`</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 2 nodes and 0 edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 143 nodes and 152 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 2 trees</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed acyclic simple graph with 1 component</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 2 × 11 (active)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id        pcategory name  description synonym category xref  provided_by iri  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:00… biolink:… Ehle… Arthrochal… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">&lt;chr&gt;</span> mondo.json  http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:00… biolink:… Marf… A disorder… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">&lt;chr&gt;</span> mondo.json  http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: same_as &lt;list&gt;, subsets &lt;list&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 143 × 16 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id         pcategory name  symbol in_taxon_label description synonym category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> MONDO:000… biolink:… Ehle… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Arthrochal… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> HP:0000974 biolink:… Hype… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A conditio… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> HP:0001382 biolink:… Join… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The abilit… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> HP:0000023 biolink:… Ingu… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Protrusion… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> HP:0000963 biolink:… Thin… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Reduction … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HP:0000978 biolink:… Brui… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             An ecchymo… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> HP:0001027 biolink:… Soft… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A skin tex… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> HP:0001058 biolink:… Poor… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A reduced … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> HP:0001075 biolink:… Atro… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Scars that… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HP:0001373 biolink:… Join… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Displaceme… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 133 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: iri &lt;chr&gt;, xref &lt;list&gt;, namespace &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, in_taxon &lt;chr&gt;, full_name &lt;chr&gt;, type &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_gene &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 0 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 variables: from &lt;int&gt;, to &lt;int&gt;, subject &lt;chr&gt;, predicate &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   object &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 152 × 25</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject       predicate          object agent_type knowledge_level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1     8 MONDO:0007525 biolink:has_pheno… HP:00… manual_ag… knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     1    29 MONDO:0007525 biolink:has_pheno… HP:00… manual_ag… knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     1    20 MONDO:0007525 biolink:has_pheno… HP:00… manual_ag… knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 149 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more variables: knowledge_source &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;chr&gt;, primary_knowledge_source &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, id &lt;chr&gt;, category &lt;chr&gt;, original_object &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   original_subject &lt;chr&gt;, frequency_qualifier &lt;chr&gt;, has_evidence &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_total &lt;dbl&gt;, has_quotient &lt;dbl&gt;, has_count &lt;dbl&gt;, has_percentage &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   onset_qualifier &lt;chr&gt;, publications &lt;chr&gt;, qualifiers &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </div>
