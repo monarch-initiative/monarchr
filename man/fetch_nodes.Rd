@@ -52,14 +52,14 @@ monarch_engine() |>
   fetch_nodes("biolink:Disease" \%in_list\% category)
 \dontshow{\}) # examplesIf}
 # file_engine supports the same features as neo4j_engine
-# (using the MONDO KGX file packaged with monarchr)
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# (using the example KGX file packaged with monarchr)
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 file_engine(filename) |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 
-# grab all rare diseases
+# grab all Homo sapiens genes
 file_engine(filename) |>
-  fetch_nodes("rare" \%in_list\% subsets & "biolink:Disease" \%in_list\% category)
+  fetch_nodes(in_taxon_label == "Homo sapiens" & "biolink:Gene" \%in_list\% category)
 
 }

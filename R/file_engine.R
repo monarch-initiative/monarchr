@@ -18,8 +18,8 @@
 #' library(tidygraph)
 #' library(dplyr)
 #'
-#' # Using a local MONDO KGX file (packaged with monarchr)
-#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' # Using example KGX file packaged with monarchr
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #' engine <- file_engine(filename)
 #'
 #' res <- engine |> fetch_nodes(query_ids = c("MONDO:0007522", "MONDO:0007947"))

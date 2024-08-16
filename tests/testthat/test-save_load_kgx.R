@@ -2,9 +2,10 @@ library(testthat)
 library(assertthat)
 
 test_that("save_kgx and load_kgx work as expected", {
-	suppressWarnings(g <- monarch_engine() |>
-		fetch_nodes(limit = 5) |>
-		expand(limit = 20))
+	filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+	g <- file_engine(filename) |>
+	  fetch_nodes(limit = 5) |>
+	  expand()
 
 	save_kgx(g, "test.tar.gz")
 

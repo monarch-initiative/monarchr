@@ -31,16 +31,16 @@ cases, any edge that connects to one of these nodes is also valid for the other 
 method repeats edges across nodes with the same \code{id}.
 }
 \examples{
-## Using local MONDO KGX file (packaged with monarchr)
-monarch <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
-                              package = "monarchr"))
+## Using example KGX file packaged with monarchr
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+engine <- file_engine(filename)
 
-eds_and_phenos <- monarch |>
+eds_and_phenos <- engine |>
                   fetch_nodes(query_ids = "MONDO:0007525") |>
                   expand(predicates = "biolink:has_phenotype",
                          categories = "biolink:PhenotypicFeature")
 
-marfan_and_phenos <- monarch |>
+marfan_and_phenos <- engine |>
                      fetch_nodes(query_ids = "MONDO:0007947") |>
                      expand(predicates = "biolink:has_phenotype",
                             categories = "biolink:PhenotypicFeature")

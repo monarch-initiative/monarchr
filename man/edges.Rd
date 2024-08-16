@@ -18,8 +18,8 @@ A tibble with the edges of the graph
 Get graph edges table.
 }
 \examples{
-# (using the MONDO KGX file packaged with monarchr)
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# (using the example KGX file packaged with monarchr)
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 g <- file_engine(filename) |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

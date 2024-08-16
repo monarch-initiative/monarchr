@@ -94,13 +94,14 @@ Using another Neo4j database via `neo4j_engine()` is as simple as specifying a N
 neodb <- neo4j_engine("http://localhost:7687", username = "user", password = "pass")
 ```
 
-Finally, the `file_engine()` provides KG access to KGX-formatted, `.tar.gz` files containing tab-separated `*_nodes.tsv` and `*_edges.tsv` files. The package comes bundled with a version of the MONDO ontology KG for demonstration purposes. You can also provide a local file path, or a URL to a remote file, which will be downloaded to the current working directory.
+Finally, the `file_engine()` provides KG access to KGX-formatted, `.tar.gz` files containing tab-separated `*_nodes.tsv` and `*_edges.tsv` files. The package comes bundled with a small example KG providing information about Ehlers-Danlos and Marfan syndrome for demonstration purposes. You can also provide a local file path, or a URL to a remote file, which will be downloaded to the current working directory.
 
 ```{r}
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 # filename <- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"
 
-mondo <- file_engine(filename)
+eds_marfan <- file_engine(filename)
+eds_marfan
 ```
 
 # Fetching Nodes

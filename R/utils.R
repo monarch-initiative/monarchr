@@ -20,8 +20,8 @@ edges.tbl_kgx <- function(graph, ...) {
 #' @importFrom tidygraph as_tibble
 #' @export
 #' @examples
-#' # (using the MONDO KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' # (using the example KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #'
 #' g <- file_engine(filename) |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
@@ -39,8 +39,8 @@ nodes <- function(graph, ...) {
 #' @return A tibble with the edges of the graph
 #' @importFrom tidygraph as_tibble
 #' @examples
-#' # (using the MONDO KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' # (using the example KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #'
 #' g <- file_engine(filename) |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
@@ -56,8 +56,8 @@ edges <- function(graph, ...) {
 #' @param ... Other options (unused)
 #' @return A list of tbl_kgx graphs.
 #' @examples
-#' # (using the MONDO KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' # (using the example KGX file packaged with monarchr)
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #'
 #' g <- file_engine(filename) |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

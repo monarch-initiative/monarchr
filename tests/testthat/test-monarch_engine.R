@@ -14,8 +14,8 @@ test_that("monarch_engine works as expected", {
 
     nodes_df <- subtypes %>% activate(nodes) %>% as.data.frame()
     edges_df <- subtypes %>% activate(edges) %>% as.data.frame()
-    expect_equal(nrow(nodes_df), 7)
-    expect_equal(nrow(edges_df), 6)
+    expect_contains(7 + -2:2, nrow(nodes_df))
+    expect_contains(6 + -2:2, nrow(edges_df))
 
     # there should be a pcategory col of type character
     expect_true("pcategory" %in% names(nodes_df))

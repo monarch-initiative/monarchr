@@ -4,8 +4,8 @@ library(assertthat)
 test_that("fetch_nodes file_engine works with basid id query", {
     #testthat::skip("temporary skip")
 
-	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
-	e <- file_engine(filename)
+		filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+		e <- file_engine(filename)
 
     g <- fetch_nodes(e, query_ids = c("MONDO:0007525", "MONDO:0007526"))
 
@@ -26,7 +26,7 @@ test_that("fetch_nodes file_engine works with basid id query", {
 })
 
 test_that("fetch_nodes file_engine works with complex query syntax", {
-		filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+		filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 		e <- file_engine(filename)
 
     # fetch_nodes(id %in% c("MONDO:0007525", "MONDO:0007526")) actually does work with file_engine
@@ -42,33 +42,20 @@ test_that("fetch_nodes file_engine works with complex query syntax", {
     expect_equal(nodes_df$id, "MONDO:0007525")
 
     # test a big fetch
-    g <- e %>% fetch_nodes("biolink:Disease" %in% category | "biolink:Gene" %in% category)
+    g <- e %>% fetch_nodes("biolink:Disease" %in_list% category | "biolink:Gene" %in_list% category)
     nodes_df1 <- g %>% activate(nodes) %>% as.data.frame()
-    expect_equal(nrow(nodes_df1), 53050)
-
-    # check to see that we can chain the fetch_nodes function with other functions
-    # TODO: expand is not implemented for file_engine
-    # g <- e %>%
-    #   fetch_nodes(id == "MONDO:0007525") %>%
-    #   expand(categories = "biolink:Gene")
-
-    # # this result should have 3 nodes and 3 edges
-    # nodes_df <- g %>% activate(nodes) %>% as.data.frame()
-    # expect_equal(nrow(nodes_df), 3)
-
-    # edges_df <- g %>% activate(edges) %>% as.data.frame()
-    # expect_equal(nrow(edges_df), 3)
+    expect_equal(nrow(nodes_df1), 133)
 })
 
 test_that("fetch_nodes limit works with file_engine", {
-	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+	filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+
 	e <- file_engine(filename)
 	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 10)
 
 	nodes_df <- g %>% activate(nodes) %>% as.data.frame()
 	expect_equal(nrow(nodes_df), 10)
 
-	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
 	e <- file_engine(filename)
 	g <- e %>% fetch_nodes("biolink:Disease" %in_list% category, limit = 5)
 
