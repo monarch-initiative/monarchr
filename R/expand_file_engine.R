@@ -8,19 +8,19 @@ transitive_query_internal <- function(engine,
                                       categories = NULL,
                                       drop_unused_query_nodes = FALSE) {
 
-    # TODO: this block will never trigger; the check is done in the main function, remove
-    if(length(predicates) > 1) {
-        # we call recusively on each predicate
-        for(predicate in predicates) {
-            g2 <- transitive_query_internal(engine,
-                                            g,
-                                            direction = direction,
-                                            predicates = predicate,
-                                            categories = categories,
-                                            drop_unused_query_nodes = TRUE)
-            suppressMessages(g <- tidygraph::graph_join(g, g2), classes = "message") # suppress joining info
-        }
-    }
+    # # TODO: this block will never trigger; the check is done in the main function, remove
+    # if(length(predicates) > 1) {
+    #     # we call recusively on each predicate
+    #     for(predicate in predicates) {
+    #         g2 <- transitive_query_internal(engine,
+    #                                         g,
+    #                                         direction = direction,
+    #                                         predicates = predicate,
+    #                                         categories = categories,
+    #                                         drop_unused_query_nodes = TRUE)
+    #         suppressMessages(g <- tidygraph::graph_join(g, g2), classes = "message") # suppress joining info
+    #     }
+    # }
 
     # assert that direction is "out" or "in"
     assert_that(direction == "out" | direction == "in", msg = "Direction must be 'out' or 'in' when using transitive closure.")
@@ -74,6 +74,7 @@ transitive_query_internal <- function(engine,
             filter(id %in% bfs_nodes)
     }
 
+    attr(bfs_result, "last_engine") <- engine
     return(bfs_result)
 }
 

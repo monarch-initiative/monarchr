@@ -29,9 +29,9 @@
 #'
 #'
 #' @examples
-#' ## Using local MONDO KGX file (packaged with monarchr)
-#' phenos <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz",
-#'                       package = "monarchr")) |>
+#' ## Using example KGX file packaged with monarchr
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' phenos <- file_engine(filename) |>
 #'           fetch_nodes(query_ids = "MONDO:0007525") |>
 #'           expand(predicates = "biolink:has_phenotype",
 #'                  categories = "biolink:PhenotypicFeature")
@@ -60,6 +60,7 @@ expand <- function(graph,
 									 categories = NULL,
 									 transitive = FALSE,
 									 drop_unused_query_nodes = FALSE,
-									 ...) {
+
+									 					 ...) {
 	UseMethod("expand")
 }

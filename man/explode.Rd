@@ -4,10 +4,12 @@
 \alias{explode}
 \title{Explode a graph into a list of single-node graphs}
 \usage{
-explode(g, ...)
+explode(graph, ...)
 }
 \arguments{
-\item{g}{A tbl_kgx graph.}
+\item{graph}{A tbl_kgx graph.}
+
+\item{...}{Other options (unused)}
 }
 \value{
 A list of tbl_kgx graphs.
@@ -16,8 +18,8 @@ A list of tbl_kgx graphs.
 Explode a graph into a list of single-node graphs
 }
 \examples{
-# (using the MONDO KGX file packaged with monarchr)
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# (using the example KGX file packaged with monarchr)
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 g <- file_engine(filename) |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

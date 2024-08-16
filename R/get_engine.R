@@ -6,8 +6,8 @@
 #' @param fail_if_missing If TRUE, fail if there is no engine associated with the graph.
 #' @return A graph engine object.
 #' @examples
-#' # (using the MONDO KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+#' # Using example KGX file packaged with monarchr
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #'
 #' g <- file_engine(filename) |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

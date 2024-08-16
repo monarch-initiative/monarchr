@@ -4,10 +4,12 @@
 \alias{nodes}
 \title{Get graph nodes table.}
 \usage{
-nodes(g, ...)
+nodes(graph, ...)
 }
 \arguments{
-\item{g}{A graph object}
+\item{graph}{A graph object}
+
+\item{...}{Other options (unused)}
 }
 \value{
 A tibble with the nodes of the graph
@@ -16,8 +18,8 @@ A tibble with the nodes of the graph
 Get graph nodes table.
 }
 \examples{
-# (using the MONDO KGX file packaged with monarchr)
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# (using the example KGX file packaged with monarchr)
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 g <- file_engine(filename) |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

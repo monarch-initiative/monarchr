@@ -3,8 +3,7 @@ library(assertthat)
 
 
 test_that("we can load data from url with file_engine", {
-    #filename <- "https://kghub.io/kg-obo/sepio/2023-06-13/sepio_kgx_tsv.tar.gz"
-	filename <- "../testthat/data/mondo_kgx_tsv-test-10JUNE2024.tar.gz"
+		filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
     e <- file_engine(filename)
 

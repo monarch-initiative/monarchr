@@ -4,7 +4,14 @@
 \alias{knit_print.tbl_kgx}
 \title{Specialized print function for KGX graphs in knitted documents}
 \usage{
-\method{knit_print}{tbl_kgx}(graph, show = 100, ...)
+\method{knit_print}{tbl_kgx}(x, ..., show = 100)
+}
+\arguments{
+\item{x}{A \code{tbl_kgx} graph to display.}
+
+\item{...}{Other arguments (unused).}
+
+\item{show}{The maximum number of nodes and edges to display.}
 }
 \description{
 Specialized print function for KGX graphs in knitted documents

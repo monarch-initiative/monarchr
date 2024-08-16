@@ -1,14 +1,14 @@
 #' @import tidygraph
 #' @import dplyr
 #' @export
-kg_join.tbl_kgx <- function(g1, g2) {
-    nodes_g1 <- nodes(g1)
-    nodes_g2 <- nodes(g2)
+kg_join.tbl_kgx <- function(graph1, graph2, ...) {
+    nodes_g1 <- nodes(graph1)
+    nodes_g2 <- nodes(graph2)
 
     # we don't want to keep the to and from columns in the edges, since we'll be rebuilding edges from scratch,
     # and be running them through unique()
-    edges_g1 <- edges(g1) |> select(-to, -from)
-    edges_g2 <- edges(g2) |> select(-to, -from)
+    edges_g1 <- edges(graph1) |> select(-to, -from)
+    edges_g2 <- edges(graph2) |> select(-to, -from)
 
     all_nodes <- unique(nodes_g1 |>
                           full_join(nodes_g2)) |>
@@ -53,6 +53,6 @@ kg_join.tbl_kgx <- function(g1, g2) {
     all_nodes <- all_nodes |>
       select(-idx)  # remove the idx column
 
-    res <- tbl_kgx(nodes = all_nodes, edges = filled_edges, attach_engine = get_engine(g1, fail_if_missing = FALSE))
+    res <- tbl_kgx(nodes = all_nodes, edges = filled_edges, attach_engine = get_engine(graph1, fail_if_missing = FALSE))
     return(res)
 }

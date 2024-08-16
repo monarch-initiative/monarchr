@@ -29,8 +29,9 @@ test_that("kg_join works", {
     expect_equal(nrow(edges(res) |> filter(subject == "b")), 2)
     expect_equal(nrow(edges(res) |> filter(object == "b")), 1)
 
+    filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
-    res2 <- file_engine(system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")) |>
+    res2 <- file_engine(filename) |>
     	        fetch_nodes(query_ids = "MONDO:0007525")
 
     # there should be no edges and one node

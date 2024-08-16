@@ -18,8 +18,8 @@ A graph engine object.
 Given a tbl_kgx graph, retrieve the last-used engine.
 }
 \examples{
-# (using the MONDO KGX file packaged with monarchr)
-filename <- system.file("extdata", "mondo_kgx_tsv.tar.gz", package = "monarchr")
+# Using example KGX file packaged with monarchr
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 g <- file_engine(filename) |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))

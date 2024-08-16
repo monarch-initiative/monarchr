@@ -1,5 +1,18 @@
 
 
+
+# monarchr 1.2.1
+
+## New features
+
+* New `save_kgx()` and `load_kgx()` for saving/loading graphs.
+
+## Bugfixes
+
+* Reduced size of package with smaller example data
+* Fixed a bug in `expand()` where the engine was not carried through for file-engine backed graphs
+* Unit tests dependent on live-hosted Monarch KG now allow for minor changes in result counts
+
 # monarchr 1.1.0
 
 ## New features

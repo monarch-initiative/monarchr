@@ -20,14 +20,18 @@ clean_df <- function(df) {
 
 
 #' Specialized print function for KGX graphs in knitted documents
-#'
+#' @param x A `tbl_kgx` graph to display.
+#' @param ... Other arguments (unused).
+#' @param show The maximum number of nodes and edges to display.
 #' @export
 #' @import knitr
 #' @importFrom kableExtra kable
 #' @importFrom kableExtra kable_styling
 #' @importFrom kableExtra column_spec
 #' @importFrom dplyr slice_head
-knit_print.tbl_kgx <- function(graph, show = 100, ...) {
+knit_print.tbl_kgx <- function(x, ..., show = 100) {
+	graph <- x
+
 	g <- order_cols(graph)
 
 	nodes_colnames <- colnames(nodes(g))
