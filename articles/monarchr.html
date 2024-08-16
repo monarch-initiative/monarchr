@@ -2690,57 +2690,7 @@ downloaded to the current working directory.</p>
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span>
 <span><span class="co"># filename &lt;- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"</span></span>
 <span></span>
-<span><span class="va">eds_marfan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span><span class="va">eds_marfan</span></span></code></pre></div>
-<pre><code><span><span class="co">## $name</span></span>
-<span><span class="co">## [1] "file_engine"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $preferences</span></span>
-<span><span class="co">## $preferences$category_priority</span></span>
-<span><span class="co">##  [1] "biolink:Disease"           "biolink:PhenotypicFeature" "biolink:Gene"              "biolink:AnatomicalEntity"  "biolink:BiologicalProcess" "biolink:Pathway"           "biolink:Cell"              "biolink:CellularComponent" "biolink:ChemicalEntity"    "biolink:Drug"             </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $preferences$node_property_priority</span></span>
-<span><span class="co">## [1] "id"             "pcategory"      "name"           "symbol"         "in_taxon_label" "description"    "synonym"       </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $preferences$edge_property_priority</span></span>
-<span><span class="co">## [1] "subject"   "predicate" "object"   </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $filename</span></span>
-<span><span class="co">## [1] "/__w/_temp/Library/monarchr/extdata/eds_marfan_kg.tar.gz"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $graph</span></span>
-<span><span class="co">## <span style="color: #949494;"># A tbl_graph: 3000 nodes and 7148 edges</span></span></span>
-<span><span class="co"><span style="color: #949494;">## #</span></span></span>
-<span><span class="co"><span style="color: #949494;">## # A directed acyclic multigraph with 1 component</span></span></span>
-<span><span class="co"><span style="color: #949494;">## #</span></span></span>
-<span><span class="co"><span style="color: #949494;">## # Node Data: 3,000 × 16 (active)</span></span></span>
-<span><span class="co">##    id            name                                                          symbol in_taxon_label description                                                                                              synonym category iri   xref  namespace provided_by in_taxon full_name type  has_gene pcategory</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                                                    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> MONDO:0007947 Marfan syndrome                                               <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A disorder of the connective tissue. Connective tissue provides strength and flexibility to structures … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> MONDO:0020066 Ehlers-Danlos syndrome                                        <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The Ehlers–Danlos syndromes (EDS) are a clinically and genetically heterogeneous group of heritable con… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> MONDO:0009159 Ehlers-Danlos syndrome, cardiac valvular type                 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Ehlers-Danlos syndrome, cardiac valvular type is a form of Ehlers-Danlos syndrome characterized by soft… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> MONDO:0040501 ehlers-danlos syndrome, arthrochalasia type, 2                <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span>                                                                                                       <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> MONDO:0034022 Bethlem myopathy 2                                            <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span>                                                                                                       <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> MONDO:0016002 Ehlers-Danlos syndrome, kyphoscoliotic type 1                 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A form of Ehlers-Danlos syndrome characterized by severe hypotonia and kyphoscoliosis at birth, general… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> MONDO:0009161 Ehlers-Danlos syndrome, dermatosparaxis type                  <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A form of Ehlers-Danlos syndrome (EDS) characterized by extreme skin fragility and laxity, a prominent … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> MONDO:0009242 brittle cornea syndrome                                       <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Brittle cornea syndrome is a form of Ehlers-Danlos syndrome characterized by a severe ocular manifestat… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> MONDO:0024543 brittle cornea syndrome 1                                     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Any brittle cornea syndrome in which the cause of the disease is a mutation in the ZNF469 gene.          <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> MONDO:0030854 combined osteogenesis imperfecta and Ehlers-Danlos syndrome 1 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span>                                                                                                       <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO     phenio_nod… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>       biolink:…</span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 2,990 more rows</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#</span></span></span>
-<span><span class="co"><span style="color: #949494;">## # Edge Data: 7,148 × 25</span></span></span>
-<span><span class="co">##    from    to subject   predicate object agent_type knowledge_level knowledge_source aggregator_knowledge…¹ primary_knowledge_so…² provided_by id    category original_object original_subject frequency_qualifier has_evidence has_total has_quotient has_count has_percentage onset_qualifier publications</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span>     3     2 MONDO:00… biolink:… MONDO… not_provi… not_provided    monarch-kg_edge… infores:monarchinitia… infores:mondo          phenio_edg… urn:… biolink… <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>               <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span>     4     2 MONDO:00… biolink:… MONDO… not_provi… not_provided    monarch-kg_edge… infores:monarchinitia… infores:mondo          phenio_edg… urn:… biolink… <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>               <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span>     5     2 MONDO:00… biolink:… MONDO… not_provi… not_provided    monarch-kg_edge… infores:monarchinitia… infores:mondo          phenio_edg… urn:… biolink… <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>               <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 7,145 more rows</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ abbreviated names: ¹​aggregator_knowledge_source, ²​primary_knowledge_source</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 2 more variables: qualifiers &lt;chr&gt;, original_predicate &lt;chr&gt;</span></span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## attr(,"class")</span></span>
-<span><span class="co">## [1] "file_engine" "base_engine" "list"</span></span></code></pre>
+<span><span class="va">eds_marfan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fetching-nodes">Fetching Nodes<a class="anchor" aria-label="anchor" href="#fetching-nodes"></a>
@@ -2749,7 +2699,7 @@ downloaded to the current working directory.</p>
 nodes by specified criteria. It returns a <code>tidygraph</code>-based
 graph, but only nodes, not any edges that may connect them. These can be
 specified as a set of IDs:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0009061"</span>, <span class="st">"HGNC:1884"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -2926,7 +2876,7 @@ Showing 0 of 0 edges:
 all of the nodes where <code>in_taxon_label</code> equals
 <code>"Homo sapiens"</code>. For demonstration purposes, we’ll limit the
 number of results to 20 (ordered by node ID).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_sapiens_nodes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">h_sapiens_nodes</span></span></code></pre></div>
@@ -3628,7 +3578,7 @@ properties are multi-valued, we provide a special <code>%in_list%</code>
 operator to allow exact match against entries. Here we fetch all the
 <em>Homo sapiens</em> Genes, using <code>%in_list%</code> to account for
 the multi-valued nature of node <code>category</code>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">human_genes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
@@ -4574,7 +4524,7 @@ Showing 0 of 0 edges:
 <p>A convenience <code>%~%</code> operator provides regular-expression
 matching against node properties (but not multi-valued ones like
 <code>category</code>).</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibrosis_disease_matches</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">description</span> <span class="op"><a href="../reference/grapes-twiddle-grapes.html">%~%</a></span> <span class="st">".*[fF]ibrosis.*"</span> <span class="op">&amp;</span> <span class="st">"biolink:Disease"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
@@ -5466,7 +5416,7 @@ take the resulting graph (which contains both disease and gene nodes),
 and fetch the neighborhood of nodes with category
 <code>biolink:PhenotypicFeature</code>. Since there are many such
 results, we add a <code>limit</code> for the visualization.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MONDO:0018982, MONDO:0011871: Neimann-Pick type B and C</span></span>
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
@@ -5507,7 +5457,7 @@ subtypes, and then considering the collective ancestry of those nodes in
 the KG. Not all ancestors are diseases
 (e.g. <code>biolink:Entity</code>), so we restrict the result set of the
 second expansion.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MONDO:0001982 Niemann-Pick Disease (13 subtypes)</span></span>
 <span></span>
 <span><span class="va">hierarchy</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
@@ -5530,7 +5480,7 @@ specific to the Monarch Initiatives’ API services. The first of these is
 <code><a href="../reference/monarch_search.html">monarch_search()</a></code>, which uses the same search API as the
 Monarch <a href="https://monarchinitiative.org" class="external-link">website</a>, returning a
 graph with matching nodes backed by a <code><a href="../reference/monarch_engine.html">monarch_engine()</a></code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cf_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_search.html">monarch_search</a></span><span class="op">(</span><span class="st">"Cystic fibrosis"</span>, category <span class="op">=</span> <span class="st">"biolink:Disease"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cf_hits</span></span></code></pre></div>
@@ -5775,7 +5725,7 @@ phenotypes of Ehlers-Danlos syndrome, classic type
 (<code>"MONDO:0007947"</code>), and we find the best matching Marfan
 phenotype for each EDS phenotype. The result is returned as a graph,
 containing only computed <code>"computed:best_matches"</code> edges:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -5789,10 +5739,10 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span><span class="va">sim</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-13-1.png" width="960"></p>
-<pre>Graph with 19 nodes and 11 edges. Expand sections below for details.</pre>
+<pre>Graph with 18 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 19 of 19 nodes:
+Showing 18 of 18 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -6514,40 +6464,6 @@ NA
 “phenio_nodes”
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-“HP:0008132”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Medial rotation of the medial malleolus”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0008132" class="external-link uri">http://purl.obolibrary.org/obo/HP_0008132</a>”
-</td>
-<td style="text-align:left;">
-“UMLS:C3805726”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -6589,7 +6505,7 @@ ancestor_id
 9
 </td>
 <td style="text-align:left;">
-13
+16
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -6598,7 +6514,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001377”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6615,7 +6531,7 @@ ancestor_id
 2
 </td>
 <td style="text-align:left;">
-18
+17
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6624,7 +6540,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0025586”
+“HP:0003199”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6641,7 +6557,7 @@ ancestor_id
 3
 </td>
 <td style="text-align:left;">
-19
+18
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6650,7 +6566,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0008132”
+“HP:0025586”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6797,7 +6713,7 @@ ancestor_id
 11
 </td>
 <td style="text-align:left;">
-17
+16
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6806,7 +6722,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0003199”
+“HP:0001371”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6880,7 +6796,7 @@ metric, similarity score, and ID of the least common ancestor relating
 the nodes.</p>
 <p>We can use <code>tidygraph</code>’s <code><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join()</a></code> to see
 this result in the context of the original query and target graphs.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">marfan_phenos</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">|&gt;</span></span>
