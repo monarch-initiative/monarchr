@@ -27,13 +27,11 @@ stitch_vectors <- function(x) {
 	}
 }
 
-########### Public functions ###########
-
-#' @export
-#' @importFrom neo2R cypher
-#' @importFrom tibble tibble
-cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
-	res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
+#' Process neo2R cypher to tbl_kgx
+#'
+#' Given a result from neo2R::cypher returning KGX-formatted nodes and edges
+#' (or )
+neo2r_to_kgx <- function(res, engine) {
 	relationship_ids_contained <- as.integer(unlist(res$paths))
 
 	res <- stitch_vectors(res)
@@ -103,13 +101,13 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 		# sapply!
 		# edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
 		edges_df[[prop_name]] <- sapply(res$relationships, function(edge) {
-#				edge$properties[[prop_name]]
-				prop_value <- edge$properties[[prop_name]]
-				if(is.null(prop_value)) {
-					return(NA)
-				} else {
-					return(prop_value)
-				}
+			#				edge$properties[[prop_name]]
+			prop_value <- edge$properties[[prop_name]]
+			if(is.null(prop_value)) {
+				return(NA)
+			} else {
+				return(prop_value)
+			}
 		})
 	}
 
@@ -120,4 +118,27 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 	g <- tbl_kgx(nodes_df, edges_df, attach_engine = engine)
 	attr(g, "relationship_ids") <- relationship_ids_contained
 	return(g)
+}
+
+########### Public functions ###########
+
+#' @export
+#' @importFrom neo2R cypher
+#' @importFrom tibble tibble
+#' @importFrom tidygraph graph_join
+cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, queries = NULL, ...) {	#
+	if(is.null(queries)) {
+		res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
+		return(neo2r_to_kgx(res, engine = engine))
+	} else {
+		res <- neo2R::multicypher(engine$graph_conn, queries = queries, parameters = parameters, result = "graph")
+		graphs <- lapply(res, neo2r_to_kgx, engine = engine)
+		g <- tbl_kgx(nodes = data.frame())
+		for(g2 in graphs) {
+			suppressMessages(g <- tidygraph::graph_join(g, g2), classes = "message") # suppress joining info
+		}
+		return(g)
+	}
+
+
 }
