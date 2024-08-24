@@ -1,5 +1,21 @@
+# monarchr 1.2.2
 
+## New features
 
+* New utility function:
+	- `graph_semsim`
+	- `graph_centrality`
+	- `sparsity`
+	
+* Updated plotting functions
+	-	Overhauled `plot.tbl_kgx`
+	- New function for getting consistent Monarch palettes: `monarch_palette`.
+	- New function to apply monarch theme to existing `ggraph` plots: `theme_monarch`
+
+* `kg_edge_weights`: New function to compute quantitative edge weights from 
+discrete and continuous edge metadata.
+
+* `expand_n`: New function to expand a graph to a specified number of nodes.
 
 # monarchr 1.2.1
 

@@ -3,7 +3,7 @@ Type: Package
 Title: Monarch Knowledge Graph Queries
 Description: R package for easy access, manipulation, and analysis of
 		Monarch KG data Resources.
-Version: 1.2.1
+Version: 1.2.2
 URL: https://github.com/monarch-initiative/monarchr
 BugReports: https://github.com/monarch-initiative/monarchr/issues
 Authors@R:

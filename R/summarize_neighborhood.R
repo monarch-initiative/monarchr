@@ -10,8 +10,8 @@
 #' of nodes they connect to; use summarize = "edges" to see edge counts between
 #' nodes of different categories, and summarize = "nodes" to see counts of connected
 #' node categories.
-#' 
-#' Additionally, when using `summarize = "edges"`, the summary will include 
+#'
+#' Additionally, when using `summarize = "edges"`, the summary will include
 #' edges that may already be present in the query graph.
 #'
 #' It is also possible to specify the direction of edges to include in the
@@ -28,9 +28,8 @@
 #'
 #' @export
 #' @examplesIf monarch_engine_check()
-#' g <- monarch_search("fanconi anemia", limit = 5) |>
+#' monarch_search("fanconi anemia", limit = 5) |>
 #'   summarize_neighborhood(direction = "both", summarize = "edges")
-#'
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that

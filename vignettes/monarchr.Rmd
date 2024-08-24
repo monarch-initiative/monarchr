@@ -160,6 +160,12 @@ g <- monarch |>
 
 plot(g)
 ```
+
+```{r}
+for 
+```
+
+
 We can limit the expansion based on several factors, which are combined in an "and" fashion:
 
 - `direction`: `"in`", `"out"`, or `"both"` (default): which direction edges should point from the query graph nodes
