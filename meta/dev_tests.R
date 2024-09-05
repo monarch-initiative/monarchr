@@ -224,3 +224,121 @@ girafe(ggobj = z, width_svg = 5, height_svg = 5,
 			 ))
 
 ```
+
+
+#############################
+
+devtools::load_all()
+# counts by sets - formatted for use with UpSetR
+res <- monarch_engine() |>
+	cypher_query_df("MATCH (n) WITH labels(n) AS LabelList, COUNT(n) AS Count WITH LabelList, Count, REDUCE(s = HEAD(LabelList), x IN TAIL(LabelList) | s + '&' + x) AS LabelCombination RETURN LabelCombination, Count", parameters = list(nodes = list("NCBIGene:2876645")))
+
+res
+
+# counts by sets - catories returned a list col
+res <- monarch_engine() |>
+	cypher_query_df("MATCH (n) WITH labels(n) AS LabelList, COUNT(n) AS Count RETURN LabelList, Count")
+
+res
+
+
+input <- res$Count
+names(input) <- res$LabelCombination
+
+library(UpSetR)
+
+# Create the UpSet plot
+upset(fromExpression(input),
+			order.by = "freq",
+			nsets = 20,
+			nintersects = NA)
+
+
+# node category counts
+cat_counts <- monarch_engine() |>
+	cypher_query_df("MATCH (n) UNWIND labels(n) AS Label WITH Label, COUNT(n) AS Count RETURN Label, Count ORDER BY Count DESC")
+
+cat_counts
+
+# relationship type counts
+
+pred_counts <- monarch_engine() |>
+	cypher_query_df("MATCH ()-[r]->() RETURN type(r) AS RelationshipType, COUNT(*) AS RelationshipCount ORDER BY RelationshipCount DESC")
+
+pred_counts
+
+
+# category set counts for a single relationship type
+cat_set_rel_counts <- monarch_engine() |>
+	cypher_query_df("MATCH (source)-[rel:`biolink:has_phenotype`]->(target) WITH labels(source) AS SourceLabelList, type(rel) AS Relationship, labels(target) AS DestLabelList, COUNT(*) AS Count RETURN SourceLabelList, Relationship, DestLabelList, Count ORDER BY Count DESC")
+
+cat_set_rel_counts
+
+
+
+# property counts on nodes - random examples
+# MATCH (n:`biolink:Disease`)
+# WITH n, keys(n) AS properties
+# UNWIND properties AS property
+# WITH property, COUNT(n[property]) AS count, collect([n[property], n.id]) AS examples
+# WITH property, count, examples, rand() AS random
+# RETURN property, count, examples[TOINTEGER(random * SIZE(examples))][0] AS example, examples[TOINTEGER(random * SIZE(examples))][1] AS example_id
+# ORDER BY count DESC
+
+# property counts on edges - random examples
+# MATCH ()-[r:`biolink:causes`]->()
+# WITH r, keys(r) AS properties
+# UNWIND properties AS property
+# WITH property, COUNT(r[property]) AS count, collect([r[property], startNode(r).id, endNode(r).id]) AS examples
+# WITH property, count, examples, rand() AS random
+# WITH property, count, examples[TOINTEGER(random * SIZE(examples))] AS example_data
+# RETURN property, count, example_data[0] AS example, example_data[1] AS source_id, example_data[2] AS target_id
+# ORDER BY count DESC
+
+
+#
+query <- "
+// Directly refer known primary categories
+WITH $categories AS KnownCategories
+UNWIND KnownCategories AS CategoryA
+UNWIND KnownCategories AS CategoryB
+WITH DISTINCT CategoryA, CategoryB
+
+// Match and count relationships using primary known categories
+MATCH (a:CategoryA)-[r:`biolink:interacts_with`]->(b:CategoryB)
+RETURN CategoryA, type(r) AS RelationshipType, CategoryB, COUNT(*) AS RelationshipCount
+ORDER BY RelationshipCount DESC
+"
+
+interacts_counts <- cypher_query_df(monarch_engine(), query, parameters = list(categories = as.list(cat_counts$Label)))
+interacts_counts
+
+
+opts <- list(category = as.list(res$Label))
+names(opts$category) <- res$Label
+
+# property counts for nodes of type biolink:GeneOrGeneProduct
+res <- monarch_engine() |>
+	cypher_query_df("MATCH (n)
+										WHERE $label IN n.category
+										WITH n, keys(n) AS properties
+										UNWIND properties AS property
+										WITH property, COUNT(n[property]) AS count, collect([n[property], n.id])[0] AS example_data
+										RETURN property, count, example_data[0] AS example, example_data[1] AS example_id
+										ORDER BY count DESC",
+									parameters = list(label = "biolink:GeneOrGeneProduct"))
+
+
+res
+
+
+# schema graph - not compatible with KGX
+res <- monarch_engine() |>
+	cypher_query("CALL db.schema.visualization() YIELD nodes, relationships RETURN [node IN nodes | node {.*, id: id(node)}] AS nodes, relationships")
+
+
+queries <- paste0("MATCH (n:`",res$Label,"`) RETURN n LIMIT 1")
+
+monarch <- monarch_engine()
+
+fetched <- cypher_query(monarch, queries = queries)
