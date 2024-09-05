@@ -1,0 +1,81 @@
+#' Summarize contents of a KGX-file-based KG engine
+#'
+#' Given a KGX file-based KG engine, provides summary information in the form of
+#' node counts, category counts across nodes, and relationship type counts.
+#' General information about the graph is printed to the console, and a list of
+#' dataframes describing node and edge counts is returned invisibly.
+#'
+#' @param engine A `file_engine` object
+#' @param ... Other parameters (not used)
+#' @param quiet Logical, whether to suppress printing of the summary
+#' @return A list of dataframes
+#' @export
+#' @examples
+#' # Using example KGX file packaged with monarchr
+#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+
+#' # prints a readable summary and returns a list of dataframes
+#' res <- file_engine(filename) |> summary()
+#' print(res)
+#' @import tidygraph
+#' @import dplyr
+summary.file_engine <- function(engine, ..., quiet = FALSE) {
+	if(!quiet) {
+		cat("\n")
+		cat("A KGX file-backed knowledge graph engine.\n")
+	}
+
+    g <- engine$graph
+
+    total_nodes <- g |>
+        activate(nodes) |>
+    	  as.data.frame() |>
+        nrow()
+
+    total_edges <- g |>
+        activate(edges) |>
+    	  as.data.frame() |>
+        nrow()
+
+    all_node_cats <- g |>
+    	activate(nodes) |>
+    	as.data.frame() |>
+    	pull(category) |>
+    	unlist() |>
+    	sort() |>
+    	rle()
+
+    node_summary_df <- data.frame(category = all_node_cats$values,
+    											 count = all_node_cats$lengths) |>
+    	arrange(desc(count))
+
+    all_edge_predicates <- g |>
+    	activate(edges) |>
+    	as.data.frame() |>
+    	pull(predicate) |>
+    	sort() |>
+    	rle()
+
+    edge_summary_df <- data.frame(predicate = all_edge_predicates$values,
+    											 count = all_edge_predicates$lengths) |>
+    	arrange(desc(count))
+
+
+    if(!quiet) {
+    	cat("Total nodes: ", total_nodes, "\n")
+    	cat("Total edges: ", total_edges, "\n")
+    	cat("\n")
+    	cat("Node category counts:\n")
+    	# print the data frame without row names
+    	print(node_summary_df, row.names = FALSE)
+    	cat("\n")
+    	cat("Edge type counts:\n")
+    	# print the data frame without row names
+    	print(edge_summary_df, row.names = FALSE)
+    }
+
+    return(invisible(list(node_summary = node_summary_df,
+    											edge_summary = edge_summary_df,
+    											total_nodes = total_nodes,
+    											total_edges = total_edges)))
+}
