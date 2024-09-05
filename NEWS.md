@@ -1,5 +1,8 @@
 
+Dev branch graph_explore notes:
 
+* fix backend bug in Neo4j table queries not handling default params properly
+* add batch queries for Neo4j backend engine
 
 # monarchr 1.2.1
 
