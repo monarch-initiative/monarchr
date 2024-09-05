@@ -29,8 +29,12 @@ stitch_vectors <- function(x) {
 
 #' Process neo2R cypher to tbl_kgx
 #'
-#' Given a result from neo2R::cypher returning KGX-formatted nodes and edges
-#' (or )
+#' Given a result from neo2R::cypher returning KGX-formatted nodes and edges,
+#' parse the result to generate a tbl_kgx object, attaching the provided engine.
+#'
+#' @param res The result from neo2R::cypher with result = "graph"
+#' @param engine The engine to attach to the returned graph
+#' @return A tbl_kgx
 neo2r_to_kgx <- function(res, engine) {
 	relationship_ids_contained <- as.integer(unlist(res$paths))
 
@@ -124,14 +128,15 @@ neo2r_to_kgx <- function(res, engine) {
 
 #' @export
 #' @importFrom neo2R cypher
+#' @importFrom neo2R multicypher
 #' @importFrom tibble tibble
 #' @importFrom tidygraph graph_join
-cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, queries = NULL, ...) {	#
-	if(is.null(queries)) {
+cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
+	if(length(query) == 1) {
 		res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
 		return(neo2r_to_kgx(res, engine = engine))
 	} else {
-		res <- neo2R::multicypher(engine$graph_conn, queries = queries, parameters = parameters, result = "graph")
+		res <- neo2R::multicypher(engine$graph_conn, queries = query, parameters = parameters, result = "graph")
 		graphs <- lapply(res, neo2r_to_kgx, engine = engine)
 		g <- tbl_kgx(nodes = data.frame())
 		for(g2 in graphs) {

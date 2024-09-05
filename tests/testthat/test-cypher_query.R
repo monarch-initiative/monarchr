@@ -23,7 +23,7 @@ test_that("cypher_query works with multicypher queries", {
 	queries <- c("MATCH (n {id: 'MONDO:0007947'}) RETURN n",
 							 "MATCH (n {id: 'MONDO:0017309'}) RETURN n",
 							 "MATCH (n {id: 'MONDO:0020066'}) RETURN n")
-	g <- cypher_query(e, queries = queries)
+	g <- cypher_query(e, query = queries)
 	expect_s3_class(g, "tbl_kgx")
 	nodes_df <- data.frame(tidygraph::activate(g, nodes))
 	edges_df <- data.frame(tidygraph::activate(g, edges))

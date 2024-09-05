@@ -3,9 +3,8 @@
 #' This function takes a Cypher query and parameters, executes the query using the given engine, and returns the result as a tbl_kgx graph.
 #'
 #' @param engine A neo4j KG engine
-#' @param query A string representing the Cypher query.
+#' @param query A string representing the Cypher query. Multiple queries may be passed as a vector; if so, Neo2R::multicypher if used and the result is returned as a single joined graph.
 #' @param parameters A list of parameters for the Cypher query. Default is an empty list.
-#' @param queries A vector of queries as used in Neo2R::multicypher. If provided, multicypher is used, query is ignored, and the result is returned as a single joined graph.
 #' @param ... Additional arguments passed to the function.
 #' @return The result of the Cypher query as a tbl_kgx graph.
 #' @export
@@ -19,7 +18,7 @@
 #' result <- cypher_query(engine, query, parameters)
 #' print(result)
 #' @importFrom neo2R cypher
-cypher_query <- function(engine, query, parameters = NULL, queries = NULL, ...) {
+cypher_query <- function(engine, query, parameters = NULL, ...) {
     UseMethod("cypher_query")
 }
 
