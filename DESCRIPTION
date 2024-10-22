@@ -43,7 +43,8 @@ Imports:
     archive,
     readr,
     ggraph,
-    ggplot2
+    ggplot2,
+    R.utils
 Suggests: 
     testthat (>= 3.0.0),
     rworkflows
