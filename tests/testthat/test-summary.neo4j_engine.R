@@ -1,7 +1,7 @@
 library(testthat)
 library(assertthat)
 
-test_that("summarize_neighborhood returns reasonable results", {
+test_that("summary() for neo4j_engine", {
     res <- summary(monarch_engine(), quiet = TRUE)
 
     # make sure the output is a list
