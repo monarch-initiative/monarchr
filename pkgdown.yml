@@ -1,7 +1,7 @@
-pandoc: '3.3'
-pkgdown: 2.1.0
+pandoc: '3.4'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   examples/alzheimers_phenotypes: examples/alzheimers_phenotypes.html
   monarchr: monarchr.html
-last_built: 2024-08-16T17:40Z
+last_built: 2024-10-22T04:59Z

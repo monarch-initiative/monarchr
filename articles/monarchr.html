@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
       </span>
     </div>
 
@@ -90,10 +90,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Aug-16-2024</i>
+<i>Oct-22-2024</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/fallback-urls/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
       <div class="hidden name"><code>monarchr.Rmd</code></div>
 
     </div>
@@ -124,7 +124,7 @@ multi-valued.</li>
 <p>In the following figure, these required properties are shown in
 bold:</p>
 <center>
-<img src="assets/cftr_cf_edge.png" style="width:90.0%">
+<img src="assets%2Fcftr_cf_edge.png" style="width:90.0%">
 </center>
 <p>The <code>monarchr</code> package provides access to the cloud-hosted
 Monarch Initiative KG, and <a href="https://kghub.org" class="external-link">others in KGX
@@ -142,18 +142,20 @@ identify IDs for genes, diseases, phenotypes and more, or
 <span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0001982"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"in"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Trying to connect to http://neo4j.monarchinitiative.org:7474</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to http://neo4j.monarchinitiative.org:7474</span></span></code></pre>
 <pre><code><span><span class="co">## Fetching; counting matching nodes...  total: 1.</span></span>
 <span><span class="co">## Fetching; fetched 1 of 1</span></span>
 <span><span class="co">## Expanding; counting matching edges...  total: 13.</span></span>
 <span><span class="co">## Expanding; fetched 13 of 13 edges.</span></span>
 <span><span class="co">## Expanding; counting matching edges...  total: 16.</span></span>
 <span><span class="co">## Expanding; fetched 16 of 16 edges.</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Using <span style="color: #0000BB;">"sugiyama"</span> as default layout</span></span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">g</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-2-1.png" width="960"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">g</span></span></code></pre></div>
 <pre>Graph with 17 nodes and 29 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
@@ -204,6 +206,9 @@ full_name
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 in_taxon (list)
 </th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+type (list)
+</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -243,8 +248,9 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001982</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “MESH:D009542”,
-“NANDO:2200561”, “NCIT:C61269”, “SCTID:58459009”, “UMLS:C0028064”)
+c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “MEDGEN:10348”,
+“MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”, “SCTID:58459009”,
+“UMLS:C0028064”, “icd11.foundation:398872780”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -254,6 +260,62 @@ c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “MESH:D009542”,
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NULL
+</td>
+<td style="text-align:left;">
+NULL
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“NPC is a complex lipid storage disease mainly characterized by the
+accumulation of unesterified cholesterol in the late endosomal/lysosomal
+compartment.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC”, “Niemann Pick Disease Type C”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:7207”, “MEDGEN:67399”, “MESH:D052556”, “NANDO:1200063”,
+“NORD:1509”, “Orphanet:646”, “SCTID:66751000”, “UMLS:C0220756”,
+“icd11.foundation:812702125”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NULL
 </td>
 <td style="text-align:left;">
 NULL
@@ -303,8 +365,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011873" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011873</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070114”, “GARD:3992”, “MESH:C536119”, “NCIT:C126865”,
-“OMIM:607625”, “UMLS:C1843366”)
+c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
+“NCIT:C126865”, “OMIM:607625”, “UMLS:C1843366”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -318,54 +380,8 @@ NA
 <td style="text-align:left;">
 NA
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C”
-</td>
 <td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“NPC is a complex lipid storage disease mainly characterized by the
-accumulation of unesterified cholesterol in the late endosomal/lysosomal
-compartment.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:7207”, “MESH:D052556”, “NANDO:1200063”, “NORD:1509”,
-“Orphanet:646”, “SCTID:66751000”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NULL
 </td>
 </tr>
 <tr>
@@ -405,15 +421,19 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MESH:D052537”,
-“NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”, “OMIM:607616”,
-“Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”)
+c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
+“MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
+“OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
+“icd11.foundation:327269975”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -464,7 +484,7 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
 </td>
 <td style="text-align:left;">
-NA
+c(“MEDGEN:1800807”, “UMLS:C5243927”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -474,6 +494,9 @@ NA
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NULL
 </td>
 <td style="text-align:left;">
 NULL
@@ -518,14 +541,17 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070113”, “NCIT:C126864”, “OMIM:257220”, “SCTID:18927009”,
-“UMLS:C3179455”)
+c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
+“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -571,15 +597,19 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070111”, “GARD:7206”, “MESH:D052536”, “NANDO:1200061”,
-“NANDO:2201206”, “NCIT:C126561”, “OMIM:257200”, “Orphanet:77292”,
-“SCTID:52165006”, “UMLS:C0268242”)
+c(“DOID:0070111”, “GARD:7206”, “MEDGEN:78650”, “MESH:D052536”,
+“NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”, “OMIM:257200”,
+“Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
+“icd11.foundation:530611243”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -619,13 +649,16 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016306" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016306</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20504”, “Orphanet:216972”)
+c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”, “UMLS:C5680866”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -665,13 +698,17 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016307" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016307</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20505”, “Orphanet:216975”)
+c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”, “UMLS:C5680868”,
+“icd11.foundation:587642791”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -711,13 +748,17 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016308" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016308</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20506”, “Orphanet:216978”)
+c(“GARD:20506”, “MEDGEN:1843353”, “Orphanet:216978”, “UMLS:C5680867”,
+“icd11.foundation:2075382821”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -757,13 +798,17 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20508”, “NANDO:1200065”, “NANDO:2201209”, “Orphanet:216986”)
+c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
+“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -803,13 +848,17 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016309" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016309</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20507”, “Orphanet:216981”)
+c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”, “UMLS:C5679813”,
+“icd11.foundation:2006062681”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -850,7 +899,7 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0020384" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0020384</a>”
 </td>
 <td style="text-align:left;">
-c(“Orphanet:99022”, “SCTID:73399005”)
+c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”, “UMLS:C0268248”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -860,6 +909,9 @@ c(“Orphanet:99022”, “SCTID:73399005”)
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NULL
 </td>
 <td style="text-align:left;">
 NULL
@@ -896,7 +948,7 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0850058" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0850058</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:22456”, “Orphanet:618891”)
+c(“GARD:22456”, “MEDGEN:1842316”, “Orphanet:618891”, “UMLS:C5539139”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -906,6 +958,9 @@ c(“GARD:22456”, “Orphanet:618891”)
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NULL
 </td>
 <td style="text-align:left;">
 NULL
@@ -959,6 +1014,9 @@ c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
 <td style="text-align:left;">
 “NCBITaxon:9606”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -1008,6 +1066,9 @@ c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -1059,6 +1120,9 @@ c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
 <td style="text-align:left;">
 “NCBITaxon:9606”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 </tbody>
 </table>
@@ -1095,10 +1159,10 @@ knowledge_level
 knowledge_source
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-aggregator_knowledge_source (list)
+primary_knowledge_source
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-primary_knowledge_source
+aggregator_knowledge_source (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 provided_by (list)
@@ -1119,10 +1183,10 @@ original_object
 <tbody>
 <tr>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0011873”
@@ -1143,16 +1207,16 @@ original_object
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:869fd120-310a-4482-8e77-3016a318325b" class="uri">urn:uuid:869fd120-310a-4482-8e77-3016a318325b</a>”
+“<a href="urn:uuid:78d15485-99c0-4d02-9ebd-c9992953d410" class="uri">urn:uuid:78d15485-99c0-4d02-9ebd-c9992953d410</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1190,16 +1254,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:5d8b3ff4-8ec8-44bc-8e76-46fff5ad11cd" class="uri">urn:uuid:5d8b3ff4-8ec8-44bc-8e76-46fff5ad11cd</a>”
+“<a href="urn:uuid:8c504e0d-3188-478d-8226-2c59506ed67b" class="uri">urn:uuid:8c504e0d-3188-478d-8226-2c59506ed67b</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1216,7 +1280,7 @@ NA
 6
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0009757”
@@ -1237,16 +1301,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:fbebb7de-1cb9-4f90-932a-46819db221e8" class="uri">urn:uuid:fbebb7de-1cb9-4f90-932a-46819db221e8</a>”
+“<a href="urn:uuid:f9b0d3e5-721b-4102-af7f-89d1b483c9fc" class="uri">urn:uuid:f9b0d3e5-721b-4102-af7f-89d1b483c9fc</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1284,16 +1348,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:3ca10a53-3a7d-42cb-b9b2-2278ef8504ba" class="uri">urn:uuid:3ca10a53-3a7d-42cb-b9b2-2278ef8504ba</a>”
+“<a href="urn:uuid:921b3f2b-ce07-4158-8574-e4d0a0c879d8" class="uri">urn:uuid:921b3f2b-ce07-4158-8574-e4d0a0c879d8</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1310,7 +1374,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -1331,16 +1395,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:4df66b1f-981b-4d05-a0eb-9986122673fc" class="uri">urn:uuid:4df66b1f-981b-4d05-a0eb-9986122673fc</a>”
+“<a href="urn:uuid:0afebcbd-ed76-45c9-b7aa-ca8854d0016b" class="uri">urn:uuid:0afebcbd-ed76-45c9-b7aa-ca8854d0016b</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1357,7 +1421,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -1378,16 +1442,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:448c936b-6c74-4340-8d52-593f1835da95" class="uri">urn:uuid:448c936b-6c74-4340-8d52-593f1835da95</a>”
+“<a href="urn:uuid:b8ef4ccc-431f-4454-8fd4-576f3969c552" class="uri">urn:uuid:b8ef4ccc-431f-4454-8fd4-576f3969c552</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1404,7 +1468,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -1425,16 +1489,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:12b0ebc5-a33b-4b05-943f-528d753c2ccd" class="uri">urn:uuid:12b0ebc5-a33b-4b05-943f-528d753c2ccd</a>”
+“<a href="urn:uuid:a0fa8bd6-2767-47ad-9d20-6df6aefaddef" class="uri">urn:uuid:a0fa8bd6-2767-47ad-9d20-6df6aefaddef</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1451,7 +1515,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0016310”
@@ -1472,16 +1536,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:966840e8-2184-48fa-9aaf-56b47c501352" class="uri">urn:uuid:966840e8-2184-48fa-9aaf-56b47c501352</a>”
+“<a href="urn:uuid:2a2eef76-f00e-4d56-9c5a-9aa1dbab5973" class="uri">urn:uuid:2a2eef76-f00e-4d56-9c5a-9aa1dbab5973</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1498,7 +1562,7 @@ NA
 12
 </td>
 <td style="text-align:left;">
-3
+2
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -1519,110 +1583,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
 “infores:mondo”
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:c88be317-99f7-4031-9aed-647ce2bbbc88" class="uri">urn:uuid:c88be317-99f7-4031-9aed-647ce2bbbc88</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0001982”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
 c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:3450e760-7666-43ec-819c-19d114fa9a88" class="uri">urn:uuid:3450e760-7666-43ec-819c-19d114fa9a88</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-“MONDO:0020384”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0001982”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:7ca6492d-0697-4a4f-8383-9c53e58add1e" class="uri">urn:uuid:7ca6492d-0697-4a4f-8383-9c53e58add1e</a>”
+“<a href="urn:uuid:537e0671-ab2e-4964-bcf4-f21a8c6b1ce5" class="uri">urn:uuid:537e0671-ab2e-4964-bcf4-f21a8c6b1ce5</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1660,16 +1630,110 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:a62ee5a6-011c-44b2-b48e-2f0ab595dadb" class="uri">urn:uuid:a62ee5a6-011c-44b2-b48e-2f0ab595dadb</a>”
+“<a href="urn:uuid:b02aa50e-c1c0-4125-81c3-d482f51de04e" class="uri">urn:uuid:b02aa50e-c1c0-4125-81c3-d482f51de04e</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0001982”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:fb9bfcff-f63b-472d-b9f5-f282fb79337e" class="uri">urn:uuid:fb9bfcff-f63b-472d-b9f5-f282fb79337e</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+“MONDO:0020384”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0001982”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:e1965038-fa27-482c-baf7-70a35fbf588f" class="uri">urn:uuid:e1965038-fa27-482c-baf7-70a35fbf588f</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1707,16 +1771,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:mondo”
 </td>
 <td style="text-align:left;">
-“infores:mondo”
+c(“infores:monarchinitiative”, “infores:phenio”)
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:834c7761-1f42-454b-8726-9b85c3ab2bd5" class="uri">urn:uuid:834c7761-1f42-454b-8726-9b85c3ab2bd5</a>”
+“<a href="urn:uuid:6421a7cd-7dcf-4c26-b7e2-852f9fc682e9" class="uri">urn:uuid:6421a7cd-7dcf-4c26-b7e2-852f9fc682e9</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -1754,16 +1818,16 @@ NA
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:omim”
 </td>
 <td style="text-align:left;">
-“infores:omim”
+c(“infores:medgen”, “infores:monarchinitiative”)
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:6337715f-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7eb9cc6a-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
@@ -1788,7 +1852,7 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 16
 </td>
 <td style="text-align:left;">
-2
+3
 </td>
 <td style="text-align:left;">
 “HGNC:14537”
@@ -1809,16 +1873,16 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:omim”
 </td>
 <td style="text-align:left;">
-“infores:omim”
+c(“infores:medgen”, “infores:monarchinitiative”)
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:631aaa18-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7e9bc5ec-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
@@ -1864,16 +1928,16 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:omim”
 </td>
 <td style="text-align:left;">
-“infores:omim”
+c(“infores:medgen”, “infores:monarchinitiative”)
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:631aaa33-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7e9bc607-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
@@ -1919,16 +1983,16 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:omim”
 </td>
 <td style="text-align:left;">
-“infores:omim”
+c(“infores:medgen”, “infores:monarchinitiative”)
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:633771f1-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7eb9ccfc-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
@@ -1974,16 +2038,16 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9131-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145d0-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2029,16 +2093,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9133-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145d2-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2084,16 +2148,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9137-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145d6-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2139,16 +2203,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9179-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee14618-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2194,16 +2258,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9185-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee14624-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2249,16 +2313,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9130-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145cf-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2304,16 +2368,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9132-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145d1-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2359,16 +2423,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9136-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee145d5-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2414,16 +2478,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9178-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee14617-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2469,16 +2533,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:635d9184-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7ee14623-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2524,16 +2588,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:6379fea2-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7efee745-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2579,16 +2643,16 @@ c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
 “monarch-kg_edges.jsonl”
 </td>
 <td style="text-align:left;">
-“infores:monarchinitiative”
+“infores:orphanet”
 </td>
 <td style="text-align:left;">
-“infores:orphanet”
+“infores:monarchinitiative”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:6379fea3-400a-11ef-89e7-6fe0be41fbbf”
+“uuid:7efee746-7093-11ef-8840-dd70b15ede18”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:CorrelatedGeneToDiseaseAssociation”,
@@ -2669,7 +2733,7 @@ specification</a>.</p>
 <code><a href="../reference/monarch_engine.html">monarch_engine()</a></code>, designed specifically to access the
 cloud-hosted <a href="https://monarchiniatiative.org" class="external-link">Monarch
 Initiative</a> KG.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">monarch</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Using another Neo4j database via <code><a href="../reference/neo4j_engine.html">neo4j_engine()</a></code> is as
 simple as specifying a Neo4j <a href="https://neo4j.com/docs/operations-manual/current/configuration/ports/" class="external-link">Bolt</a>
@@ -2677,7 +2741,7 @@ endpoint, and username and password if required. This may be used to
 host your own Neo4j database for efficient KG access, based on the
 Monarch Neo4j <a href="https://github.com/monarch-initiative/monarch-neo4j" class="external-link">docker
 deployment</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">neodb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/neo4j_engine.html">neo4j_engine</a></span><span class="op">(</span><span class="st">"http://localhost:7687"</span>, username <span class="op">=</span> <span class="st">"user"</span>, password <span class="op">=</span> <span class="st">"pass"</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, the <code><a href="../reference/file_engine.html">file_engine()</a></code> provides KG access to
 KGX-formatted, <code>.tar.gz</code> files containing tab-separated
@@ -2686,7 +2750,7 @@ comes bundled with a small example KG providing information about
 Ehlers-Danlos and Marfan syndrome for demonstration purposes. You can
 also provide a local file path, or a URL to a remote file, which will be
 downloaded to the current working directory.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span>
 <span><span class="co"># filename &lt;- "https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz"</span></span>
 <span></span>
@@ -2699,7 +2763,7 @@ downloaded to the current working directory.</p>
 nodes by specified criteria. It returns a <code>tidygraph</code>-based
 graph, but only nodes, not any edges that may connect them. These can be
 specified as a set of IDs:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0009061"</span>, <span class="st">"HGNC:1884"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -2737,10 +2801,10 @@ synonym (list)
 category (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-xref (list)
+full_name
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-full_name
+xref (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 in_taxon (list)
@@ -2750,6 +2814,9 @@ namespace
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 provided_by (list)
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+type (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 iri
@@ -2790,10 +2857,10 @@ c(“biolink:BiologicalEntity”,
 “biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000001626”, “OMIM:602421”)
+“CF transmembrane conductance regulator”
 </td>
 <td style="text-align:left;">
-“CF transmembrane conductance regulator”
+c(“ENSEMBL:ENSG00000001626”, “OMIM:602421”)
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -2803,6 +2870,9 @@ c(“ENSEMBL:ENSG00000001626”, “OMIM:602421”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 <td style="text-align:left;">
 NA
@@ -2840,14 +2910,14 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “biolink:NamedThing”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MESH:D003550”,
-“MedDRA:10011762”, “NANDO:1200922”, “NANDO:1201021”, “NANDO:2100035”,
-“NANDO:2200205”, “NCIT:C2975”, “NORD:1026”, “OMIM:219700”,
-“Orphanet:586”, “SCTID:190905008”, “UMLS:C0010674”,
-“icd11.foundation:514403112”)
+NA
 </td>
 <td style="text-align:left;">
-NA
+c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MEDGEN:41393”,
+“MESH:D003550”, “MedDRA:10011762”, “NANDO:1200922”, “NANDO:1201021”,
+“NANDO:2100035”, “NANDO:2200205”, “NCIT:C2975”, “NORD:1026”,
+“OMIM:219700”, “Orphanet:586”, “SCTID:190905008”, “UMLS:C0010674”,
+“icd11.foundation:514403112”)
 </td>
 <td style="text-align:left;">
 NA
@@ -2857,6 +2927,9 @@ NA
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009061" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009061</a>”
@@ -2876,7 +2949,7 @@ Showing 0 of 0 edges:
 all of the nodes where <code>in_taxon_label</code> equals
 <code>"Homo sapiens"</code>. For demonstration purposes, we’ll limit the
 number of results to 20 (ordered by node ID).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_sapiens_nodes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">h_sapiens_nodes</span></span></code></pre></div>
@@ -3578,7 +3651,7 @@ properties are multi-valued, we provide a special <code>%in_list%</code>
 operator to allow exact match against entries. Here we fetch all the
 <em>Homo sapiens</em> Genes, using <code>%in_list%</code> to account for
 the multi-valued nature of node <code>category</code>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">human_genes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
@@ -3628,6 +3701,9 @@ namespace
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 provided_by (list)
 </th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+type (list)
+</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -3674,6 +3750,9 @@ c(“ENSEMBL:ENSG00000110881”, “OMIM:602866”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3717,6 +3796,9 @@ c(“ENSEMBL:ENSG00000117152”, “OMIM:602516”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -3762,6 +3844,9 @@ c(“ENSEMBL:ENSG00000143248”, “OMIM:603276”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3806,6 +3891,9 @@ c(“ENSEMBL:ENSG00000182732”, “OMIM:603894”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3849,6 +3937,9 @@ c(“ENSEMBL:ENSG00000182901”, “OMIM:602517”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -3896,6 +3987,9 @@ c(“ENSEMBL:ENSG00000108370”, “OMIM:604067”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3939,6 +4033,9 @@ c(“ENSEMBL:ENSG00000112077”, “OMIM:180297”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -3984,6 +4081,9 @@ c(“ENSEMBL:ENSG00000103269”, “OMIM:603264”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4026,6 +4126,9 @@ c(“ENSEMBL:ENSG00000188672”, “OMIM:111700”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4071,6 +4174,9 @@ c(“ENSEMBL:ENSG00000187010”, “OMIM:111680”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4114,6 +4220,9 @@ c(“ENSEMBL:ENSG00000113916”, “OMIM:109565”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4159,6 +4268,9 @@ c(“biolink:BiologicalEntity”,
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0000336”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4202,6 +4314,9 @@ c(“ENSEMBL:ENSG00000106615”, “OMIM:601293”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4247,6 +4362,9 @@ c(“ENSEMBL:ENSG00000163914”, “OMIM:180380”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4289,6 +4407,9 @@ c(“ENSEMBL:ENSG00000185974”, “OMIM:180381”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4333,6 +4454,9 @@ c(“ENSEMBL:ENSG00000152214”, “OMIM:609592”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4375,6 +4499,9 @@ c(“ENSEMBL:ENSG00000204227”, “OMIM:602045”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4419,6 +4546,9 @@ c(“ENSEMBL:ENSG00000137275”, “OMIM:603453”)
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
 </td>
 </tr>
 <tr>
@@ -4465,6 +4595,9 @@ c(“ENSEMBL:ENSG00000161940”, “OMIM:608992”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -4509,6 +4642,9 @@ c(“ENSEMBL:ENSG00000104312”, “OMIM:603455”)
 <td style="text-align:left;">
 “hgnc_gene_nodes”
 </td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
 </tr>
 </tbody>
 </table>
@@ -4524,7 +4660,7 @@ Showing 0 of 0 edges:
 <p>A convenience <code>%~%</code> operator provides regular-expression
 matching against node properties (but not multi-valued ones like
 <code>category</code>).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibrosis_disease_matches</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">description</span> <span class="op"><a href="../reference/grapes-twiddle-grapes.html">%~%</a></span> <span class="st">".*[fF]ibrosis.*"</span> <span class="op">&amp;</span> <span class="st">"biolink:Disease"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
 <span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
@@ -4596,7 +4732,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0000494" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0000494</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0050855”, “EFO:1001517”, “SCTID:197660000”, “UMLS:C0151650”)
+c(“DOID:0050855”, “EFO:1001517”, “MEDGEN:508798”, “SCTID:197660000”,
+“UMLS:C0151650”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4632,8 +4769,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001003" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001003</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:10329”, “ICD9:502”, “NCIT:C27026”, “SCTID:73144008”,
-“UMLS:C0238377”)
+c(“DOID:10329”, “ICD9:502”, “MEDGEN:65961”, “NCIT:C27026”,
+“SCTID:73144008”, “UMLS:C0238377”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4671,8 +4808,9 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001540" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001540</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:12522”, “ICD10CM:J67.1”, “ICD9:495.1”, “MESH:D011009”,
-“NCIT:C34409”, “SCTID:67242002”, “UMLS:C0004681”)
+c(“DOID:12522”, “ICD10CM:J67.1”, “ICD9:495.1”, “MEDGEN:2539”,
+“MESH:D011009”, “NCIT:C34409”, “SCTID:67242002”, “UMLS:C0004681”,
+“icd11.foundation:1123061945”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4711,8 +4849,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001684" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001684</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:13316”, “ICD10CM:K86.81”, “ICD9:577.8”, “MESH:D010188”,
-“NCIT:C84316”, “SCTID:47367009”, “UMLS:C0267963”)
+c(“DOID:13316”, “ICD10CM:K86.81”, “ICD9:577.8”, “MEDGEN:75647”,
+“MESH:D010188”, “NCIT:C84316”, “SCTID:47367009”, “UMLS:C0267963”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4758,8 +4896,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0002200" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0002200</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:2079”, “EFO:1000385”, “NCIT:C4474”, “SCTID:254720009”,
-“UMLS:C0346026”)
+c(“DOID:2079”, “EFO:1000385”, “MEDGEN:91074”, “NCIT:C4474”,
+“SCTID:254720009”, “UMLS:C0346026”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4797,7 +4935,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0003246" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0003246</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:5026”, “ICDO:8172/3”, “NCIT:C27388”, “UMLS:C1266018”)
+c(“DOID:5026”, “ICDO:8172/3”, “MEDGEN:266088”, “NCIT:C27388”,
+“UMLS:C1266018”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4833,7 +4972,7 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0003643" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0003643</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:5774”, “NCIT:C27777”, “UMLS:C1333817”)
+c(“DOID:5774”, “MEDGEN:272670”, “NCIT:C27777”, “UMLS:C1333817”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4876,8 +5015,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0003701" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0003701</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:5914”, “ICDO:8350/3”, “NCIT:C7427”, “UMLS:C0334330”,
-“UMLS:C1321862”)
+c(“DOID:5914”, “ICDO:8350/3”, “MEDGEN:87218”, “NCIT:C7427”,
+“UMLS:C0334330”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4915,8 +5054,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0004288" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0004288</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:7578”, “ICDO:8514/3”, “NCIT:C7362”, “SCTID:254839007”,
-“UMLS:C0346151”)
+c(“DOID:7578”, “ICDO:8514/3”, “MEDGEN:87541”, “NCIT:C7362”,
+“SCTID:254839007”, “UMLS:C0346151”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -4956,7 +5095,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0004463" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0004463</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:8106”, “NCIT:C41237”, “ONCOTREE:PMFPES”, “UMLS:C1516553”)
+c(“DOID:8106”, “MEDGEN:275741”, “NCIT:C41237”, “ONCOTREE:PMFPES”,
+“UMLS:C1516553”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5000,8 +5140,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 </td>
 <td style="text-align:left;">
 c(“DOID:8654”, “EFO:1002031”, “GARD:19592”, “ICD9:201.6”, “ICDO:9652/3”,
-“NCIT:C3517”, “ONCOTREE:MCCHL”, “Orphanet:98844”, “SCTID:118609008”,
-“icd11.foundation:39515681”)
+“MEDGEN:57521”, “NCIT:C3517”, “ONCOTREE:MCCHL”, “Orphanet:98844”,
+“SCTID:118609008”, “UMLS:C0152266”, “icd11.foundation:39515681”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5047,7 +5187,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0004769" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0004769</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:9369”, “MESH:D016727”, “SCTID:72789009”)
+c(“DOID:9369”, “MEDGEN:43140”, “MESH:D016727”, “SCTID:72789009”,
+“UMLS:C0085270”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5083,8 +5224,9 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005003" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005003</a>”
 </td>
 <td style="text-align:left;">
-c(“EFO:0000342”, “ICD9:577.1”, “MESH:D050500”, “NCIT:C84637”,
-“SCTID:235494005”, “UMLS:C0149521”)
+c(“EFO:0000342”, “ICD9:577.1”, “MEDGEN:101753”, “MESH:D050500”,
+“NCIT:C84637”, “SCTID:235494005”, “UMLS:C0149521”,
+“icd11.foundation:1758007371”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5124,9 +5266,10 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005011" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005011</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:8778”, “EFO:0000384”, “ICD9:555.1”, “MESH:D003424”,
-“NANDO:1200444”, “NANDO:1200446”, “NANDO:2200921”, “NCIT:C2965”,
-“Orphanet:206”, “SCTID:34000006”, “SCTID:7620006”, “UMLS:C0010346”)
+c(“DOID:8778”, “EFO:0000384”, “ICD9:555.1”, “MEDGEN:3664”,
+“MESH:D003424”, “NANDO:1200444”, “NANDO:1200446”, “NANDO:2200921”,
+“NCIT:C2965”, “Orphanet:206”, “SCTID:34000006”, “SCTID:7620006”,
+“UMLS:C0010346”, “icd11.foundation:1267652425”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5162,8 +5305,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005019" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005019</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:1580”, “EFO:0000404”, “GARD:7727”, “MESH:D045743”,
-“NCIT:C116791”)
+c(“DOID:1580”, “EFO:0000404”, “GARD:7727”, “MEDGEN:219839”,
+“MESH:D045743”, “NCIT:C116791”, “UMLS:C1258104”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5209,10 +5352,10 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005100" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005100</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:418”, “EFO:0000717”, “GARD:9748”, “ICD9:710.1”, “MESH:D012595”,
-“MedDRA:10042953”, “NANDO:1200277”, “NANDO:2200429”, “NCIT:C72070”,
-“NORD:2007”, “Orphanet:90291”, “SCTID:89155008”, “UMLS:C0036421”,
-“icd11.foundation:1084365812”)
+c(“DOID:418”, “EFO:0000717”, “GARD:9748”, “ICD9:710.1”, “MEDGEN:19897”,
+“MESH:D012595”, “MedDRA:10042953”, “NANDO:1200277”, “NANDO:2200429”,
+“NCIT:C72070”, “NORD:2007”, “Orphanet:90291”, “SCTID:89155008”,
+“UMLS:C0036421”, “icd11.foundation:1084365812”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5252,8 +5395,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005219" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005219</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:10354”, “EFO:0003014”, “ICD9:610.1”, “MESH:D005348”,
-“NCIT:C3039”, “UMLS:C0016034”)
+c(“DOID:10354”, “EFO:0003014”, “ICD9:610.1”, “MEDGEN:42015”,
+“MESH:D005348”, “NCIT:C3039”, “UMLS:C0016034”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5299,7 +5442,7 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0005413" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005413</a>”
 </td>
 <td style="text-align:left;">
-“EFO:0004608”
+c(“EFO:0004608”, “MEDGEN:639765”, “UMLS:C0546982”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5342,8 +5485,9 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 </td>
 <td style="text-align:left;">
 c(“DOID:13891”, “GARD:16924”, “ICD10CM:J67.2”, “ICD9:495.2”,
-“MESH:D001716”, “MedDRA:10004941”, “NCIT:C34425”, “Orphanet:99908”,
-“SCTID:69339004”, “UMLS:C0005592”, “icd11.foundation:912113736”)
+“MEDGEN:586”, “MESH:D001716”, “MedDRA:10004941”, “NCIT:C34425”,
+“Orphanet:99908”, “SCTID:69339004”, “UMLS:C0005592”,
+“icd11.foundation:912113736”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5382,7 +5526,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 </td>
 <td style="text-align:left;">
 c(“DOID:13767”, “EFO:0007210”, “ICD10CM:B66.1”, “ICD9:121.1”,
-“MESH:D003003”, “Orphanet:658917”, “SCTID:11938002”, “UMLS:C0009021”)
+“MEDGEN:3119”, “MESH:D003003”, “Orphanet:658917”, “SCTID:11938002”,
+“UMLS:C0009021”, “icd11.foundation:918986134”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5416,7 +5561,7 @@ take the resulting graph (which contains both disease and gene nodes),
 and fetch the neighborhood of nodes with category
 <code>biolink:PhenotypicFeature</code>. Since there are many such
 results, we add a <code>limit</code> for the visualization.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MONDO:0018982, MONDO:0011871: Neimann-Pick type B and C</span></span>
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
@@ -5457,7 +5602,7 @@ subtypes, and then considering the collective ancestry of those nodes in
 the KG. Not all ancestors are diseases
 (e.g. <code>biolink:Entity</code>), so we restrict the result set of the
 second expansion.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MONDO:0001982 Niemann-Pick Disease (13 subtypes)</span></span>
 <span></span>
 <span><span class="va">hierarchy</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
@@ -5480,7 +5625,7 @@ specific to the Monarch Initiatives’ API services. The first of these is
 <code><a href="../reference/monarch_search.html">monarch_search()</a></code>, which uses the same search API as the
 Monarch <a href="https://monarchinitiative.org" class="external-link">website</a>, returning a
 graph with matching nodes backed by a <code><a href="../reference/monarch_engine.html">monarch_engine()</a></code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cf_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_search.html">monarch_search</a></span><span class="op">(</span><span class="st">"Cystic fibrosis"</span>, category <span class="op">=</span> <span class="st">"biolink:Disease"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cf_hits</span></span></code></pre></div>
@@ -5553,10 +5698,10 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009061" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009061</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MESH:D003550”,
-“MedDRA:10011762”, “NANDO:1200922”, “NANDO:1201021”, “NANDO:2100035”,
-“NANDO:2200205”, “NCIT:C2975”, “NORD:1026”, “OMIM:219700”,
-“Orphanet:586”, “SCTID:190905008”, “UMLS:C0010674”,
+c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MEDGEN:41393”,
+“MESH:D003550”, “MedDRA:10011762”, “NANDO:1200922”, “NANDO:1201021”,
+“NANDO:2100035”, “NANDO:2200205”, “NCIT:C2975”, “NORD:1026”,
+“OMIM:219700”, “Orphanet:586”, “SCTID:190905008”, “UMLS:C0010674”,
 “icd11.foundation:514403112”)
 </td>
 <td style="text-align:left;">
@@ -5725,7 +5870,7 @@ phenotypes of Ehlers-Danlos syndrome, classic type
 (<code>"MONDO:0007947"</code>), and we find the best matching Marfan
 phenotype for each EDS phenotype. The result is returned as a graph,
 containing only computed <code>"computed:best_matches"</code> edges:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -5736,13 +5881,14 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_semsim.html">monarch_semsim</a></span><span class="op">(</span><span class="va">eds_phenos</span>, <span class="va">marfan_phenos</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
-<span><span class="va">sim</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-13-1.png" width="960"></p>
-<pre>Graph with 18 nodes and 11 edges. Expand sections below for details.</pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sim</span></span></code></pre></div>
+<pre>Graph with 15 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 18 of 18 nodes:
+Showing 15 of 15 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -5819,8 +5965,8 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0007522" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0007522</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:2088”, “NANDO:1200646”, “NANDO:2201256”, “Orphanet:287”,
-“SCTID:715318006”, “UMLS:C0220679”, “UMLS:C4225429”)
+c(“GARD:2088”, “MEDGEN:909864”, “NANDO:1200646”, “NANDO:2201256”,
+“Orphanet:287”, “SCTID:715318006”, “UMLS:C4225429”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -5840,12 +5986,10 @@ c(“GARD:2088”, “NANDO:1200646”, “NANDO:2201256”, “Orphanet:287”,
 “Hyperextensible skin”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“A condition in which the skin can be stretched beyond normal, and then
-returns to its initial position.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Hyperelastic skin”, “Skin hyperelasticity”, “Skin
-hyperextensibility”, “Stretchable skin”)
+“Skin hyperextensibility”
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -5856,7 +6000,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0000974" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000974</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C0241074”
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -5880,7 +6024,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 malleable consistency resembling that of dough.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Soft, doughy skin”
+NA
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -5891,7 +6035,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001027" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001027</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C1849043”
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -5911,10 +6055,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “Fragile skin”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Skin that splits easily with minimal injury.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Fragile skin”, “Skin fragility”)
+NA
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -5925,7 +6069,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001030" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001030</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDDRA:10040851”, “SNOMEDCT_US:247427007”, “UMLS:C0241181”)
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -5945,17 +6089,11 @@ c(“MEDDRA:10040851”, “SNOMEDCT_US:247427007”, “UMLS:C0241181”)
 “Striae distensae”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Thinned, erythematous, depressed bands of atrophic skin. Initially,
-striae appear as flattened and thinned, pinkish linear regions of the
-skin. Striae tend to enlarge in length and become reddish or purplish.
-Later, striae tend to appear as white, depressed bands that are parallel
-to the lines of skin tension. Striae distensae occur most often in areas
-that have been subject to distension such as the lower back, buttocks,
-thighs, breast, abdomen, and shoulders.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Purplish striae”, “Stretch marks”, “Striae”, “Striae atrophicae”,
-“Striae cutis distensae”)
+c(“Purplish striae”, “Striae”, “Striae atrophicae”, “Striae cutis
+distensae”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -5966,8 +6104,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001065" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001065</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDDRA:10040925”, “MSH:D057896”, “SNOMEDCT_US:201066002”,
-“SNOMEDCT_US:201067006”, “SNOMEDCT_US:47212006”, “UMLS:C0152459”)
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -5987,10 +6124,10 @@ c(“MEDDRA:10040925”, “MSH:D057896”, “SNOMEDCT_US:201066002”,
 “Cigarette-paper scars”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Thin (atrophic) and wide scars.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Cigarette paper scarring”, “Cigarette-paper scars”)
+NA
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6001,7 +6138,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001073" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001073</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C1851828”
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6021,12 +6158,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “Atrophic scars”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Scars that form a depression compared to the level of the surrounding
-skin because of damage to the collagen, fat or other tissues below the
-skin.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Sunken or indented skin due to damage”, “Thin, atrophic scars”)
+“Thin, atrophic scars”
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6037,7 +6172,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001075" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001075</a>”
 </td>
 <td style="text-align:left;">
-c(“SNOMEDCT_US:239172000”, “SNOMEDCT_US:409766009”, “UMLS:C0162154”)
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6054,15 +6189,13 @@ c(“SNOMEDCT_US:239172000”, “SNOMEDCT_US:409766009”, “UMLS:C0162154”)
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
+“Generalized joint hypermobility”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
 “Generalized joint laxity”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Joint hypermobility (ability of a joint to move beyond its normal range
-of motion) affecting many or all joints of the body.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Generalised joint laxity”, “Hypermobility of all joints”, “Joint
-laxity, generalised”, “Joint laxity, generalized”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6073,7 +6206,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0002761" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002761</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C1836308”
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6093,13 +6226,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “Osteopenia”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Osteopenia is a term to define bone density that is not normal but also
-not as low as osteoporosis. By definition from the World Health
-Organization osteopenia is defined by bone densitometry as a T score -1
-to -2.5.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Generalised osteopenia”, “Generalized osteopenia”, “Osteopaenia”)
+“Generalized osteopenia”
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6110,8 +6240,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0000938" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000938</a>”
 </td>
 <td style="text-align:left;">
-c(“MSH:D001851”, “SNOMEDCT_US:312894000”, “SNOMEDCT_US:78441005”,
-“UMLS:C0029453”, “UMLS:C0747078”)
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6131,10 +6260,10 @@ c(“MSH:D001851”, “SNOMEDCT_US:312894000”, “SNOMEDCT_US:78441005”,
 “Poor wound healing”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“A reduced ability to heal cutaneous wounds.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Poor wound healing”
+NA
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6145,7 +6274,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001058" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001058</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C1851789”
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6165,16 +6294,11 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “Hypotonia”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Hypotonia is an abnormally low muscle tone (the amount of tension or
-resistance to movement in a muscle). Even when relaxed, muscles have a
-continuous and passive partial contraction which provides some
-resistance to passive stretching. Hypotonia thus manifests as diminished
-resistance to passive stretching. Hypotonia is not the same as muscle
-weakness, although the two conditions can co-exist.”
+NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Central hypotonia”, “Low muscle tone”, “Low or weak muscle tone”,
-“Muscle hypotonia”, “Muscular hypotonia”, “Peripheral hypotonia”)
+c(“Central hypotonia”, “Muscle hypotonia”, “Muscular hypotonia”,
+“Peripheral hypotonia”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6185,8 +6309,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/HP_0001252" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001252</a>”
 </td>
 <td style="text-align:left;">
-c(“MSH:D009123”, “SNOMEDCT_US:398151007”, “SNOMEDCT_US:398152000”,
-“UMLS:C0026827”)
+NA
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6231,10 +6354,11 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0007947" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0007947</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MESH:D008382”,
-“MedDRA:10026829”, “NANDO:1200644”, “NANDO:2200968”, “NCIT:C34807”,
-“NORD:1403”, “OMIM:154700”, “Orphanet:284963”, “Orphanet:558”,
-“SCTID:19346006”, “UMLS:C0024796”, “icd11.foundation:236564145”)
+c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MEDGEN:44287”,
+“MESH:D008382”, “MedDRA:10026829”, “NANDO:1200644”, “NANDO:2200968”,
+“NCIT:C34807”, “NORD:1403”, “OMIM:154700”, “Orphanet:284963”,
+“Orphanet:558”, “SCTID:19346006”, “UMLS:C0024796”,
+“icd11.foundation:236564145”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -6245,203 +6369,16 @@ c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MESH:D008382”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0001377”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Limited elbow extension”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Limited ability to straighten the arm at the elbow joint.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Decreased elbow extension”, “Elbow limited extension”, “Limitation of
-elbow extension”, “Limited elbow extension”, “Limited extension at
-elbows”, “Limited forearm extension”, “Restricted elbow extension”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0001377" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001377</a>”
-</td>
-<td style="text-align:left;">
-“UMLS:C1867103”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0000486”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Strabismus”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“A misalignment of the eyes so that the visual axes deviate from
-bifoveal fixation. The classification of strabismus may be based on a
-number of features including the relative position of the eyes, whether
-the deviation is latent or manifest, intermittent or constant,
-concomitant or otherwise and according to the age of onset and the
-relevance of any associated refractive error.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Cross-eyed”, “Squint”, “Squint eyes”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000486" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000486</a>”
-</td>
-<td style="text-align:left;">
-c(“MSH:D013285”, “SNOMEDCT_US:128602000”, “SNOMEDCT_US:22066006”,
-“UMLS:C0038379”)
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0005136”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Mitral annular calcification”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Mitral annular calcification (MAC) results from progressive calcium
-deposition along and beneath the mitral valve annulus.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Premature calcification of mitral annulus”
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0005136" class="external-link uri">http://purl.obolibrary.org/obo/HP_0005136</a>”
-</td>
-<td style="text-align:left;">
-“UMLS:C1835130”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0001371”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Flexion contracture”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“A flexion contracture is a bent (flexed) joint that cannot be
-straightened actively or passively. It is thus a chronic loss of joint
-motion due to structural changes in muscle, tendons, ligaments, or skin
-that prevents normal movement of joints.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Flexed joint that cannot be straightened”, “Flexion contractures”,
-“Flexion contractures of joints”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0001371" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001371</a>”
-</td>
-<td style="text-align:left;">
-c(“MSH:D003286”, “SNOMEDCT_US:203598005”, “SNOMEDCT_US:385522000”,
-“SNOMEDCT_US:55033002”, “SNOMEDCT_US:57048009”, “SNOMEDCT_US:7890003”,
-“SNOMEDCT_US:88565003”, “UMLS:C0009917”, “UMLS:C0009918”,
-“UMLS:C0333068”, “UMLS:C1850530”)
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0003199”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Decreased muscle mass”
+“Pes planus”
 </td>
 <td style="text-align:left;min-width: 300px; ">
 NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Decreased muscle mass”
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0003199" class="external-link uri">http://purl.obolibrary.org/obo/HP_0003199</a>”
-</td>
-<td style="text-align:left;">
-“UMLS:C1837108”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0025586”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Hypertropia”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“A type of strabismus characterized by permanent upward deviation of the
-visual axis of one eye.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
 NA
@@ -6452,7 +6389,75 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0025586" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025586</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0001763" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001763</a>”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0000275”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Narrow face”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Narrow facies”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000275" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000275</a>”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0000505”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Visual impairment”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000505" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000505</a>”
 </td>
 <td style="text-align:left;">
 NA
@@ -6505,7 +6510,7 @@ ancestor_id
 9
 </td>
 <td style="text-align:left;">
-16
+13
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -6514,13 +6519,13 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001371”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-6.20804739894599
+6.24714401825347
 </td>
 <td style="text-align:left;">
 “HP:0011842”
@@ -6531,7 +6536,7 @@ ancestor_id
 2
 </td>
 <td style="text-align:left;">
-17
+13
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6540,16 +6545,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0003199”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-4.12905180500894
+4.32594644200774
 </td>
 <td style="text-align:left;">
-“HP:0000118”
+“UPHENO:0002976”
 </td>
 </tr>
 <tr>
@@ -6557,7 +6562,7 @@ ancestor_id
 3
 </td>
 <td style="text-align:left;">
-18
+13
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6566,16 +6571,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0025586”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-4.12905180500894
+4.32594644200774
 </td>
 <td style="text-align:left;">
-“HP:0000118”
+“UPHENO:0002976”
 </td>
 </tr>
 <tr>
@@ -6583,7 +6588,7 @@ ancestor_id
 4
 </td>
 <td style="text-align:left;">
-15
+13
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -6592,16 +6597,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0005136”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-4.12905180500894
+4.32594644200774
 </td>
 <td style="text-align:left;">
-“HP:0000118”
+“UPHENO:0002976”
 </td>
 </tr>
 <tr>
@@ -6609,7 +6614,7 @@ ancestor_id
 10
 </td>
 <td style="text-align:left;">
-14
+13
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -6618,16 +6623,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000486”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-4.12905180500894
+4.32594644200774
 </td>
 <td style="text-align:left;">
-“HP:0000118”
+“UPHENO:0002976”
 </td>
 </tr>
 <tr>
@@ -6635,7 +6640,7 @@ ancestor_id
 5
 </td>
 <td style="text-align:left;">
-16
+14
 </td>
 <td style="text-align:left;">
 “HP:0001065”
@@ -6644,16 +6649,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001371”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-5.6587800363266
+5.97492216211758
 </td>
 <td style="text-align:left;">
-“UPHENO:0012541”
+“UPHENO:0069327”
 </td>
 </tr>
 <tr>
@@ -6661,7 +6666,7 @@ ancestor_id
 6
 </td>
 <td style="text-align:left;">
-16
+14
 </td>
 <td style="text-align:left;">
 “HP:0001073”
@@ -6670,16 +6675,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001371”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-9.87469715486756
+5.97492216211758
 </td>
 <td style="text-align:left;">
-“HP:0003549”
+“UPHENO:0069327”
 </td>
 </tr>
 <tr>
@@ -6687,7 +6692,7 @@ ancestor_id
 7
 </td>
 <td style="text-align:left;">
-16
+14
 </td>
 <td style="text-align:left;">
 “HP:0001075”
@@ -6696,16 +6701,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001371”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-9.87469715486756
+5.97492216211758
 </td>
 <td style="text-align:left;">
-“HP:0003549”
+“UPHENO:0069327”
 </td>
 </tr>
 <tr>
@@ -6713,7 +6718,7 @@ ancestor_id
 11
 </td>
 <td style="text-align:left;">
-16
+15
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6722,16 +6727,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001371”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-8.69625474174526
+7.34923786857683
 </td>
 <td style="text-align:left;">
-“HP:0003011”
+“UPHENO:0002386”
 </td>
 </tr>
 <tr>
@@ -6748,16 +6753,16 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001377”
+“HP:0001763”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-9.98265640300348
+6.17080319291024
 </td>
 <td style="text-align:left;">
-“HP:0011729”
+“HP:0000924”
 </td>
 </tr>
 <tr>
@@ -6780,7 +6785,7 @@ ancestor_id
 “ancestor_information_content”
 </td>
 <td style="text-align:left;">
-8.88604807920409
+9.05124962578236
 </td>
 <td style="text-align:left;">
 “MONDO:0000426”
@@ -6796,7 +6801,7 @@ metric, similarity score, and ID of the least common ancestor relating
 the nodes.</p>
 <p>We can use <code>tidygraph</code>’s <code><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join()</a></code> to see
 this result in the context of the original query and target graphs.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">marfan_phenos</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -6842,7 +6847,7 @@ representative.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>

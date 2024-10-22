@@ -21,7 +21,7 @@ set of condition expressions are supported, see details."><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@ set of condition expressions are supported, see details."><!-- mathjax --><scrip
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fetch nodes from a graph using a set of IDs or conditions</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/fetch_nodes.R" class="external-link"><code>R/fetch_nodes.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/fallback-urls/R/fetch_nodes.R" class="external-link"><code>R/fetch_nodes.R</code></a></small>
     <div class="hidden name"><code>fetch_nodes.Rd</code></div>
     </div>
 
@@ -135,6 +135,8 @@ expression. The following features are supported:</p><ul><li><p>Matching node pr
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">fetch_nodes</span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0007525"</span>, <span class="st">"MONDO:0007526"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to http://neo4j.monarchinitiative.org:7474</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to http://neo4j.monarchinitiative.org:7474</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; counting matching nodes... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 2.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 2 of 2</span>
@@ -156,32 +158,34 @@ expression. The following features are supported:</p><ul><li><p>Matching node pr
 <span class="r-in"><span><span class="co"># a large query</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">fetch_nodes</span><span class="op">(</span><span class="st">"biolink:Disease"</span> <span class="op"><a href="grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to http://neo4j.monarchinitiative.org:7474</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to http://neo4j.monarchinitiative.org:7474</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; counting matching nodes... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 28109.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 5000 of 28109</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 10000 of 28109</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 15000 of 28109</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 20000 of 28109</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 25000 of 28109</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 28109 of 28109</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 28109 nodes and 0 edges</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 29473.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 5000 of 29473</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 10000 of 29473</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 15000 of 29473</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 20000 of 29473</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 25000 of 29473</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 29473 of 29473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 29473 nodes and 0 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 28109 trees</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 29473 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 28,109 × 11 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 29,473 × 11 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id            category  pcategory   name  description synonym iri   namespace</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;named&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DOID:4        <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… DOID     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> MONDO:0000001 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… dise… A disease … <span style="color: #949494;">&lt;chr&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MONDO:0000002 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> MONDO:0000003 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> MONDO:0000004 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… adre… An endocri… <span style="color: #949494;">&lt;chr&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> MONDO:0000005 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… alop… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> MONDO:0000006 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> MONDO:0000007 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> MONDO:0000008 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> MONDO:0000009 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… inhe… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>   http… MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 28,099 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> MEDGEN:41610  <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MEDGEN   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MEDGEN:4347   <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MEDGEN   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> MONDO:0000001 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… dise… A disease … <span style="color: #949494;">&lt;chr&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> MONDO:0000002 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> MONDO:0000003 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> MONDO:0000004 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… adre… An endocri… <span style="color: #949494;">&lt;chr&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> MONDO:0000005 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… alop… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> MONDO:0000006 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> MONDO:0000007 <span style="color: #949494;">&lt;chr [6]&gt;</span> biolink:Di… obso… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>   http… MONDO    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 29,463 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: provided_by &lt;named list&gt;, xref &lt;named list&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   deprecated &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
@@ -263,7 +267,7 @@ expression. The following features are supported:</p><ul><li><p>Matching node pr
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

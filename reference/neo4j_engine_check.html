@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Check if a neo4j database is available and properly formatted</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/neo4j_engine_check.R" class="external-link"><code>R/neo4j_engine_check.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/fallback-urls/R/neo4j_engine_check.R" class="external-link"><code>R/neo4j_engine_check.R</code></a></small>
     <div class="hidden name"><code>neo4j_engine_check.Rd</code></div>
     </div>
 
@@ -99,9 +99,14 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">neo4j_engine_check</span><span class="op">(</span><span class="st">"https://neo4j.monarchinitiative.org"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://neo4j.monarchinitiative.org</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Failed to connect to https://neo4j.monarchinitiative.org: Operation was aborted by an application callback</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Failed to connect to any of the URLs provided.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">neo4j_engine_check</span><span class="op">(</span><span class="st">"https://no-such-db.monarchinitiative.org"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Could not resolve host: no-such-db.monarchinitiative.org</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://no-such-db.monarchinitiative.org</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Failed to connect to https://no-such-db.monarchinitiative.org: Could not resolve host: no-such-db.monarchinitiative.org</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Failed to connect to any of the URLs provided.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -118,7 +123,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
