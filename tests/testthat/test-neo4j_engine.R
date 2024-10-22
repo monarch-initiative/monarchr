@@ -5,7 +5,10 @@ library(assertthat)
 test_that("neo4j_engine works as expected (using monarch neo4j db)", {
     #testthat::skip("temporary skip")
 
-    e <- neo4j_engine(url = "https://neo4j.monarchinitiative.org")
+    # one of these should work
+    e <- neo4j_engine(url = c("http://neo4j.monarchinitiative.org",
+                              "http://no.such.url",
+                              "http://neo4j.monarchinitiative.org:7474"))
     g <- fetch_nodes(e, query_ids = "MONDO:0006043")
     # this should have 6 subtypes (two direct, four under one of the direct children)
     subtypes <- g %>% expand(direction = "in",

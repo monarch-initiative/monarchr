@@ -5,18 +5,23 @@
 \title{Create a knowledge graph engine object backed by the public Monarch Neo4j instance}
 \usage{
 monarch_engine(
-  url = "https://neo4j.monarchinitiative.org",
+  url = c("http://neo4j.monarchinitiative.org:7474",
+    "https://neo4j.monarchinitiative.org:7473", "http://neo4j.monarchinitiative.org",
+    "https://neo4j.monarchinitiative.org"),
   api_url = "https://api.monarchinitiative.org/v3/api",
   preferences = NULL,
+  timeout = 2,
   ...
 )
 }
 \arguments{
-\item{url}{(Optional) May be specified to override the default Monarch Neo4j URL.}
+\item{url}{(Optional) May be specified to override the default Monarch Neo4j URL. If given a vector, each will be tried in sequence; if a URL times out (see timeout) or fails, the next is tried.}
 
 \item{api_url}{(Optional) May be specified to override the default Monarch API URL (specifying the location of the \verb{/search} endpoint used by \code{search_nodes()}).}
 
 \item{preferences}{A named list of preferences for the engine.}
+
+\item{timeout}{Number of seconds to wait before trying the next url.}
 
 \item{...}{Additional arguments passed to \code{neo2R::startGraph()}.}
 }

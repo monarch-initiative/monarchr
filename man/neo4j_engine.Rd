@@ -4,16 +4,25 @@
 \alias{neo4j_engine}
 \title{Create a knowledge graph engine object for a neo4j database}
 \usage{
-neo4j_engine(url, username = NA, password = NA, preferences = NULL, ...)
+neo4j_engine(
+  url,
+  username = NA,
+  password = NA,
+  preferences = NULL,
+  timeout = 1,
+  ...
+)
 }
 \arguments{
-\item{url}{A character string indicating the URL of the neo4j database.}
+\item{url}{A character string indicating the URL of the neo4j database. If given a vector, each will be tried in sequence; if a URL times out (see timeout) or fails, the next is tried.}
 
 \item{username}{A character string indicating the username for the neo4j database (if needed).}
 
 \item{password}{A character string indicating the password for the neo4j database (if needed).}
 
 \item{preferences}{A named list of preferences for the engine.}
+
+\item{timeout}{Number of sections to wait before trying the next url.}
 
 \item{...}{Additional arguments passed to \code{neo2R::startGraph()}.}
 }

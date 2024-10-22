@@ -1,9 +1,23 @@
 
 Dev branch graph_explore notes:
 
+# monarchr 1.3.0
+
+## New features
+
+* `summary()` function for engines
+
+## Bugfixs
+
 * fix backend bug in Neo4j table queries not handling default params properly
 * add batch queries for Neo4j backend engine
 * added summary() for KG engines to summarize total node and edge count information
+
+# monarchr 1.2.2
+
+## Bugfixs
+
+* Add fallback URLs for `monarch_engine()`
 
 # monarchr 1.2.1
 
