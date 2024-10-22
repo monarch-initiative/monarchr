@@ -1,96 +1,160 @@
+devtools::load_all()
+f <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+gs <- f |>
+  fetch_nodes(name %~% "Marfan") |>
+  expand()
+
+g <- gs |>
+  expand()
+
+# The `expand` function will fetch edges edges between nodes in the query as well; for example, if we want to see if any of the top 5 hits for Fanconi anemia are directly connected, we can begin by getting all of the edges associated with them, storing the result in a separate graph, and taking the intersection of their node sets to filter back down to keep just the original nodes but all the edges between them.
+
+# g <- monarch_search("Ehlers-danlos syndrome", limit = 5)
+
+# expanded <- g |>
+# 	expand()
+
+# joined <- expanded |>
+# 	activate(nodes) |>
+# 	inner_join(nodes(g))
+
+# joined
+
+# Let's do something more complicated: let's fetch all the genes related to FA and EDS, and all the phenotypes associated with either of those diseases directly or via those genes.
+
+# fa <- monarch_search("Fanconi anemia", limit = 1) %>%
+# 	expand(result_)
 
 
-The `expand` function will fetch edges edges between nodes in the query as well; for example, if we want to see if any of the top 5 hits for Fanconi anemia are directly connected, we can begin by getting all of the edges associated with them, storing the result in a separate graph, and taking the intersection of their node sets to filter back down to keep just the original nodes but all the edges between them.
+# Let's visualize that:
 
-```{r}
-g <- monarch_search("Ehlers-danlos syndrome", limit = 5)
-
-expanded <- g |>
-	expand()
-
-joined <- expanded |>
-	activate(nodes) |>
-	inner_join(nodes(g))
-
-joined
-```
-
-Let's do something more complicated: let's fetch all the genes related to FA and EDS, and all the phenotypes associated with either of those diseases directly or via those genes.
-
-```{r}
-fa <- monarch_search("Fanconi anemia", limit = 1) %>%
-	expand(result_)
-```
-
-Let's visualize that:
-
-```{r fig.height=5, fig.width=7}
-ggraph(joined, layout = "fr") +
-	geom_edge_link() +
-  geom_node_point(aes(color = pcategory, label = wrap(name))) +
-	theme_graph() +
-  theme(legend.position = 'bottom')
-
-```
-
-Let's visualize that:
-
-	```{r eval=FALSE}
-joined <- joined |>
-	mutate(tooltip = paste0(name, "\n\n", paste(strwrap(description, 80), collapse = "\n"))) |>
-	mutate(tooltip = paste0(name, "\n\n", pcategory, "\n", iri ))
+# ggraph(joined, layout = "fr") +
+# 	geom_edge_link() +
+#   geom_node_point(aes(color = pcategory, label = wrap(name))) +
+# 	theme_graph() +
+#   theme(legend.position = 'bottom')
 
 
+# # Let's visualize that:
+
+# joined <- joined |>
+# 	mutate(tooltip = paste0(name, "\n\n", paste(strwrap(description, 80), collapse = "\n"))) |>
+# 	mutate(tooltip = paste0(name, "\n\n", pcategory, "\n", iri ))
+
+#
 
 # Load required libraries
 library(digest)
 library(RColorBrewer)
+library(dplyr)
+library(tidygraph)
 
-# Function to map factor levels or character vector to colors
-color_cats <- function(factors) {
+# Generates a palette with num_colors entries, mapping
+# inputs pseudorandomly to them. if levels_only = FALSE,
+# a vector of RGB values the same length as input is returned.
+# if levels_only = TRUE, a named vector is returned mapping input
+# levels to RGB values
+color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 	# Ensure the input is treated as a factor
-	factors <- factor(factors)
+	factors <- factor(input)
 
-	# Choose a color palette (e.g., Set3) with a reasonably large number of distinct colors
-	palette_name <- "Set3"
-	palette <- brewer.pal(name = palette_name, n = min(length(unique(factors)), brewer.pal.info[palette_name, "max"]))
+	palette <- grDevices::hcl.colors(num_colors, palette = "Set3")
+
 
 	# Hash function to convert factor levels to numeric values consistently
-	hashes <- lapply(levels(factors), function(x) digest(x, algo = "crc32", serialize = FALSE))
-
+	hashes <- lapply(levels(factors), function(x) digest::digest(x, algo = "crc32", serialize = FALSE))
 	hash_integers <- sapply(hashes, function(x) strtoi(substr(x, 1, 5), base=16))
 
 	# Map hashes to indices in the color palette
 	# Use modulo to wrap around if there are more factors than colors
 	color_indices <- (hash_integers %% length(palette)) + 1
-	color_map <- setNames(palette[color_indices], levels(factors))
 
-	# Return the colors corresponding to the input factors
-	return(color_map[as.character(factors)])
+	color_map <- setNames(palette[color_indices], levels(factors))
+	if(levels_only) {
+		return(color_map)
+	} else {
+		# Return the colors corresponding to the input
+		return(unname(color_map[as.character(input)]))
+	}
+}
+# g |> nodes() |> pull(pcategory) |> factor() |> levels() |> head(n = 4) |> color_cats()
+#
+#
+# # # Example usage
+# # factors <- c("Apple", "Banana", "Cherry", "Date", "Apple", "Banana")
+# # colors <- map_factors_to_colors(factors)
+#
+# # # Print the mapping
+# # print(colors)
+#
+#
+#
+# # jexp <- joined |>
+# # 	expand(categories = "biolink:PhenotypicFeature")
+#
+#
+# library(visNetwork)
+# visNetwork(nodes(g) %>%
+# 						 mutate(kg_id = id) %>%
+# 						 mutate(id = 1:nrow(nodes(g))) %>%
+# 						 mutate(color = pal),
+# 					 edges(g)) %>%
+# 	visEdges(shadow = TRUE)
+#
+#
+# program <- "document.addEventListener('mousemove', function(e) {
+#   let x = document.getElementsByClassName('infobox')[3];
+#   x.style['background'] = '#222222';
+#   x.style['border-radius'] = '5px';
+#   x.style['color'] = '#222';
+#   x.style['font-family'] = 'sans-serif';
+#   x.style['position'] = 'absolute';
+#   x.style['top'] = e.pageY + 'px';
+#   x.style['left'] = e.pageX + 'px';
+# })"
+#
+#
+# library(rthreejs)
+# graphjs(gs,
+# 				vertex.color = as.character(pal),
+# 				vertex.size = 0.5, vertex.label = nodes(g)$name)
+#
+#
+# library(RedeR)
+# startRedeR()
+# addGraphToRedeR(g=gs)
+
+
+cytoscape <- function(g) {
+	RCy3::cytoscapePing()
+
+	nodes_df <- nodes(g)
+	nodes_df$desc_wrapped <- stringr::str_wrap(nodes_df$description, 50)
+
+	edges_df <- edges(g)
+
+	RCy3::createNetworkFromDataFrames(nodes_df,
+																		edges_df,
+																		title = "KG Nodes",
+																		collection = "monarchr Graphs",
+																		source.id.list = 'subject',
+																		target.id.list = 'object')
+	RCy3::layoutNetwork('kamada-kawai')
+
+	pal <- color_cats(nodes(g)$pcategory, levels_only = TRUE)
+	RCy3::setNodeColorMapping('pcategory', table.column.values = names(pal), colors = pal, mapping.type = 'd')
+
+	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped')
 }
 
-# Example usage
-factors <- c("Apple", "Banana", "Cherry", "Date", "Apple", "Banana")
-colors <- map_factors_to_colors(factors)
-
-# Print the mapping
-print(colors)
+cytoscape(g)
 
 
 
-jexp <- joined |>
-	expand(categories = "biolink:PhenotypicFeature")
+library(ggraph)
+library(ggiraph)
 
-library(visNetwork)
-visNetwork(nodes(joined) #%>%
-					 #mutate(kg_id = id)# %>%
-					 #mutate(id = 1:nrow(nodes(jexp))) #%>%
-					 # mutate(color = color_cats(pcategory))
-					 ,
-					 edges(joined)) %>%
-	visEdges(shadow = TRUE)
-
-z <- ggraph(joined, layout = 'fr') + # fr
+z <- ggraph(g, layout = 'fr') + # fr
 	geom_edge_link(aes(alpha = after_stat(index),
 										 color = predicate)) +
 	# geom_node_point(aes(color = pcategory)) +
@@ -99,7 +163,7 @@ z <- ggraph(joined, layout = 'fr') + # fr
 									y = y,
 									color = pcategory,
 									data_id = id,
-									tooltip = tooltip)
+									tooltip = name)
 	) +
 	scale_edge_alpha('Edge direction', guide = 'edge_direction') +
 	theme_graph() +
@@ -111,80 +175,24 @@ girafe(ggobj = z, height_svg = 3, width_svg = 5,
 			 	opts_tooltip(css = "font-family: sans-serif; background: #333333; padding: 10px; font-size: small")
 
 			 ))
-str(z)
-```
+# str(z)
+#
+# subtypes <- g %>%
+# 	expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
+#
+# with_phenos <- subtypes %>%
+# 	expand(predicates = "biolink:has_phenotype")
+#
+# # print(with_phenos)
+#
+# with_genes <- subtypes %>%
+# 	expand(categories = "biolink:Gene")
+#
+# # print(with_genes)
+#
+# neighbors <- graph_join(with_phenos, with_genes)
+# neighbors
 
-```{r eval=FALSE}
-subtypes <- g %>%
-	expand(direction = "in", predicates = "biolink:subclass_of", transitive = TRUE)
-
-with_phenos <- subtypes %>%
-	expand(predicates = "biolink:has_phenotype")
-
-# print(with_phenos)
-
-with_genes <- subtypes %>%
-	expand(categories = "biolink:Gene")
-
-# print(with_genes)
-
-neighbors <- graph_join(with_phenos, with_genes)
-neighbors
-```
-
-```{r eval=FALSE}
-library(ggraph)
-
-neighbors <- neighbors %>%
-	activate(nodes)
-
-p <- ggraph(neighbors, layout = 'fr') +
-	geom_edge_link() +
-	geom_node_point(aes(color = pcategory)) +
-	theme(legend.position = 'bottom')
-
-plot(p)
-```
-
-```{r eval=FALSE}
-library(ggraph)
-
-eds_phenos <- monarch_search("Ehlers-danlos syndrome", limit = 1) %>%
-	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(categories = "biolink:PhenotypicFeature")
-
-# eds_phenos
-
-fanconi_phenos <- monarch_search("Fanconi anemia", limit = 1) %>%
-	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(categories = "biolink:PhenotypicFeature")
-
-# fanconi_phenos
-
-inner <- inner_join(activate(eds_phenos, nodes), activate(fanconi_phenos, nodes) %>% as_tibble())
-print(inner)
-
-p <- ggraph(inner, layout = 'fr') +
-	geom_edge_link() +
-	geom_node_point(aes(color = pcategory)) +
-	theme(legend.position = 'bottom')
-
-plot(p)
-
-both <- graph_join(eds_phenos, fanconi_phenos)
-
-
-p <- ggraph(both, layout = 'fr') +
-	geom_edge_link() +
-	geom_node_point(aes(color = pcategory)) +
-	theme(legend.position = 'bottom')
-
-
-plot(p)
-
-```
-
-```{r eval=FALSE}
 library(visNetwork)
 library(igraph)
 library(ggiraph)
@@ -192,13 +200,13 @@ library(ggraph)
 
 # x <- visNetwork(g %N>% as_tibble(), g %E>% as_tibble(), height = "400px") %>%
 # 	visNodes(color = list(background = ""))
-g <- monarch_search("Fanconi anemia", limit = 1) %>%
-	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
-	expand(categories = "biolink:PhenotypicFeature")
-
-g <- g %>%
-	activate(nodes) %>%
-	mutate(tooltip = paste0(name, "\n", description))
+# g <- monarch_search("Fanconi anemia", limit = 1) %>%
+# 	expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) %>%
+# 	expand(categories = "biolink:PhenotypicFeature")
+#
+# g <- g %>%
+# 	activate(nodes) %>%
+# 	mutate(tooltip = paste0(name, "\n", description))
 
 z <- ggraph(g, layout = 'fr') + # fr
 	# geom_edge_link(aes(alpha = after_stat(index),
@@ -211,7 +219,7 @@ z <- ggraph(g, layout = 'fr') + # fr
 									y = y,
 									color = pcategory,
 									data_id = id,
-									tooltip = tooltip)
+									tooltip = name)
 	) +
 	scale_edge_alpha('Edge direction', guide = 'edge_direction') +
 	theme_graph() +
@@ -223,7 +231,6 @@ girafe(ggobj = z, width_svg = 5, height_svg = 5,
 			 	opts_zoom(max = 5)
 			 ))
 
-```
 
 
 #############################
@@ -342,3 +349,68 @@ queries <- paste0("MATCH (n:`",res$Label,"`) RETURN n LIMIT 1")
 monarch <- monarch_engine()
 
 fetched <- cypher_query(monarch, queries = queries)
+
+
+###### diversity sampling...
+
+# get the available relationship types
+
+e <- neo4j_engine("http://neo4j.monarchinitiative.org:7474")
+
+pred_types_query <- "CALL db.schema.visualization() YIELD relationships
+UNWIND relationships AS rel
+RETURN DISTINCT type(rel) AS predicate"
+
+pred_types <- cypher_query_df(e, pred_types_query)
+
+# sample one of each
+sample_preds_query <- paste0("MATCH (a)-[r:`", pred_types$predicate, "`]->(b) RETURN a, b, r LIMIT 1")
+
+sample_preds_graph <- cypher_query(e, query = sample_preds_query)
+
+# debug plot - turn off colors, too many category and predicate types
+plot(sample_preds_graph, node_color = NA, edge_color = NA)
+
+# compute the categories that are used thus far
+used_categories <- sample_preds_graph |>
+	activate(nodes) |>
+	as.data.frame() |>
+	pull(category) |>
+	unlist() |>
+	unique()
+
+used_categories
+
+# get the available categories
+categories_query <- "CALL db.labels() YIELD label RETURN DISTINCT label"
+
+all_node_categories <- cypher_query_df(e, categories_query)$label
+all_node_categories
+
+# compute the node categories that are still needed
+needed_categories <- setdiff(all_node_categories, used_categories)
+
+# sample nodes of those categories
+sample_cats_query <- paste0("MATCH (a:`", needed_categories, "`) RETURN a LIMIT 1")
+
+sample_new_cats <- cypher_query(e, query = sample_cats_query)
+
+# debug plot - turn off colors
+plot(sample_new_cats, node_color = NA, edge_color = NA)
+
+# join the two samples
+full_sample <- kg_join(sample_preds_graph, sample_new_cats)
+
+
+full_sample
+plot(full_sample, node_color = NA, edge_color = NA)
+
+
+
+##### another try at category counts
+cat_counts_query <- paste0("MATCH (a:`", all_node_categories, "`) WITH count(*) as count, '", all_node_categories ,"' as category RETURN category, count")
+cat_counts <- cypher_query_df(e, cat_counts_query)
+cat_counts_df <- do.call(rbind, cat_counts) |> arrange(desc(count))
+
+
+
