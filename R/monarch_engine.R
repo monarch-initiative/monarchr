@@ -11,9 +11,10 @@
 #'
 #' The `monarch_engine()` overrides `search_nodes()` to use the Monarch search API, so setting `node_search_properties` in the preferences will not affect the search behavior. To use regex-based searching with the Monarch Neo4j instance, use `neo4j_engine()` instead and specify the Monarch Neo4j URL (https://neo4j.monarchinitiative.org).
 #'
-#' @param url (Optional) May be specified to override the default Monarch Neo4j URL.
+#' @param url (Optional) May be specified to override the default Monarch Neo4j URL. If given a vector, each will be tried in sequence; if a URL times out (see timeout) or fails, the next is tried.
 #' @param api_url (Optional) May be specified to override the default Monarch API URL (specifying the location of the `/search` endpoint used by `search_nodes()`).
 #' @param preferences A named list of preferences for the engine.
+#' @param timeout Number of seconds to wait before trying the next url.
 #' @param ... Additional arguments passed to `neo2R::startGraph()`.
 #' @seealso `file_engine()`, `neo4j_engine()`
 #' @return An object of class `monarch_engine`
@@ -26,11 +27,15 @@
 #' res <- monarch |> fetch_nodes(query_ids = c("MONDO:0007522", "MONDO:0007947"))
 #' print(res)
 #'
-monarch_engine <- function(url = "https://neo4j.monarchinitiative.org",
+monarch_engine <- function(url = c("http://neo4j.monarchinitiative.org:7474",
+																	 "https://neo4j.monarchinitiative.org:7473",
+																	 "http://neo4j.monarchinitiative.org",
+																	 "https://neo4j.monarchinitiative.org"),
                            api_url = "https://api.monarchinitiative.org/v3/api",
                            preferences = NULL,
+													 timeout = 2,
                            ...) {
-  e <- neo4j_engine(url = url, preferences = preferences, ...)
+  e <- neo4j_engine(url = url, preferences = preferences, timeout = timeout, ...)
   e$preferences$monarch_api_url <- api_url
   class(e) <- c("monarch_engine", class(e))
   return(e)

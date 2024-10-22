@@ -1,5 +1,10 @@
 
 
+# monarchr 1.2.2
+
+## Bugfixs
+
+* Add fallback URLs for `monarch_engine()`
 
 # monarchr 1.2.1
 
