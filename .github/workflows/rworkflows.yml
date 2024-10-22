@@ -35,7 +35,7 @@ jobs:
         as_cran: ${{ true }}
         run_vignettes: ${{ true }}
         has_testthat: ${{ true }}
-        run_covr: ${{ true }}
+        run_covr: ${{ false }}
         run_pkgdown: ${{ true }}
         has_runit: ${{ false }}
         has_latex: ${{ false }}

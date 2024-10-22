@@ -14,10 +14,11 @@
 #' For `neo4j_engine()`s, preferences are also used to set the node properties to search when using `search_nodes()`, defaulting to regex-based searches on id, name, and description. (The `monarch_engine()` is a type
 #' of `neo4j_engine()` with the URL set to the Monarch Neo4j instance, and overrides `search_nodes()` to use the Monarch search API, see `monarch_engine()` for details).
 #'
-#' @param url A character string indicating the URL of the neo4j database.
+#' @param url A character string indicating the URL of the neo4j database. If given a vector, each will be tried in sequence; if a URL times out (see timeout) or fails, the next is tried.
 #' @param username A character string indicating the username for the neo4j database (if needed).
 #' @param password A character string indicating the password for the neo4j database (if needed).
 #' @param preferences A named list of preferences for the engine.
+#' @param timeout Number of sections to wait before trying the next url.
 #' @param ... Additional arguments passed to `neo2R::startGraph()`.
 #' @seealso `file_engine()`, `monarch_engine()`
 #' @return An object of class `neo4j_engine`
@@ -30,13 +31,38 @@
 #' res <- engine |> fetch_nodes(query_ids = c("MONDO:0007522", "MONDO:0007947"))
 #' print(res)
 #'
+#' @importFrom neo2R startGraph
+#' @importFrom R.utils withTimeout
 neo4j_engine <- function(url,
                          username = NA,
                          password = NA,
                          preferences = NULL,
+												 timeout = 1,
                          ...) {
 
-	graph_conn <- neo2R::startGraph(url, username = username, password = password, ...)
+    success <- FALSE
+    for (i in seq_along(url)) {
+        message(paste0("Trying to connect to ", url[i]))
+        tryCatch({
+            graph_conn <- withTimeout(startGraph(url[i],
+                                                 username = username,
+                                                 password = password,
+                                                 ...),
+                                      timeout = timeout,
+                                      onTimeout = "error")
+            success <- TRUE
+        }, error = function(e) {
+            message(paste0("Failed to connect to ", url[i], ": ", e$message))
+        })
+        if (success) {
+            message(paste0("Connected to ", url[i]))
+            break
+        }
+    }
+
+    if (!success) {
+        stop("Failed to connect to any of the URLs provided.")
+    }
 
     obj <- base_engine(name = "neo4j_engine",
                        preferences = preferences)
