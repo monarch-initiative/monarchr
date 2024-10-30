@@ -3,6 +3,7 @@
 ## New features
 
 * `example_graph()` function for engines
+* Engine `summary()` now returns named lists of available node categories and edge predicates for convenient auto-completion
 
 # monarchr 1.3.0
 
