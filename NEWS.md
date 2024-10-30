@@ -1,5 +1,8 @@
+# monarchr 1.4.0
 
-Dev branch graph_explore notes:
+## New features
+
+* `example_graph()` function for engines
 
 # monarchr 1.3.0
 
