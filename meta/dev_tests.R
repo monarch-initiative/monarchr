@@ -147,6 +147,7 @@ cytoscape <- function(g) {
 	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped')
 }
 
+
 cytoscape(g)
 
 
@@ -353,64 +354,17 @@ fetched <- cypher_query(monarch, queries = queries)
 
 ###### diversity sampling...
 
-# get the available relationship types
-
-e <- neo4j_engine("http://neo4j.monarchinitiative.org:7474")
-
-pred_types_query <- "CALL db.schema.visualization() YIELD relationships
-UNWIND relationships AS rel
-RETURN DISTINCT type(rel) AS predicate"
-
-pred_types <- cypher_query_df(e, pred_types_query)
-
-# sample one of each
-sample_preds_query <- paste0("MATCH (a)-[r:`", pred_types$predicate, "`]->(b) RETURN a, b, r LIMIT 1")
-
-sample_preds_graph <- cypher_query(e, query = sample_preds_query)
-
-# debug plot - turn off colors, too many category and predicate types
-plot(sample_preds_graph, node_color = NA, edge_color = NA)
-
-# compute the categories that are used thus far
-used_categories <- sample_preds_graph |>
-	activate(nodes) |>
-	as.data.frame() |>
-	pull(category) |>
-	unlist() |>
-	unique()
-
-used_categories
-
-# get the available categories
-categories_query <- "CALL db.labels() YIELD label RETURN DISTINCT label"
-
-all_node_categories <- cypher_query_df(e, categories_query)$label
-all_node_categories
-
-# compute the node categories that are still needed
-needed_categories <- setdiff(all_node_categories, used_categories)
-
-# sample nodes of those categories
-sample_cats_query <- paste0("MATCH (a:`", needed_categories, "`) RETURN a LIMIT 1")
-
-sample_new_cats <- cypher_query(e, query = sample_cats_query)
-
-# debug plot - turn off colors
-plot(sample_new_cats, node_color = NA, edge_color = NA)
-
-# join the two samples
-full_sample <- kg_join(sample_preds_graph, sample_new_cats)
-
-
-full_sample
-plot(full_sample, node_color = NA, edge_color = NA)
 
 
 
-##### another try at category counts
-cat_counts_query <- paste0("MATCH (a:`", all_node_categories, "`) WITH count(*) as count, '", all_node_categories ,"' as category RETURN category, count")
-cat_counts <- cypher_query_df(e, cat_counts_query)
-cat_counts_df <- do.call(rbind, cat_counts) |> arrange(desc(count))
+s <- monarch_engine() |> example_graph.neo4j_engine()
+
+cytoscape(s)
 
 
+f <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+
+
+s2 <- f |> example_graph.file_engine()
+s2 |> cytoscape()
 
