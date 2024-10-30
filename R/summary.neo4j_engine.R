@@ -22,6 +22,13 @@ summary.neo4j_engine <- function(engine, ..., quiet = FALSE) {
 		cat("Gathering statistics, please wait...\n")
 	}
 
+		# possible optimization: use a schema query to get different available categories,
+	  # count them individually:
+		# cat_counts_query <- paste0("MATCH (a:`", all_node_categories, "`) WITH count(*) as count, '", all_node_categories ,"' as category RETURN category, count")
+		# cat_counts <- cypher_query_df(e, cat_counts_query)
+		# cat_counts_df <- do.call(rbind, cat_counts) |> arrange(desc(count))
+
+
     node_summary_df <- cypher_query_df(engine, "MATCH (n) UNWIND labels(n) AS category WITH category, COUNT(n) AS count RETURN category, count ORDER BY count DESC")
     edge_summary_df <- cypher_query_df(engine, "MATCH ()-[r]->() RETURN type(r) AS predicate, COUNT(*) AS count ORDER BY count DESC")
 
