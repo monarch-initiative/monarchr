@@ -3,12 +3,14 @@
 #' Given a Neo4j based KG engine, provides summary information in the form of
 #' node counts, category counts across nodes, and relationship type counts.
 #' General information about the graph is printed to the console, and a list of
-#' dataframes describing node and edge counts is returned invisibly.
+#' dataframes describing node and edge counts is returned invisibly. Also returned
+#' are `cats` and `preds` entries, containing lists of available node categories and
+#' edge predicates, respectively, for convenient auto-completion in RStudio.
 #'
 #' @param engine A `neo4j_engine` object
 #' @param ... Other parameters (not used)
 #' @param quiet Logical, whether to suppress printing of the summary
-#' @return A list of dataframes
+#' @return A list of dataframes and named lists
 #' @export
 #' @examplesIf monarch_engine_check()
 #' # prints a readable summary and returns a list of dataframes
@@ -59,8 +61,16 @@ summary.neo4j_engine <- function(engine, ..., quiet = FALSE) {
         print(edge_summary_df, row.names = FALSE)
     }
 
+    cats <- as.list(node_summary_df$category)
+    names(cats) <- cats
+
+    preds <- as.list(edge_summary_df$predicate)
+    names(preds) <- preds
+
     return(invisible(list(node_summary = node_summary_df,
     											edge_summary = edge_summary_df,
     											total_nodes = total_nodes,
-    											total_edges = total_edges)))
+    											total_edges = total_edges,
+    											cats = cats,
+    											preds = preds)))
 }
