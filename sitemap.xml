@@ -3,6 +3,7 @@
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/LICENSE.html</loc></url>
 <url><loc>/articles/examples/alzheimers_phenotypes.html</loc></url>
+<url><loc>/articles/examples/exploring_kgs.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/articles/monarchr.html</loc></url>
 <url><loc>/authors.html</loc></url>
@@ -12,6 +13,9 @@
 <url><loc>/reference/cypher_query.html</loc></url>
 <url><loc>/reference/cypher_query_df.html</loc></url>
 <url><loc>/reference/edges.html</loc></url>
+<url><loc>/reference/example_graph.file_engine.html</loc></url>
+<url><loc>/reference/example_graph.html</loc></url>
+<url><loc>/reference/example_graph.neo4j_engine.html</loc></url>
 <url><loc>/reference/expand.html</loc></url>
 <url><loc>/reference/explode.html</loc></url>
 <url><loc>/reference/fetch_nodes.html</loc></url>
@@ -28,6 +32,7 @@
 <url><loc>/reference/monarch_engine_check.html</loc></url>
 <url><loc>/reference/monarch_search.html</loc></url>
 <url><loc>/reference/monarch_semsim.html</loc></url>
+<url><loc>/reference/neo2r_to_kgx.html</loc></url>
 <url><loc>/reference/neo4j_engine.html</loc></url>
 <url><loc>/reference/neo4j_engine_check.html</loc></url>
 <url><loc>/reference/nodes.html</loc></url>
@@ -37,6 +42,8 @@
 <url><loc>/reference/save_kgx.html</loc></url>
 <url><loc>/reference/stitch_vectors.html</loc></url>
 <url><loc>/reference/summarize_neighborhood.html</loc></url>
+<url><loc>/reference/summary.file_engine.html</loc></url>
+<url><loc>/reference/summary.neo4j_engine.html</loc></url>
 <url><loc>/reference/tbl_kgx.html</loc></url>
 </urlset>
 

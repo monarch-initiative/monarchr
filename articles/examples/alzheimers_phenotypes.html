@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -57,6 +57,9 @@
 <li class="dropdown-header">Examples</li>
     <li>
       <a href="../../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
+    </li>
+    <li>
+      <a href="../../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
     </li>
   </ul>
 </li>
@@ -90,10 +93,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Oct-22-2024</i>
+<i>Nov-04-2024</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/examples/alzheimers_phenotypes.Rmd" class="external-link"><code>vignettes/examples/alzheimers_phenotypes.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/graph_explore/vignettes/examples/alzheimers_phenotypes.Rmd" class="external-link"><code>vignettes/examples/alzheimers_phenotypes.Rmd</code></a></small>
       <div class="hidden name"><code>alzheimers_phenotypes.Rmd</code></div>
 
     </div>
@@ -165,20 +168,24 @@ provided_by (list)
 <tbody>
 <tr>
 <td style="text-align:left;">
-“MONDO:0012153”
+“MONDO:0011743”
 </td>
 <td style="text-align:left;">
 “biolink:Disease”
 </td>
 <td style="text-align:left;">
-“Alzheimer disease 9”
+“Alzheimer disease 4”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+“Alzheimer’s disease with an early onset (starts before the age of 65).
+It is caused by mutations in the PSEN2 gene.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“AD9”, “Alzheimer disease 9”, “Alzheimer disease 9, late-onset”,
-“Alzheimer disease 9, susceptibility to”)
+c(“AD4”, “Ad4”, “Alzheimer disease 4”, “Alzheimer disease familial type
+4”, “Alzheimer disease type 4”, “Alzheimer disease, familial, 4”,
+“Alzheimer disease, familial4”, “Alzheimer disease-4”, “Alzheimer’s
+disease 4”, “Alzheimer’s disease type 4”, “familial Alzheimer disease,
+type 4”, “familial Alzheimer’s disease, type 4”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:Disease”,
@@ -186,11 +193,11 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “biolink:NamedThing”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0012153" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0012153</a>”
+“<a href="http://purl.obolibrary.org/obo/MONDO_0011743" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011743</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0111364”, “MEDGEN:924255”, “MESH:C563834”, “OMIM:608907”,
-“UMLS:C4282179”)
+c(“DOID:0110040”, “GARD:16511”, “MEDGEN:376072”, “MESH:C536596”,
+“NCIT:C123413”, “OMIM:606889”, “UMLS:C1847200”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -279,22 +286,21 @@ c(“DOID:0110036”, “MEDGEN:394384”, “MESH:C567463”, “OMIM:300756”
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:0011194”
+“MONDO:0012631”
 </td>
 <td style="text-align:left;">
 “biolink:Disease”
 </td>
 <td style="text-align:left;">
-“Alzheimer disease 5”
+“Alzheimer disease 14”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+“An Alzheimer’s disease that is characterized by an associated with
+variation in the region 1q25.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“AD5”, “Ad5”, “Alzheimer disease 5”, “Alzheimer disease type 5”,
-“Alzheimer disease, familial 5”, “Alzheimer disease, familial, 5”,
-“Alzheimer disease-5”, “Alzheimer’s disease 5”, “Alzheimer’s disease
-type 5”)
+c(“AD14”, “Alzheimer disease 14”, “Alzheimer disease-14”, “Alzheimer’s
+disease 14”, “Alzheimer’s disease type 14”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:Disease”,
@@ -302,11 +308,11 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “biolink:NamedThing”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0011194" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011194</a>”
+“<a href="http://purl.obolibrary.org/obo/MONDO_0012631" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0012631</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0110037”, “GARD:16507”, “MEDGEN:356103”, “MESH:C566578”,
-“OMIM:602096”, “UMLS:C1865868”)
+c(“DOID:0110047”, “GARD:16518”, “MEDGEN:369666”, “MESH:C566999”,
+“OMIM:611154”, “UMLS:C1970144”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -317,22 +323,19 @@ c(“DOID:0110037”, “GARD:16507”, “MEDGEN:356103”, “MESH:C566578”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:0012609”
+“MONDO:1011460”
 </td>
 <td style="text-align:left;">
 “biolink:Disease”
 </td>
 <td style="text-align:left;">
-“Alzheimer disease 12”
+“Alzheimer disease, degu”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“An Alzheimer’s disease that is characterized by an associated with
-variation in the region 8p12-q22.”
+“Alzheimer disease that occurs in degu.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“AD12”, “Ad12”, “Alzheimer disease 12”, “Alzheimer disease familial
-12”, “Alzheimer disease type 12”, “Alzheimer disease, familial, 12”,
-“Alzheimer’s disease 12”, “Alzheimer’s disease type 12”)
+NA
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:Disease”,
@@ -340,11 +343,10 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “biolink:NamedThing”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0012609" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0012609</a>”
+“<a href="http://purl.obolibrary.org/obo/MONDO_1011460" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_1011460</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0110045”, “GARD:16516”, “MEDGEN:410013”, “MESH:C567022”,
-“OMIM:611073”, “UMLS:C1970209”)
+“OMIA:000033-10160”
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -3834,6 +3836,39 @@ provided_by (list)
 <tbody>
 <tr>
 <td style="text-align:left;">
+“HP:0000718”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Aggressive behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Behavior or an act aimed at harming a person, animal, or physical
+property (e.g., acts of physical violence; shouting, swearing, and using
+harsh language; slashing someone’s tires).”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000718" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000718</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:0000708”
 </td>
 <td style="text-align:left;">
@@ -3868,6 +3903,37 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0000729”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Autistic behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Pervasive developmental disorder”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000729" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000729</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:5200330”
 </td>
 <td style="text-align:left;">
@@ -3892,69 +3958,6 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0000723”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Restrictive behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Behavior characterized by an abnormal limitation to a few interests and
-activities.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Restricted behavior”, “Restrictive behavior”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000723" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000723</a>”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0001408”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“stereotypic behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“stereotypic behaviour”
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0001408" class="external-link uri">http://purl.obolibrary.org/obo/MP_0001408</a>”
-</td>
-<td style="text-align:left;">
-“MP”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -4014,10 +4017,10 @@ of the ancestors of these nodes to see their super-types.</p>
 <span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">behavior_ancestors</span></span></code></pre></div>
-<pre>Graph with 39 nodes and 46 edges. Expand sections below for details.</pre>
+<pre>Graph with 53 nodes and 73 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 39 of 39 nodes:
+Showing 53 of 53 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -4051,6 +4054,39 @@ provided_by (list)
 </th>
 </tr></thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+“HP:0000718”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Aggressive behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Behavior or an act aimed at harming a person, animal, or physical
+property (e.g., acts of physical violence; shouting, swearing, and using
+harsh language; slashing someone’s tires).”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000718" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000718</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 “HP:0000708”
@@ -4087,6 +4123,37 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0000729”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Autistic behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Pervasive developmental disorder”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000729" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000729</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:5200330”
 </td>
 <td style="text-align:left;">
@@ -4111,69 +4178,6 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0000723”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Restrictive behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Behavior characterized by an abnormal limitation to a few interests and
-activities.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Restricted behavior”, “Restrictive behavior”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000723" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000723</a>”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0001408”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“stereotypic behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“stereotypic behaviour”
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0001408" class="external-link uri">http://purl.obolibrary.org/obo/MP_0001408</a>”
-</td>
-<td style="text-align:left;">
-“MP”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -4309,6 +4313,110 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0000734”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Disinhibition”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Reduced ability to control, or a failure to resist a temptation, urge,
+or impulse. Examples include disregard for social conventions, general
+impulsivity, and poor risk assessment.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Impulse control disorders”, “Self-control”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000734" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000734</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0100851”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Abnormal emotional state”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Emotions are complex psychological states that involve three distinct
+components: a subjective experience, a physiological response, and a
+behavioral or expressive response. In an abnormal emotional state, an
+affected individual shows altered intensity, frequency, or duration of
+emotional experiences.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Abnormal emotion processing”, “Abnormal emotion/affect behavior”,
+“Abnormal mood/emotion/affect”, “Abnormal mood/emotion/affect/thought”,
+“Emotion dysregulation”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0100851" class="external-link uri">http://purl.obolibrary.org/obo/HP_0100851</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:5200241”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Recurrent maladaptive behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“A repeating behavior that is either immediately unproductive or has
+negative long-term consequences. This includes harmful coping mechanisms
+such as addictive behavior and failure to control impulses and
+compulsions.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_5200241" class="external-link uri">http://purl.obolibrary.org/obo/HP_5200241</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:0011446”
 </td>
 <td style="text-align:left;">
@@ -4364,6 +4472,43 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0025783”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Diagnostic behavioral phenotype”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“The Human Phenotype Ontology provides terms to describe specific
+phenotypic abnormalities rather than disease diagnoses. Nevertheless, it
+is common for descriptions such as ‘Autism’ to be used to describe
+individuals affected with Mendelian forms of neurodevelopmental disease
+and many other conditions. If possible, we recommend annotation using
+specific terms in other branchs of the Atypical behavior subontology,
+but if this is not possible, then terms from this branch may be used.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0025783" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025783</a>”
+</td>
+<td style="text-align:left;">
+“HP”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -4433,6 +4578,101 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0012433”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Abnormal social behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An abnormality of actions or reactions of a person taking place during
+interactions with others.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0012433" class="external-link uri">http://purl.obolibrary.org/obo/HP_0012433</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0012760”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Reduced social responsiveness”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Impaired social interaction”, “Impaired social interactions”,
+“Reduced friendship reciprocity”, “Reduced social reciprocity”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0012760" class="external-link uri">http://purl.obolibrary.org/obo/HP_0012760</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0025732”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Abnormal social development”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0025732" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025732</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:0100716”
 </td>
 <td style="text-align:left;">
@@ -4465,22 +4705,24 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:5200241”
+“HP:5200263”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Recurrent maladaptive behavior”
+“Abnormally increased volition”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“A repeating behavior that is either immediately unproductive or has
-negative long-term consequences. This includes harmful coping mechanisms
-such as addictive behavior and failure to control impulses and
-compulsions.”
+“An excessive increase in motivated and goal directed as well as
+non-goal directed behaviors that are usually accompanied by elevated
+energy and interest that allows individuals to get started, be energized
+to perform a sustained and directed action. The increase is often
+disruptive and typically results in unfavorable consequences.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+c(“Abnormally increased energy”, “Abnormally increased motivation”,
+“Abnormally increased personal volitional state”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -4488,7 +4730,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_5200241" class="external-link uri">http://purl.obolibrary.org/obo/HP_5200241</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_5200263" class="external-link uri">http://purl.obolibrary.org/obo/HP_5200263</a>”
 </td>
 <td style="text-align:left;">
 “HP”
@@ -4499,18 +4741,16 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0031432”
+“UPHENO:0080281”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Restricted or repetitive behaviors or interests”
+“decreased social inhibition”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“A broad range of compulsive behaviors are repeated, including simple
-motor stereotypies and tics, as well as more complex repetitive
-movements or compulsions.”
+“decreased social inhibition.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
 NA
@@ -4521,10 +4761,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0031432" class="external-link uri">http://purl.obolibrary.org/obo/HP_0031432</a>”
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0080281" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0080281</a>”
 </td>
 <td style="text-align:left;">
-“HP”
+“UPHENO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -4585,6 +4825,69 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/UPHENO_0001003" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0001003</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0025766”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Abnormal affect”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An anomaly in intensity, frequency, or duration of the verbal or
+behavioral expression of emotions, feelings, or thoughts.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0025766" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025766</a>”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0079846”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“emotional behavior phenotype”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An anomaly in emotional behavior.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0079846" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0079846</a>”
 </td>
 <td style="text-align:left;">
 “UPHENO”
@@ -4932,6 +5235,131 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“UPHENO:0005424”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“decreased behavior.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0005424" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0005424</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0074360”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased rate of behavior process”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Decrease in rate (amount or occurrence per unit of time) of behavior
+process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0074360" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0074360</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0005596”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased multicellular organismal process”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“decreased multicellular organismal process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0005596" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0005596</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0052855”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased qualitatively behavior”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Decreased qualitatively behavior.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0052855" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0052855</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “UPHENO:0049622”
 </td>
 <td style="text-align:left;">
@@ -4953,6 +5381,99 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/UPHENO_0049622" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0049622</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0005433”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased biological_process”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“decreased biological_process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0005433" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0005433</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0052160”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased qualitatively multicellular organismal process”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Decreased qualitatively multicellular organismal process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0052160" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0052160</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0052178”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“decreased qualitatively biological_process”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Decreased qualitatively biological_process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0052178" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0052178</a>”
 </td>
 <td style="text-align:left;">
 “UPHENO”
@@ -5015,6 +5536,37 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/UPHENO_0050106" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0050106</a>”
+</td>
+<td style="text-align:left;">
+“UPHENO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“UPHENO:0080377”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“biological_process rate phenotype”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Changed rate of biological_process.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/UPHENO_0080377" class="external-link uri">http://purl.obolibrary.org/obo/UPHENO_0080377</a>”
 </td>
 <td style="text-align:left;">
 “UPHENO”
@@ -5149,19 +5701,21 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“MP:0000001”
+“HP:0025780”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“mammalian phenotype”
+“Abnormal volitional state”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+“An abnormality of internal states of motivation or drive that
+compromise, or interfere with, the ability of the person to attend to
+basic personal, social, or vocational activities.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+c(“Abnormal energy”, “Abnormal motivation”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -5169,106 +5723,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0000001" class="external-link uri">http://purl.obolibrary.org/obo/MP_0000001</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0025780" class="external-link uri">http://purl.obolibrary.org/obo/HP_0025780</a>”
 </td>
 <td style="text-align:left;">
-“MP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0002066”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“abnormal motor capabilities/coordination/movement”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“neurological/behavioral: motor capabilities/coordination/movement
-anomalies”, “neurological/behavioural: motor
-capabilities/coordination/movement anomalies”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0002066" class="external-link uri">http://purl.obolibrary.org/obo/MP_0002066</a>”
-</td>
-<td style="text-align:left;">
-“MP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0004924”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“abnormal behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“abnormal behaviour”, “abnormal general behavior”, “abnormal general
-behaviour”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0004924" class="external-link uri">http://purl.obolibrary.org/obo/MP_0004924</a>”
-</td>
-<td style="text-align:left;">
-“MP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0005386”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“behavior/neurological phenotype”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“behaviour/neurological phenotype”
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0005386" class="external-link uri">http://purl.obolibrary.org/obo/MP_0005386</a>”
-</td>
-<td style="text-align:left;">
-“MP”
+“HP”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -5279,7 +5737,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </div>
 </details><details><summary><b>Edge Data</b>
 </summary><p>
-Showing 46 of 46 edges:
+Showing 73 of 73 edges:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -5415,6 +5873,129 @@ c(“biolink:Association”, “biolink:Entity”)
 9
 </td>
 <td style="text-align:left;">
+“HP:0000718”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0000734”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:614499fc-9833-4f3d-8d66-d491223be497" class="uri">urn:uuid:614499fc-9833-4f3d-8d66-d491223be497</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+“HP:0000718”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0100851”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:e47126e9-e00f-4393-b677-dc405f8c9fd4" class="uri">urn:uuid:e47126e9-e00f-4393-b677-dc405f8c9fd4</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+“HP:0000718”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:5200241”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:dd8631b4-5905-4038-b22c-7d546c25d7aa" class="uri">urn:uuid:dd8631b4-5905-4038-b22c-7d546c25d7aa</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
 “HP:0000708”
 </td>
 <td style="text-align:left;">
@@ -5450,10 +6031,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-10
+13
 </td>
 <td style="text-align:left;">
 “HP:0000708”
@@ -5491,7 +6072,48 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-11
+3
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+“HP:0000729”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0025783”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:39da354f-8a16-432b-bf4c-4499c2b4de7d" class="uri">urn:uuid:39da354f-8a16-432b-bf4c-4499c2b4de7d</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
 </td>
 <td style="text-align:left;">
 7
@@ -5532,10 +6154,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-11
+15
 </td>
 <td style="text-align:left;">
-12
+16
 </td>
 <td style="text-align:left;">
 “HP:0012638”
@@ -5573,10 +6195,92 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-2
+18
 </td>
 <td style="text-align:left;">
-13
+17
+</td>
+<td style="text-align:left;">
+“HP:0012760”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0012433”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:388fa902-41e4-44d3-b499-cac25b3cadf9" class="uri">urn:uuid:388fa902-41e4-44d3-b499-cac25b3cadf9</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+“HP:0012760”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0025732”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:18397067-6489-46d4-8e77-bbf89abb59d4" class="uri">urn:uuid:18397067-6489-46d4-8e77-bbf89abb59d4</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+20
 </td>
 <td style="text-align:left;">
 “HP:5200330”
@@ -5614,10 +6318,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-13
+20
 </td>
 <td style="text-align:left;">
-14
+11
 </td>
 <td style="text-align:left;">
 “HP:0100716”
@@ -5655,19 +6359,19 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-3
+9
 </td>
 <td style="text-align:left;">
-15
+18
 </td>
 <td style="text-align:left;">
-“HP:0000723”
+“HP:0000734”
 </td>
 <td style="text-align:left;">
 “biolink:subclass_of”
 </td>
 <td style="text-align:left;">
-“HP:0031432”
+“HP:0012760”
 </td>
 <td style="text-align:left;">
 “not_provided”
@@ -5688,7 +6392,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:5e8120ff-256d-429f-a467-a990615ca4a9" class="uri">urn:uuid:5e8120ff-256d-429f-a467-a990615ca4a9</a>”
+“<a href="urn:uuid:f1bc2104-2c04-439d-9ca1-4ab4077cefa9" class="uri">urn:uuid:f1bc2104-2c04-439d-9ca1-4ab4077cefa9</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -5700,6 +6404,129 @@ c(“biolink:Association”, “biolink:Entity”)
 </td>
 <td style="text-align:left;">
 11
+</td>
+<td style="text-align:left;">
+“HP:0000734”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:5200241”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:19487b69-31df-4162-a81b-71d67dd4afcd" class="uri">urn:uuid:19487b69-31df-4162-a81b-71d67dd4afcd</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:left;">
+“HP:0000734”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:5200263”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:86eefdbe-d1b3-47d5-ad07-7cce01d00785" class="uri">urn:uuid:86eefdbe-d1b3-47d5-ad07-7cce01d00785</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+“HP:0000734”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0080281”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:dc4b5b51-abe1-4012-b944-cc216cfadbf4" class="uri">urn:uuid:dc4b5b51-abe1-4012-b944-cc216cfadbf4</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+15
 </td>
 <td style="text-align:left;">
 “HP:0011446”
@@ -5737,10 +6564,51 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+“HP:0012433”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0000708”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:3042e4c5-9c2f-454a-96fb-7d1d0bfad726" class="uri">urn:uuid:3042e4c5-9c2f-454a-96fb-7d1d0bfad726</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 6
 </td>
 <td style="text-align:left;">
-16
+23
 </td>
 <td style="text-align:left;">
 “HP:0000118”
@@ -5781,7 +6649,7 @@ c(“biolink:Association”, “biolink:Entity”)
 6
 </td>
 <td style="text-align:left;">
-17
+24
 </td>
 <td style="text-align:left;">
 “HP:0000118”
@@ -5819,10 +6687,133 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-18
+10
 </td>
 <td style="text-align:left;">
-19
+2
+</td>
+<td style="text-align:left;">
+“HP:0100851”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0000708”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:5f16b136-e325-46e2-84e3-31f2648932bf" class="uri">urn:uuid:5f16b136-e325-46e2-84e3-31f2648932bf</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+“HP:0100851”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0025766”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:d6b2be0a-7b9b-4e08-9916-fbbaf4bc21a0" class="uri">urn:uuid:d6b2be0a-7b9b-4e08-9916-fbbaf4bc21a0</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+“HP:0100851”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0079846”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:e242c28d-92f6-47e8-89e1-e1ea7d1c4181" class="uri">urn:uuid:e242c28d-92f6-47e8-89e1-e1ea7d1c4181</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+27
+</td>
+<td style="text-align:left;">
+28
 </td>
 <td style="text-align:left;">
 “BFO:0000002”
@@ -5860,10 +6851,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-19
+28
 </td>
 <td style="text-align:left;">
-20
+29
 </td>
 <td style="text-align:left;">
 “BFO:0000001”
@@ -5901,10 +6892,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-21
+30
 </td>
 <td style="text-align:left;">
-18
+27
 </td>
 <td style="text-align:left;">
 “BFO:0000020”
@@ -5942,10 +6933,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-22
+31
 </td>
 <td style="text-align:left;">
-23
+32
 </td>
 <td style="text-align:left;">
 “UPHENO:0002525”
@@ -5983,10 +6974,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-17
+24
 </td>
 <td style="text-align:left;">
-24
+33
 </td>
 <td style="text-align:left;">
 “UPHENO:0001003”
@@ -6027,7 +7018,7 @@ c(“biolink:Association”, “biolink:Entity”)
 8
 </td>
 <td style="text-align:left;">
-25
+34
 </td>
 <td style="text-align:left;">
 “UPHENO:0004523”
@@ -6065,10 +7056,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-23
+32
 </td>
 <td style="text-align:left;">
-26
+35
 </td>
 <td style="text-align:left;">
 “UPHENO:0002530”
@@ -6106,10 +7097,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-25
+34
 </td>
 <td style="text-align:left;">
-22
+31
 </td>
 <td style="text-align:left;">
 “UPHENO:0002963”
@@ -6147,10 +7138,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-27
+36
 </td>
 <td style="text-align:left;">
-21
+30
 </td>
 <td style="text-align:left;">
 “PATO:0000001”
@@ -6188,10 +7179,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-26
+35
 </td>
 <td style="text-align:left;">
-28
+37
 </td>
 <td style="text-align:left;">
 “UPHENO:0002536”
@@ -6229,10 +7220,174 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-10
+39
 </td>
 <td style="text-align:left;">
-29
+38
+</td>
+<td style="text-align:left;">
+“UPHENO:0074360”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0005424”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:e6a09ade-cf02-4845-9811-82ec83c6bf7b" class="uri">urn:uuid:e6a09ade-cf02-4845-9811-82ec83c6bf7b</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+39
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+“UPHENO:0074360”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0079826”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:58e5861b-7f57-4ba8-8943-fe0b7405a426" class="uri">urn:uuid:58e5861b-7f57-4ba8-8943-fe0b7405a426</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+38
+</td>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+“UPHENO:0005424”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0005596”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:d11dc4d5-87d2-4842-8f31-72479bc4af69" class="uri">urn:uuid:d11dc4d5-87d2-4842-8f31-72479bc4af69</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+38
+</td>
+<td style="text-align:left;">
+41
+</td>
+<td style="text-align:left;">
+“UPHENO:0005424”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0052855”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:8fe0db77-51fd-445f-b97a-aea187c66d23" class="uri">urn:uuid:8fe0db77-51fd-445f-b97a-aea187c66d23</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+42
 </td>
 <td style="text-align:left;">
 “UPHENO:0079826”
@@ -6270,10 +7425,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-28
+37
 </td>
 <td style="text-align:left;">
-24
+33
 </td>
 <td style="text-align:left;">
 “UPHENO:0001002”
@@ -6311,10 +7466,379 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-31
+40
 </td>
 <td style="text-align:left;">
-30
+43
+</td>
+<td style="text-align:left;">
+“UPHENO:0005596”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0005433”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:344cb165-ff6d-4e26-8b7e-ff256e10caae" class="uri">urn:uuid:344cb165-ff6d-4e26-8b7e-ff256e10caae</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+“UPHENO:0005596”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0052160”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:93d82bd4-18dc-47f1-a4aa-9d19aefe8b77" class="uri">urn:uuid:93d82bd4-18dc-47f1-a4aa-9d19aefe8b77</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+“UPHENO:0052178”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0049587”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:ecd44373-ea48-4ee7-9202-12b395bb5280" class="uri">urn:uuid:ecd44373-ea48-4ee7-9202-12b395bb5280</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41
+</td>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:left;">
+“UPHENO:0052855”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0049622”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:82c07892-13a3-4629-ad39-64e9473f7294" class="uri">urn:uuid:82c07892-13a3-4629-ad39-64e9473f7294</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41
+</td>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+“UPHENO:0052855”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0052160”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:611d5b00-a0a3-4755-86a5-ee0851e8ff98" class="uri">urn:uuid:611d5b00-a0a3-4755-86a5-ee0851e8ff98</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+47
+</td>
+<td style="text-align:left;">
+“UPHENO:0052160”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0050106”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:e350fb86-69e1-4c2b-8e1b-f703e75a0c5c" class="uri">urn:uuid:e350fb86-69e1-4c2b-8e1b-f703e75a0c5c</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+44
+</td>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+“UPHENO:0052160”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0052178”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:30a22576-1b3d-40b1-b74a-d1dca71f00d0" class="uri">urn:uuid:30a22576-1b3d-40b1-b74a-d1dca71f00d0</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+43
+</td>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+“UPHENO:0005433”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0052178”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:eb474440-e795-4fe5-9125-e4ec9a3b3636" class="uri">urn:uuid:eb474440-e795-4fe5-9125-e4ec9a3b3636</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+43
+</td>
+<td style="text-align:left;">
+48
+</td>
+<td style="text-align:left;">
+“UPHENO:0005433”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0080377”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:b4243efc-787d-4948-af92-47856a751c11" class="uri">urn:uuid:b4243efc-787d-4948-af92-47856a751c11</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+47
+</td>
+<td style="text-align:left;">
+46
 </td>
 <td style="text-align:left;">
 “UPHENO:0050106”
@@ -6352,10 +7876,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-29
+42
 </td>
 <td style="text-align:left;">
-31
+47
 </td>
 <td style="text-align:left;">
 “UPHENO:0049622”
@@ -6393,10 +7917,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-32
+49
 </td>
 <td style="text-align:left;">
-23
+32
 </td>
 <td style="text-align:left;">
 “UPHENO:0002267”
@@ -6434,10 +7958,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-32
+49
 </td>
 <td style="text-align:left;">
-33
+50
 </td>
 <td style="text-align:left;">
 “UPHENO:0002267”
@@ -6475,10 +7999,133 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-30
+26
 </td>
 <td style="text-align:left;">
-28
+13
+</td>
+<td style="text-align:left;">
+“UPHENO:0079846”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0079826”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:a5b62d78-3814-4b8e-baf3-fd5dc16de396" class="uri">urn:uuid:a5b62d78-3814-4b8e-baf3-fd5dc16de396</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+48
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+“UPHENO:0080377”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0049587”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:a3606e9f-dc73-4999-a830-f6fdbf081269" class="uri">urn:uuid:a3606e9f-dc73-4999-a830-f6fdbf081269</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+39
+</td>
+<td style="text-align:left;">
+“UPHENO:0080281”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“UPHENO:0074360”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:upheno”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:eff05d11-d6ba-4af1-b1c0-abf97bc5d698" class="uri">urn:uuid:eff05d11-d6ba-4af1-b1c0-abf97bc5d698</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:left;">
+37
 </td>
 <td style="text-align:left;">
 “UPHENO:0049587”
@@ -6516,10 +8163,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-35
+52
 </td>
 <td style="text-align:left;">
-34
+51
 </td>
 <td style="text-align:left;">
 “UPHENO:0002269”
@@ -6557,10 +8204,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-35
+52
 </td>
 <td style="text-align:left;">
-25
+34
 </td>
 <td style="text-align:left;">
 “UPHENO:0002269”
@@ -6598,10 +8245,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-33
+50
 </td>
 <td style="text-align:left;">
-28
+37
 </td>
 <td style="text-align:left;">
 “UPHENO:0082875”
@@ -6639,10 +8286,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-34
+51
 </td>
 <td style="text-align:left;">
-32
+49
 </td>
 <td style="text-align:left;">
 “UPHENO:0002385”
@@ -6680,10 +8327,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-34
+51
 </td>
 <td style="text-align:left;">
-22
+31
 </td>
 <td style="text-align:left;">
 “UPHENO:0002385”
@@ -6721,10 +8368,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-24
+33
 </td>
 <td style="text-align:left;">
-27
+36
 </td>
 <td style="text-align:left;">
 “UPHENO:0001001”
@@ -6762,174 +8409,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-36
+16
 </td>
 <td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-“MP:0000001”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“UPHENO:0001003”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:upheno”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:3ce3c44b-02d2-4ba7-b072-a7b5401c4672" class="uri">urn:uuid:3ce3c44b-02d2-4ba7-b072-a7b5401c4672</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-37
-</td>
-<td style="text-align:left;">
-38
-</td>
-<td style="text-align:left;">
-“MP:0002066”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MP:0004924”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:mp”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:0cdc180a-d9a8-415b-ae7e-e9ba957d5b5e" class="uri">urn:uuid:0cdc180a-d9a8-415b-ae7e-e9ba957d5b5e</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-37
-</td>
-<td style="text-align:left;">
-“MP:0001408”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MP:0002066”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:mp”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:3ccd61ee-4efd-48e8-83b4-95e3f55e748a" class="uri">urn:uuid:3ccd61ee-4efd-48e8-83b4-95e3f55e748a</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-38
-</td>
-<td style="text-align:left;">
-39
-</td>
-<td style="text-align:left;">
-“MP:0004924”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MP:0005386”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:mp”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:ce3af11d-71b9-474a-85f6-04e611dbf11d" class="uri">urn:uuid:ce3af11d-71b9-474a-85f6-04e611dbf11d</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-35
+52
 </td>
 <td style="text-align:left;">
 “UPHENO:0002433”
@@ -6967,7 +8450,7 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-12
+16
 </td>
 <td style="text-align:left;">
 8
@@ -7008,92 +8491,10 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-39
+11
 </td>
 <td style="text-align:left;">
-36
-</td>
-<td style="text-align:left;">
-“MP:0005386”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MP:0000001”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:mp”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:721ad1cf-52a4-4156-845e-b9409d6db74f" class="uri">urn:uuid:721ad1cf-52a4-4156-845e-b9409d6db74f</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-39
-</td>
-<td style="text-align:left;">
-29
-</td>
-<td style="text-align:left;">
-“MP:0005386”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“UPHENO:0049622”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-“infores:upheno”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:2f529e86-f3cb-4bdf-b216-6ab26f89a931" class="uri">urn:uuid:2f529e86-f3cb-4bdf-b216-6ab26f89a931</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-14
-</td>
-<td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
 “HP:5200241”
@@ -7131,19 +8532,19 @@ c(“biolink:Association”, “biolink:Entity”)
 </tr>
 <tr>
 <td style="text-align:left;">
-15
+21
 </td>
 <td style="text-align:left;">
-14
+53
 </td>
 <td style="text-align:left;">
-“HP:0031432”
+“HP:5200263”
 </td>
 <td style="text-align:left;">
 “biolink:subclass_of”
 </td>
 <td style="text-align:left;">
-“HP:5200241”
+“HP:0025780”
 </td>
 <td style="text-align:left;">
 “not_provided”
@@ -7164,7 +8565,171 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:7240363e-3385-4618-8b52-441ad2efd33d" class="uri">urn:uuid:7240363e-3385-4618-8b52-441ad2efd33d</a>”
+“<a href="urn:uuid:1a572eb4-523b-4e7d-a3b8-c7a41522e978" class="uri">urn:uuid:1a572eb4-523b-4e7d-a3b8-c7a41522e978</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+“HP:0025783”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0000708”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:cb4d85f7-2275-42c5-beb4-2fac0f8e0485" class="uri">urn:uuid:cb4d85f7-2275-42c5-beb4-2fac0f8e0485</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+53
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+“HP:0025780”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0025766”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:a4e5271e-9462-4d7b-90a7-754b12b182bd" class="uri">urn:uuid:a4e5271e-9462-4d7b-90a7-754b12b182bd</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+“HP:0025732”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0012433”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:377a32ca-cc3f-4dca-9715-b34100c00fcb" class="uri">urn:uuid:377a32ca-cc3f-4dca-9715-b34100c00fcb</a>”
+</td>
+<td style="text-align:left;">
+c(“biolink:Association”, “biolink:Entity”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+“HP:0025766”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“HP:0011446”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“monarch-kg_edges.jsonl”
+</td>
+<td style="text-align:left;">
+“infores:hp”
+</td>
+<td style="text-align:left;">
+c(“infores:monarchinitiative”, “infores:phenio”)
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:d0d17cbd-e4de-472a-8bb9-d6c86784ed85" class="uri">urn:uuid:d0d17cbd-e4de-472a-8bb9-d6c86784ed85</a>”
 </td>
 <td style="text-align:left;">
 c(“biolink:Association”, “biolink:Entity”)
@@ -7175,7 +8740,7 @@ c(“biolink:Association”, “biolink:Entity”)
 5
 </td>
 <td style="text-align:left;">
-14
+11
 </td>
 <td style="text-align:left;">
 “HP:0030858”
@@ -7244,10 +8809,10 @@ nodes:</p>
 <code class="sourceCode R"><span><span class="va">behavior_ancestors</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Abnormality of mental function"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"abnormal behavior"</span><span class="op">)</span></span></code></pre></div>
-<pre>Graph with 2 nodes and 0 edges. Expand sections below for details.</pre>
+<pre>Graph with 1 nodes and 0 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 2 of 2 nodes:
+Showing 1 of 1 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -7283,8 +8848,7 @@ provided_by (list)
 search_result
 </th>
 </tr></thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td style="text-align:left;">
 “HP:0011446”
 </td>
@@ -7317,43 +8881,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 <td style="text-align:left;">
 NA
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MP:0004924”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“abnormal behavior”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“abnormal behaviour”, “abnormal general behavior”, “abnormal general
-behaviour”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MP_0004924" class="external-link uri">http://purl.obolibrary.org/obo/MP_0004924</a>”
-</td>
-<td style="text-align:left;">
-“MP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 </details><details><summary><b>Edge Data</b>

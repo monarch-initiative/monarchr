@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -57,6 +57,9 @@
 <li class="dropdown-header">Examples</li>
     <li>
       <a href="../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
+    </li>
+    <li>
+      <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
     </li>
   </ul>
 </li>
@@ -90,10 +93,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Oct-22-2024</i>
+<i>Nov-04-2024</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/graph_explore/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
       <div class="hidden name"><code>monarchr.Rmd</code></div>
 
     </div>
@@ -5713,19 +5716,31 @@ c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MEDG
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:1010043”
+“MONDO:0005413”
 </td>
 <td style="text-align:left;">
 “biolink:Disease”
 </td>
 <td style="text-align:left;">
-“cystic fibrosis, non-human animal”
+“cystic fibrosis associated meconium ileus”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Cystic fibrosis that occurs in non-human animals.”
+“Cystic fibrosis associated meconium ileum is a thickening and
+congestion of the meconium in the ileum in newborns, often the first
+sign of cystic fibrosis. In cystic fibrosis, the meconium can form a
+bituminous black-green mechanical obstruction in a segment of the ileum.
+Beyond this there may be a few separate grey-white globular pellets.
+Below this level, the bowel is a narrow and empty micro-colon. Above the
+level of the obstruction, there are several loops of hypertrophied bowel
+distended with fluid. No meconium is passed, and abdominal distension
+and vomiting appear soon after birth. About 20% of cases of cystic
+fibrosis present with meconium ileus, while approximately 20% of one
+series of cases of meconium ileus did not have cystic fibrosis. The
+presence of meconium ileus is not related to the severity of the cystic
+fibrosis.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-NA
+“cystic fibrosis associated meconium ileum”
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:Disease”,
@@ -5733,10 +5748,10 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “biolink:NamedThing”, “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_1010043" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_1010043</a>”
+“<a href="http://purl.obolibrary.org/obo/MONDO_0005413" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005413</a>”
 </td>
 <td style="text-align:left;">
-“OMIA:001794”
+c(“EFO:0004608”, “MEDGEN:639765”, “UMLS:C0546982”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -6437,13 +6452,13 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0000545”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Myopia”
+“Visual impairment”
 </td>
 <td style="text-align:left;min-width: 300px; ">
 NA
@@ -6457,7 +6472,7 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000545" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000545</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0000505" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000505</a>”
 </td>
 <td style="text-align:left;">
 NA
@@ -6727,7 +6742,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000545”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -39,6 +39,9 @@
     <li>
       <a href="../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
     </li>
+    <li>
+      <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -59,9 +62,32 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/graph_explore/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.4.0" id="monarchr-140">monarchr 1.4.0<a class="anchor" aria-label="anchor" href="#monarchr-140"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-4-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-4-0"></a></h3>
+<ul><li>
+<code><a href="../reference/example_graph.html">example_graph()</a></code> function for engines</li>
+<li>Engine <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> now returns named lists of available node categories and edge predicates for convenient auto-completion</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.3.0" id="monarchr-130">monarchr 1.3.0<a class="anchor" aria-label="anchor" href="#monarchr-130"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-3-0"></a></h3>
+<ul><li>
+<code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function for engines</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bugfixs-1-3-0">Bugfixs<a class="anchor" aria-label="anchor" href="#bugfixs-1-3-0"></a></h3>
+<ul><li>fix backend bug in Neo4j table queries not handling default params properly</li>
+<li>add batch queries for Neo4j backend engine</li>
+<li>added summary() for KG engines to summarize total node and edge count information</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.2" id="monarchr-122">monarchr 1.2.2<a class="anchor" aria-label="anchor" href="#monarchr-122"></a></h2>
 <div class="section level3">
