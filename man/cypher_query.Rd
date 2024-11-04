@@ -9,7 +9,7 @@ cypher_query(engine, query, parameters = NULL, ...)
 \arguments{
 \item{engine}{A neo4j KG engine}
 
-\item{query}{A string representing the Cypher query.}
+\item{query}{A string representing the Cypher query. Multiple queries may be passed as a vector; if so, Neo2R::multicypher if used and the result is returned as a single joined graph.}
 
 \item{parameters}{A list of parameters for the Cypher query. Default is an empty list.}
 

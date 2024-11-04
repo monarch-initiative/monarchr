@@ -1,4 +1,21 @@
+# monarchr 1.4.0
 
+## New features
+
+* `example_graph()` function for engines
+* Engine `summary()` now returns named lists of available node categories and edge predicates for convenient auto-completion
+
+# monarchr 1.3.0
+
+## New features
+
+* `summary()` function for engines
+
+## Bugfixs
+
+* fix backend bug in Neo4j table queries not handling default params properly
+* add batch queries for Neo4j backend engine
+* added summary() for KG engines to summarize total node and edge count information
 
 # monarchr 1.2.2
 
