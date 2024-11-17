@@ -14,13 +14,15 @@
 \item{quiet}{Logical, whether to suppress printing of the summary}
 }
 \value{
-A list of dataframes
+A list of dataframes and named lists
 }
 \description{
 Given a KGX file-based KG engine, provides summary information in the form of
 node counts, category counts across nodes, and relationship type counts.
 General information about the graph is printed to the console, and a list of
-dataframes describing node and edge counts is returned invisibly.
+dataframes describing node and edge counts is returned invisibly. Also returned
+are \code{cats} and \code{preds} entries, containing lists of available node categories and
+edge predicates, respectively, for convenient auto-completion in RStudio.
 }
 \examples{
 # Using example KGX file packaged with monarchr

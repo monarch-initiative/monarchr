@@ -1,8 +1,9 @@
 devtools::load_all()
 f <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
 gs <- f |>
-  fetch_nodes(name %~% "Marfan") |>
-  expand()
+  fetch_nodes(name %~% "Ehlers") |>
+  expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
+	expand(categories = "biolink:Gene")
 
 g <- gs |>
   expand()
@@ -49,34 +50,7 @@ library(RColorBrewer)
 library(dplyr)
 library(tidygraph)
 
-# Generates a palette with num_colors entries, mapping
-# inputs pseudorandomly to them. if levels_only = FALSE,
-# a vector of RGB values the same length as input is returned.
-# if levels_only = TRUE, a named vector is returned mapping input
-# levels to RGB values
-color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
-	# Ensure the input is treated as a factor
-	factors <- factor(input)
 
-	palette <- grDevices::hcl.colors(num_colors, palette = "Set3")
-
-
-	# Hash function to convert factor levels to numeric values consistently
-	hashes <- lapply(levels(factors), function(x) digest::digest(x, algo = "crc32", serialize = FALSE))
-	hash_integers <- sapply(hashes, function(x) strtoi(substr(x, 1, 5), base=16))
-
-	# Map hashes to indices in the color palette
-	# Use modulo to wrap around if there are more factors than colors
-	color_indices <- (hash_integers %% length(palette)) + 1
-
-	color_map <- setNames(palette[color_indices], levels(factors))
-	if(levels_only) {
-		return(color_map)
-	} else {
-		# Return the colors corresponding to the input
-		return(unname(color_map[as.character(input)]))
-	}
-}
 # g |> nodes() |> pull(pcategory) |> factor() |> levels() |> head(n = 4) |> color_cats()
 #
 #
@@ -125,30 +99,8 @@ color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 # addGraphToRedeR(g=gs)
 
 
-cytoscape <- function(g) {
-	RCy3::cytoscapePing()
 
-	nodes_df <- nodes(g)
-	nodes_df$desc_wrapped <- stringr::str_wrap(nodes_df$description, 50)
-
-	edges_df <- edges(g)
-
-	RCy3::createNetworkFromDataFrames(nodes_df,
-																		edges_df,
-																		title = "KG Nodes",
-																		collection = "monarchr Graphs",
-																		source.id.list = 'subject',
-																		target.id.list = 'object')
-	RCy3::layoutNetwork('kamada-kawai')
-
-	pal <- color_cats(nodes(g)$pcategory, levels_only = TRUE)
-	RCy3::setNodeColorMapping('pcategory', table.column.values = names(pal), colors = pal, mapping.type = 'd')
-
-	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped')
-}
-
-
-cytoscape(g)
+#cytoscape(gs)
 
 
 
