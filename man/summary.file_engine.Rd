@@ -4,10 +4,10 @@
 \alias{summary.file_engine}
 \title{Summarize contents of a KGX-file-based KG engine}
 \usage{
-\method{summary}{file_engine}(engine, ..., quiet = FALSE)
+\method{summary}{file_engine}(object, ..., quiet = FALSE)
 }
 \arguments{
-\item{engine}{A \code{file_engine} object}
+\item{object}{A \code{file_engine} object}
 
 \item{...}{Other parameters (not used)}
 

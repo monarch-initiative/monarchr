@@ -4,10 +4,10 @@
 \alias{summary.neo4j_engine}
 \title{Summarize contents of a Neo4j KG engine}
 \usage{
-\method{summary}{neo4j_engine}(engine, ..., quiet = FALSE)
+\method{summary}{neo4j_engine}(object, ..., quiet = FALSE)
 }
 \arguments{
-\item{engine}{A \code{neo4j_engine} object}
+\item{object}{A \code{neo4j_engine} object}
 
 \item{...}{Other parameters (not used)}
 
