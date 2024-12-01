@@ -4,7 +4,7 @@
 \alias{cytoscape.tbl_kgx}
 \title{Send a graph to Cytoscape}
 \usage{
-\method{cytoscape}{tbl_kgx}(g)
+\method{cytoscape}{tbl_kgx}(g, ...)
 }
 \arguments{
 \item{g}{A \code{tbl_kgx()} graph to visualize.}

@@ -60,7 +60,7 @@ color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 #' @import RCy3
 #' @import tidygraph
 #' @import dplyr
-cytoscape.tbl_kgx <- function(g) {
+cytoscape.tbl_kgx <- function(g, ...) {
 	message("Sending data to Cytoscape and formatting; please wait.")
 	tryCatch({
 		RCy3::cytoscapePing()

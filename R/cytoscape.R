@@ -28,6 +28,6 @@
 #' @import RCy3
 #' @import tidygraph
 #' @import dplyr
-cytoscape <- function(g) {
+cytoscape <- function(g, ...) {
 	UseMethod("cytoscape")
 }
