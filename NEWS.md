@@ -1,3 +1,13 @@
+# monarchr 1.5.0
+
+## New features
+
+* Exporting to `cytoscape()` for visualization.
+
+## Bug fixes
+
+* Fixed a method signature inconsistency for `summary()`.
+
 # monarchr 1.4.0
 
 ## New features
