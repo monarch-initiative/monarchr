@@ -4,6 +4,7 @@
 <url><loc>/LICENSE.html</loc></url>
 <url><loc>/articles/examples/alzheimers_phenotypes.html</loc></url>
 <url><loc>/articles/examples/exploring_kgs.html</loc></url>
+<url><loc>/articles/examples/visualizing_kgs.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/articles/monarchr.html</loc></url>
 <url><loc>/authors.html</loc></url>
@@ -12,6 +13,8 @@
 <url><loc>/reference/base_engine.html</loc></url>
 <url><loc>/reference/cypher_query.html</loc></url>
 <url><loc>/reference/cypher_query_df.html</loc></url>
+<url><loc>/reference/cytoscape.html</loc></url>
+<url><loc>/reference/cytoscape.tbl_kgx.html</loc></url>
 <url><loc>/reference/edges.html</loc></url>
 <url><loc>/reference/example_graph.file_engine.html</loc></url>
 <url><loc>/reference/example_graph.html</loc></url>

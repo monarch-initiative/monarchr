@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -38,6 +38,9 @@
     <li class="dropdown-header">Examples</li>
     <li>
       <a href="../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
+    </li>
+    <li>
+      <a href="../articles/examples/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
     </li>
     <li>
       <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
@@ -62,7 +65,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Execute a Cypher Query</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/cypher_query_df.R" class="external-link"><code>R/cypher_query_df.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/cytoscape-vis/R/cypher_query_df.R" class="external-link"><code>R/cypher_query_df.R</code></a></small>
     <div class="hidden name"><code>cypher_query_df.Rd</code></div>
     </div>
 
@@ -110,10 +113,10 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">cypher_query_df</span><span class="op">(</span><span class="va">engine</span>, <span class="va">query</span>, <span class="va">parameters</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          n</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://purl.obolibrary.org/obo/MONDO_0007525, AEDS, EDS 7A, EDS 7B, EDS VII, EDS VII, mutant procollagen type, EDS7A (formerly), EDSARTH1, Ehlers-Danlos syndrome type 7, Ehlers-Danlos syndrome type 7A (formerly), Ehlers-Danlos syndrome, arthrochalasia type, Ehlers-Danlos syndrome, arthrochalasia type, 1, Ehlers-Danlos syndrome, type VII, Ehlers-Danlos syndrome, type VII, autosomal dominant, Ehlers-Danlos syndrome, type VIIA, autosomal dominant, arthrochalasia EDS, arthrochalasia Ehlers-Danlos syndrome, arthrochalasis multiplex congenita, DOID:0080727, GARD:2084, MEDGEN:1645042, MESH:C562625, NANDO:1200650, NANDO:2201260, NCIT:C125701, OMIM:130060, Orphanet:1899, SCTID:4170004, UMLS:C4551623, Ehlers-Danlos syndrome, arthrochalasia type, MONDO, phenio_nodes, Arthrochalasia Ehlers-Danlos syndrome (aEDS) is an inherited connective tissue disorder that is caused by defects in a protein called collagen. Common symptoms include severe joint hypermobility ; congenital hip dislocation; fragile, hyperextensible skin; hypotonia ; and kyphoscoliosis (kyphosis and scoliosis). EDS, arthrochalasia type is caused by changes (mutations) in the COL1A1 gene or the COL1A2 gene and is inherited in an autosomal dominant manner. Treatment and management is focused on preventing serious complications and relieving associated signs and symptoms., MONDO:0007525, biolink:BiologicalEntity, biolink:Disease, biolink:DiseaseOrPhenotypicFeature, biolink:Entity, biolink:NamedThing, biolink:ThingWithTaxon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                                                                                                                                                                                                                                        http://purl.obolibrary.org/obo/MONDO_0020066, Danlos Disease, Ehlers, Danlos disease, Disease, Ehlers Danlos, Disease, Ehlers-Danlos, Dystrophia mesodermalis congenita, ED syndrome, EDS, Ehler Danlos Syndrome, Ehlers Danlos Disease, Ehlers Danlos Syndrome, Ehlers Danlos syndrome, Ehlers-Danlos Disease, Ehlers-Danlos syndromes, Fibrodysplasia elastica generalisata, Hereditary collagen dysplasia, Meekeren-Ehlers-Danlos syndrome, Syndrome, Ehlers-Danlos, danlos ehlers syndrome, elastic skin, skin elastic, DOID:13359, GARD:6322, ICD10CM:Q79.6, ICD9:756.83, MEDGEN:41720, MESH:D004535, MedDRA:10014316, NANDO:1200645, NANDO:2200607, NCIT:C34568, NORD:1080, OMIMPS:130000, Orphanet:98249, SCTID:398114001, UMLS:C0013720, icd11.foundation:1122707206, Ehlers-Danlos syndrome, MONDO, phenio_nodes, The Ehlers–Danlos syndromes (EDS) are a clinically and genetically heterogeneous group of heritable connective tissue disorders (HCTDs) characterized by joint hypermobility, skin hyperextensibility, and tissue fragility., MONDO:0020066, biolink:BiologicalEntity, biolink:Disease, biolink:DiseaseOrPhenotypicFeature, biolink:Entity, biolink:NamedThing, biolink:ThingWithTaxon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               http://purl.obolibrary.org/obo/MONDO_0034021, spondylodysplastic EDS, GARD:22214, MEDGEN:1814455, Orphanet:536471, UMLS:C5680154, MONDO, spondylodysplastic Ehlers-Danlos syndrome, phenio_nodes, MONDO:0034021, biolink:BiologicalEntity, biolink:Disease, biolink:DiseaseOrPhenotypicFeature, biolink:Entity, biolink:NamedThing, biolink:ThingWithTaxon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              n</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://p....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://p....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 http://p....</span>
 </code></pre></div>
     </div>
   </div>
