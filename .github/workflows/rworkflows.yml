@@ -28,6 +28,10 @@ jobs:
           cont: ghcr.io/bioconductor/bioconductor_docker:devel
           rspm: ~
     steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc-citeproc
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}
