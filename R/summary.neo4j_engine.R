@@ -7,7 +7,7 @@
 #' are `cats` and `preds` entries, containing lists of available node categories and
 #' edge predicates, respectively, for convenient auto-completion in RStudio.
 #'
-#' @param engine A `neo4j_engine` object
+#' @param object A `neo4j_engine` object
 #' @param ... Other parameters (not used)
 #' @param quiet Logical, whether to suppress printing of the summary
 #' @return A list of dataframes and named lists
@@ -17,7 +17,7 @@
 #' stats <- monarch_engine() |> summary()
 #' print(stats)
 #'
-summary.neo4j_engine <- function(engine, ..., quiet = FALSE) {
+summary.neo4j_engine <- function(object, ..., quiet = FALSE) {
 	if(!quiet) {
 		cat("\n")
 		cat("A Neo4j-backed knowledge graph engine.\n")
@@ -31,8 +31,8 @@ summary.neo4j_engine <- function(engine, ..., quiet = FALSE) {
 		# cat_counts_df <- do.call(rbind, cat_counts) |> arrange(desc(count))
 
 
-    node_summary_df <- cypher_query_df(engine, "MATCH (n) UNWIND labels(n) AS category WITH category, COUNT(n) AS count RETURN category, count ORDER BY count DESC")
-    edge_summary_df <- cypher_query_df(engine, "MATCH ()-[r]->() RETURN type(r) AS predicate, COUNT(*) AS count ORDER BY count DESC")
+    node_summary_df <- cypher_query_df(object, "MATCH (n) UNWIND labels(n) AS category WITH category, COUNT(n) AS count RETURN category, count ORDER BY count DESC")
+    edge_summary_df <- cypher_query_df(object, "MATCH ()-[r]->() RETURN type(r) AS predicate, COUNT(*) AS count ORDER BY count DESC")
 
     counts_query <- "
 	    // Count the total number of nodes
@@ -44,7 +44,7 @@ summary.neo4j_engine <- function(engine, ..., quiet = FALSE) {
 			RETURN 'edges_total' AS Type, COUNT(r) AS Count
 	    "
 
-    total_df <- cypher_query_df(engine, counts_query)
+    total_df <- cypher_query_df(object, counts_query)
     total_nodes <- total_df$Count[1]
     total_edges <- total_df$Count[2]
 

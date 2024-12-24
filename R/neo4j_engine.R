@@ -19,6 +19,7 @@
 #' @param password A character string indicating the password for the neo4j database (if needed).
 #' @param preferences A named list of preferences for the engine.
 #' @param timeout Number of sections to wait before trying the next url.
+#' @param cache Whether to cache query results in memory for the length of the R session.
 #' @param ... Additional arguments passed to `neo2R::startGraph()`.
 #' @seealso `file_engine()`, `monarch_engine()`
 #' @return An object of class `neo4j_engine`
@@ -33,11 +34,13 @@
 #'
 #' @importFrom neo2R startGraph
 #' @importFrom R.utils withTimeout
+#' @importFrom memoise cache_memory
 neo4j_engine <- function(url,
                          username = NA,
                          password = NA,
                          preferences = NULL,
 												 timeout = 1,
+												 cache = TRUE,
                          ...) {
 
     success <- FALSE
@@ -70,6 +73,9 @@ neo4j_engine <- function(url,
     obj$graph_conn <- graph_conn
     obj$url <- url
     obj$username <- username
+    if(cache) {
+    	obj$cache <- memoise::cache_memory()
+    }
 
     class(obj) <- c("neo4j_engine", class(obj))
     return(obj)

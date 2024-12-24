@@ -15,6 +15,10 @@
 #' print(get_engine(g))
 #'
 #' @export
-get_engine <- function(g, fail_if_missing = TRUE) {
-    UseMethod("get_engine")
+get_engine.tbl_kgx <- function(g, fail_if_missing = TRUE) {
+	engine <- attr(g, "last_engine")
+	if (is.null(engine) && fail_if_missing) {
+		stop("No engine associated with this graph. Unable to proceed.")
+	}
+	return(engine)
 }

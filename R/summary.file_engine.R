@@ -7,7 +7,7 @@
 #' are `cats` and `preds` entries, containing lists of available node categories and
 #' edge predicates, respectively, for convenient auto-completion in RStudio.
 #'
-#' @param engine A `file_engine` object
+#' @param object A `file_engine` object
 #' @param ... Other parameters (not used)
 #' @param quiet Logical, whether to suppress printing of the summary
 #' @return A list of dataframes and named lists
@@ -21,13 +21,13 @@
 #' print(res)
 #' @import tidygraph
 #' @import dplyr
-summary.file_engine <- function(engine, ..., quiet = FALSE) {
+summary.file_engine <- function(object, ..., quiet = FALSE) {
 	if(!quiet) {
 		cat("\n")
 		cat("A KGX file-backed knowledge graph engine.\n")
 	}
 
-    g <- engine$graph
+    g <- object$graph
 
     total_nodes <- g |>
         activate(nodes) |>

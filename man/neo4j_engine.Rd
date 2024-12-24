@@ -10,6 +10,7 @@ neo4j_engine(
   password = NA,
   preferences = NULL,
   timeout = 1,
+  cache = TRUE,
   ...
 )
 }
@@ -23,6 +24,8 @@ neo4j_engine(
 \item{preferences}{A named list of preferences for the engine.}
 
 \item{timeout}{Number of sections to wait before trying the next url.}
+
+\item{cache}{Whether to cache query results in memory for the length of the R session.}
 
 \item{...}{Additional arguments passed to \code{neo2R::startGraph()}.}
 }

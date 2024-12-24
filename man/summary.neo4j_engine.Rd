@@ -4,23 +4,25 @@
 \alias{summary.neo4j_engine}
 \title{Summarize contents of a Neo4j KG engine}
 \usage{
-\method{summary}{neo4j_engine}(engine, ..., quiet = FALSE)
+\method{summary}{neo4j_engine}(object, ..., quiet = FALSE)
 }
 \arguments{
-\item{engine}{A \code{neo4j_engine} object}
+\item{object}{A \code{neo4j_engine} object}
 
 \item{...}{Other parameters (not used)}
 
 \item{quiet}{Logical, whether to suppress printing of the summary}
 }
 \value{
-A list of dataframes
+A list of dataframes and named lists
 }
 \description{
 Given a Neo4j based KG engine, provides summary information in the form of
 node counts, category counts across nodes, and relationship type counts.
 General information about the graph is printed to the console, and a list of
-dataframes describing node and edge counts is returned invisibly.
+dataframes describing node and edge counts is returned invisibly. Also returned
+are \code{cats} and \code{preds} entries, containing lists of available node categories and
+edge predicates, respectively, for convenient auto-completion in RStudio.
 }
 \examples{
 \dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

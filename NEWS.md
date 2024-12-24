@@ -1,3 +1,14 @@
+# monarchr 1.5.0
+
+## New features
+
+* Exporting to `cytoscape()` for visualization.
+* Added caching for `neo4j_engine` queries (enabled by default, length of R session only)
+
+## Bug fixes
+
+* Fixed a method signature inconsistency for `summary()`.
+
 # monarchr 1.4.0
 
 ## New features
