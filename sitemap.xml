@@ -25,6 +25,7 @@
 <url><loc>/reference/file_engine.html</loc></url>
 <url><loc>/reference/file_engine_check.html</loc></url>
 <url><loc>/reference/get_engine.html</loc></url>
+<url><loc>/reference/get_engine.tbl_kgx.html</loc></url>
 <url><loc>/reference/grapes-in_list-grapes.html</loc></url>
 <url><loc>/reference/grapes-twiddle-grapes.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
@@ -43,6 +44,7 @@
 <url><loc>/reference/order_cols.html</loc></url>
 <url><loc>/reference/plot.tbl_kgx.html</loc></url>
 <url><loc>/reference/save_kgx.html</loc></url>
+<url><loc>/reference/set_engine.html</loc></url>
 <url><loc>/reference/stitch_vectors.html</loc></url>
 <url><loc>/reference/summarize_neighborhood.html</loc></url>
 <url><loc>/reference/summary.file_engine.html</loc></url>
