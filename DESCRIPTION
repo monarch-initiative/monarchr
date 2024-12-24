@@ -46,7 +46,8 @@ Imports:
     ggplot2,
     R.utils,
     RCy3,
-    digest
+    digest,
+    memoise
 Suggests: 
     testthat (>= 3.0.0),
     rworkflows

@@ -34,6 +34,7 @@ stitch_vectors <- function(x) {
 #'
 #' @param res The result from neo2R::cypher with result = "graph"
 #' @param engine The engine to attach to the returned graph
+#' @importFrom memoise memoise
 #' @return A tbl_kgx
 neo2r_to_kgx <- function(res, engine) {
 	relationship_ids_contained <- as.integer(unlist(res$paths))
@@ -124,14 +125,7 @@ neo2r_to_kgx <- function(res, engine) {
 	return(g)
 }
 
-########### Public functions ###########
-
-#' @export
-#' @importFrom neo2R cypher
-#' @importFrom neo2R multicypher
-#' @importFrom tibble tibble
-#' @importFrom tidygraph graph_join
-cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
+internal_cypher_query <- function(engine, query, parameters = NULL, ...) {	#
 	if(length(query) == 1) {
 		res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
 		return(neo2r_to_kgx(res, engine = engine))
@@ -144,6 +138,38 @@ cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
 		}
 		return(g)
 	}
+}
 
+#internal_cypher_query_memoised <- memoise::memoise(internal_cypher_query)
+
+########### Public functions ###########
+
+#' @export
+#' @importFrom neo2R cypher
+#' @importFrom neo2R multicypher
+#' @importFrom tibble tibble
+#' @importFrom tidygraph graph_join
+cypher_query.neo4j_engine <- function(engine, query, parameters = NULL, ...) {	#
+
+	if(!is.null(engine$cache)) {
+		# ok, this is a bit wonky
+		# the engine stores its cache
+		# we create a memoized internal function using that cache
+		# and then we call the function
+		# BUT, the engine itself needs to be sent to the function,
+		# and if its cache keeps changing it wont memoize properly
+		# so we create a copy of the engine without a cache and use that
+		engine_copy <- engine
+		engine_copy$cache <- NULL
+
+		internal <- memoise::memoise(internal_cypher_query, cache = engine$cache)
+		res <- internal(engine_copy, query, parameters, ...)
+
+		# before we return, we reset the cache of the engine attached to the graph.
+		res$engine$cache <- engine$cache
+		return(res)
+	} else {
+		internal_cypher_query(engine, query, parameters, ...)
+	}
 
 }

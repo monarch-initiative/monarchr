@@ -1,6 +1,36 @@
 library(testthat)
 library(assertthat)
 
+test_that("neo4j_engine caching", {
+  e <- neo4j_engine(url = c("http://neo4j.monarchinitiative.org:7474",
+  													"http://neo4j.monarchinitiative.org",
+                            "http://no.such.url"),
+  									cache = TRUE)
+
+  		start_time <- Sys.time()
+
+      g <- fetch_nodes(e, query_ids = "MONDO:0020066")
+
+      test <- g %>% expand(direction = "in",
+                           predicates = "biolink:subclass_of",
+                           transitive = TRUE)
+
+      end_time <- Sys.time()
+      no_cache_elapsed_time <- as.numeric(difftime(end_time, start_time, units = "secs"))
+
+      start_time <- Sys.time()
+
+    	test <- g %>% expand(direction = "in",
+    										 predicates = "biolink:subclass_of",
+    										 transitive = TRUE)
+
+      end_time <- Sys.time()
+      cache_elapsed_time <- as.numeric(difftime(end_time, start_time, units = "secs"))
+
+      # the cached version should be at least 10x faster
+      expect_true(cache_elapsed_time * 10 < no_cache_elapsed_time)
+})
+
 
 test_that("neo4j_engine works as expected (using monarch neo4j db)", {
     #testthat::skip("temporary skip")

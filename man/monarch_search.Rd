@@ -13,7 +13,7 @@ monarch_search(query, category = NULL, limit = 10, ...)
 
 \item{limit}{Maximum number of nodes to return. Default 10.}
 
-\item{...}{Other parameters (unused).}
+\item{...}{Parameters passed to monarch_engine().}
 }
 \value{
 A local tbl_kgx graph with no edges.
