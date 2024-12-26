@@ -67,7 +67,7 @@ https://monarchinitiative.org/explore#phenotype-explorer."><!-- mathjax --><scri
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Semantic similarity mapping between two graphs</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/monarch_semsim.R" class="external-link"><code>R/monarch_semsim.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/doi_badge/R/monarch_semsim.R" class="external-link"><code>R/monarch_semsim.R</code></a></small>
     <div class="hidden name"><code>monarch_semsim.Rd</code></div>
     </div>
 
@@ -183,7 +183,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 107 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object   metric score ancestor_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   126 HP:0000006 computed:best_matches HP:0002… ances…  4.33 HP:0000001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   123 HP:0000006 computed:best_matches HP:0002… ances…  4.33 HP:0000001 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    84    84 HP:0000023 computed:best_matches HP:0000… ances… 18.5  HP:0000023 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    24   117 HP:0000098 computed:best_matches HP:0000… ances…  6.25 UPHENO:000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 104 more rows</span></span>
@@ -218,7 +218,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 107 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object   metric score ancestor_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   144 HP:0000006 computed:best_matches HP:0003… ances…  4.33 HP:0000001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   138 HP:0000006 computed:best_matches HP:0002… ances…  4.33 HP:0000001 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    84    84 HP:0000023 computed:best_matches HP:0000… ances… 18.5  HP:0000023 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    24   126 HP:0000098 computed:best_matches HP:0000… ances…  6.25 UPHENO:000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 104 more rows</span></span>
@@ -232,7 +232,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 162 nodes and 174 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed multigraph with 28 components</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed multigraph with 29 components</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 162 × 10 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id         pcategory name  description synonym category iri   xref  namespace</span>
@@ -253,7 +253,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 174 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object   metric score ancestor_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   158 HP:0000006 computed:best_matches HP:0030… ances…  4.33 HP:0000001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   149 HP:0000006 computed:best_matches HP:0006… ances…  4.33 HP:0000001 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    84    84 HP:0000023 computed:best_matches HP:0000… ances… 18.5  HP:0000023 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    24   126 HP:0000098 computed:best_matches HP:0000… ances…  6.25 UPHENO:000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 171 more rows</span></span>
