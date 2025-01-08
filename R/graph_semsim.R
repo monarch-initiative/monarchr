@@ -32,7 +32,10 @@ graph_semsim <- function(graph,
 	from <- to <- NULL;
 	message("Computing pairwise node similarity.")
 	X <- fun(graph, ...)
-	if(sparse) X <- Matrix::Matrix(X, sparse=TRUE)
+	if(sparse) {
+		requireNamespace("Matrix")
+		X <- Matrix::Matrix(X, sparse=TRUE)
+	}
 	rownames(X) <- colnames(X) <- nodes(graph)[[nm]]
 	if(return_matrix) return(X)
 

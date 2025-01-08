@@ -1,3 +1,6 @@
+vignettes/visualisation\.Rmd
+visualisation\.Rmd
+
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
