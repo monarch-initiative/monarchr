@@ -1,0 +1,99 @@
+---
+title: "Visualizing Knowledge Graphs"
+author: "Shawn T O'Neil"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{monarchr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include=FALSE, message=FALSE}
+options(width = 300)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+`monarchr` supports a large number of plotting frameworks compatible with `tidygraph` and `igraph`, including [`ggraph`](https://ggraph.data-imaginist.com/), [`visNetwork`](https://datastorm-open.github.io/visNetwork/),
+and [`threejs`](https://bwlewis.github.io/rthreejs/). Included are a basic `plot()` for
+knowledge graphs via `ggraph`, and a `cytoscape()` function to export a graph to a running [Cytoscape](https://cytoscape.org/) instance via [`RCy3`](https://www.bioconductor.org/packages/release/bioc/html/RCy3.html).
+
+As usual, we begin by loading the `monarchr` package, along with `tidygraph` and `dplyr` which tend to be useful.
+
+```{r}
+library(monarchr)
+#devtools::load_all()
+library(tidygraph)
+library(dplyr)
+```
+
+
+# Basic `plot()`
+
+The basic `plot()` function is a wrapper around `ggraph`. By default, 
+node color tracks `pcategory` and edge color `predicate`, though these
+can be changed with the `node_color` and `edge_color` properties.
+
+```{r}
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+engine <- file_engine(filename)
+
+g <- engine |>
+	fetch_nodes(query_ids = c("MONDO:0017310")) |>
+  expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
+	expand(categories = "biolink:Gene")
+
+plot(g)
+```
+In this example we first fetch Neonatal Marfan Syndrome, Brittle Cornea Syndrome, and 
+their direct phenotypes. We then take the join of these two graphs, compute
+the degree of each node and filter to only those nodes with `degree > 2`, indicating
+only phenotypes connected with both. For plotting, we use `edge_color` set to 
+`frequency_qualifier`, but we recode those by their interpretation. The `edge_color`
+and `node_color` parameters simply pass their unquoted arguments to `geom_node_point`
+and `geom_edge_fan` `ggraph` layers.
+
+```{r}
+mar_phenos <- engine |> 
+	fetch_nodes(query_ids = c("MONDO:0017309")) |>
+	expand(categories = "biolink:PhenotypicFeature") 
+
+bcs_phenos <- engine |> 
+	fetch_nodes(query_ids = c("MONDO:0009242")) |>
+	expand(categories = "biolink:PhenotypicFeature")
+
+both <- kg_join(mar_phenos, bcs_phenos) 
+
+shared <- both |>
+	activate(nodes) |>
+	mutate(degree = igraph::degree(both)) |>
+	filter(degree > 1) |>
+	activate(edges) |>
+	mutate(frequency_qualifier = factor(frequency_qualifier, 
+																 			levels = c("HP:0040281", "HP:0040282", "HP:0040283"),
+																 			labels = c("very_frequent", "frequent", "occasional")))
+
+plot(shared, edge_color = frequency_qualifier)
+```
+
+Tidygraph [utilities](https://tidygraph.data-imaginist.com/) support easy 
+modification of node and edge tables, 
+breadth- and depth-first maps, and other graph-centric methods, all of which
+may be visualized in creative ways.
+
+# Exporting with `cytoscape()`
+
+Local knowledge graphs can also be visualized with [Cytoscape](https://cytoscape.org/),
+which must be running on the same machine as `monarchr`.
+
+```{r eval=FALSE}
+cytoscape(mar_phenos)
+```
+Node color is mapped to `pcategory` and edge color to `predicate`; hoverover
+node text is `description` if available, edge hoverover `predicate`. All of these
+and many more properties can be customized in Cytoscape.
+
+<center>![](visualizing_kgs_assets/cytoscape.png){width=90%}</center>
+

@@ -6,7 +6,7 @@
 \usage{
 expand_n(
   graph,
-  engine = NULL,
+  return_each = FALSE,
   direction = "both",
   predicates = NULL,
   categories = NULL,
@@ -19,7 +19,8 @@ expand_n(
 \arguments{
 \item{graph}{A query \code{tbl_kgx()} graph ot query with.}
 
-\item{engine}{(Optional) An engine to use for fetching query graph edges. If not provided, the graph's most recent engine is used.}
+\item{return_each}{If TRUE, return a list of graphs for each iteration.
+If FALSE, return the final graph with all expanded edges.}
 
 \item{direction}{The direction of associations to fetch. Can be "in", "out", or "both". Default is "both".}
 
@@ -31,24 +32,27 @@ expand_n(
 
 \item{drop_unused_query_nodes}{If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.}
 
+\item{n}{Number of expansion iterations to run.}
+
 \item{...}{Other parameters passed to methods.}
 }
 \value{
 A \code{tbl_kgx()} graph
 }
 \description{
-Given an optional KG engine (e.g. a \code{file_engine()},
-\code{neo4j_engine()}, or \code{monarch_engine()}) and a query \code{tbl_kgx()} graph, fetches additional nodes and edges
-from the KG, expanding the query graph according to specific criteria. If the first parameter is an engine, that
-engine is used; if the first parameter is a query graph, the most recent engine associated with the graph is used.
+Given an initialized \link{tbl_kgx} graph, iteratively expand the graph
+\code{n} iterations using certain predicates/categories.
+Arguments can either be a single value or a list of values.
+If an argument is provided as a list, its length must be equal to the number
+of iterations (\code{n}).
 }
 \examples{
 ## Using example KGX file packaged with monarchr
 filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-phenos <- file_engine(filename) |>
+g <- file_engine(filename) |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
                  categories = "biolink:PhenotypicFeature")
-
-print(phenos)
+g_expanded <- g |>
+              expand_n(predicates = "biolink:subclass_of", n=3)
 }

@@ -7,6 +7,7 @@
 #' of iterations (\code{n}).
 #' @param return_each If TRUE, return a list of graphs for each iteration.
 #' If FALSE, return the final graph with all expanded edges.
+#' @param n Number of expansion iterations to run.
 #' @inheritParams expand
 #'
 #' @return A `tbl_kgx()` graph

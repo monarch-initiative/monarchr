@@ -8,3 +8,5 @@ articles:
   navbar: Examples
   contents:
   - examples/alzheimers_phenotypes
+  - examples/visualizing_kgs
+  - examples/exploring_kgs

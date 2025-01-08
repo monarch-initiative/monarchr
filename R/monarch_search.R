@@ -8,7 +8,7 @@
 #' @param query Search query string, e.g. "Cystic fibrosis"
 #' @param category A set of node category labels to limit the search to, e.g. c("biolink:Disease", "biolink:Gene")
 #' @param limit Maximum number of nodes to return. Default 10.
-#' @param ... Other parameters (unused).
+#' @param ... Parameters passed to monarch_engine().
 #' @return A local tbl_kgx graph with no edges.
 #' @export
 #' @import tidygraph
@@ -24,7 +24,7 @@ monarch_search <- function(query,
                            limit = 10,
                            ...) {
 
-		engine <- monarch_engine()
+		engine <- monarch_engine(...)
     api_url <- paste0(engine$preferences$monarch_api_url, "/search")
 
     # ensure that the limit is not null and is a length-1 integer <= 500

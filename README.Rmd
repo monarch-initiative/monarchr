@@ -1,6 +1,6 @@
 ---
 title: "`r read.dcf('DESCRIPTION', fields = 'Package')[1]`"  
-author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE)`" 
+author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE, add_doi = '10.5281/zenodo.14553217')`"
 date: "README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   github_document

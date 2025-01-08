@@ -20,9 +20,9 @@
 #' g <- graph_centrality(g)
 #' nodes(g)$centrality
 graph_centrality <- function(graph,
-												 fun=igraph::harmonic_centrality,
-												 col="centrality",
-												 ...){
+														 fun=igraph::harmonic_centrality,
+														 col="centrality",
+														 ...){
 	message("Computing node centrality.")
 	graph <- graph|>
 		activate(nodes)|>

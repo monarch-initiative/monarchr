@@ -1,4 +1,4 @@
-# monarchr 1.2.2
+# monarchr 1.5.1
 
 ## New features
 
@@ -16,6 +16,42 @@
 discrete and continuous edge metadata.
 
 * `expand_n`: New function to expand a graph to a specified number of nodes.
+
+# monarchr 1.5.0
+
+## New features
+
+* Exporting to `cytoscape()` for visualization.
+* Added caching for `neo4j_engine` queries (enabled by default, length of R session only)
+
+## Bug fixes
+
+* Fixed a method signature inconsistency for `summary()`.
+
+# monarchr 1.4.0
+
+## New features
+
+* `example_graph()` function for engines
+* Engine `summary()` now returns named lists of available node categories and edge predicates for convenient auto-completion
+
+# monarchr 1.3.0
+
+## New features
+
+* `summary()` function for engines
+
+## Bugfixs
+
+* fix backend bug in Neo4j table queries not handling default params properly
+* add batch queries for Neo4j backend engine
+* added summary() for KG engines to summarize total node and edge count information
+
+# monarchr 1.2.2
+
+## Bugfixs
+
+* Add fallback URLs for `monarch_engine()`
 
 # monarchr 1.2.1
 
