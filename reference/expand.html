@@ -20,7 +20,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fetch additional knowledge graph edges connected to a query graph</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/neo4j-api-order-fix/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
     <div class="hidden name"><code>expand.Rd</code></div>
     </div>
 
@@ -140,8 +140,8 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 <span class="r-in"><span>          <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>          <span class="fu">expand</span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
 <span class="r-in"><span>                 categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to http://neo4j.monarchinitiative.org:7474</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to http://neo4j.monarchinitiative.org:7474</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://neo4j.monarchinitiative.org</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to https://neo4j.monarchinitiative.org</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; counting matching nodes... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 1.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 1 of 1</span>
