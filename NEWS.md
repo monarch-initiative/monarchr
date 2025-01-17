@@ -1,3 +1,9 @@
+# monarchr 1.5.1
+
+## Bug fixes
+
+* Improved the URL try order for the Monarch Neo4j API.
+
 # monarchr 1.5.0
 
 ## New features
