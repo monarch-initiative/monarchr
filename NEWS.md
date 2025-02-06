@@ -1,4 +1,4 @@
-# monarchr 1.5.1
+# monarchr 1.6.0
 
 ## New features
 
@@ -16,6 +16,11 @@
 discrete and continuous edge metadata.
 
 * `expand_n`: New function to expand a graph to a specified number of nodes.
+
+## Bug fixes
+
+* Improved the URL try order for the Monarch Neo4j API.
+
 
 # monarchr 1.5.0
 
