@@ -62,7 +62,7 @@ expand_n <- function(graph,
 										direction = check_len(direction,n,i),
 										predicates = check_len(predicates,n,i),
 										categories = check_len(categories,n,i),
-										transitive = NULL,
+										transitive = FALSE,
 										drop_unused_query_nodes = check_len(drop_unused_query_nodes,n,i),
 										...)
 		if(return_each) graph_list[[paste0("iteration",i)]] <- graph
