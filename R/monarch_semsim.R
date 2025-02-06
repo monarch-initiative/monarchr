@@ -5,7 +5,7 @@
 #' https://monarchinitiative.org/explore#phenotype-explorer.
 #'
 #' The API returns the best matches between the nodes of the two graphs, based on
-#' a specified knowledge-graph-boased metric: the default is `"ancestor_information_content"`,
+#' a specified knowledge-graph-based metric: the default is `"ancestor_information_content"`,
 #' also available are `"jaccard_similarity"` and `"phenodigm_score"`. The result is
 #' returned as a graph, with `"computed:best_matches"` edges between the nodes of the two input graphs.
 #'

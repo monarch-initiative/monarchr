@@ -1,8 +1,26 @@
-# monarchr 1.5.1
+# monarchr 1.6.0
+
+## New features
+
+* New utility function:
+	- `graph_semsim`
+	- `graph_centrality`
+	- `graph_sparsity`
+	
+* Updated plotting functions
+	-	Overhauled `plot.tbl_kgx`
+	- New function for getting consistent Monarch palettes: `monarch_palettes`.
+	- New function to apply monarch theme to existing `ggraph` plots: `theme_monarch`
+
+* `kg_edge_weights`: New function to compute quantitative edge weights from 
+discrete and continuous edge metadata.
+
+* `expand_n`: New function to expand a graph to a specified number of nodes.
 
 ## Bug fixes
 
 * Improved the URL try order for the Monarch Neo4j API.
+
 
 # monarchr 1.5.0
 

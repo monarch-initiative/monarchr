@@ -33,7 +33,7 @@ https://monarchinitiative.org/explore#phenotype-explorer.
 }
 \details{
 The API returns the best matches between the nodes of the two graphs, based on
-a specified knowledge-graph-boased metric: the default is \code{"ancestor_information_content"},
+a specified knowledge-graph-based metric: the default is \code{"ancestor_information_content"},
 also available are \code{"jaccard_similarity"} and \code{"phenodigm_score"}. The result is
 returned as a graph, with \code{"computed:best_matches"} edges between the nodes of the two input graphs.
 

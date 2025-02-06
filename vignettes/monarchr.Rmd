@@ -160,6 +160,31 @@ g <- monarch |>
 
 plot(g)
 ```
+
+We can also expand iteratively using the `expand_n` function. 
+This allows us to grow our graph to a certain degree of distance from the original input nodes.
+In the below example, we begin with a graph containing the disease "MONDO:0007525" 
+and its directly associated phenotypes.
+
+But what if we wish to get each of the subphenotypes within each of those phenotypes?
+And the sub-subphenotypes of those phenotypes?
+We can use the `expand_n` function to iteratively get a list of descendant 
+subphenotypes up to 3 degrees of graph distance (`n=3`). 
+You can adjust the maximum extent of the distance by increasing/decreasing
+the `n` parameter.
+
+```{r}
+## Using example KGX file packaged with monarchr
+filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+g <- file_engine(filename) |>
+          fetch_nodes(query_ids = "MONDO:0007525") |>
+          expand(predicates = "biolink:has_phenotype",
+                 categories = "biolink:PhenotypicFeature")
+g_expanded <- g |>
+              expand_n(predicates = "biolink:subclass_of", n=3)
+```
+
+
 We can limit the expansion based on several factors, which are combined in an "and" fashion:
 
 - `direction`: `"in`", `"out"`, or `"both"` (default): which direction edges should point from the query graph nodes

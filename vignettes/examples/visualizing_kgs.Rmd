@@ -23,8 +23,8 @@ knowledge graphs via `ggraph`, and a `cytoscape()` function to export a graph to
 As usual, we begin by loading the `monarchr` package, along with `tidygraph` and `dplyr` which tend to be useful.
 
 ```{r}
-library(monarchr)
-#devtools::load_all()
+#library(monarchr)
+devtools::load_all()
 library(tidygraph)
 library(dplyr)
 ```
@@ -74,7 +74,6 @@ shared <- both |>
 	mutate(frequency_qualifier = factor(frequency_qualifier, 
 																 			levels = c("HP:0040281", "HP:0040282", "HP:0040283"),
 																 			labels = c("very_frequent", "frequent", "occasional")))
-
 plot(shared, edge_color = frequency_qualifier)
 ```
 
