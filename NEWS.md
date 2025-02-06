@@ -5,11 +5,11 @@
 * New utility function:
 	- `graph_semsim`
 	- `graph_centrality`
-	- `sparsity`
+	- `graph_sparsity`
 	
 * Updated plotting functions
 	-	Overhauled `plot.tbl_kgx`
-	- New function for getting consistent Monarch palettes: `monarch_palette`.
+	- New function for getting consistent Monarch palettes: `monarch_palettes`.
 	- New function to apply monarch theme to existing `ggraph` plots: `theme_monarch`
 
 * `kg_edge_weights`: New function to compute quantitative edge weights from 
