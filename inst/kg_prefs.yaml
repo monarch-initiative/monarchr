@@ -21,3 +21,35 @@ edge_property_priority:
   - subject
   - predicate
   - object
+palette:
+  continuous:
+  - '#2c8c9a'
+  - '#79e4e7'
+  - '#a7ecf3'
+  - '#fafafa'
+  - white
+  nodes:
+    discrete:
+      biolink:Disease: '#d52473'
+      biolink:PhenotypicFeature: '#2f9869'
+      biolink:Gene: '#2c81c6'
+    continuous:
+      biolink:Disease: '#2c8c9a'
+      biolink:PhenotypicFeature: '#79e4e7'
+      biolink:Gene: '#a7ecf3'
+    shape:
+      biolink:Disease: 15.0
+      biolink:PhenotypicFeature: 16.0
+      biolink:Gene: 18.0
+  edges:
+    discrete:
+      biolink:causes: black
+      biolink:gene_associated_with_condition: '#2c81c6'
+      biolink:has_phenotype: '#2f9869'
+      biolink:subclass_of: darkgrey
+    continuous:
+      biolink:causes: '#2c8c9a'
+      biolink:gene_associated_with_condition: '#79e4e7'
+      biolink:has_phenotype: '#a7ecf3'
+      biolink:subclass_of: '#fafafa'
+
