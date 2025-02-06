@@ -70,7 +70,7 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Return an example set of nodes from a KG engine.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/example_graph.file_engine.R" class="external-link"><code>R/example_graph.file_engine.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/bschilder1.5.1/R/example_graph.file_engine.R" class="external-link"><code>R/example_graph.file_engine.R</code></a></small>
     <div class="hidden name"><code>example_graph.file_engine.Rd</code></div>
     </div>
 
@@ -137,18 +137,18 @@ may not be connected.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_gene &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 10 × 25</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject        predicate         object agent_type knowledge_level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    11     1 CLINVAR:200198 biolink:associat… MONDO… manual_ag… knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     6     1 HGNC:3603      biolink:causes    MONDO… manual_ag… knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     6     1 HGNC:3603      biolink:gene_ass… MONDO… manual_ag… knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject        predicate  object primary_knowledge_so…¹ agent_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    11     1 CLINVAR:200198 biolink:a… MONDO… infores:clingen        manual_ag…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     6     1 HGNC:3603      biolink:c… MONDO… infores:omim           manual_ag…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     6     1 HGNC:3603      biolink:g… MONDO… infores:orphanet       manual_ag…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more variables: knowledge_source &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;chr&gt;, primary_knowledge_source &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, id &lt;chr&gt;, category &lt;chr&gt;, original_object &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   original_subject &lt;chr&gt;, frequency_qualifier &lt;chr&gt;, has_evidence &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_total &lt;dbl&gt;, has_quotient &lt;dbl&gt;, has_count &lt;dbl&gt;, has_percentage &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   onset_qualifier &lt;chr&gt;, publications &lt;chr&gt;, qualifiers &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_knowledge_source</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more variables: knowledge_level &lt;chr&gt;, knowledge_source &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;chr&gt;, provided_by &lt;chr&gt;, id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   category &lt;chr&gt;, original_object &lt;chr&gt;, original_subject &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   frequency_qualifier &lt;chr&gt;, has_evidence &lt;chr&gt;, has_total &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_quotient &lt;dbl&gt;, has_count &lt;dbl&gt;, has_percentage &lt;dbl&gt;, …</span></span>
 </code></pre></div>
     </div>
   </div>

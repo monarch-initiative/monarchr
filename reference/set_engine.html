@@ -70,7 +70,7 @@ yet fully supported or tested."><!-- mathjax --><script src="https://cdnjs.cloud
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Set the engine for a graph. See warning in details.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/set_engine.R" class="external-link"><code>R/set_engine.R</code></a>, <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/set_engine.tbl_kgx.R" class="external-link"><code>R/set_engine.tbl_kgx.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/bschilder1.5.1/R/set_engine.R" class="external-link"><code>R/set_engine.R</code></a>, <a href="https://github.com/monarch-initiative/monarchr/blob/bschilder1.5.1/R/set_engine.tbl_kgx.R" class="external-link"><code>R/set_engine.tbl_kgx.R</code></a></small>
     <div class="hidden name"><code>set_engine.Rd</code></div>
     </div>
 
@@ -124,18 +124,52 @@ yet fully supported or tested.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$category_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "biolink:Disease"           "biolink:PhenotypicFeature"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "biolink:Gene"              "biolink:AnatomicalEntity" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "biolink:BiologicalProcess" "biolink:Pathway"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "biolink:Cell"              "biolink:CellularComponent"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "biolink:ChemicalEntity"    "biolink:Drug"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "biolink:LifeStage"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "biolink:MolecularEntity"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "biolink:OrganismTaxon"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "biolink:Cell"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "biolink:CellularComponent"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "biolink:MolecularActivity"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "biolink:SequenceVariant"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "biolink:ChemicalEntity"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "biolink:ChemicalOrDrugOrTreatment"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "biolink:GeneProductMixin"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "biolink:Protein"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "biolink:Polypeptide"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "biolink:Pathway"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "biolink:Disease"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "biolink:ChemicalEntityOrProteinOrPolypeptide"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "biolink:BiologicalProcess"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "biolink:Occurrent"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "biolink:BiologicalProcessOrActivity"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "biolink:AnatomicalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "biolink:OrganismalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "biolink:SubjectOfInvestigation"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "biolink:Genotype"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "biolink:PhenotypicFeature"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "biolink:DiseaseOrPhenotypicFeature"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "biolink:Gene"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "biolink:MacromolecularMachineMixin"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "biolink:GeneOrGeneProduct"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "biolink:ChemicalEntityOrGeneOrGeneProduct"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "biolink:GenomicEntity"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "biolink:OntologyClass"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "biolink:PhysicalEssence"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "biolink:PhysicalEssenceOrOccurrent"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "biolink:BiologicalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "biolink:ThingWithTaxon"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "biolink:NamedThing"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "biolink:Entity"                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$node_property_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "id"             "pcategory"      "name"           "symbol"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "in_taxon_label" "description"    "synonym"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "id"                       "pcategory"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "name"                     "symbol"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "in_taxon_label"           "description"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "synonym"                  "primary_knowledge_source"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$edge_property_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "subject"   "predicate" "object"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "subject"                  "predicate"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "object"                   "primary_knowledge_source"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filename</span>
@@ -195,18 +229,52 @@ yet fully supported or tested.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$category_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "biolink:Disease"           "biolink:PhenotypicFeature"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "biolink:Gene"              "biolink:AnatomicalEntity" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "biolink:BiologicalProcess" "biolink:Pathway"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "biolink:Cell"              "biolink:CellularComponent"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "biolink:ChemicalEntity"    "biolink:Drug"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "biolink:LifeStage"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "biolink:MolecularEntity"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "biolink:OrganismTaxon"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "biolink:Cell"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "biolink:CellularComponent"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "biolink:MolecularActivity"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "biolink:SequenceVariant"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "biolink:ChemicalEntity"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "biolink:ChemicalOrDrugOrTreatment"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "biolink:GeneProductMixin"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "biolink:Protein"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "biolink:Polypeptide"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "biolink:Pathway"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "biolink:Disease"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "biolink:ChemicalEntityOrProteinOrPolypeptide"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "biolink:BiologicalProcess"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "biolink:Occurrent"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "biolink:BiologicalProcessOrActivity"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "biolink:AnatomicalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "biolink:OrganismalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "biolink:SubjectOfInvestigation"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "biolink:Genotype"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "biolink:PhenotypicFeature"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "biolink:DiseaseOrPhenotypicFeature"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "biolink:Gene"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "biolink:MacromolecularMachineMixin"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "biolink:GeneOrGeneProduct"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "biolink:ChemicalEntityOrGeneOrGeneProduct"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "biolink:GenomicEntity"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "biolink:OntologyClass"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "biolink:PhysicalEssence"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "biolink:PhysicalEssenceOrOccurrent"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "biolink:BiologicalEntity"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "biolink:ThingWithTaxon"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "biolink:NamedThing"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "biolink:Entity"                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$node_property_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "id"             "pcategory"      "name"           "symbol"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "in_taxon_label" "description"    "synonym"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "id"                       "pcategory"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "name"                     "symbol"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "in_taxon_label"           "description"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "synonym"                  "primary_knowledge_source"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $preferences$edge_property_priority</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "subject"   "predicate" "object"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "subject"                  "predicate"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "object"                   "primary_knowledge_source"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filename</span>
