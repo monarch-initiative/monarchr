@@ -1,0 +1,94 @@
+#' Generate Default Edge Weight Encodings for Monarch Knowledge Graph
+#'
+#' This function returns a list of default encoding schemes used to compute
+#' edge weights in Monarch knowledge graph visualizations and analyses.
+#' Each encoding represents how specific edge attributes contribute to
+#' the overall edge weight. Users can inspect these defaults and
+#' override them with custom encoding logic if needed.
+#'
+#' @return A list of encodings for various edge attributes:
+#' \describe{
+#'   \item{knowledge_level}{A named list assigning weights based on knowledge assertion levels:
+#'     \itemize{
+#'       \item \code{"knowledge_assertion"}: \code{1} (full weight for direct assertions)
+#'       \item \code{"logical_entailment"}: \code{1} (full weight for inferred relationships)
+#'       \item \code{"not_provided"}: \code{0} (no weight when knowledge level is unspecified)
+#'     }
+#'   }
+#'   \item{frequency_qualifier}{A named list mapping Human Phenotype Ontology (HPO) frequency terms to numeric weights:
+#'     \itemize{
+#'       \item \code{"HP:0040281"}: \code{1} ("Very frequent")
+#'       \item \code{"HP:0040282"}: \code{0.75} ("Frequent")
+#'       \item \code{"HP:0040283"}: \code{0.5} ("Occasional")
+#'       \item \code{"HP:0040284"}: \code{0.25} ("Very rare")
+#'     }
+#'   }
+#'   \item{negated}{A named list representing negation status:
+#'     \itemize{
+#'       \item \code{TRUE}: \code{-1} (negated relationships decrease the weight)
+#'       \item \code{FALSE}: \code{0} (non-negated relationships have no penalty)
+#'     }
+#'   }
+#'   \item{has_total}{\code{NULL}. Placeholder for total counts; can be overridden with custom logic.}
+#'   \item{has_quotient}{An empty numeric vector. Placeholder for quotient-based weight calculations.}
+#'   \item{has_count}{\code{NULL}. Placeholder for count-based weight computations.}
+#'   \item{has_percentage}{\code{NULL}. Placeholder for percentage-based weight computations.}
+#'   \item{has_evidence}{\code{NULL}. Placeholder for evidence-based weight computations.}
+#'   \item{onset_qualifier}{\code{NULL}. Placeholder for onset qualifiers, which can influence weights.}
+#'   \item{publications}{A function that computes the weight based on the number of unique publications:
+#'     \itemize{
+#'       \item Takes a vector of publication IDs and returns the count of unique IDs.
+#'     }
+#'   }
+#' }
+#'
+#' @examples
+#' # View the default edge weight encodings
+#' monarch_edge_weight_encodings()
+#'
+#' # Override the encoding to assign more weight to logical entailments
+#' encodings <- monarch_edge_weight_encodings()
+#' encodings$knowledge_level$logical_entailment <- 0.5
+#'
+#' # Modify the negation encoding to reduce penalty for negated relationships
+#' encodings$negated[["TRUE"]] <- -0.5
+#'
+#' @export
+monarch_edge_weight_encodings <- function() {
+	list(
+		"knowledge_level"=list(
+			"knowledge_assertion"=1,
+			"logical_entailment"=1,
+			"not_provided"=0
+		),
+		"frequency_qualifier"=list(
+			"HP:0040281"=1, # "Very frequent"
+			"HP:0040282"=.75, # "Frequent"
+			"HP:0040283"=.5, # "Occasional"
+			"HP:0040284"=.25 # "Very rare"
+		),
+		"negated"=list(
+			`TRUE`=-1,
+			`FALSE`=0
+		),
+		"has_total"=NULL,
+		"has_quotient"=numeric(),
+		"has_count"=NULL,
+		"has_percentage"=NULL,
+		"has_evidence"=NULL,
+		"onset_qualifier"=NULL,
+		"publications"=function(x){length(unique(x))}
+	)
+}
+
+# knowledge_level *
+# frequency_qualifier **
+# negated ?
+# has_total
+# has_quotient
+# has_count
+# has_percentage *
+# has_evidence *
+# has_percentage
+# onset_qualifier
+# publications **

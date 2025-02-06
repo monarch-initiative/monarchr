@@ -22,43 +22,9 @@
 #' edges(g2)$weight
 kg_edge_weights <- function(graph,
 														normalise=TRUE,
-														encodings=list(
-															"knowledge_level"=list(
-																"knowledge_assertion"=1,
-																"logical_entailment"=1,
-																"not_provided"=0
-															),
-															"frequency_qualifier"=list(
-																"HP:0040281"=1, # "Very frequent"
-																	"HP:0040282"=.75, # "Frequent"
-																	"HP:0040283"=.5, # "Occasional"
-																	"HP:0040284"=.25 # "Very rare"
-															),
-															"negated"=list(
-																`TRUE`=-1,
-																`FALSE`=0
-															),
-															"has_total"=NULL,
-															"has_quotient"=numeric(),
-															"has_count"=NULL,
-															"has_percentage"=NULL,
-															"has_evidence"=NULL,
-															"onset_qualifier"=NULL,
-															"publications"=function(x){length(unique(x))}
-														),
+														encodings=monarch_edge_weight_encodings(),
 														fun=function(x){rowSums(x, na.rm = TRUE)}
 														){
-	# knowledge_level *
-	# frequency_qualifier **
-	# negated ?
-	# has_total
-	# has_quotient
-	# has_count
-	# has_percentage *
-	# has_evidence *
-	# has_percentage
-	# onset_qualifier
-	# publications **
 	encoded_cols <- c()
 	for(key in names(encodings)){
 		nm_encoded <- paste0(key,"_encoded")
