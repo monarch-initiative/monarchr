@@ -1,14 +1,40 @@
 category_priority:
-  - biolink:Disease
-  - biolink:PhenotypicFeature
-  - biolink:Gene
-  - biolink:AnatomicalEntity
-  - biolink:BiologicalProcess
-  - biolink:Pathway
-  - biolink:Cell
-  - biolink:CellularComponent
-  - biolink:ChemicalEntity
-  - biolink:Drug
+	- biolink:LifeStage
+	- biolink:MolecularEntity
+	- biolink:OrganismTaxon
+	- biolink:Cell
+	- biolink:CellularComponent
+	- biolink:MolecularActivity
+	- biolink:SequenceVariant
+	- biolink:ChemicalEntity
+	- biolink:ChemicalOrDrugOrTreatment
+	- biolink:GeneProductMixin
+	- biolink:Protein
+	- biolink:Polypeptide
+	- biolink:Pathway
+	- biolink:Disease
+	- biolink:ChemicalEntityOrProteinOrPolypeptide
+	- biolink:BiologicalProcess
+	- biolink:Occurrent
+	- biolink:BiologicalProcessOrActivity
+	- biolink:AnatomicalEntity
+	- biolink:OrganismalEntity
+	- biolink:SubjectOfInvestigation
+	- biolink:Genotype
+	- biolink:PhenotypicFeature
+	- biolink:DiseaseOrPhenotypicFeature
+	- biolink:Gene
+	- biolink:MacromolecularMachineMixin
+	- biolink:GeneOrGeneProduct
+	- biolink:ChemicalEntityOrGeneOrGeneProduct
+	- biolink:GenomicEntity
+	- biolink:OntologyClass
+	- biolink:PhysicalEssence
+	- biolink:PhysicalEssenceOrOccurrent
+	- biolink:BiologicalEntity
+	- biolink:ThingWithTaxon
+	- biolink:NamedThing
+	- biolink:Entity
 node_property_priority:
   - id
   - pcategory
@@ -17,9 +43,11 @@ node_property_priority:
   - in_taxon_label
   - description
   - synonym
+  - primary_knowledge_source
 edge_property_priority:
   - subject
   - predicate
   - object
+  - primary_knowledge_source
 
 
