@@ -5,9 +5,9 @@
 \title{Create a knowledge graph engine object backed by the public Monarch Neo4j instance}
 \usage{
 monarch_engine(
-  url = c("http://neo4j.monarchinitiative.org:7474",
-    "https://neo4j.monarchinitiative.org:7473", "http://neo4j.monarchinitiative.org",
-    "https://neo4j.monarchinitiative.org"),
+  url = c("https://neo4j.monarchinitiative.org", "http://neo4j.monarchinitiative.org",
+    "https://neo4j.monarchinitiative.org:7473",
+    "http://neo4j.monarchinitiative.org:7473"),
   api_url = "https://api.monarchinitiative.org/v3/api",
   preferences = NULL,
   timeout = 2,

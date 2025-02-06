@@ -7,14 +7,7 @@
 kg_edge_weights(
   graph,
   normalise = TRUE,
-  encodings = list(knowledge_level = list(knowledge_assertion = 1, logical_entailment =
-    1, not_provided = 0), frequency_qualifier = list(`HP:0040281` = 1, `HP:0040282` =
-    0.75, `HP:0040283` = 0.5, `HP:0040284` = 0.25), negated = list(`TRUE` = -1, `FALSE` =
-    0), has_total = NULL, has_quotient = numeric(), has_count = NULL, has_percentage =
-    NULL, has_evidence = NULL, onset_qualifier = NULL, publications = function(x) {
-    
-    length(unique(x))
- }),
+  encodings = monarch_edge_weight_encodings(),
   fun = function(x) {
      rowSums(x, na.rm = TRUE)
  }
