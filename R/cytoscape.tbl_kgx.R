@@ -43,7 +43,7 @@ color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 #'
 #'
 #' @param g A `tbl_kgx()` graph to visualize.
-#' @param ... Other parameters (unused).
+#' @param ... other parameters passed to RCy3 functions, e.g. `base.url`.
 #'
 #' @return NULL, invisibly
 #' @export
@@ -63,7 +63,7 @@ color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 cytoscape.tbl_kgx <- function(g, ...) {
 	message("Sending data to Cytoscape and formatting; please wait.")
 	tryCatch({
-		RCy3::cytoscapePing()
+		RCy3::cytoscapePing(...)
 	}, error = function(e) {
 		message(paste0("Unable to connect to Cytoscape. Is it installed and running?", "\nRCy3 Error:\n", e$message))
 	})
@@ -82,17 +82,18 @@ cytoscape.tbl_kgx <- function(g, ...) {
 																		title = "KG Nodes",
 																		collection = "monarchr Graphs",
 																		source.id.list = 'subject',
-																		target.id.list = 'object')
-	RCy3::layoutNetwork('kamada-kawai')
+																		target.id.list = 'object',
+																		...)
+	RCy3::layoutNetwork('kamada-kawai', ...)
 
 	pal <- color_cats(nodes(g)$pcategory, levels_only = TRUE)
 	pal_edges <- color_cats(edges(g)$predicate, levels_only = TRUE)
-	RCy3::setNodeColorMapping('pcategory', table.column.values = names(pal), colors = pal, mapping.type = 'd')
-	RCy3::setEdgeColorMapping('predicate', table.column.values = names(pal_edges), colors = pal_edges, mapping.type = 'd')
+	RCy3::setNodeColorMapping('pcategory', table.column.values = names(pal), colors = pal, mapping.type = 'd', ...)
+	RCy3::setEdgeColorMapping('predicate', table.column.values = names(pal_edges), colors = pal_edges, mapping.type = 'd', ...)
 
-	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped')
-	RCy3::setEdgeTooltipMapping(table.column = 'predicate')
-	RCy3::matchArrowColorToEdge(TRUE)
-	RCy3::setEdgeTargetArrowShapeDefault('ARROW')
+	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped', ...)
+	RCy3::setEdgeTooltipMapping(table.column = 'predicate', ...)
+	RCy3::matchArrowColorToEdge(TRUE, ...)
+	RCy3::setEdgeTargetArrowShapeDefault('ARROW', ...)
 	return(invisible())
 }
