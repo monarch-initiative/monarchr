@@ -1,3 +1,10 @@
+# monarchr 1.6.1
+
+## Bug fixes
+
+* Supported using non-default base URLs for `cytoscape()` plotting
+* Fixed a bug resulting in duplicate entries when joining graphs from different data contexts
+
 # monarchr 1.6.0
 
 ## New features
