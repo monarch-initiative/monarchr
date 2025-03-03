@@ -27,6 +27,21 @@ stitch_vectors <- function(x) {
 	}
 }
 
+#' Remove names from columns
+#'
+#' Given a data-frame like object, runs each column through unname()
+#'
+#' @param df Input data frame
+#' @importFrom rlang is_named
+#' @return The input, with unnamed columns
+unname_cols <- function(df) {
+	for(name in names(df)) {
+		df[[name]] <- unname(df[[name]])
+	}
+
+	return(df)
+}
+
 #' Process neo2R cypher to tbl_kgx
 #'
 #' Given a result from neo2R::cypher returning KGX-formatted nodes and edges,
@@ -35,11 +50,14 @@ stitch_vectors <- function(x) {
 #' @param res The result from neo2R::cypher with result = "graph"
 #' @param engine The engine to attach to the returned graph
 #' @importFrom memoise memoise
+#' @importFrom rlang is_named
 #' @return A tbl_kgx
 neo2r_to_kgx <- function(res, engine) {
 	relationship_ids_contained <- as.integer(unlist(res$paths))
 
-	res <- stitch_vectors(res)
+	if(!is.null(res)) {
+		res <- stitch_vectors(res)
+	}
 
 	## node info
 	node_ids <- unlist(lapply(res$nodes, function(node) {
@@ -73,6 +91,8 @@ neo2r_to_kgx <- function(res, engine) {
 			}
 		})
 	}
+
+	nodes_df <- unname_cols(nodes_df)
 
 	if(is.null(res$relationships[[1]])) {
 		g <- tbl_kgx(nodes_df, attach_engine = engine)
@@ -120,6 +140,8 @@ neo2r_to_kgx <- function(res, engine) {
 	edges_df$from <- edge_subjects
 	edges_df$to <- edge_objects
 
+	edges_df <- unname_cols(edges_df)
+
 	g <- tbl_kgx(nodes_df, edges_df, attach_engine = engine)
 	attr(g, "relationship_ids") <- relationship_ids_contained
 	return(g)
@@ -128,6 +150,7 @@ neo2r_to_kgx <- function(res, engine) {
 internal_cypher_query <- function(engine, query, parameters = NULL, ...) {	#
 	if(length(query) == 1) {
 		res <- neo2R::cypher(engine$graph_conn, query = query, parameters = parameters, result = "graph")
+		# NB: this will be NULL if there are no matches.
 		return(neo2r_to_kgx(res, engine = engine))
 	} else {
 		res <- neo2R::multicypher(engine$graph_conn, queries = query, parameters = parameters, result = "graph")

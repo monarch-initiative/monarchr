@@ -1,3 +1,25 @@
+
+# given a dataframe with potential list columns,
+# ensures that any NULL entries are replaced with a single NA
+null_col_entries_to_na <- function(df) {
+	for(name in names(df)) {
+		col <- df[[name]]
+		if(is.list(col)) {
+			col <- lapply(col, function(el) {
+													if(is.null(el)) {
+														NA
+													} else {
+														el
+													}
+												}
+			              )
+			df[[name]] <- col
+		}
+	}
+
+	return(df)
+}
+
 #' @import tidygraph
 #' @import dplyr
 #' @export
@@ -53,6 +75,8 @@ kg_join.tbl_kgx <- function(graph1, graph2, ...) {
     all_nodes <- all_nodes |>
       select(-idx)  # remove the idx column
 
+    all_nodes <- null_col_entries_to_na(all_nodes)
+    filled_edges <- null_col_entries_to_na(filled_edges)
     res <- tbl_kgx(nodes = all_nodes, edges = filled_edges, attach_engine = get_engine(graph1, fail_if_missing = FALSE))
     return(res)
 }
