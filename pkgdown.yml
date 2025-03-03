@@ -1,9 +1,8 @@
-pandoc: 3.6.2
+pandoc: 3.6.3
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  examples/alzheimers_phenotypes: examples/alzheimers_phenotypes.html
   examples/exploring_kgs: examples/exploring_kgs.html
   monarchr: monarchr.html
   examples/visualizing_kgs: examples/visualizing_kgs.html
-last_built: 2025-02-06T22:35Z
+last_built: 2025-03-03T18:04Z

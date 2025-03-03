@@ -42,9 +42,6 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
   <ul class="dropdown-menu" role="menu"><li class="divider">
     <li class="dropdown-header">Examples</li>
     <li>
-      <a href="../articles/examples/alzheimers_phenotypes.html">Categorizing Alzheimers Phenotypes</a>
-    </li>
-    <li>
       <a href="../articles/examples/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
     </li>
     <li>
@@ -70,7 +67,7 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Return an example set of nodes from a KG engine.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/example_graph.R" class="external-link"><code>R/example_graph.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/cytoscape_baseurl_fix/R/example_graph.R" class="external-link"><code>R/example_graph.R</code></a></small>
     <div class="hidden name"><code>example_graph.Rd</code></div>
     </div>
 
@@ -156,36 +153,36 @@ may not be connected.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 62 nodes and 37 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed acyclic multigraph with 27 components</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 25 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 62 × 17 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id         category pcategory name  symbol in_taxon_label description synonym</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;named&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> RGD:708446 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ccr1  Ccr1   Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> GO:0006954 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… infl… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The immedi… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Xenbase:X… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… ccr3  ccr3   Xenopus tropi… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> RGD:13080… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ccr1… Ccr1l1 Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> RGD:15649… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ostm1 Ostm1  Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> GO:0034707 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… chlo… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             An ion cha… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> GO:0010467 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… gene… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The proces… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> RGD:2081   <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Akt1  Akt1   Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> MONDO:010… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… over… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A disease … <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CLINVAR:1… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… NM_0… <span style="color: #BB0000;">NA</span>     Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> GO:0045892 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… nega… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Any proces… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> HGNC:8550  <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… PA2G4 PA2G4  Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> HGNC:10414 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… RPS26 RPS26  Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> RGD:15829… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Rps2… Rps26… Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> GO:0015935 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… smal… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The smalle… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> GO:0019722 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… calc… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Any intrac… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> HGNC:4383  <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… GNA15 GNA15  Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> MONDO:010… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… over… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A disease … <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> CLINVAR:1… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… NM_0… <span style="color: #BB0000;">NA</span>     Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ZFA:00000… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… phar… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             Skeletal a… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 52 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: full_name &lt;chr&gt;, xref &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   in_taxon &lt;named list&gt;, namespace &lt;chr&gt;, provided_by &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   type &lt;named list&gt;, iri &lt;chr&gt;, has_gene &lt;named list&gt;, deprecated &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: iri &lt;chr&gt;, namespace &lt;chr&gt;, provided_by &lt;named list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   full_name &lt;chr&gt;, xref &lt;named list&gt;, in_taxon &lt;named list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   type &lt;named list&gt;, has_gene &lt;named list&gt;, deprecated &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 37 × 22</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 37 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate object primary_knowledge_so…¹ knowledge_level</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1     2 RGD:708446 biolink:… GO:00… infores:rgd            knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     4     3 RGD:13080… biolink:… Xenba… infores:panther        knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     5     6 RGD:15649… biolink:… GO:00… infores:rgd            knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     2     1 HGNC:8550  biolink:… GO:00… infores:mgi            knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3     4 HGNC:10414 biolink:… RGD:1… infores:panther        knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3     5 HGNC:10414 biolink:… GO:00… infores:uniprot        knowledge_asse…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 34 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_knowledge_source</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: negated &lt;lgl&gt;, species_context_qualifier &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   agent_type &lt;chr&gt;, knowledge_source &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: negated &lt;lgl&gt;, original_subject &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   species_context_qualifier &lt;chr&gt;, agent_type &lt;chr&gt;, knowledge_source &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;named list&gt;, has_evidence &lt;named list&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;named list&gt;, id &lt;chr&gt;, category &lt;named list&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   publications &lt;named list&gt;, qualifiers &lt;named list&gt;, …</span></span>
