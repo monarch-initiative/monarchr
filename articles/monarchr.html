@@ -96,7 +96,7 @@ O’Neil</h4>
 <i>Mar-03-2025</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/double_edges_fix/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
       <div class="hidden name"><code>monarchr.Rmd</code></div>
 
     </div>
@@ -5920,10 +5920,10 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-14-1.png" width="960"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sim</span></span></code></pre></div>
-<pre>Graph with 19 nodes and 11 edges. Expand sections below for details.</pre>
+<pre>Graph with 20 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 19 of 19 nodes:
+Showing 20 of 20 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -6467,6 +6467,42 @@ c(“SNOMEDCT_US:62250003”, “UMLS:C0003706”, “UMLS:C1836996”)
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0001533”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Slender build”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Asthenic habitus refers to a slender build with long limbs, an angular
+profile, and prominent muscles or bones.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Asthenic habitus”, “Slender build”, “Thin body habitus”, “Thin
+build”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0001533" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001533</a>”
+</td>
+<td style="text-align:left;">
+“UMLS:C1850573”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:0001763”
 </td>
 <td style="text-align:left;">
@@ -6541,20 +6577,21 @@ c(“SNOMEDCT_US:80423007”, “UMLS:C0149781”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0012432”
+“HP:0002616”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Chronic fatigue”
+“Aortic root aneurysm”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Subjective feeling of tiredness characterized by a lack of energy and
-motivation that persists for six months or longer.”
+“An abnormal localized widening (dilatation) of the aortic root.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Chronic extreme exhaustion”, “Chronic fatigue”)
+c(“Aortic root dilatation”, “Bulge in wall of root of large artery that
+carries blood away from heart”, “Enlarged aortic root”, “Increased
+aortic root diameter”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6562,10 +6599,51 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0012432" class="external-link uri">http://purl.obolibrary.org/obo/HP_0012432</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0002616" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002616</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C0518656”
+c(“SNOMEDCT_US:251036003”, “UMLS:C0238669”)
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0004942”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Aortic aneurysm”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Aortic dilatation refers to a dimension that is greater than the 95th
+percentile for the normal person age, sex and body size. In contrast, an
+aneurysm is defined as a localized dilation of the aorta that is more
+than 150 percent of predicted (ratio of observed to expected diameter
+1.5 or more). Aneurysm should be distinguished from ectasia, which
+represents a diffuse dilation of the aorta less than 50 percent of
+normal aorta diameter.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Aortic dilatation”, “Bulge in wall of large artery that carries blood
+away from heart”, “Enlarged aorta”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0004942" class="external-link uri">http://purl.obolibrary.org/obo/HP_0004942</a>”
+</td>
+<td style="text-align:left;">
+c(“Fyler:2301”, “Fyler:2708”, “SNOMEDCT_US:67362008”, “UMLS:C0003486”)
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6656,42 +6734,6 @@ c(“SNOMEDCT_US:246635007”, “SNOMEDCT_US:397540003”,
 “phenio_nodes”
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-“HP:0000545”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Myopia”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“An abnormality of refraction characterized by the ability to see
-objects nearby clearly, while objects in the distance appear blurry.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Close sighted”, “Near sighted”, “Near sightedness”,
-“Nearsightedness”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0000545" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000545</a>”
-</td>
-<td style="text-align:left;">
-c(“SNOMEDCT_US:57190000”, “UMLS:C0027092”)
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -6733,7 +6775,7 @@ ancestor_id
 9
 </td>
 <td style="text-align:left;">
-14
+15
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -6759,7 +6801,7 @@ ancestor_id
 2
 </td>
 <td style="text-align:left;">
-18
+14
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6768,7 +6810,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000505”
+“HP:0001533”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6785,7 +6827,7 @@ ancestor_id
 3
 </td>
 <td style="text-align:left;">
-16
+17
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6794,7 +6836,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0012432”
+“HP:0002616”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6837,7 +6879,7 @@ ancestor_id
 10
 </td>
 <td style="text-align:left;">
-17
+18
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -6846,7 +6888,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000275”
+“HP:0004942”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6863,7 +6905,7 @@ ancestor_id
 5
 </td>
 <td style="text-align:left;">
-17
+19
 </td>
 <td style="text-align:left;">
 “HP:0001065”
@@ -6889,7 +6931,7 @@ ancestor_id
 6
 </td>
 <td style="text-align:left;">
-17
+19
 </td>
 <td style="text-align:left;">
 “HP:0001073”
@@ -6915,7 +6957,7 @@ ancestor_id
 7
 </td>
 <td style="text-align:left;">
-17
+19
 </td>
 <td style="text-align:left;">
 “HP:0001075”
@@ -6941,7 +6983,7 @@ ancestor_id
 11
 </td>
 <td style="text-align:left;">
-19
+20
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6950,7 +6992,7 @@ ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000545”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “ancestor_information_content”
@@ -6967,7 +7009,7 @@ ancestor_id
 8
 </td>
 <td style="text-align:left;">
-15
+16
 </td>
 <td style="text-align:left;">
 “HP:0002761”
