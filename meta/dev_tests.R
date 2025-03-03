@@ -320,3 +320,117 @@ f <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monar
 s2 <- f |> example_graph.file_engine()
 s2 |> cytoscape()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### fix_dup_edges_on_join tests
+
+rm(list = ls())
+devtools::load_all()
+
+minstr <- function(x) {
+	str(x, max.level = 2, list.len = 3)
+}
+
+e <- monarch_engine()
+
+gbase <- e |> fetch_nodes(name == "Noonan syndrome" & "biolink:Disease" %in_list% category)
+
+gbase <- gbase |> descendants()
+
+g1 <- gbase |> expand(categories = "biolink:Gene",
+											predicates = c("biolink:causes",
+																		 "biolink:associated_with_increased_likelihood_of"),
+											drop_unused_query_nodes = TRUE)
+
+raw_pre_g1 <- raw_pre
+raw_post_g1 <- raw_post
+
+g2 <- gbase |> expand(categories = "biolink:SequenceVariant",
+											predicates = c("biolink:causes",
+																		 "biolink:associated_with_increased_likelihood_of"),
+											drop_unused_query_nodes = TRUE)
+
+graw_pre_g2 <- raw_pre
+raw_post_g2 <- raw_post
+
+rm(list = c("raw_pre", "raw_post"))
+
+# so this has dups in default config
+# - NO dups with early return 1 from expand_neo4j_engine
+# - NO dups with early return 2 from expand_neo4j_engine
+# dups with early return 3 (which is not triggered, no limit, expected)
+# - NO dups with early return 4...
+# DUPS with early return 5
+# issue appears to be in kg_join applied differently in drop_unused_query_nodes = FALSE code
+kg_join(g1, g2) |> plot()
+
+# try adding in base...
+# ok, so g1 (the result_cumulative) is causing the issue when joined with gbase
+kg_join(kg_join(gbase, g1), g2) |> plot()
+
+# gbase has noonan symdrome - no taxon info
+nodes(gbase) |> filter(name == "Noonan syndrome")
+# g1 does not have it
+nodes(g1) |> filter(name == "Noonan syndrome")
+# g2 does have it, with taxon info, but NA in the entry
+# so the g2 query returns it as part of the query, probably because there are variants
+# that cause the parent term, but not genes (indeed, all variants point at the parent)
+nodes(g2) |> filter(name == "Noonan syndrome")
+
+# when we join g1 to gbase...
+# it's there, with NULL in in_taxon
+kg_join(g1, gbase) |> nodes() |> filter(name == "Noonan syndrome")
+
+# when we join g2 to gbase...
+# it's there, with NA in in_taxon
+kg_join(g2, gbase) |> nodes() |> filter(name == "Noonan syndrome")
+
+# POTENTIAL SOLUTION?
+# when using *_join, missing list columns get NULL entries, missing vector cols get NA apparently...
+# it appears that kg_join is the culprit, resulting in NULL values in column entries, especially list cols?
+
+# first thing, we should probably get rid of the names on the list columns
+# they are db-internal IDs, so not needed and may cause issues
+
+# no dups...
+kg_join(gbase, g1) |> plot()
+
+# no dups
+kg_join(gbase, g2) |> plot()
+
+# let's see what we get from a rawer conversion...
+g1_pre_from_raw <- neo2r_to_kgx(raw_pre_g1, monarch_engine())
+g1_post_from_raw <- neo2r_to_kgx(raw_post_g1, monarch_engine())
+
+g2_pre_from_raw <- neo2r_to_kgx(raw_pre_g2, monarch_engine())
+g2_post_from_raw <- neo2r_to_kgx(raw_post_g2, monarch_engine())
+
+# no dups on pre...
+kg_join(g1_pre_from_raw, g2_pre_from_raw) |> plot()
+
+# no dups on post either...
+kg_join(g1_post_from_raw, g2_post_from_raw) |> plot()
+
+
