@@ -20,7 +20,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -65,7 +65,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fetch additional knowledge graph edges connected to a query graph</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/double_edges_fix/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
     <div class="hidden name"><code>expand.Rd</code></div>
     </div>
 
@@ -153,7 +153,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 49 × 10 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id         pcategory name  description synonym category iri   xref  namespace</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;named&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;nam&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> MONDO:000… biolink:… Ehle… Arthrochal… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> HP:0000963 biolink:… Thin… Reduction … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> HP       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> HP:0000974 biolink:… Hype… A conditio… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> HP       </span>
@@ -165,7 +165,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> HP:0002300 biolink:… Muti… Complete l… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> HP       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HP:0002381 biolink:… Apha… An acquire… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> HP       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 39 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: provided_by &lt;named list&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: provided_by &lt;list&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 48 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate object primary_knowledge_so…¹ knowledge_level</span>
@@ -177,8 +177,8 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_knowledge_source</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: negated &lt;lgl&gt;, frequency_qualifier &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   original_subject &lt;chr&gt;, agent_type &lt;chr&gt;, knowledge_source &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;named list&gt;, has_evidence &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;named list&gt;, id &lt;chr&gt;, category &lt;named list&gt;, has_total &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;list&gt;, has_evidence &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;list&gt;, id &lt;chr&gt;, category &lt;list&gt;, has_total &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_quotient &lt;chr&gt;, has_count &lt;chr&gt;, has_percentage &lt;chr&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
