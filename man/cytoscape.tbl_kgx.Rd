@@ -9,7 +9,7 @@
 \arguments{
 \item{g}{A \code{tbl_kgx()} graph to visualize.}
 
-\item{...}{Other parameters (unused).}
+\item{...}{other parameters passed to RCy3 functions, e.g. \code{base.url}.}
 }
 \value{
 NULL, invisibly
