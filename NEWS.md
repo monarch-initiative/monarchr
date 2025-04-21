@@ -1,3 +1,10 @@
+# monarchr 1.6.2
+
+## Minor Changes
+
+* `plot()` now uses a more basic but KG-flexible `ggraph`, and by default shows node namespace and edge knowledge source if available
+* Tooltips in Cytoscape plots show node namespace and edge primary knowledge source if available
+
 # monarchr 1.6.1
 
 ## Bug fixes

@@ -5,78 +5,22 @@
 \title{Specialized \code{plot()} function for KGX graphs}
 \usage{
 \method{plot}{tbl_kgx}(
-  x,
+  g,
   ...,
   layout = "auto",
   node_color = pcategory,
-  node_shape = pcategory,
-  node_size = NULL,
-  node_alpha = 0.9,
+  node_shape = namespace,
   edge_color = predicate,
-  edge_linetype = NULL,
-  edge_alpha = 0.5,
-  max.overlaps = 10,
-  bundle = FALSE,
-  palettes = monarch_palettes(),
-  layer_args = list(theme_bw = list(), theme = list(axis.text = ggplot2::element_blank(),
-    axis.ticks = ggplot2::element_blank(), axis.title = ggplot2::element_blank(),
-    legend.key = ggplot2::element_blank(), panel.background = ggplot2::element_blank(),
-    panel.border = ggplot2::element_blank(), panel.grid = ggplot2::element_blank()),
-    scale_edge_color_manual = list(values = palettes$edges$discrete, na.value = "grey"),
-    scale_edge_color_gradientn = list(colors = palettes$continuous[3:1], na.value =
-    "grey"), scale_color_manual = list(values = palettes$nodes$discrete, 
-     na.value =
-    "grey"), scale_shape_manual = list(values = palettes$nodes$shape, na.value = 19),
-    scale_edge_fill_manual = list(values = palettes$nodes$discrete, na.value = "grey",
-    guide = "none"), geom_edge_fan = list(aes(color = {
-     {
-         edge_color
-    
-    }
- }, linetype = {
-     {
-         edge_linetype
-     }
- }), arrow = arrow(length =
-    unit(2, "mm"), type = "open"), end_cap = circle(2.5, "mm"), edge_alpha = edge_alpha,
-    show.legend = FALSE), geom_edge_loop = list(aes(color = {
-     {
-         edge_color
-
-        }
- }), arrow = arrow(length = unit(2, "mm"), type = "open"), end_cap =
-    circle(2.5, "mm"), edge_alpha = edge_alpha), geom_edge_bundle_force2 = list(aes(color
-    = {
-     {
-         edge_color
-     }
- }, linetype = {
-     {
-         edge_linetype
-
-        }
- }), edge_alpha = edge_alpha), geom_edge_density = NULL, geom_node_point =
-    list(aes(color = {
-     {
-         node_color
-     }
- }, shape = {
-     {
-        
-    node_shape
-     }
- }, size = {
-     {
-         node_size
-     }
- }), alpha =
-    node_alpha), geom_node_label = list(aes(label = str_wrap(name, 20)), box.padding =
-    0.4, min.segment.length = 0, size = 2, repel = TRUE, segment.colour = alpha("black",
-    edge_alpha), segment.linetype = "dotted", fill = "#FFFFFF88"))
+  edge_linetype = primary_knowledge_source,
+  plot_ids = FALSE,
+  label_size = 2,
+  fan_strength = 2,
+  edge_alpha = 0.9,
+  node_alpha = 0.9
 )
 }
 \arguments{
-\item{x}{A \link{tbl_kgx} graph.}
+\item{g}{A \link{tbl_kgx} graph.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggraph:ggraph]{ggraph::ggraph}}
@@ -86,34 +30,25 @@ of supported classes. Or a \code{layout_ggraph} object as returned from
 \code{create_layout} in which case all subsequent arguments is ignored.}
   }}
 
-\item{layout}{The layout to use for the plot. Default is "sugiyama".}
+\item{layout}{The layout to use for the plot. Default is "auto" as used by \code{ggraph}.}
 
 \item{node_color}{The column to use for node color. Default is "pcategory".}
 
-\item{node_shape}{The column to use for node shape. Default is "pcategory".}
-
-\item{node_size}{The column to use for node size. Default is NULL.}
-
-\item{node_alpha}{The alpha value for nodes. Default is 0.9.}
+\item{node_shape}{The column to use for node shape Default is "namespace".}
 
 \item{edge_color}{The column to use for edge color. Default is "predicate".}
 
-\item{edge_linetype}{The column to use for edge linetype. Default is NULL.}
+\item{edge_linetype}{The column to use for edge line type. Default is "primary_knowledge_source".}
 
-\item{edge_alpha}{The alpha value for edges. Default is 0.5.}
+\item{plot_ids}{Whether to plot node IDs in addition to the default of "name". Defaults to FALSE.}
 
-\item{max.overlaps}{Exclude text labels when they overlap too many other
-things. For each text label, we count how many other text labels or other
-data points it overlaps, and exclude the text label if it has too many overlaps.
-Defaults to 10.}
+\item{label_size}{Size of node label text. Default is 2.}
 
-\item{bundle}{Whether to bundle edges with
-\link[ggraph]{geom_edge_bundle_force2}. Default is FALSE.}
+\item{fan_strength}{Fan strength in ggraph's geom_edge_fan, Default is 2.}
 
-\item{palettes}{A named list of discrete/continuous palettes for nodes/edges
-Default is \code{monarch_palettes}.}
+\item{edge_alpha}{Alpha value for edges, default 0.9.}
 
-\item{layer_args}{A named list of arguments for each \link{ggplot} layer.}
+\item{node_alpha}{Alpha value for nodes, default 0.9.}
 }
 \description{
 Specialized \code{plot()} function for KGX graphs
