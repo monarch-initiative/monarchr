@@ -23,8 +23,7 @@ knowledge graphs via `ggraph`, and a `cytoscape()` function to export a graph to
 As usual, we begin by loading the `monarchr` package, along with `tidygraph` and `dplyr` which tend to be useful.
 
 ```{r}
-#library(monarchr)
-devtools::load_all()
+library(monarchr)
 library(tidygraph)
 library(dplyr)
 ```
@@ -34,7 +33,16 @@ library(dplyr)
 
 The basic `plot()` function is a wrapper around `ggraph`. By default, 
 node color tracks `pcategory` and edge color `predicate`, though these
-can be changed with the `node_color` and `edge_color` properties.
+can be changed with the `node_color` and `edge_color` properties. 
+
+While `node_shape` and `edge_linetype` can also be changed, 
+they default to `namespace` (commonly indicating the node's data source) and 
+`primary_knowledge_source` (commonly indicating the edge's data source). 
+Here we see that these nodes are part of [`MONDO`](https://mondo.monarchinitiative.org/) 
+and [`HGNC`](https://www.genenames.org/), and the relationships between them
+are sourced from MONDO as well as [OMIM](https://omim.org/) and 
+[Orphanet](https://www.orpha.net/).
+
 
 ```{r}
 filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")

@@ -70,12 +70,25 @@ cytoscape.tbl_kgx <- function(g, ...) {
 
 	nodes_df <- nodes(g)
 	if("description" %in% colnames(nodes_df)) {
-		nodes_df$desc_wrapped <- stringr::str_wrap(nodes_df$description, 50)
+		nodes_df$tooltip <- paste0("DESCRIPTION: ", nodes_df$description)
 	} else {
-		nodes_df$desc_wrapped <- nodes_df$id
+		nodes_df$tooltip <- paste0("ID: ", nodes_df$id)
 	}
 
+	if("namespace" %in% colnames(nodes_df)) {
+		nodes_df$tooltip <- paste0(nodes_df$tooltip, "NAMESPACE: ", nodes_df$namespace)
+	}
+
+	nodes_df$tooltip <- stringr::str_wrap(nodes_df$tooltip, 50)
+
 	edges_df <- edges(g)
+	if("primary_knowledge_source" %in% colnames(edges_df)) {
+		edges_df$tooltip <- paste0("PREDICATE: ", edges_df$predicate, " PRIMARY KNOWLEDGE SOURCE: ", edges_df$primary_knowledge_source)
+	} else {
+		edges_df$tooltip <- paste0("PREDICATE: ", edges_df$predicate)
+	}
+
+	edges_df$tooltip <- stringr::str_wrap(edges_df$tooltip, 50)
 
 	RCy3::createNetworkFromDataFrames(nodes_df,
 																		edges_df,
@@ -91,8 +104,8 @@ cytoscape.tbl_kgx <- function(g, ...) {
 	RCy3::setNodeColorMapping('pcategory', table.column.values = names(pal), colors = pal, mapping.type = 'd', ...)
 	RCy3::setEdgeColorMapping('predicate', table.column.values = names(pal_edges), colors = pal_edges, mapping.type = 'd', ...)
 
-	RCy3::setNodeTooltipMapping(table.column = 'desc_wrapped', ...)
-	RCy3::setEdgeTooltipMapping(table.column = 'predicate', ...)
+	RCy3::setNodeTooltipMapping(table.column = 'tooltip', ...)
+	RCy3::setEdgeTooltipMapping(table.column = 'tooltip', ...)
 	RCy3::matchArrowColorToEdge(TRUE, ...)
 	RCy3::setEdgeTargetArrowShapeDefault('ARROW', ...)
 	return(invisible())
