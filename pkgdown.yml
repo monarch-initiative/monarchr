@@ -1,8 +1,8 @@
-pandoc: 3.6.3
+pandoc: 3.6.4
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   examples/exploring_kgs: examples/exploring_kgs.html
   monarchr: monarchr.html
   examples/visualizing_kgs: examples/visualizing_kgs.html
-last_built: 2025-03-03T21:29Z
+last_built: 2025-04-21T17:50Z

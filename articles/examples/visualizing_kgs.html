@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.2</span>
       </span>
     </div>
 
@@ -92,10 +92,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Mar-03-2025</i>
+<i>Apr-21-2025</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/examples/visualizing_kgs.Rmd" class="external-link"><code>vignettes/examples/visualizing_kgs.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/palettes2/vignettes/examples/visualizing_kgs.Rmd" class="external-link"><code>vignettes/examples/visualizing_kgs.Rmd</code></a></small>
       <div class="hidden name"><code>visualizing_kgs.Rmd</code></div>
 
     </div>
@@ -114,8 +114,7 @@ instance via <a href="https://www.bioconductor.org/packages/release/bioc/html/RC
 along with <code>tidygraph</code> and <code>dplyr</code> which tend to
 be useful.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#library(monarchr)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">load_all</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/monarch-initiative/monarchr" class="external-link">monarchr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidygraph.data-imaginist.com" class="external-link">tidygraph</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
@@ -126,6 +125,13 @@ be useful.</p>
 <code>pcategory</code> and edge color <code>predicate</code>, though
 these can be changed with the <code>node_color</code> and
 <code>edge_color</code> properties.</p>
+<p>While <code>node_shape</code> and <code>edge_linetype</code> can also
+be changed, they default to <code>namespace</code> (commonly indicating
+the node’s data source) and <code>primary_knowledge_source</code>
+(commonly indicating the edge’s data source). Here we see that these
+nodes are part of <a href="https://mondo.monarchinitiative.org/" class="external-link"><code>MONDO</code></a> and
+<a href="https://www.genenames.org/" class="external-link"><code>HGNC</code></a>, and the
+relationships between them are sourced from MONDO as well as <a href="https://omim.org/" class="external-link">OMIM</a> and <a href="https://www.orpha.net/" class="external-link">Orphanet</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span>
 <span><span class="va">engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
