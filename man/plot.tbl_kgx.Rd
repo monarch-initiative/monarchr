@@ -12,6 +12,7 @@
   node_shape = namespace,
   edge_color = predicate,
   edge_linetype = primary_knowledge_source,
+  node_label = name,
   plot_ids = FALSE,
   label_size = 2,
   fan_strength = 2,
@@ -40,7 +41,9 @@ of supported classes. Or a \code{layout_ggraph} object as returned from
 
 \item{edge_linetype}{The column to use for edge line type. Default is "primary_knowledge_source".}
 
-\item{plot_ids}{Whether to plot node IDs in addition to the default of "name". Defaults to FALSE.}
+\item{node_label}{The column to use for node labels. Defaults to "name".}
+
+\item{plot_ids}{Whether to show node IDs in node labels. Defaults to FALSE.}
 
 \item{label_size}{Size of node label text. Default is 2.}
 

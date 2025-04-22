@@ -24,7 +24,7 @@ monarch_semsim(
 \item{keep_unmatched}{Whether to keep nodes in the target graph that do not have a match. Default is \code{FALSE}.}
 }
 \value{
-A tbl_kgx graph with \code{"computed:best_matches"} edges between the nodes of the two input graphs.
+A tbl_kgx graph with \code{"computed:best_matches"} edges between the nodes of the two input graphs and columns for \code{monarch_semsim_metric}, \code{monarch_semsim_score}, and \code{monarch_semsim_ancestor_id}.
 }
 \description{
 This function calls the Monarch-hosted semantic similarity API to compare two
