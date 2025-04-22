@@ -20,7 +20,7 @@
 #' @param metric The semantic similarity metric to use. Default is `"ancestor_information_content"`. Also available are `"jaccard_similarity"` and `"phenodigm_score"`.
 #' @param include_reverse Whether to include the best matches from the target graph to the query graph. Default is `FALSE`.
 #' @param keep_unmatched Whether to keep nodes in the target graph that do not have a match. Default is `FALSE`.
-#' @return A tbl_kgx graph with `"computed:best_matches"` edges between the nodes of the two input graphs.
+#' @return A tbl_kgx graph with `"computed:best_matches"` edges between the nodes of the two input graphs and columns for `monarch_semsim_metric`, `monarch_semsim_score`, and `monarch_semsim_ancestor_id`.
 #' @export
 #'
 #' @importFrom httr POST content http_status
@@ -96,10 +96,11 @@ monarch_semsim <- function(query_graph,
         data.frame(
             subject = name,
             predicate = "computed:best_matches",
+            primary_knowledge_source = "computed:monarch_semsim",
             object = x$match_target,
-            metric = metric,
-            score = x$score,
-            ancestor_id = x$similarity$ancestor_id
+            monarch_semsim_metric = metric,
+            monarch_semsim_score = x$score,
+            monarch_semsim_ancestor_id = x$similarity$ancestor_id
         )
     })
 
@@ -115,10 +116,11 @@ monarch_semsim <- function(query_graph,
             data.frame(
                 subject = name,
                 predicate = "computed:best_matches",
+                primary_knowledge_source = "computed:monarch_semsim",
                 object = x$match_target,
-                metric = metric,
-                score = x$score,
-                ancestor_id = x$similarity$ancestor_id
+                monarch_semsim_metric = metric,
+                monarch_semsim_score = x$score,
+                monarch_semsim_ancestor_id = x$similarity$ancestor_id
             )
         })
 

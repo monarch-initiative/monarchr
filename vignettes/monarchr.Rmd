@@ -248,9 +248,17 @@ We can use `tidygraph`'s `graph_join()` to see this result in the context
 of the original query and target graphs.
 
 ```{r}
-eds_phenos |>
+both_phenos <- eds_phenos |>
 	graph_join(marfan_phenos) |>
-	graph_join(sim) |>
-	plot()
-```
+	graph_join(sim)
 
+plot(both_phenos)
+both_phenos
+```
+The `monarch_semsim` result contain additional properties for 
+`monarch_semsim_metric`, `monarch_semsim_score`, and `monarch_semsim_ancestor_id`, which we can use for 
+plotting as well:
+
+```{r}
+plot(both_phenos, edge_color = monarch_semsim_score)
+```

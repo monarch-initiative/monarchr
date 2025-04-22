@@ -4,6 +4,7 @@
 
 * `plot()` now uses a more basic but KG-flexible `ggraph`, and by default shows node namespace and edge knowledge source if available
 * Tooltips in Cytoscape plots show node namespace and edge primary knowledge source if available
+* Updates to `monarch_semsim()` for including `primary_knowledge_source` and some computed edge column renaming
 
 # monarchr 1.6.1
 
