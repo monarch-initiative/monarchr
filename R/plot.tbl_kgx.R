@@ -14,11 +14,11 @@
 #' @param node_alpha Alpha value for nodes, default 0.9.
 #' @param edge_alpha Alpha value for edges, default 0.9.
 #' @inheritDotParams ggraph::ggraph
-#' @import ggraph
+#' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @import dplyr
 #' @import tidygraph
-#' @importFrom stringr str_wrap
+#' @import ggraph
 #' @examples
 #' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #' g <- file_engine(filename) |>
@@ -42,8 +42,6 @@ plot.tbl_kgx <- function(g,
 									edge_alpha = 0.9,
 									node_alpha = 0.9)
 {
-
-
 	edge_linetype_colname <- rlang::quo_name(rlang::enquo(edge_linetype))
 	if(is.null(edges(g)[[edge_linetype_colname]])) {
 	 	edge_linetype <- NULL

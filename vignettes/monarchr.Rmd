@@ -257,8 +257,9 @@ both_phenos
 ```
 The `monarch_semsim` result contain additional properties for 
 `monarch_semsim_metric`, `monarch_semsim_score`, and `monarch_semsim_ancestor_id`, which we can use for 
-plotting as well:
+plotting as well (loading `ggraph` to avoid [this error](https://github.com/thomasp85/ggraph/issues/386)):
 
 ```{r}
+library(ggraph)
 plot(both_phenos, edge_color = monarch_semsim_score)
 ```
