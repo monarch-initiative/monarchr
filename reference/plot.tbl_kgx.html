@@ -62,7 +62,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Specialized <code>plot()</code> function for KGX graphs</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/plot.tbl_kgx.R" class="external-link"><code>R/plot.tbl_kgx.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/palettes2/R/plot.tbl_kgx.R" class="external-link"><code>R/plot.tbl_kgx.R</code></a></small>
     <div class="hidden name"><code>plot.tbl_kgx.Rd</code></div>
     </div>
 
@@ -80,6 +80,7 @@
 <span>  node_shape <span class="op">=</span> <span class="va">namespace</span>,</span>
 <span>  edge_color <span class="op">=</span> <span class="va">predicate</span>,</span>
 <span>  edge_linetype <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
+<span>  node_label <span class="op">=</span> <span class="va">name</span>,</span>
 <span>  plot_ids <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  label_size <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  fan_strength <span class="op">=</span> <span class="fl">2</span>,</span>
@@ -126,8 +127,12 @@ of supported classes. Or a <code>layout_ggraph</code> object as returned from
 <dd><p>The column to use for edge line type. Default is "primary_knowledge_source".</p></dd>
 
 
+<dt id="arg-node-label">node_label<a class="anchor" aria-label="anchor" href="#arg-node-label"></a></dt>
+<dd><p>The column to use for node labels. Defaults to "name".</p></dd>
+
+
 <dt id="arg-plot-ids">plot_ids<a class="anchor" aria-label="anchor" href="#arg-plot-ids"></a></dt>
-<dd><p>Whether to plot node IDs in addition to the default of "name". Defaults to FALSE.</p></dd>
+<dd><p>Whether to show node IDs in node labels. Defaults to FALSE.</p></dd>
 
 
 <dt id="arg-label-size">label_size<a class="anchor" aria-label="anchor" href="#arg-label-size"></a></dt>
