@@ -1,3 +1,13 @@
+# monarchr 1.7
+
+## New features
+
+* New transitive and related tools: `roll_up()`, `roll_down()`, `transfer()`, `transitive_closure()`, and `transitive_reduction()`
+
+## Minor Changes
+
+* Added a reversed `y` scale to default `plot()` so trees and other hierarchies point upward (as Knuth intended)
+
 # monarchr 1.6.2
 
 ## Minor Changes
