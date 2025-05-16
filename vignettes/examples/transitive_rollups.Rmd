@@ -78,10 +78,8 @@ and whether each node should include its own value in the aggregation.
 ```{r}
 node_data <- nodes(phenos_counted) |> as.data.frame()
 edge_data <- edges(phenos_counted) |> as.data.frame()
-msg <- capture.output(print(node_data))
-warning(paste(msg, collapse = "\n"))
-msg <- capture.output(print(edge_data))
-warning(paste(msg, collapse = "\n"))
+print(node_data)
+print(edge_data)
 
 # 
 # phenos_counted_rolled <- phenos_counted |>
