@@ -204,14 +204,13 @@ the aggregation.</p>
 <span><span class="co">## 20   10 13 UPHENO:0004456 biolink:subclass_of UPHENO:0002926           infores:upheno not_provided    not_provided monarch-kg_edges.jsonl                infores:.... phenio_edges urn:uuid:e40ebd51-c765-4d63-8875-e0d2db730469 biolink:....</span></span>
 <span><span class="co">## 21   10 15 UPHENO:0004456 biolink:subclass_of UPHENO:0003334           infores:upheno not_provided    not_provided monarch-kg_edges.jsonl                infores:.... phenio_edges urn:uuid:9b02ecc7-eff4-444d-aa9a-5e4893f15ff4 biolink:....</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># </span></span>
-<span><span class="co"># phenos_counted_rolled &lt;- phenos_counted |&gt;</span></span>
+<code class="sourceCode R"><span><span class="co"># phenos_counted_rolled &lt;- phenos_counted |&gt;</span></span>
 <span><span class="co">#   activate(nodes) |&gt;</span></span>
 <span><span class="co">#   mutate(total = roll_up(count, fun = sum, include_self = TRUE))</span></span>
 <span><span class="co"># </span></span>
-<span><span class="co"># plot(phenos_counted_rolled, </span></span>
-<span><span class="co">#        node_label = paste0(name, </span></span>
-<span><span class="co">#                                            " || count: ", count, </span></span>
+<span><span class="co"># plot(phenos_counted_rolled,</span></span>
+<span><span class="co">#        node_label = paste0(name,</span></span>
+<span><span class="co">#                                            " || count: ", count,</span></span>
 <span><span class="co">#                                            " || total: ", total))</span></span></code></pre></div>
 <!-- The corresponding **`roll_down()`** aggregates in the opposite direction (not shown). -->
 <!-- ## Other aggregations, transferring information -->
