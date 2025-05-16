@@ -81,14 +81,14 @@ edge_data <- edges(phenos_counted) |> as.data.frame()
 print(node_data)
 print(edge_data)
 
-# 
+
 # phenos_counted_rolled <- phenos_counted |>
 # 	activate(nodes) |>
 # 	mutate(total = roll_up(count, fun = sum, include_self = TRUE))
 # 
-# plot(phenos_counted_rolled, 
-# 		 node_label = paste0(name, 
-# 		 									 " || count: ", count, 
+# plot(phenos_counted_rolled,
+# 		 node_label = paste0(name,
+# 		 									 " || count: ", count,
 # 		 									 " || total: ", total))
 
 ```
