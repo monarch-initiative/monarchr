@@ -109,20 +109,17 @@ predicate as transitive.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_closed</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="transitive_closure.html">transitive_closure</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in mutate(d_tmp, ...):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `downstream_nodes = roll_down(id, include_self = FALSE,</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   predicate = predicate)`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `ego()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> At vendor/cigraph/src/properties/neighborhood.c:212 : Negative order in neighborhood size, Invalid value</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_closed</span>, edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'g_closed' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using <span style="color: #0000BB;">"sugiyama"</span> as default layout</span>
+<span class="r-plt img"><img src="transitive_reduction-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_reduced</span> <span class="op">&lt;-</span> <span class="va">g_closed</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">transitive_reduction</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'g_closed' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_reduced</span>, edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'g_reduced' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using <span style="color: #0000BB;">"sugiyama"</span> as default layout</span>
+<span class="r-plt img"><img src="transitive_reduction-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>
