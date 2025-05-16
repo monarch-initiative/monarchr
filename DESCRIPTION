@@ -48,7 +48,8 @@ Imports:
     RCy3,
     digest,
     memoise,
-    sets
+    sets,
+    relations
 Suggests: 
     testthat (>= 3.0.0),
     rworkflows,
