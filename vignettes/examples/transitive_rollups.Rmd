@@ -82,10 +82,10 @@ print(node_data)
 print(edge_data)
 
 
-# phenos_counted_rolled <- phenos_counted |>
-# 	activate(nodes) |>
-# 	mutate(total = roll_up(count, fun = sum, include_self = TRUE))
-# 
+phenos_counted_rolled <- phenos_counted |>
+	activate(nodes) |>
+	mutate(total = roll_up(count, fun = sum, include_self = TRUE))
+
 # plot(phenos_counted_rolled,
 # 		 node_label = paste0(name,
 # 		 									 " || count: ", count,
