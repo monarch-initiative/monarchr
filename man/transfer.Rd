@@ -12,7 +12,7 @@ Vector or list, with one entry per node.
 \description{
 Used to 'transfer' information from nodes to other nodes across
 specific predicates, either in an outward direction (along the edge
-direction) or inward (against the edge direction). Returns a node-propery
+direction) or inward (against the edge direction). Returns a node-property
 column; intended to be used with mutate() on nodes.
 }
 \details{

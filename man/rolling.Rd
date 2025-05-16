@@ -25,7 +25,7 @@ roll_down(
 \arguments{
 \item{column}{The node column to draw rollup or rolldown information from.}
 
-\item{fun}{The aggregration function to use when rolling up or down. Default is \code{c}}
+\item{fun}{The aggregation function to use when rolling up or down. Default is \code{c}}
 
 \item{include_self}{Whether to include each nodes' value in \code{column} in the rollup/rolldown for that node.}
 
