@@ -2,7 +2,7 @@
 #'
 #' Used to 'transfer' information from nodes to other nodes across
 #' specific predicates, either in an outward direction (along the edge
-#' direction) or inward (against the edge direction). Returns a node-propery
+#' direction) or inward (against the edge direction). Returns a node-property
 #' column; intended to be used with mutate() on nodes.
 #'
 #' The return value will be either a list, or if the result would be a list

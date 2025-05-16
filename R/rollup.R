@@ -3,7 +3,7 @@
 #'
 #'
 #' @param column The node column to draw rollup or rolldown information from.
-#' @param fun The aggregration function to use when rolling up or down. Default is `c`
+#' @param fun The aggregation function to use when rolling up or down. Default is `c`
 #' @param include_self Whether to include each nodes' value in `column` in the rollup/rolldown for that node.
 #' @param predicates A vector of relationship predicates (nodes in g are subjects in the KG), indicating which edges to consider in the rollup/rolldown. Should be transitive; default `biolink:subclass_of`
 #' @param direction Whether to roll up or down.
