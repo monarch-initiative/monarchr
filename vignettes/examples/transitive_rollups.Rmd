@@ -86,155 +86,154 @@ phenos_counted_rolled <- phenos_counted |>
 	activate(nodes) |>
 	mutate(total = roll_up(count, fun = sum, include_self = TRUE))
 
-# plot(phenos_counted_rolled,
-# 		 node_label = paste0(name,
-# 		 									 " || count: ", count,
-# 		 									 " || total: ", total))
-
+plot(phenos_counted_rolled,
+		 node_label = paste0(name,
+		 									 " || count: ", count,
+		 									 " || total: ", total))
 ```
 
-<!-- The corresponding **`roll_down()`** aggregates in the opposite direction (not shown). -->
+The corresponding **`roll_down()`** aggregates in the opposite direction (not shown).
 
-<!-- ## Other aggregations, transferring information -->
+## Other aggregations, transferring information
 
-<!-- When performing a rollup, each node receives the specified column, indexed to  -->
-<!-- include only its descendants (and itself, if `include_self` is set). This is then passed to the  -->
-<!-- aggregating function `fun`.  -->
+When performing a rollup, each node receives the specified column, indexed to
+include only its descendants (and itself, if `include_self` is set). This is then passed to the
+aggregating function `fun`.
 
-<!-- To see how this can be useful, we'll start by introducing another function,  -->
-<!-- `transfer()`. Much like `roll_up()`, this function is designed to be used with -->
-<!-- `mutate()` on node data; its purpose is to transfer information across edges, -->
-<!-- usually from nodes of one kind to another. We'll start by fetching all of the subtypes -->
-<!-- of Niemann-Pick disease, and all known causal genes. -->
+To see how this can be useful, we'll start by introducing another function,
+`transfer()`. Much like `roll_up()`, this function is designed to be used with
+`mutate()` on node data; its purpose is to transfer information across edges,
+usually from nodes of one kind to another. We'll start by fetching all of the subtypes
+of Niemann-Pick disease, and all known causal genes.
 
 
-<!-- ```{r} -->
-<!-- npc_genes <- e |> -->
-<!-- 	fetch_nodes(name == "Niemann-Pick disease") |> -->
-<!-- 	descendants() |> -->
-<!-- 	expand(predicates = "biolink:causes") -->
+```{r}
+npc_genes <- e |>
+	fetch_nodes(name == "Niemann-Pick disease") |>
+	descendants() |>
+	expand(predicates = "biolink:causes")
 
-<!-- plot(npc_genes) -->
-<!-- ``` -->
-<!-- Now, we might wish for disease nodes to have an attribute reflecting their causal genes. -->
-<!-- This information is captured in the graph, but not as a part of the nodes. The `transfer()` -->
-<!-- function 'pulls' information across edges: -->
+plot(npc_genes)
+```
+Now, we might wish for disease nodes to have an attribute reflecting their causal genes.
+This information is captured in the graph, but not as a part of the nodes. The `transfer()`
+function 'pulls' information across edges:
 
-<!-- ```{r} -->
-<!-- npc_genes_causal <- npc_genes |> -->
-<!-- 	activate(nodes) |> -->
-<!-- 	mutate(caused_by = transfer(name, over = "biolink:causes", direction = "out")) -->
+```{r}
+npc_genes_causal <- npc_genes |>
+	activate(nodes) |>
+	mutate(caused_by = transfer(name, over = "biolink:causes", direction = "out"))
 
-<!-- plot(npc_genes_causal, node_label = paste0(name,  -->
-<!-- 																					 " || caused by: ", caused_by)) -->
-<!-- ``` -->
+plot(npc_genes_causal, node_label = paste0(name,
+																					 " || caused by: ", caused_by))
+```
 
-<!-- Here, transfer is moving information 'over' (or across) `"biolink:causes"` -->
-<!-- edges in an outward direction, along the direction of the edge. The transferred -->
-<!-- information is being drawn from source nodes' `name`, resulting in a new `caused_by` -->
-<!-- column in the node table.  -->
+Here, transfer is moving information 'over' (or across) `"biolink:causes"`
+edges in an outward direction, along the direction of the edge. The transferred
+information is being drawn from source nodes' `name`, resulting in a new `caused_by`
+column in the node table.
 
-<!-- ```{r} -->
-<!-- nodes(npc_genes_causal) |> -->
-<!-- 	select(name, caused_by) -->
-<!-- ``` -->
+```{r}
+nodes(npc_genes_causal) |>
+	select(name, caused_by)
+```
 
-<!-- In cases where a transfer would result in multiple values being collected at the destination node,  -->
-<!-- the result will be a list column. -->
+In cases where a transfer would result in multiple values being collected at the destination node,
+the result will be a list column.
 
-<!-- To finish this example, we use `roll_up()` to collect, for each diseases, the set of genes -->
-<!-- that cause it or any of its subtypes. -->
+To finish this example, we use `roll_up()` to collect, for each diseases, the set of genes
+that cause it or any of its subtypes.
 
-<!-- ```{r} -->
-<!-- npc_genes_causal_rolled <- npc_genes_causal |> -->
-<!-- 	activate(nodes) |> -->
-<!-- 	mutate(any_caused_by = roll_up(caused_by,  -->
-<!-- 																 fun = unique,  -->
-<!-- 																 include_self = TRUE,  -->
-<!-- 																 predicates = "biolink:subclass_of")) -->
+```{r}
+npc_genes_causal_rolled <- npc_genes_causal |>
+	activate(nodes) |>
+	mutate(any_caused_by = roll_up(caused_by,
+																 fun = unique,
+																 include_self = TRUE,
+																 predicates = "biolink:subclass_of"))
 
-<!-- plot(npc_genes_causal_rolled, node_label = paste0(name,  -->
-<!-- 																					        " || any caused by: ", any_caused_by)) -->
-<!-- ``` -->
-<!-- The inclusion of `NA` values may not be desired (it signals that at least one -->
-<!-- of the rolled nodes had a `caused_by` of `NA`). We could write an aggregating function -->
-<!-- that removes `NA` and supply that; this would also a good use case for `purrr`'s  -->
-<!-- `compose()` (`fun = compose(unique, na.omit)`). -->
+plot(npc_genes_causal_rolled, node_label = paste0(name,
+																					        " || any caused by: ", any_caused_by))
+```
+The inclusion of `NA` values may not be desired (it signals that at least one
+of the rolled nodes had a `caused_by` of `NA`). We could write an aggregating function
+that removes `NA` and supply that; this would also a good use case for `purrr`'s
+`compose()` (`fun = compose(unique, na.omit)`).
 
-<!-- ## Transitive closures and reductions -->
+## Transitive closures and reductions
 
-<!-- Let's return to the patient-count example, using the rolled-up data: -->
+Let's return to the patient-count example, using the rolled-up data:
 
-<!-- ```{r} -->
-<!-- plot(phenos_counted_rolled,  -->
-<!-- 		 node_label = paste0(name,  -->
-<!-- 		 									 " || count: ", count,  -->
-<!-- 		 									 " || total: ", total)) -->
+```{r}
+plot(phenos_counted_rolled,
+		 node_label = paste0(name,
+		 									 " || count: ", count,
+		 									 " || total: ", total))
 
-<!-- ``` -->
-<!-- It may be the case that to protect patient privacy (again, pretending these  -->
-<!-- phenotypes are disease diagnoses associated with patients) we want to remove -->
-<!-- nodes that have a `count` less than 6. If we do so however, we lose connectivity: -->
+```
+It may be the case that to protect patient privacy (again, pretending these
+phenotypes are disease diagnoses associated with patients) we want to remove
+nodes that have a `count` less than 6. If we do so however, we lose connectivity:
 
-<!-- ```{r} -->
-<!-- censored <- phenos_counted_rolled |> -->
-<!-- 	activate(nodes) |> -->
-<!-- 	filter(!count < 6) -->
+```{r}
+censored <- phenos_counted_rolled |>
+	activate(nodes) |>
+	filter(!count < 6)
 
-<!-- plot(censored,  -->
-<!-- 		 node_label = paste0(name,  -->
-<!-- 		 									 " || count: ", count,  -->
-<!-- 		 									 " || total: ", total)) -->
+plot(censored,
+		 node_label = paste0(name,
+		 									 " || count: ", count,
+		 									 " || total: ", total))
 
-<!-- ``` -->
-<!-- To fix this, we can first compute the `transitive_closure()` of the graph, with respect -->
-<!-- to an edge predicate we want to treat as transitive (defaulting to `biolink:subclass_of`). We color edges -->
-<!-- by `primary_knowledge_source` to highlight that newly created transitive edges are given knowledge source -->
-<!-- `transitive_<predicate>`, but use the same predicate. The result is busy, and in general the number of transitive -->
-<!-- edges can be $O(n^2)$ in the number of nodes. -->
+```
+To fix this, we can first compute the `transitive_closure()` of the graph, with respect
+to an edge predicate we want to treat as transitive (defaulting to `biolink:subclass_of`). We color edges
+by `primary_knowledge_source` to highlight that newly created transitive edges are given knowledge source
+`transitive_<predicate>`, but use the same predicate. The result is busy, and in general the number of transitive
+edges can be $O(n^2)$ in the number of nodes.
 
-<!-- ```{r} -->
-<!-- phenos_closed <- phenos_counted_rolled |> -->
-<!-- 	transitive_closure(predicate = "biolink:subclass_of") -->
+```{r}
+phenos_closed <- phenos_counted_rolled |>
+	transitive_closure(predicate = "biolink:subclass_of")
 
-<!-- plot(phenos_closed,  -->
-<!-- 		 node_label = paste0(name,  -->
-<!-- 		 									 " || count: ", count,  -->
-<!-- 		 									 " || total: ", total), -->
-<!-- 		 edge_color = primary_knowledge_source,  -->
-<!-- 		 edge_linetype = predicate) -->
+plot(phenos_closed,
+		 node_label = paste0(name,
+		 									 " || count: ", count,
+		 									 " || total: ", total),
+		 edge_color = primary_knowledge_source,
+		 edge_linetype = predicate)
 
-<!-- ``` -->
-<!-- Now we can try our removal: -->
+```
+Now we can try our removal:
 
-<!-- ```{r} -->
-<!-- closed_censored <- phenos_closed |> -->
-<!-- 	activate(nodes) |> -->
-<!-- 	filter(!count < 6) -->
+```{r}
+closed_censored <- phenos_closed |>
+	activate(nodes) |>
+	filter(!count < 6)
 
-<!-- plot(closed_censored,  -->
-<!-- 		 node_label = paste0(name,  -->
-<!-- 		 									 " || count: ", count,  -->
-<!-- 		 									 " || total: ", total), -->
-<!-- 		 edge_color = primary_knowledge_source,  -->
-<!-- 		 edge_linetype = predicate) -->
-<!-- ``` -->
+plot(closed_censored,
+		 node_label = paste0(name,
+		 									 " || count: ", count,
+		 									 " || total: ", total),
+		 edge_color = primary_knowledge_source,
+		 edge_linetype = predicate)
+```
 
-<!-- The graph retains its connectivity, but has redundant edges. The `transitive_reduction()` -->
-<!-- function removes these, again according to a specified transitive predicate  -->
-<!-- (defaulting again to `biolink:subclass_f`). -->
+The graph retains its connectivity, but has redundant edges. The `transitive_reduction()`
+function removes these, again according to a specified transitive predicate
+(defaulting again to `biolink:subclass_f`).
 
-<!-- ```{r} -->
-<!-- phenos_final <- closed_censored |> -->
-<!-- 	transitive_reduction(predicate = "biolink:subclass_of") -->
+```{r}
+phenos_final <- closed_censored |>
+  transitive_reduction(predicate = "biolink:subclass_of")
 
-<!-- plot(phenos_final,  -->
-<!-- 		 node_label = paste0(name,  -->
-<!-- 		 									 " || count: ", count,  -->
-<!-- 		 									 " || total: ", total), -->
-<!-- 		 edge_color = primary_knowledge_source,  -->
-<!-- 		 edge_linetype = predicate) -->
-<!-- ``` -->
+plot(phenos_final,
+     node_label = paste0(name,
+                         " || count: ", count,
+                         " || total: ", total),
+     edge_color = primary_knowledge_source,
+     edge_linetype = predicate)
+```
 
 
 
