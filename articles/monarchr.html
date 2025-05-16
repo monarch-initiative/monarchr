@@ -146,8 +146,8 @@ identify IDs for genes, diseases, phenotypes and more, or
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0001982"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"in"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"in"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Trying to connect to https://neo4j.monarchinitiative.org</span></span></code></pre>
 <pre><code><span><span class="co">## Connected to https://neo4j.monarchinitiative.org</span></span></code></pre>
 <pre><code><span><span class="co">## Fetching; counting matching nodes...  total: 1.</span></span>
@@ -2771,7 +2771,7 @@ graph, but only nodes, not any edges that may connect them. These can be
 specified as a set of IDs:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0009061"</span>, <span class="st">"HGNC:1884"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0009061"</span>, <span class="st">"HGNC:1884"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g</span></span></code></pre></div>
 <pre>Graph with 2 nodes and 0 edges. Expand sections below for details.</pre>
@@ -2957,7 +2957,8 @@ all of the nodes where <code>in_taxon_label</code> equals
 number of results to 20 (ordered by node ID).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_sapiens_nodes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">h_sapiens_nodes</span></span></code></pre></div>
 <pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
@@ -3659,8 +3660,8 @@ operator to allow exact match against entries. Here we fetch all the
 the multi-valued nature of node <code>category</code>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">human_genes</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
-<span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">in_taxon_label</span> <span class="op">==</span> <span class="st">"Homo sapiens"</span> <span class="op">&amp;</span> <span class="st">"biolink:Gene"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
+<span>              limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">human_genes</span></span></code></pre></div>
 <pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
@@ -4668,8 +4669,9 @@ matching against node properties (but not multi-valued ones like
 <code>category</code>).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibrosis_disease_matches</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">description</span> <span class="op"><a href="../reference/grapes-twiddle-grapes.html">%~%</a></span> <span class="st">".*[fF]ibrosis.*"</span> <span class="op">&amp;</span> <span class="st">"biolink:Disease"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
-<span>                            limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">description</span> <span class="op"><a href="../reference/grapes-twiddle-grapes.html">%~%</a></span> <span class="st">".*[fF]ibrosis.*"</span> <span class="op">&amp;</span> <span class="st">"biolink:Disease"</span> <span class="op"><a href="../reference/grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>,</span>
+<span>              limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">fibrosis_disease_matches</span></span></code></pre></div>
 <pre>Graph with 20 nodes and 0 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
@@ -5571,9 +5573,9 @@ results, we add a <code>limit</code> for the visualization.<a href="#fn2" class=
 <code class="sourceCode R"><span><span class="co"># MONDO:0018982, MONDO:0011871: Neimann-Pick type B and C</span></span>
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0018982"</span>, <span class="st">"MONDO:0011871"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:causes"</span>, <span class="st">"biolink:gene_associated_with_condition"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0018982"</span>, <span class="st">"MONDO:0011871"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:causes"</span>, <span class="st">"biolink:gene_associated_with_condition"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-10-1.png" width="960"></p>
@@ -5591,12 +5593,13 @@ increasing/decreasing the <code>n</code> parameter.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Using example KGX file packaged with monarchr</span></span>
 <span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>          <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>          <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span>
-<span>                 categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span>
-<span><span class="va">g_expanded</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">|&gt;</span></span>
-<span>              <span class="fu"><a href="../reference/expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span>
+<span>         categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">g_expanded</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p>We can limit the expansion based on several factors, which are
 combined in an “and” fashion:</p>
 <ul>
@@ -5632,9 +5635,9 @@ second expansion.</p>
 <code class="sourceCode R"><span><span class="co"># MONDO:0001982 Niemann-Pick Disease (13 subtypes)</span></span>
 <span></span>
 <span><span class="va">hierarchy</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0001982"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"in"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span>, categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0001982"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"in"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, transitive <span class="op">=</span> <span class="cn">TRUE</span>, categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">hierarchy</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-12-1.png" width="960"></p>
@@ -5910,12 +5913,12 @@ phenotype for each EDS phenotype. The result is returned as a graph,
 containing only computed <code>"computed:best_matches"</code> edges:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eds_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007522"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">marfan_phenos</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007947"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007947"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_semsim.html">monarch_semsim</a></span><span class="op">(</span><span class="va">eds_phenos</span>, <span class="va">marfan_phenos</span><span class="op">)</span></span>
 <span></span>
@@ -5923,10 +5926,10 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-14-1.png" width="960"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sim</span></span></code></pre></div>
-<pre>Graph with 17 nodes and 11 edges. Expand sections below for details.</pre>
+<pre>Graph with 19 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 17 of 17 nodes:
+Showing 19 of 19 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -6432,6 +6435,80 @@ c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MEDGEN:44287”,
 </tr>
 <tr>
 <td style="text-align:left;">
+“HP:0001519”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Disproportionate tall stature”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“A tall and slim body build with increased arm span to height ratio
+(&gt;1.05) and a reduced upper-to-lower segment ratio (&lt;0.85), i.e.,
+unusually long arms and legs. The extremities as well as the hands and
+feet are unusually slim.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Dolichostenomelia”, “Marfanoid body habitus”, “Marfanoid habitus”,
+“Reduced upper-lower segment ratio”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0001519" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001519</a>”
+</td>
+<td style="text-align:left;">
+c(“SNOMEDCT_US:62250003”, “UMLS:C0003706”, “UMLS:C1836996”)
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0001533”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Slender build”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Asthenic habitus refers to a slender build with long limbs, an angular
+profile, and prominent muscles or bones.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Asthenic habitus”, “Slender build”, “Thin body habitus”, “Thin
+build”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0001533" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001533</a>”
+</td>
+<td style="text-align:left;">
+“UMLS:C1850573”
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 “HP:0001763”
 </td>
 <td style="text-align:left;">
@@ -6506,47 +6583,6 @@ c(“SNOMEDCT_US:80423007”, “UMLS:C0149781”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0004942”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Aortic aneurysm”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Aortic dilatation refers to a dimension that is greater than the 95th
-percentile for the normal person age, sex and body size. In contrast, an
-aneurysm is defined as a localized dilation of the aorta that is more
-than 150 percent of predicted (ratio of observed to expected diameter
-1.5 or more). Aneurysm should be distinguished from ectasia, which
-represents a diffuse dilation of the aorta less than 50 percent of
-normal aorta diameter.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Aortic dilatation”, “Bulge in wall of large artery that carries blood
-away from heart”, “Enlarged aorta”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
-“biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0004942" class="external-link uri">http://purl.obolibrary.org/obo/HP_0004942</a>”
-</td>
-<td style="text-align:left;">
-c(“Fyler:2301”, “Fyler:2708”, “SNOMEDCT_US:67362008”, “UMLS:C0003486”)
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 “HP:0000275”
 </td>
 <td style="text-align:left;">
@@ -6578,6 +6614,47 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 </td>
 <td style="text-align:left;">
 c(“UMLS:C1837463”, “UMLS:C1849121”)
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HP:0000505”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Visual impairment”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Visual impairment (or vision impairment) is vision loss (of a person)
+to such a degree as to qualify as an additional support need through a
+significant limitation of visual capability resulting from either
+disease, trauma, or congenital or degenerative conditions that cannot be
+corrected by conventional means, such as refractive correction,
+medication, or surgery.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Impaired vision”, “Loss of eyesight”, “Poor vision”, “Visual
+impairment”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000505" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000505</a>”
+</td>
+<td style="text-align:left;">
+c(“SNOMEDCT_US:246635007”, “SNOMEDCT_US:397540003”,
+“SNOMEDCT_US:7973008”, “UMLS:C0042798”, “UMLS:C3665347”)
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6666,7 +6743,7 @@ monarch_semsim_ancestor_id
 9
 </td>
 <td style="text-align:left;">
-13
+15
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -6695,7 +6772,7 @@ monarch_semsim_ancestor_id
 2
 </td>
 <td style="text-align:left;">
-15
+14
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6704,7 +6781,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0004942”
+“HP:0001533”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6724,7 +6801,7 @@ monarch_semsim_ancestor_id
 3
 </td>
 <td style="text-align:left;">
-13
+18
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6733,7 +6810,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6753,7 +6830,7 @@ monarch_semsim_ancestor_id
 4
 </td>
 <td style="text-align:left;">
-15
+13
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -6762,7 +6839,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0004942”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6782,7 +6859,7 @@ monarch_semsim_ancestor_id
 10
 </td>
 <td style="text-align:left;">
-17
+19
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -6811,7 +6888,7 @@ monarch_semsim_ancestor_id
 5
 </td>
 <td style="text-align:left;">
-16
+17
 </td>
 <td style="text-align:left;">
 “HP:0001065”
@@ -6840,7 +6917,7 @@ monarch_semsim_ancestor_id
 6
 </td>
 <td style="text-align:left;">
-16
+17
 </td>
 <td style="text-align:left;">
 “HP:0001073”
@@ -6869,7 +6946,7 @@ monarch_semsim_ancestor_id
 7
 </td>
 <td style="text-align:left;">
-16
+17
 </td>
 <td style="text-align:left;">
 “HP:0001075”
@@ -6898,7 +6975,7 @@ monarch_semsim_ancestor_id
 11
 </td>
 <td style="text-align:left;">
-17
+18
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6907,7 +6984,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000545”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6927,7 +7004,7 @@ monarch_semsim_ancestor_id
 8
 </td>
 <td style="text-align:left;">
-14
+16
 </td>
 <td style="text-align:left;">
 “HP:0002761”
@@ -6992,8 +7069,8 @@ the nodes.</p>
 this result in the context of the original query and target graphs.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">both_phenos</span> <span class="op">&lt;-</span> <span class="va">eds_phenos</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">marfan_phenos</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">marfan_phenos</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_join.html" class="external-link">graph_join</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">both_phenos</span><span class="op">)</span></span></code></pre></div>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-15-1.png" width="960"></p>
@@ -9759,7 +9836,7 @@ NA
 2
 </td>
 <td style="text-align:left;">
-18
+14
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -9768,7 +9845,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0004942”
+“HP:0001533”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9839,7 +9916,7 @@ NA
 3
 </td>
 <td style="text-align:left;">
-15
+21
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -9848,7 +9925,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001763”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9919,7 +9996,7 @@ NA
 4
 </td>
 <td style="text-align:left;">
-18
+13
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -9928,7 +10005,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0004942”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -10319,7 +10396,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-22
+21
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -10328,7 +10405,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000545”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
