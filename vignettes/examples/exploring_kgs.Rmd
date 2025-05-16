@@ -80,8 +80,8 @@ The resulting auto-completion inserts the appropriate backtics in RStudio.
 
 ```{r}
 diseases <- eds_marfan |>
-	fetch_nodes(query_ids = "MONDO:0009159") |>
-	expand(predicates = s$preds$`biolink:has_phenotype`)
+  fetch_nodes(query_ids = "MONDO:0009159") |>
+  expand(predicates = s$preds$`biolink:has_phenotype`)
 
 diseases
 ```
