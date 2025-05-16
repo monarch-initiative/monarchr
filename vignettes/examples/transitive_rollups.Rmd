@@ -76,6 +76,8 @@ information to aggregate, a function to apply over the values (amongst all desce
 and whether each node should include its own value in the aggregation.
 
 ```{r}
+phenos_counted
+
 phenos_counted_rolled <- phenos_counted |>
 	activate(nodes) |>
 	mutate(total = roll_up(count, fun = sum, include_self = TRUE))
