@@ -30,12 +30,16 @@ roll <- function(  column,
 		stop("Error, 'direction' must be one of 'up' or 'down'.")
 	}
 
+	# for some reason usin Inf or -1 to use an infinite neighborhood size
+	# works on my local machine, but not in the github build checks.
+	# using order = num_nodes + 1 to ensure the order is large enough
+	num_nodes = nrow(nodes(g_filt)) + 1
+
 	mode = ifelse(direction == "up", "in", "out")
-	# Use igraph to find descendants (successors) of each node
-	# result is a list of
+
 	descendants_list <- ego(
 		graph = as.igraph(g_filt),
-		order = -1,
+		order = num_nodes,
 		nodes = V(g_filt),
 		mode = mode,
 		mindist = 1
