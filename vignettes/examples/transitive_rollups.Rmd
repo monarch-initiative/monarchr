@@ -76,7 +76,13 @@ information to aggregate, a function to apply over the values (amongst all desce
 and whether each node should include its own value in the aggregation.
 
 ```{r}
-phenos_counted
+node_data <- nodes(phenos_counted) |> as.data.frame()
+edge_data <- edges(phenos_counted) |> as.data.frame()
+msg <- capture.output(print(node_data))
+warning(paste(msg, collapse = "\n"))
+msg <- capture.output(print(edge_data))
+warning(paste(msg, collapse = "\n"))
+
 # 
 # phenos_counted_rolled <- phenos_counted |>
 # 	activate(nodes) |>
