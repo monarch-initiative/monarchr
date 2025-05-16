@@ -5,7 +5,7 @@ date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   rmarkdown::html_document
 vignette: >
-  %\VignetteIndexEntry{monarchr}
+  %\VignetteIndexEntry{Visualizing Knowledge Graphs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -49,9 +49,9 @@ filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 engine <- file_engine(filename)
 
 g <- engine |>
-	fetch_nodes(query_ids = c("MONDO:0017310")) |>
+  fetch_nodes(query_ids = c("MONDO:0017310")) |>
   expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
-	expand(categories = "biolink:Gene")
+  expand(categories = "biolink:Gene")
 
 plot(g)
 ```
@@ -65,23 +65,24 @@ and `geom_edge_fan` `ggraph` layers.
 
 ```{r}
 mar_phenos <- engine |> 
-	fetch_nodes(query_ids = c("MONDO:0017309")) |>
-	expand(categories = "biolink:PhenotypicFeature") 
+  fetch_nodes(query_ids = c("MONDO:0017309")) |>
+  expand(categories = "biolink:PhenotypicFeature") 
 
 bcs_phenos <- engine |> 
-	fetch_nodes(query_ids = c("MONDO:0009242")) |>
-	expand(categories = "biolink:PhenotypicFeature")
+  fetch_nodes(query_ids = c("MONDO:0009242")) |>
+  expand(categories = "biolink:PhenotypicFeature")
 
 both <- kg_join(mar_phenos, bcs_phenos) 
 
 shared <- both |>
-	activate(nodes) |>
-	mutate(degree = igraph::degree(both)) |>
-	filter(degree > 1) |>
-	activate(edges) |>
-	mutate(frequency_qualifier = factor(frequency_qualifier, 
-																 			levels = c("HP:0040281", "HP:0040282", "HP:0040283"),
-																 			labels = c("very_frequent", "frequent", "occasional")))
+  activate(nodes) |>
+  mutate(degree = igraph::degree(both)) |>
+  filter(degree > 1) |>
+  activate(edges) |>
+  mutate(frequency_qualifier = factor(frequency_qualifier, 
+                                      levels = c("HP:0040281", "HP:0040282", "HP:0040283"),
+                                      labels = c("very_frequent", "frequent", "occasional")))
+
 plot(shared, edge_color = frequency_qualifier)
 ```
 

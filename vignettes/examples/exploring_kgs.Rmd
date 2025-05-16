@@ -5,7 +5,7 @@ date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   rmarkdown::html_document
 vignette: >
-  %\VignetteIndexEntry{monarchr}
+  %\VignetteIndexEntry{Exploring Knowledge Graphs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -80,8 +80,8 @@ The resulting auto-completion inserts the appropriate backtics in RStudio.
 
 ```{r}
 diseases <- eds_marfan |>
-	fetch_nodes(query_ids = "MONDO:0009159") |>
-	expand(predicates = s$preds$`biolink:has_phenotype`)
+  fetch_nodes(query_ids = "MONDO:0009159") |>
+  expand(predicates = s$preds$`biolink:has_phenotype`)
 
 diseases
 ```

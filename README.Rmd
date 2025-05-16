@@ -23,8 +23,8 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 
 MonarchR provides a tidy interface to data hosted at <https://monarchinitiative.org>.
 
--   [Website](https://%60r%20owner%60.github.io/%60r%20pkg%60)
--   [Get started](https://%60r%20owner%60.github.io/%60r%20pkg%60/articles/%60r%20pkg%60)
+-   [Website](https://monarch-initiative.github.io/monarchr/)
+-   [Get started](https://monarch-initiative.github.io/monarchr/articles/monarchr.html)
 
 <!-- If you use ``r pkg``, please cite:  -->
 
