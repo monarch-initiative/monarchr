@@ -130,6 +130,6 @@ roll_up <- function(column = NULL, fun = c, include_self = TRUE, predicates = "b
 #' @rdname rolling
 #' @export
 roll_down <- function(column = NULL, fun = c, include_self = TRUE, predicates = "biolink:subclass_of", ...) {
-	roll({{column}}, fun, include_self, predicates, direction, direction = "down")
+	roll({{column}}, fun, include_self, predicates, direction = "down")
 }
 
