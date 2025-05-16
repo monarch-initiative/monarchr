@@ -27,7 +27,7 @@ roll <- function(  column,
 		filter(predicate %in% predicates)
 
 	if(direction != "up" & direction != "down") {
-		stop("Error, 'over' must be one of 'up' or 'down'.")
+		stop("Error, 'direction' must be one of 'up' or 'down'.")
 	}
 
 	mode = ifelse(direction == "up", "in", "out")
