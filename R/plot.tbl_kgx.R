@@ -97,7 +97,8 @@ plot.tbl_kgx <- function(g,
 										repel = TRUE,
 										segment.colour = alpha("black", 0.8),
 										segment.linetype = "dotted",
-										fill = "#FFFFFF88")
+										fill = "#FFFFFF88") +
+		scale_y_continuous(trans = "reverse")
 
   return(p)
 }
