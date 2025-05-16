@@ -35,7 +35,7 @@ roll <- function(  column,
 	# result is a list of
 	descendants_list <- ego(
 		graph = as.igraph(g_filt),
-		order = Inf,
+		order = -1,
 		nodes = V(g_filt),
 		mode = mode,
 		mindist = 1
