@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
       </span>
     </div>
 
@@ -60,6 +60,9 @@
     </li>
     <li>
       <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+    </li>
+    <li>
+      <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
   </ul>
 </li>
@@ -93,10 +96,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Apr-22-2025</i>
+<i>May-16-2025</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/rollups/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
       <div class="hidden name"><code>monarchr.Rmd</code></div>
 
     </div>
@@ -127,7 +130,7 @@ multi-valued.</li>
 <p>In the following figure, these required properties are shown in
 bold:</p>
 <center>
-<img src="assets%2Fcftr_cf_edge.png" style="width:90.0%">
+<img src="assets/cftr_cf_edge.png" style="width:90.0%">
 </center>
 <p>The <code>monarchr</code> package provides access to the cloud-hosted
 Monarch Initiative KG, and <a href="https://kghub.org" class="external-link">others in KGX
@@ -5736,40 +5739,6 @@ c(“DOID:1485”, “GARD:6233”, “ICD10CM:E84”, “ICD9:277.0”, “MEDG
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:1010043”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“cystic fibrosis, non-human animal”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Cystic fibrosis that occurs in non-human animals.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_1010043" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_1010043</a>”
-</td>
-<td style="text-align:left;">
-“OMIA:001794”
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 “MONDO:1010543”
 </td>
 <td style="text-align:left;">
@@ -5870,6 +5839,52 @@ c(“biolink:BiologicalEntity”, “biolink:Disease”,
 “phenio_nodes”
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0005413”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“cystic fibrosis associated meconium ileus”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Cystic fibrosis associated meconium ileum is a thickening and
+congestion of the meconium in the ileum in newborns, often the first
+sign of cystic fibrosis. In cystic fibrosis, the meconium can form a
+bituminous black-green mechanical obstruction in a segment of the ileum.
+Beyond this there may be a few separate grey-white globular pellets.
+Below this level, the bowel is a narrow and empty micro-colon. Above the
+level of the obstruction, there are several loops of hypertrophied bowel
+distended with fluid. No meconium is passed, and abdominal distension
+and vomiting appear soon after birth. About 20% of cases of cystic
+fibrosis present with meconium ileus, while approximately 20% of one
+series of cases of meconium ileus did not have cystic fibrosis. The
+presence of meconium ileus is not related to the severity of the cystic
+fibrosis.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“cystic fibrosis associated meconium ileum”
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:Disease”,
+“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
+“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0005413" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0005413</a>”
+</td>
+<td style="text-align:left;">
+c(“EFO:0004608”, “MEDGEN:639765”, “UMLS:C0546982”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5908,10 +5923,10 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-14-1.png" width="960"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sim</span></span></code></pre></div>
-<pre>Graph with 17 nodes and 11 edges. Expand sections below for details.</pre>
+<pre>Graph with 18 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 17 of 17 nodes:
+Showing 18 of 18 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -6417,21 +6432,23 @@ c(“DOID:14323”, “GARD:16535”, “ICD9:759.82”, “MEDGEN:44287”,
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Slender build”
+“Disproportionate tall stature”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Asthenic habitus refers to a slender build with long limbs, an angular
-profile, and prominent muscles or bones.”
+“A tall and slim body build with increased arm span to height ratio
+(&gt;1.05) and a reduced upper-to-lower segment ratio (&lt;0.85), i.e.,
+unusually long arms and legs. The extremities as well as the hands and
+feet are unusually slim.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Asthenic habitus”, “Slender build”, “Thin body habitus”, “Thin
-build”)
+c(“Dolichostenomelia”, “Marfanoid body habitus”, “Marfanoid habitus”,
+“Reduced upper-lower segment ratio”)
 </td>
 <td style="text-align:left;">
 c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -6439,10 +6456,10 @@ c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0001533" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001533</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0001519" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001519</a>”
 </td>
 <td style="text-align:left;">
-“UMLS:C1850573”
+c(“SNOMEDCT_US:62250003”, “UMLS:C0003706”, “UMLS:C1836996”)
 </td>
 <td style="text-align:left;">
 “HP”
@@ -6607,6 +6624,42 @@ c(“SNOMEDCT_US:246635007”, “SNOMEDCT_US:397540003”,
 “phenio_nodes”
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+“HP:0000545”
+</td>
+<td style="text-align:left;">
+“biolink:PhenotypicFeature”
+</td>
+<td style="text-align:left;">
+“Myopia”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An abnormality of refraction characterized by the ability to see
+objects nearby clearly, while objects in the distance appear blurry.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Close sighted”, “Near sighted”, “Near sightedness”,
+“Nearsightedness”)
+</td>
+<td style="text-align:left;">
+c(“biolink:BiologicalEntity”, “biolink:DiseaseOrPhenotypicFeature”,
+“biolink:Entity”, “biolink:NamedThing”, “biolink:PhenotypicFeature”,
+“biolink:ThingWithTaxon”)
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/HP_0000545" class="external-link uri">http://purl.obolibrary.org/obo/HP_0000545</a>”
+</td>
+<td style="text-align:left;">
+c(“SNOMEDCT_US:57190000”, “UMLS:C0027092”)
+</td>
+<td style="text-align:left;">
+“HP”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -6680,7 +6733,7 @@ monarch_semsim_ancestor_id
 2
 </td>
 <td style="text-align:left;">
-13
+17
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -6689,7 +6742,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6709,7 +6762,7 @@ monarch_semsim_ancestor_id
 3
 </td>
 <td style="text-align:left;">
-16
+13
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -6718,7 +6771,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000275”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6738,7 +6791,7 @@ monarch_semsim_ancestor_id
 4
 </td>
 <td style="text-align:left;">
-15
+17
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -6747,7 +6800,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6767,7 +6820,7 @@ monarch_semsim_ancestor_id
 10
 </td>
 <td style="text-align:left;">
-15
+16
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -6776,7 +6829,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -6883,7 +6936,7 @@ monarch_semsim_ancestor_id
 11
 </td>
 <td style="text-align:left;">
-17
+18
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -6892,7 +6945,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000505”
+“HP:0000545”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9744,7 +9797,7 @@ NA
 2
 </td>
 <td style="text-align:left;">
-14
+21
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -9753,7 +9806,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9824,7 +9877,7 @@ NA
 3
 </td>
 <td style="text-align:left;">
-20
+13
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -9833,7 +9886,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000275”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9904,7 +9957,7 @@ NA
 4
 </td>
 <td style="text-align:left;">
-16
+21
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -9913,7 +9966,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0000505”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -9984,7 +10037,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-16
+20
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -9993,7 +10046,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -10304,7 +10357,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-21
+22
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -10313,7 +10366,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000505”
+“HP:0000545”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -10592,7 +10645,7 @@ representative.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer>

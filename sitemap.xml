@@ -3,6 +3,7 @@
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/LICENSE.html</loc></url>
 <url><loc>/articles/examples/exploring_kgs.html</loc></url>
+<url><loc>/articles/examples/transitive_rollups.html</loc></url>
 <url><loc>/articles/examples/visualizing_kgs.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/articles/monarchr.html</loc></url>
@@ -54,6 +55,8 @@
 <url><loc>/reference/normalize_categories.html</loc></url>
 <url><loc>/reference/order_cols.html</loc></url>
 <url><loc>/reference/plot.tbl_kgx.html</loc></url>
+<url><loc>/reference/roll.html</loc></url>
+<url><loc>/reference/rolling.html</loc></url>
 <url><loc>/reference/save_kgx.html</loc></url>
 <url><loc>/reference/set_engine.html</loc></url>
 <url><loc>/reference/stitch_vectors.html</loc></url>
@@ -61,6 +64,9 @@
 <url><loc>/reference/summary.file_engine.html</loc></url>
 <url><loc>/reference/summary.neo4j_engine.html</loc></url>
 <url><loc>/reference/tbl_kgx.html</loc></url>
+<url><loc>/reference/transfer.html</loc></url>
+<url><loc>/reference/transitive_closure.html</loc></url>
+<url><loc>/reference/transitive_reduction.html</loc></url>
 <url><loc>/reference/unname_cols.html</loc></url>
 </urlset>
 

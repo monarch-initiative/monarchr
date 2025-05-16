@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+    </li>
+    <li>
+      <a href="articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
   </ul>
 </li>
@@ -90,11 +93,11 @@
 <div class="section level1">
 <div class="page-header"><h1 id="monarchr">monarchr<a class="anchor" aria-label="anchor" href="#monarchr"></a>
 </h1></div>
-<a href="https://cran.r-project.org/web/licenses/MIT%20+%20file%20LICENSE" class="external-link"><img src="https://img.shields.io/badge/license-MIT%20+%20file%20LICENSE-blue.svg" alt="License: MIT + file LICENSE"></a> <a href="https://doi.org/10.5281/zenodo.14553217" class="external-link"><img src="https://img.shields.io/badge/doi-10.5281/zenodo.14553217-blue.svg"></a> <a href="https://github.com/monarch-initiative/monarchr" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.6.2-black.svg"></a> <a href="https://github.com/monarch-initiative/monarchr" class="external-link"><img src="https://img.shields.io/github/languages/code-size/monarch-initiative/monarchr.svg"></a> <a href="https://github.com/monarch-initiative/monarchr/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/monarch-initiative/monarchr.svg"></a> <br><a href="https://github.com/monarch-initiative/monarchr/actions" class="external-link"><img src="https://github.com/monarch-initiative/monarchr/workflows/rworkflows/badge.svg" alt="R build status"></a> <a href="https://app.codecov.io/gh/monarch-initiative/monarchr" class="external-link"><img src="https://codecov.io/gh/monarch-initiative/monarchr/branch/main/graph/badge.svg"></a> <br><br><h4 id="monarchr-1">
+<a href="https://cran.r-project.org/web/licenses/MIT%20+%20file%20LICENSE" class="external-link"><img src="https://img.shields.io/badge/license-MIT%20+%20file%20LICENSE-blue.svg" alt="License: MIT + file LICENSE"></a> <a href="https://doi.org/10.5281/zenodo.14553217" class="external-link"><img src="https://img.shields.io/badge/doi-10.5281/zenodo.14553217-blue.svg"></a> <a href="https://github.com/monarch-initiative/monarchr" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.7-black.svg"></a> <a href="https://github.com/monarch-initiative/monarchr" class="external-link"><img src="https://img.shields.io/github/languages/code-size/monarch-initiative/monarchr.svg"></a> <a href="https://github.com/monarch-initiative/monarchr/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/monarch-initiative/monarchr.svg"></a> <br><a href="https://github.com/monarch-initiative/monarchr/actions" class="external-link"><img src="https://github.com/monarch-initiative/monarchr/workflows/rworkflows/badge.svg" alt="R build status"></a> <a href="https://app.codecov.io/gh/monarch-initiative/monarchr" class="external-link"><img src="https://codecov.io/gh/monarch-initiative/monarchr/branch/main/graph/badge.svg"></a> <br><br><h4 id="monarchr-1">
 Authors: <i>Shawn O’Neil, Brian Schilder</i>
 <a class="anchor" aria-label="anchor" href="#monarchr-1"></a>
 </h4>
-<p>README updated: <i>Apr-22-2025</i></p>
+<p>README updated: <i>May-16-2025</i></p>
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
 <div class="section level2">
 <h2 id="monarchr-monarch-knowledge-graph-queries">monarchr: Monarch Knowledge Graph Queries<a class="anchor" aria-label="anchor" href="#monarchr-monarch-knowledge-graph-queries"></a>
@@ -104,8 +107,8 @@ Authors: <i>Shawn O’Neil, Brian Schilder</i>
 </h3>
 <p>MonarchR provides a tidy interface to data hosted at <a href="https://monarchinitiative.org" class="external-link uri">https://monarchinitiative.org</a>.</p>
 <ul>
-<li><a href="https://%60r%20owner%60.github.io/%60r%20pkg%60" class="external-link">Website</a></li>
-<li><a href="https://%60r%20owner%60.github.io/%60r%20pkg%60/articles/%60r%20pkg%60" class="external-link">Get started</a></li>
+<li><a href="https://monarch-initiative.github.io/monarchr/" class="external-link">Website</a></li>
+<li><a href="https://monarch-initiative.github.io/monarchr/articles/monarchr.html" class="external-link">Get started</a></li>
 </ul>
 <!-- If you use `monarchr`, please cite:  --><!-- Modify this by editing the file: inst/CITATION  --><!-- >  --><p>Installation:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -146,8 +149,8 @@ Authors: <i>Shawn O’Neil, Brian Schilder</i>
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Shawn O'Neil <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6220-7080" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Brian Schilder <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0001-5949-2191" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Shawn O'Neil <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6220-7080" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Brian Schilder <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0001-5949-2191" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -164,7 +167,7 @@ Authors: <i>Shawn O’Neil, Brian Schilder</i>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer>

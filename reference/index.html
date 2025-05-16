@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
       </span>
     </div>
 
@@ -41,6 +41,9 @@
     </li>
     <li>
       <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+    </li>
+    <li>
+      <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
   </ul></li>
 <li>
@@ -245,6 +248,14 @@
         </td>
         <td><p>Specialized <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function for KGX graphs</p></td>
       </tr><tr><td>
+          <p><code><a href="roll.html">roll()</a></code> </p>
+        </td>
+        <td><p>Internal function for rolling up and down</p></td>
+      </tr><tr><td>
+          <p><code><a href="rolling.html">roll_up()</a></code> <code><a href="rolling.html">roll_down()</a></code> </p>
+        </td>
+        <td><p>Roll node data up (along) or down (against) transitive edges. Use with <code>mutate()</code></p></td>
+      </tr><tr><td>
           <p><code><a href="save_kgx.html">save_kgx()</a></code> </p>
         </td>
         <td><p>Save a graph as a KGX-formatted .tar.gz file.</p></td>
@@ -273,6 +284,18 @@
         </td>
         <td><p>Create a KGX graph object</p></td>
       </tr><tr><td>
+          <p><code><a href="transfer.html">transfer()</a></code> </p>
+        </td>
+        <td><p>Transfer information over edges to nodes.</p></td>
+      </tr><tr><td>
+          <p><code><a href="transitive_closure.html">transitive_closure()</a></code> </p>
+        </td>
+        <td><p>Compute transitive closure over a predicate.</p></td>
+      </tr><tr><td>
+          <p><code><a href="transitive_reduction.html">transitive_reduction()</a></code> </p>
+        </td>
+        <td><p>Compute transitive reduction over a predicate.</p></td>
+      </tr><tr><td>
           <p><code><a href="unname_cols.html">unname_cols()</a></code> </p>
         </td>
         <td><p>Remove names from columns</p></td>
@@ -289,7 +312,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer></div>

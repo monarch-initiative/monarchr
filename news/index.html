@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
       </span>
     </div>
 
@@ -42,6 +42,9 @@
     <li>
       <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
     </li>
+    <li>
+      <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -62,9 +65,21 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/rollups/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.7" id="monarchr-17">monarchr 1.7<a class="anchor" aria-label="anchor" href="#monarchr-17"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-7">New features<a class="anchor" aria-label="anchor" href="#new-features-1-7"></a></h3>
+<ul><li>New transitive and related tools: <code><a href="../reference/rolling.html">roll_up()</a></code>, <code><a href="../reference/rolling.html">roll_down()</a></code>, <code><a href="../reference/transfer.html">transfer()</a></code>, <code><a href="../reference/transitive_closure.html">transitive_closure()</a></code>, and <code><a href="../reference/transitive_reduction.html">transitive_reduction()</a></code>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-changes-1-7">Minor Changes<a class="anchor" aria-label="anchor" href="#minor-changes-1-7"></a></h3>
+<ul><li>Added a reversed <code>y</code> scale to default <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> so trees and other hierarchies point upward (as Knuth intended)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.6.2" id="monarchr-162">monarchr 1.6.2<a class="anchor" aria-label="anchor" href="#monarchr-162"></a></h2>
 <div class="section level3">
@@ -254,7 +269,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer></div>

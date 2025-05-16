@@ -1,8 +1,9 @@
 pandoc: 3.6.4
-pkgdown: 2.1.1
+pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   examples/exploring_kgs: examples/exploring_kgs.html
   monarchr: monarchr.html
+  examples/transitive_rollups: examples/transitive_rollups.html
   examples/visualizing_kgs: examples/visualizing_kgs.html
-last_built: 2025-04-22T14:16Z
+last_built: 2025-05-16T15:19Z
