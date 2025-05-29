@@ -63,7 +63,7 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
     	  query <- "MATCH (n) WHERE n.id IN $id"
     	  params <- list(id = query_ids)
     } else {
-        query <- paste0("MATCH (n) WHERE ", generate_cypher_conditionals(...))
+        query <- paste0("MATCH (n) WHERE (", generate_cypher_conditionals(...), ")")
         params <- list()
     }
 
@@ -112,6 +112,7 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
 			if(last_result_size > 0) {
 				total_nodes_fetched <- total_nodes_fetched + last_result_size
 				last_max_node_id <- max(nodes(result)$id)
+
 				suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
 				message(paste("Fetching; fetched", total_nodes_fetched, "of", total_results))
 			}
