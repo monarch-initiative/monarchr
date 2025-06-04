@@ -21,7 +21,8 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 
 ### `r description`
 
-MonarchR provides a tidy interface to data hosted at <https://monarchinitiative.org>.
+`monarchr` provides a tidy interface to data hosted at
+<https://monarchinitiative.org>, and other knowledge graphs in KGX format (e.g. those at [KGHub](https://kghub.org/)).
 
 -   [Website](https://monarch-initiative.github.io/monarchr/)
 -   [Get started](https://monarch-initiative.github.io/monarchr/articles/monarchr.html)

@@ -19,10 +19,10 @@ README updated: <i>Jul-20-2024</i>
 
 ## `monarchr`: Monarch Knowledge Graph Queries
 
-### R package for easy access, manipulation, and analysis of Monarch KG data Resources.
+### R package for easy access, manipulation, and analysis of knowledge graphs.
 
-MonarchR provides a tidy interface to data hosted at
-<https://monarchinitiative.org>.
+`monarchr` provides a tidy interface to data hosted at
+<https://monarchinitiative.org>, and other knowledge graphs in KGX format (e.g. those at [KGHub](https://kghub.org/)).
 
 - [Website](https://monarch-initiative.github.io/monarchr)
 - [Get
