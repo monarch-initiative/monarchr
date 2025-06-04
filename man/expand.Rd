@@ -11,7 +11,6 @@ expand(
   predicates = NULL,
   categories = NULL,
   transitive = FALSE,
-  drop_unused_query_nodes = FALSE,
   ...
 )
 }
@@ -27,8 +26,6 @@ expand(
 \item{categories}{A vector of node categories, indicating which nodes in the larger KG may be fetched. If NULL (default), all nodes in the larger KG are will be fetched.}
 
 \item{transitive}{If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like \code{biolink:subclass_of}.}
-
-\item{drop_unused_query_nodes}{If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.}
 
 \item{...}{Other parameters passed to methods.}
 }
