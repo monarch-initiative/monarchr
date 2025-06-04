@@ -11,7 +11,8 @@
 #' @inheritParams expand
 #' @param transitive NULL (not used in this function).
 #'
-#' @return A `tbl_kgx()` graph
+#' @return
+#' A `tbl_kgx()` graph
 #' @export
 #' @examples
 #' ## Using example KGX file packaged with monarchr
@@ -30,7 +31,6 @@ expand_n <- function(graph,
 										 predicates = NULL,
 										 categories = NULL,
 										 transitive = NULL,
-										 drop_unused_query_nodes = FALSE,
 										 n=1,
 										 ...) {
 	## Check args
@@ -63,7 +63,6 @@ expand_n <- function(graph,
 										predicates = check_len(predicates,n,i),
 										categories = check_len(categories,n,i),
 										transitive = FALSE,
-										drop_unused_query_nodes = check_len(drop_unused_query_nodes,n,i),
 										...)
 		if(return_each) graph_list[[paste0("iteration",i)]] <- graph
 		message(paste(

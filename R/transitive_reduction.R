@@ -32,6 +32,7 @@
 #' @export
 transitive_reduction <- function(g, predicate = "biolink:subclass_of") {
 	# first we make a copy
+	active_tbl <- active(g)
 	g2 <- g
 
 	# in the original, remove the predicate edges
@@ -56,6 +57,7 @@ transitive_reduction <- function(g, predicate = "biolink:subclass_of") {
 
 	# merge the original w g_reduced, adding back just the reduction edges
 	suppressMessages(g <- kg_join(g, g_reduced), classes = "message") # suppress joining info
+	g <- g |> activate(!!rlang::sym(active_tbl))
 
 	return(g)
 }

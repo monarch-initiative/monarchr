@@ -1,3 +1,13 @@
+# monarchr 2.0
+
+## Breaking changes
+
+* This breaking release drops support for `drop_unused_query_nodes` in `expand()`, which was both brittle and violated the rule that expansion should return a supergraph of the query 
+
+## Bug fixes
+
+* Fixes a bug in `expand()` for `neo4j_engine()` causing an infinite loop.
+
 # monarchr 1.7
 
 ## New features
