@@ -10,6 +10,8 @@
 #' @inheritParams nodes
 #' @returns Graph object with centrality added as a new node attribute.
 #' @export
+#' @importFrom tidygraph active
+#' @importFrom tidygraph activate
 #' @examples
 #' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #' g <- file_engine(filename) |>
@@ -23,9 +25,11 @@ graph_centrality <- function(graph,
 														 fun=igraph::harmonic_centrality,
 														 col="centrality",
 														 ...){
+	active_tbl <- active(graph)
 	message("Computing node centrality.")
 	graph <- graph|>
 		activate(nodes)|>
-		dplyr::mutate(!!col:=fun(graph, ...))
+		dplyr::mutate(!!col:=fun(graph, ...)) |>
+		activate(!!rlang::sym(active_tbl))
 	return(graph)
 }

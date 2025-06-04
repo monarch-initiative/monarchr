@@ -23,6 +23,11 @@ transitive_closure <- function(g, predicate = "biolink:subclass_of") {
 	if(length(predicate) != 1) {
 		stop("Error: predicate parameter of transitive_closure() must be length 1.")
 	}
+	# if there are no edges to close, return the input
+	p <- predicate
+	if(nrow(edges(g) |> filter(predicate == p)) == 0) {return(g)}
+
+	active_tbl <- active(g)
 
 	with_downstream <- g |>
 		activate(nodes) |>
@@ -56,7 +61,8 @@ transitive_closure <- function(g, predicate = "biolink:subclass_of") {
 	res <- g |>
 		tidygraph::bind_edges(new_edges) |>
 		activate(edges) |>
-		select(-edge_key)
+		select(-edge_key) |>
+		activate(!!rlang::sym(active_tbl))
 
 	res
 }

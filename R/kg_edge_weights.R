@@ -9,6 +9,7 @@
 #' @param encodings A list of named lists of encoding values for
 #' different edge attributes.
 #' @inheritParams nodes
+#' @import tidygraph
 #' @import dplyr
 #' @export
 #' @examples
@@ -25,6 +26,7 @@ kg_edge_weights <- function(graph,
 														encodings=monarch_edge_weight_encodings(),
 														fun=function(x){rowSums(x, na.rm = TRUE)}
 														){
+	active_tbl <- active(graph)
 	encoded_cols <- c()
 	for(key in names(encodings)){
 		nm_encoded <- paste0(key,"_encoded")
@@ -65,7 +67,8 @@ kg_edge_weights <- function(graph,
 			mutate(
 				across(all_of(encoded_cols),
 							 ~(min(.x, na.rm = TRUE)) / (max(.x, na.rm = TRUE))
-				))
+				)) |>
+			activate(!!rlang::sym(active_tbl))
 	}
 	igraph::E(graph)$weight <- fun(edges(graph)[,unique(encoded_cols)])
 	return(graph)

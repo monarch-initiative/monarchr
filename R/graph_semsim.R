@@ -10,6 +10,8 @@
 #' @param sparse Return a sparse matrix instead of a dense matrix.
 #' @param ... Additional arguments passed to the similarity function
 #'  (\code{fun}).
+#' @import tidygraph
+#' @import dplyr
 #' @inheritParams nodes
 #' @returns Graph object with similarity added as a new edge attribute.
 #' @export
@@ -29,6 +31,7 @@ graph_semsim <- function(graph,
 												 sparse=TRUE,
 												 return_matrix=FALSE,
 												 ...){
+	active_tbl <- active(graph)
 	from <- to <- NULL;
 	message("Computing pairwise node similarity.")
 	X <- fun(graph, ...)
@@ -41,6 +44,8 @@ graph_semsim <- function(graph,
 
 	graph <- graph|>
 		activate(edges)|>
-		dplyr::mutate(!!col:=purrr::map2_dbl(from, to, ~ X[.y, .x]))
+		dplyr::mutate(!!col:=purrr::map2_dbl(from, to, ~ X[.y, .x])) |>
+		activate(!!rlang::sym(active_tbl))
+
 	return(graph)
 }
