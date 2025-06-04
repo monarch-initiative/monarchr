@@ -20,7 +20,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fetch additional knowledge graph edges connected to a query graph</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/1_7_bugfix/R/expand.R" class="external-link"><code>R/expand.R</code></a></small>
     <div class="hidden name"><code>expand.Rd</code></div>
     </div>
 
@@ -87,7 +87,6 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 <span>  predicates <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  categories <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transitive <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  drop_unused_query_nodes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -118,10 +117,6 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 
 <dt id="arg-transitive">transitive<a class="anchor" aria-label="anchor" href="#arg-transitive"></a></dt>
 <dd><p>If TRUE, include transitive closure of the neighborhood. Default is FALSE. Useful in combination with predicates like <code>biolink:subclass_of</code>.</p></dd>
-
-
-<dt id="arg-drop-unused-query-nodes">drop_unused_query_nodes<a class="anchor" aria-label="anchor" href="#arg-drop-unused-query-nodes"></a></dt>
-<dd><p>If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -268,7 +263,7 @@ engine is used; if the first parameter is a query graph, the most recent engine 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>

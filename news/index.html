@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
       </span>
     </div>
 
@@ -65,9 +65,20 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/1_7_bugfix/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.0" id="monarchr-20">monarchr 2.0<a class="anchor" aria-label="anchor" href="#monarchr-20"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-2-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-2-0"></a></h3>
+<ul><li>This breaking release drops support for <code>drop_unused_query_nodes</code> in <code><a href="../reference/expand.html">expand()</a></code>, which was both brittle and violated the rule that expansion should return a supergraph of the query</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-0"></a></h3>
+<ul><li>Fixes a bug in <code><a href="../reference/expand.html">expand()</a></code> for <code><a href="../reference/neo4j_engine.html">neo4j_engine()</a></code> causing an infinite loop.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.7" id="monarchr-17">monarchr 1.7<a class="anchor" aria-label="anchor" href="#monarchr-17"></a></h2>
 <div class="section level3">
@@ -269,7 +280,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>

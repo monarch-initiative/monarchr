@@ -21,7 +21,7 @@ of iterations (n)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@ of iterations (n)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Iteratively fetch additional knowledge graph edges connected to a query graph</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/expand_n.R" class="external-link"><code>R/expand_n.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/1_7_bugfix/R/expand_n.R" class="external-link"><code>R/expand_n.R</code></a></small>
     <div class="hidden name"><code>expand_n.Rd</code></div>
     </div>
 
@@ -89,7 +89,6 @@ of iterations (<code>n</code>).</p>
 <span>  predicates <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  categories <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transitive <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  drop_unused_query_nodes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  n <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -124,10 +123,6 @@ If FALSE, return the final graph with all expanded edges.</p></dd>
 <dd><p>NULL (not used in this function).</p></dd>
 
 
-<dt id="arg-drop-unused-query-nodes">drop_unused_query_nodes<a class="anchor" aria-label="anchor" href="#arg-drop-unused-query-nodes"></a></dt>
-<dd><p>If TRUE, remove query nodes from the result, unless they are at the neighborhood boundary, i.e., required for connecting to the result nodes. Default is FALSE.</p></dd>
-
-
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
 <dd><p>Number of expansion iterations to run.</p></dd>
 
@@ -153,11 +148,11 @@ If FALSE, return the final graph with all expanded edges.</p></dd>
 <span class="r-in"><span>              <span class="fu">expand_n</span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Initial graph size: 49 nodes || 48 edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 1/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 153 nodes || 120 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 153 nodes || 168 edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 2/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 415 nodes || 441 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 415 nodes || 489 edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 3/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 936 nodes || 1201 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 936 nodes || 1249 edges</span>
 </code></pre></div>
     </div>
   </div>
@@ -172,7 +167,7 @@ If FALSE, return the final graph with all expanded edges.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
