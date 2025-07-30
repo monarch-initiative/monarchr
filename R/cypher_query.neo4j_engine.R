@@ -1,16 +1,13 @@
 ########### Private functions ###########
 
 
-#' Stitch Vectors
-#'
-#' @description Neo4j array results come back as lists of length-1 character vectors;
-#' these need to be stitched together to length-N character vectors.
-#' We leave these in a list element to distinguish sets of size 1 from
-#' scalar strings
-#'
-#' @param x An element to be stitched.
-#' @return A list of single-character vectors.
+#' @noRd
 stitch_vectors <- function(x) {
+	# Neo4j array results come back as lists of length-1 character vectors;
+	# these need to be stitched together to length-N character vectors.
+	# We leave these in a list element to distinguish sets of size 1 from
+	# scalar strings
+
 	# Check if the element is a list
 	if (is.list(x)) {
 		# Check if all elements of the list are single-character vectors
