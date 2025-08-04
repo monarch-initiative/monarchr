@@ -36,8 +36,8 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 Installation:
 
 ``` r
-if(!require("remotes")) install.packages("remotes")
+if(!require("BiocManager")) install.packages("BiocManager")
 
-remotes::install_github("`r URL`")
-library(`r pkg`)
+BiocManager::install("monarch-initiative/monarchr", update=FALSE)
+library(monarchr)
 ```
