@@ -39,8 +39,8 @@ First computes semantic similarity between all pairs of nodes in a graph.
 Then adds the continuous similarity score as an edge attribute.
 }
 \examples{
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-g <- file_engine(filename) |>
+data(eds_marfan_kg)
+g <- eds_marfan_kg |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
                  categories = "biolink:PhenotypicFeature")|>

@@ -116,9 +116,9 @@ roll <- function(  column,
 #' @seealso [roll_down()], [descendants()], [ancestors(), [transfer()], [transitive_closure()]]
 #'
 #' @examples
-#' engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+#' data(eds_marfan_kg)
 #'
-#' engine |> fetch_nodes(name == "Tall stature" | name == "Short stature") |>
+#' eds_marfan_kg |> fetch_nodes(name == "Tall stature" | name == "Short stature") |>
 #'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 2) |>  # get 2 levels of ancestors
 #'   activate(nodes) |>
 #'   mutate(count = rpois(graph_order(), 1.5)) |>                               # random count value per node

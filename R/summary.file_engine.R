@@ -14,10 +14,10 @@
 #' @export
 #' @examples
 #' # Using example KGX file packaged with monarchr
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-
+#' data(eds_marfan_kg)
+#'
 #' # prints a readable summary and returns a list of dataframes
-#' res <- file_engine(filename) |> summary()
+#' res <- eds_marfan_kg |> summary()
 #' print(res)
 #' @import tidygraph
 #' @import dplyr

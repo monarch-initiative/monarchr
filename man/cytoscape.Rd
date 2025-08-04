@@ -26,8 +26,8 @@ and running independently of the R session.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
-g <- engine |>
+data(eds_marfan_kg)
+g <- eds_marfan_kg |>
 	 fetch_nodes(query_ids = "MONDO:0020066") |>
 	 expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
 	 expand(categories = c("biolink:PhenotypicFeature", "biolink:Gene"))

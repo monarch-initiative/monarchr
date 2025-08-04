@@ -9,11 +9,11 @@
 #' @export
 #' @examples
 #' ## Using example KGX file packaged with monarchr
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-#' g <- file_engine(filename) |>
-#'           fetch_nodes(query_ids = "MONDO:0007525") |>
-#'           expand(predicates = "biolink:has_phenotype",
-#'                  categories = "biolink:PhenotypicFeature")
+#' data(eds_marfan_kg)
+#' g <- eds_marfan_kg |>
+#'      fetch_nodes(query_ids = "MONDO:0007525") |>
+#'      expand(predicates = "biolink:has_phenotype",
+#'             categories = "biolink:PhenotypicFeature")
 #'
 #' graph_sparsity(g)
 graph_sparsity <- function(x,

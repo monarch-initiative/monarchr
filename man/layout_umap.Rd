@@ -27,13 +27,13 @@ igraph_layout_umap}
 }
 \examples{
 set.seed(2024)
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-g <- file_engine(filename) |>
-          fetch_nodes(pcategory=="biolink:Disease", limit=40) |>
-          expand(predicates = "biolink:has_phenotype",
-                 categories = "biolink:PhenotypicFeature")|>
-          tidygraph::sample_n(200) |>
-          expand(categories = "biolink:Gene")
+data(eds_marfan_kg)
+g <- eds_marfan_kg |>
+     fetch_nodes(pcategory=="biolink:Disease", limit=40) |>
+     expand(predicates = "biolink:has_phenotype",
+            categories = "biolink:PhenotypicFeature")|>
+     tidygraph::sample_n(200) |>
+     expand(categories = "biolink:Gene")
 X <- layout_umap(g)
 g <- graph_centrality(g)
 plot(g, layout=X, node_size=centrality)

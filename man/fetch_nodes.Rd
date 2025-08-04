@@ -53,13 +53,13 @@ monarch_engine() |>
 \dontshow{\}) # examplesIf}
 # file_engine supports the same features as neo4j_engine
 # (using the example KGX file packaged with monarchr)
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+data(eds_marfan_kg)
 
-file_engine(filename) |>
+eds_marfan_kg |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 
 # grab all Homo sapiens genes
-file_engine(filename) |>
+eds_marfan_kg |>
   fetch_nodes(in_taxon_label == "Homo sapiens" & "biolink:Gene" \%in_list\% category)
 
 }

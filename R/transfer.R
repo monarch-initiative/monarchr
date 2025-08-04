@@ -14,9 +14,9 @@
 #' @seealso [roll_up()], [transitive_closure], [descendants()], [ancestors()]
 #'
 #' @examples
-#' engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+#' data(eds_marfan_kg)
 #'
-#' engine |> fetch_nodes(name %~% "COL1A") |>
+#' engine |> eds_marfan_kg |>
 #' 	expand(categories = "biolink:Disease") |>
 #' 	activate(nodes) |>
 #' 	mutate(caused_by_genes = transfer(name, over = "biolink:causes", direction = "out")) |>

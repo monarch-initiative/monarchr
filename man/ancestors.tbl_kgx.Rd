@@ -20,8 +20,8 @@ by "biolink:subclass_of" relationships. This is a simple wrapper around
 expand(predicates = "biolink:subclass_of", direction = "out", transitive = TRUE)
 }
 \examples{
-engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
-g <- engine |>
+data(eds_marfan_kg)
+g <- eds_marfan_kg |>
 	 fetch_nodes(query_ids = "MONDO:0020066") |>
 	 ancestors()
 

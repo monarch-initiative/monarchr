@@ -32,15 +32,14 @@ method repeats edges across nodes with the same \code{id}.
 }
 \examples{
 ## Using example KGX file packaged with monarchr
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-engine <- file_engine(filename)
+data(eds_marfan_kg)
 
-eds_and_phenos <- engine |>
+eds_and_phenos <- eds_marfan_kg |>
                   fetch_nodes(query_ids = "MONDO:0007525") |>
                   expand(predicates = "biolink:has_phenotype",
                          categories = "biolink:PhenotypicFeature")
 
-marfan_and_phenos <- engine |>
+marfan_and_phenos <- eds_marfan_kg |>
                      fetch_nodes(query_ids = "MONDO:0007947") |>
                      expand(predicates = "biolink:has_phenotype",
                             categories = "biolink:PhenotypicFeature")

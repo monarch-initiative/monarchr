@@ -19,9 +19,9 @@ Given a tbl_kgx graph, retrieve the last-used engine.
 }
 \examples{
 # Using example KGX file packaged with monarchr
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+data(eds_marfan_kg)
 
-g <- file_engine(filename) |>
+g <- eds_marfan_kg |>
   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 
 print(get_engine(g))

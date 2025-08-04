@@ -56,6 +56,15 @@ neo2r_to_kgx <- function(res, engine) {
 		res <- stitch_vectors(res)
 	}
 
+	## NOTE: in cases where there are no array properties on a node,
+	## stitch_vectors above will result in a *named vector* in res$nodes[[x]]$properties
+	# the code below does not account for that
+	# (this was previously unseen as all nodes had a multivalued `category` property)
+
+	# this could be more of an issue with edges below; even though there should be no edges without a subject, predicate, and object,
+	# it is possible that some edges may not have any other properties, and so the code below assuming edge properties are lists may fail, even in a well-formed KGX graph
+
+
 	## node info
 	node_ids <- unlist(lapply(res$nodes, function(node) {
 		node$properties$id

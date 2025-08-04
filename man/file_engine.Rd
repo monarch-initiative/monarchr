@@ -30,7 +30,7 @@ but these can be overridden by the user.
 library(tidygraph)
 library(dplyr)
 
-# Using example KGX file packaged with monarchr
+# Using example KGX .tar.gz file packaged with monarchr
 filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 engine <- file_engine(filename)
 
