@@ -18,11 +18,14 @@ A list of dataframes and named lists
 }
 \description{
 Given a KGX file-based KG engine, provides summary information in the form of
-node counts, category counts across nodes, and relationship type counts.
+node counts, category counts across nodes, relationship type counts, and available properties.
 General information about the graph is printed to the console, and a list of
-dataframes describing node and edge counts is returned invisibly. Also returned
-are \code{cats} and \code{preds} entries, containing lists of available node categories and
-edge predicates, respectively, for convenient auto-completion in RStudio.
+dataframes with this information is returned invisibly. Also returned
+are \code{cats}, \code{preds}, and \code{props} entries, containing lists of available
+categories/predicates/properties for convenient auto-completion in RStudio.
+}
+\details{
+When applied to a \code{file_engine}, also included are node-specific and edge-specific properties.
 }
 \examples{
 # Using example KGX file packaged with monarchr

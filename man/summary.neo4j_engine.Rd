@@ -18,11 +18,11 @@ A list of dataframes and named lists
 }
 \description{
 Given a Neo4j based KG engine, provides summary information in the form of
-node counts, category counts across nodes, and relationship type counts.
+node counts, category counts across nodes, relationship type counts, and available properties.
 General information about the graph is printed to the console, and a list of
-dataframes describing node and edge counts is returned invisibly. Also returned
-are \code{cats} and \code{preds} entries, containing lists of available node categories and
-edge predicates, respectively, for convenient auto-completion in RStudio.
+dataframes with this information is returned invisibly. Also returned
+are \code{cats}, \code{preds}, and \code{props} entries, containing lists of available
+categories/predicates/properties for convenient auto-completion in RStudio.
 }
 \examples{
 \dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

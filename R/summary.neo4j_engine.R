@@ -1,11 +1,11 @@
 #' Summarize contents of a Neo4j KG engine
 #'
 #' Given a Neo4j based KG engine, provides summary information in the form of
-#' node counts, category counts across nodes, and relationship type counts.
+#' node counts, category counts across nodes, relationship type counts, and available properties.
 #' General information about the graph is printed to the console, and a list of
-#' dataframes describing node and edge counts is returned invisibly. Also returned
-#' are `cats` and `preds` entries, containing lists of available node categories and
-#' edge predicates, respectively, for convenient auto-completion in RStudio.
+#' dataframes with this information is returned invisibly. Also returned
+#' are `cats`, `preds`, and `props` entries, containing lists of available
+#' categories/predicates/properties for convenient auto-completion in RStudio.
 #'
 #' @param object A `neo4j_engine` object
 #' @param ... Other parameters (not used)
@@ -24,13 +24,6 @@ summary.neo4j_engine <- function(object, ..., quiet = FALSE) {
 		cat("Gathering statistics, please wait...\n")
 	}
 
-		# possible optimization: use a schema query to get different available categories,
-	  # count them individually:
-		# cat_counts_query <- paste0("MATCH (a:`", all_node_categories, "`) WITH count(*) as count, '", all_node_categories ,"' as category RETURN category, count")
-		# cat_counts <- cypher_query_df(e, cat_counts_query)
-		# cat_counts_df <- do.call(rbind, cat_counts) |> arrange(desc(count))
-
-
     node_summary_df <- cypher_query_df(object, "MATCH (n) UNWIND labels(n) AS category WITH category, COUNT(n) AS count RETURN category, count ORDER BY count DESC")
     edge_summary_df <- cypher_query_df(object, "MATCH ()-[r]->() RETURN type(r) AS predicate, COUNT(*) AS count ORDER BY count DESC")
 
@@ -48,6 +41,9 @@ summary.neo4j_engine <- function(object, ..., quiet = FALSE) {
     total_nodes <- total_df$Count[1]
     total_edges <- total_df$Count[2]
 
+    properties <- cypher_query_df(object, "CALL db.propertyKeys()")$propertyKey
+
+
     if(!quiet) {
         cat("Total nodes: ", total_nodes, "\n")
         cat("Total edges: ", total_edges, "\n")
@@ -59,6 +55,11 @@ summary.neo4j_engine <- function(object, ..., quiet = FALSE) {
         cat("Edge type counts:\n")
         # print the data frame without row names
         print(edge_summary_df, row.names = FALSE)
+        cat("\n")
+        cat("Available node and edge properties:\n")
+        print(properties)
+        cat("\n\n")
+        cat("For more information about Biolink node (Class) and edge (Association) properties, see https://biolink.github.io/biolink-model/.")
     }
 
     cats <- as.list(node_summary_df$category)
@@ -67,10 +68,14 @@ summary.neo4j_engine <- function(object, ..., quiet = FALSE) {
     preds <- as.list(edge_summary_df$predicate)
     names(preds) <- preds
 
+    props <- as.list(properties)
+    names(props) <- props
+
     return(invisible(list(node_summary = node_summary_df,
     											edge_summary = edge_summary_df,
     											total_nodes = total_nodes,
     											total_edges = total_edges,
     											cats = cats,
-    											preds = preds)))
+    											preds = preds,
+    											props = props)))
 }
