@@ -126,8 +126,7 @@ While the syntax does not support all R expressions (for compatibility with data
 standard comparisons `==`, `!=`, `<=`, `>=`, `<`, and `>` are, as are logical operators `&`, `|`, and `!`,
 and grouping with `()`s. Since many node properties are multi-valued, we provide a special `%in_list%`
 operator to allow exact match against entries. Here we fetch all the *Homo sapiens* Genes, using `%in_list%` to account for the multi-valued nature of node `category`.^[The `%in_list%` and other operators work the same
-for `file_engine()`s, which store multi-valued properties in list columns where `%in%` does not provide the desired semantics. Note that `%in_list%` can only take a length-one character vector as the left-hand side, and the right hand side must be a single
-node property name in the KG.]
+for `file_engine()`s, which store multi-valued properties in list columns. Multi-value properties are typically represented as list columns in R, but `%in%` does not provide the desired semantics--try using both `%in%` and `%in_list%` to filter a `data.frame` on values of a list column to see the difference. Note that `%in_list%` can only take a length-one character vector as the left-hand side, and the right hand side must be a single node property name in the KG.]
 
 ```{r}
 human_genes <- monarch |>
