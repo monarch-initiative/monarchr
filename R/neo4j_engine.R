@@ -126,7 +126,7 @@ check_neo2r_kgx <- function(graph_conn) {
 	}
 
 	if(edges_ok) {
-		edge1 <- res[["relationships"]]
+		edge1 <- res[["relationships"]][[1]]
 		if(!"subject" %in% names(edge1[["properties"]])) {
 			edges_ok <- FALSE
 			errors <- c(errors, "Found a relationship with no `subject` property. Is the Neo4j graph properly KGX formatted? Edges in KGX formatted graphs in Neo4j must have a `subject` property (e.g. 'MONDO:0019391').")
