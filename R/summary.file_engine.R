@@ -46,6 +46,25 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
       as.data.frame() |>
       colnames()
 
+    nodes_df <- nodes(g)
+    edges_df <- edges(g)
+
+
+    node_prop_counts <- lapply(node_props, function(prop_name) {
+      count <- length(nodes_df[[prop_name]][!is.na(nodes_df[[prop_name]])])
+      data.frame(property = prop_name, count = count)
+    })
+    node_prop_counts <- do.call(rbind, node_prop_counts)
+    node_prop_counts <- node_prop_counts[rev(order(node_prop_counts$count)),]
+
+
+    edge_prop_counts <- lapply(edge_props, function(prop_name) {
+      count <- length(edges_df[[prop_name]][!is.na(edges_df[[prop_name]])])
+      data.frame(property = prop_name, count = count)
+    })
+    edge_prop_counts <- do.call(rbind, edge_prop_counts)
+    edge_prop_counts <- edge_prop_counts[rev(order(edge_prop_counts$count)),]
+
     properties <- unique(c(node_props, edge_props))
 
     total_edges <- g |>
@@ -89,8 +108,11 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     	# print the data frame without row names
     	print(edge_summary_df, row.names = FALSE)
       cat("\n")
-      cat("Available node and edge properties:\n")
-      print(properties)
+      cat("Node property counts:\n")
+      print(node_prop_counts, row.names = FALSE)
+      cat("\n")
+      cat("Edge property counts:\n")
+      print(edge_prop_counts, row.names = FALSE)
       cat("\n\n")
       cat("For more information about Biolink node (Class) and edge (Association) properties, see https://biolink.github.io/biolink-model/.")
     }
@@ -115,9 +137,9 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     											edge_summary = edge_summary_df,
     											total_nodes = total_nodes,
     											total_edges = total_edges,
+                          node_properties_summary = node_prop_counts,
+                          edge_properties_summary = edge_prop_counts,
     											cats = cats,
                           preds = preds,
-                          props = props,
-                          node_props = node_props,
-                          edge_props = edge_props)))
+                          props = props)))
 }
