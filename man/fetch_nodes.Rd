@@ -32,12 +32,12 @@ expression. The following features are supported:
 \itemize{
 \item Matching node properties with boolean operators, e.g. \code{in_taxon_label == "Homo sapiens"}.
 \item Matching multi-valued properties with \verb{\%in_list\%}, e.g. \code{"biolink:Gene" \%in_list\% category}. NOTE: using \verb{\%in_list\%} against vector queries, e.g. \code{in_taxon_label \%in_list\% c("Homo sapiens", "Mus musculus")} is \emph{not} supported. Nor does \verb{\%in_list\%} support multi-valued left hand sides; \code{c("biolink:Disease", "biolink:Gene") \%in_list\% category} will not work.
-\item Boolean connectives with \code{|}, \code{&}, and \code{!}, e.g. \code{in_taxon_lable == "Homo sapiens" | "biolink:Gene" \%in_list\% category}.
+\item Boolean connectives with \code{|}, \code{&}, and \code{!}, e.g. \code{in_taxon_label == "Homo sapiens" | "biolink:Gene" \%in_list\% category}.
 }
 
 If more than one condition parameter is specified, they are combined with \code{&}; for example,
-\code{fetch_nodes(engine, in_taxon_lable == "Homo sapiens", "biolink:Gene" \%in_list\% category)} is equivalent to
-\code{fetch_nodes(engine, in_taxon_lable == "Homo sapiens" & "biolink:Gene" \%in_list\% category)}.
+\code{fetch_nodes(engine, in_taxon_label == "Homo sapiens", "biolink:Gene" \%in_list\% category)} is equivalent to
+\code{fetch_nodes(engine, in_taxon_label == "Homo sapiens" & "biolink:Gene" \%in_list\% category)}.
 }
 \examples{
 library(tidygraph)
