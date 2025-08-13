@@ -19,7 +19,7 @@ graph objects.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -47,6 +47,9 @@ graph objects.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -67,7 +70,7 @@ graph objects.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a knowledge graph engine object for a neo4j database</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/neo4j_engine.R" class="external-link"><code>R/neo4j_engine.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/neo4j_engine.R" class="external-link"><code>R/neo4j_engine.R</code></a></small>
     <div class="hidden name"><code>neo4j_engine.Rd</code></div>
     </div>
 
@@ -157,12 +160,13 @@ of <code>neo4j_engine()</code> with the URL set to the Monarch Neo4j instance, a
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 2 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 2 × 10 (active)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id          category pcategory name  description synonym iri   xref  namespace</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:0007… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ehle… Ehlers-Dan… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:0007… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Marf… A disorder… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span> MONDO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: provided_by &lt;list&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 2 × 13 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id            category  pcategory       name   description synonym iri   xref </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:0007522 <span style="color: #949494;">&lt;chr [1]&gt;</span> biolink:Disease Ehler… Ehlers-Dan… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:0007947 <span style="color: #949494;">&lt;chr [1]&gt;</span> biolink:Disease Marfa… A disorder… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: related_synonyms &lt;chr&gt;, namespace &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, exact_synonyms &lt;chr&gt;, subsets &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 0 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 variables: from &lt;int&gt;, to &lt;int&gt;, subject &lt;chr&gt;, predicate &lt;chr&gt;,</span></span>

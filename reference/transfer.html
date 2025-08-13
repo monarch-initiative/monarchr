@@ -20,7 +20,7 @@ column; intended to be used with mutate() on nodes."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@ column; intended to be used with mutate() on nodes."><!-- mathjax --><script src
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -68,7 +71,7 @@ column; intended to be used with mutate() on nodes."><!-- mathjax --><script src
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Transfer information over edges to nodes.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/transfer.R" class="external-link"><code>R/transfer.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/transfer.R" class="external-link"><code>R/transfer.R</code></a></small>
     <div class="hidden name"><code>transfer.Rd</code></div>
     </div>
 
@@ -101,20 +104,7 @@ otherwise.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">engine</span> <span class="op">|&gt;</span> <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="grapes-twiddle-grapes.html">%~%</a></span> <span class="st">"COL1A"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>caused_by_genes <span class="op">=</span> <span class="fu">transfer</span><span class="op">(</span><span class="va">name</span>, over <span class="op">=</span> <span class="st">"biolink:causes"</span>, direction <span class="op">=</span> <span class="st">"out"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>causes_diseases <span class="op">=</span> <span class="fu">transfer</span><span class="op">(</span><span class="va">name</span>, over <span class="op">=</span> <span class="st">"biolink:causes"</span>, direction <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="plot.tbl_kgx.html">plot.tbl_kgx</a></span><span class="op">(</span>node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">name</span>,</span></span>
-<span class="r-in"><span>                                  <span class="st">" caused by: "</span>, <span class="va">caused_by_genes</span>,</span></span>
-<span class="r-in"><span>                                  <span class="st">" causes: "</span>, <span class="va">causes_diseases</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>               label_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in plot.tbl_kgx(mutate(mutate(activate(expand(fetch_nodes(engine,     name %~% "COL1A"), categories = "biolink:Disease"), nodes),     caused_by_genes = transfer(name, over = "biolink:causes",         direction = "out")), causes_diseases = transfer(name,     over = "biolink:causes", direction = "in")), node_label = paste(name,     " caused by: ", caused_by_genes, " causes: ", causes_diseases),     label_size = 3):</span> could not find function "plot.tbl_kgx"</span>
-<span class="r-in"><span></span></span>
-</code></pre></div>
+
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

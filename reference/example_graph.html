@@ -22,7 +22,7 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -50,6 +50,9 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -70,7 +73,7 @@ may not be connected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Return an example set of nodes from a KG engine.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/example_graph.R" class="external-link"><code>R/example_graph.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/example_graph.R" class="external-link"><code>R/example_graph.R</code></a></small>
     <div class="hidden name"><code>example_graph.Rd</code></div>
     </div>
 
@@ -107,10 +110,10 @@ may not be connected.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Using example KGX file packaged with monarchr</span></span></span>
-<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># prints a readable summary and returns a list of dataframes</span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">example_graph</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span> <span class="fu">example_graph</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 12 nodes and 10 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
@@ -154,41 +157,43 @@ may not be connected.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://neo4j.monarchinitiative.org</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to https://neo4j.monarchinitiative.org</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 63 nodes and 37 edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 79 nodes and 44 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed acyclic multigraph with 27 components</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A directed acyclic simple graph with 37 components</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 63 × 16 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 79 × 22 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id         category pcategory name  symbol in_taxon_label description synonym</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> GO:0006493 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… prot… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A protein … <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> RGD:62060  <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ogt   Ogt    Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> NCBIGene:… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… OGT   OGT    Canis lupus f… O-linked N… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> GO:0000123 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… hist… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A protein … <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> RGD:3982   <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Yy1   Yy1    Rattus norveg… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> GO:0010467 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… gene… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The proces… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> MONDO:010… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… over… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A disease … <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> CLINVAR:1… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… NM_0… <span style="color: #BB0000;">NA</span>     Homo sapiens   <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> OBA:20500… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… seru… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The amount… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HP:0003542 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Incr… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The concen… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 53 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: iri &lt;chr&gt;, xref &lt;list&gt;, namespace &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;list&gt;, full_name &lt;chr&gt;, in_taxon &lt;list&gt;, type &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   has_gene &lt;list&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> WB:WBGene… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… abc-1 abc-1  Caenorhabditi… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> GO:0051306 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… mito… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             The proces… <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> NCBIGene:… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… CRAB… CRABP2 Bos taurus     cellular r… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> FB:FBgn00… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… fabp  fabp   Drosophila me… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> dictyBase… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… DDB_… DDB_G… Dictyostelium… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> GO:0070876 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… SOSS… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A protein … <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> GO:0001556 <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… oocy… <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>             A developm… <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> WB:WBGene… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… acy-4 acy-4  Caenorhabditi… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ZFIN:ZDB-… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… klf2… <span style="color: #BB0000;">NA</span>     Danio rerio    <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ZFIN:ZDB-… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… bns12 <span style="color: #BB0000;">NA</span>     Danio rerio    <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 69 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: full_name &lt;chr&gt;, xref &lt;list&gt;, in_taxon &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   namespace &lt;chr&gt;, provided_by &lt;chr&gt;, type &lt;list&gt;, iri &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   related_synonyms &lt;chr&gt;, exact_synonyms &lt;chr&gt;, subsets &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   narrow_synonyms &lt;chr&gt;, has_gene &lt;chr&gt;, broad_synonyms &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   deprecated &lt;lgl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 37 × 22</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject   predicate  object primary_knowledge_so…¹ knowledge_level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     2     1 RGD:62060 biolink:a… GO:00… infores:rgd            knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2     3 RGD:62060 biolink:o… NCBIG… infores:panther        knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     2     4 RGD:62060 biolink:p… GO:00… infores:rgd            knowledge_asse…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 34 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 44 × 23</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate object primary_knowledge_so…¹ knowledge_level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1     2 WB:WBGene… biolink:… GO:00… infores:wb             knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3     4 NCBIGene:… biolink:… FB:FB… infores:panther        knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     5     6 dictyBase… biolink:… GO:00… infores:go-central     knowledge_asse…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 41 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_knowledge_source</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: negated &lt;lgl&gt;, species_context_qualifier &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   agent_type &lt;chr&gt;, knowledge_source &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aggregator_knowledge_source &lt;list&gt;, has_evidence &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;list&gt;, id &lt;chr&gt;, category &lt;list&gt;, publications &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   original_object &lt;chr&gt;, qualifiers &lt;list&gt;, original_predicate &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: negated &lt;lgl&gt;, species_context_qualifier &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   agent_type &lt;chr&gt;, aggregator_knowledge_source &lt;chr&gt;, has_evidence &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, id &lt;chr&gt;, category &lt;list&gt;, publications &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   qualifier &lt;chr&gt;, original_predicate &lt;chr&gt;, qualifiers &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   disease_context_qualifier &lt;chr&gt;, original_object &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </div>

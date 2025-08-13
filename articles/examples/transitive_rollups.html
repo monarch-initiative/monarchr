@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -63,6 +63,9 @@
     </li>
     <li>
       <a href="../../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
+    </li>
+    <li>
+      <a href="../../articles/examples/engine_preferences.html">Engine Preferences</a>
     </li>
   </ul>
 </li>
@@ -96,10 +99,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Jun-04-2025</i>
+<i>Aug-13-2025</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/examples/transitive_rollups.Rmd" class="external-link"><code>vignettes/examples/transitive_rollups.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/vignettes/examples/transitive_rollups.Rmd" class="external-link"><code>vignettes/examples/transitive_rollups.Rmd</code></a></small>
       <div class="hidden name"><code>transitive_rollups.Rmd</code></div>
 
     </div>
@@ -248,13 +251,28 @@ xref (list)
 namespace
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-provided_by (list)
+provided_by
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+narrow_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+exact_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+subsets
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+related_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+broad_synonyms
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 full_name
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-in_taxon (list)
+in_taxon
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 type (list)
@@ -293,17 +311,95 @@ lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
 deficiency disease”, “type A Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001982</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “MEDGEN:10348”,
-“MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”, “SCTID:58459009”,
-“UMLS:C0028064”, “icd11.foundation:398872780”)
+c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
+“MEDGEN:10348”, “MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”,
+“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+“type A Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease with cholesterol esterification block|Niemann-Pick
+disease, subacute juvenile form|lipoid histiocytosis|lipoid
+histiocytosis (classical phosphatide)|sphingomyelin
+lipidosis|sphingomyelin/cholesterol lipidosis|sphingomyelinase
+deficiency disease”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0100464”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“acid sphingomyelinase deficiency”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An autosomal recessive lysosomal disease caused by biallelic loss of
+function variants in the SMPD1 gene. Clinical symptoms in affected
+individuals occur along a continuum. At the severe end of the spectrum
+are individuals historically diagnosed with Niemann-Pick disease type A
+(the neurovisceral form), which is characterized by hepatosplenomegaly
+with rapid neurological deterioration leading to death in the first few
+years of life. At the milder end of the spectrum are individuals
+historically diagnosed with Niemann-Pick disease type B, a later-onset,
+chronic visceral form, characterized by progressive visceral organ
+symptoms including hepatosplenomegaly and pulmonary insufficiency, and
+survival into adulthood. In addition, some affected individuals present
+with an intermediate phenotype, Niemann-Pick disease type A/B.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
+</td>
+<td style="text-align:left;">
+c(“MEDGEN:1800807”, “UMLS:C5243927”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -318,10 +414,101 @@ NA
 NA
 </td>
 <td style="text-align:left;">
+“clingen|gard_rare|otar|rare”
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009756”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type A”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Niemann-Pick disease type A is a very severe subtype of Niemann-Pick
+disease, an autosomal recessive lysosomal disease, and is characterized
+clinically by onset in infancy or early childhood with failure to
+thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
+disorders.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
+protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
+deficiency”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
+“MESH:D052536”, “NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”,
+“OMIM:257200”, “Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
+“icd11.foundation:530611243”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+“Niemann-PICK disease, type A|Niemann-Pick disease, Intermediate,
+protracted neurovisceral|sphingomyelin lipidosis|sphingomyelinase
+deficiency”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“SMPD1”
 </td>
 </tr>
 <tr>
@@ -349,17 +536,15 @@ compartment.”
 c(“NPC”, “Niemann Pick Disease Type C”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:7207”, “MEDGEN:67399”, “MESH:D052556”, “NANDO:1200063”,
-“NORD:1509”, “Orphanet:646”, “SCTID:66751000”, “UMLS:C0220756”,
-“icd11.foundation:812702125”)
+c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
+“UMLS:C0220756”, “icd11.foundation:812702125”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -371,6 +556,21 @@ c(“GARD:7207”, “MEDGEN:67399”, “MESH:D052556”, “NANDO:1200063”,
 NA
 </td>
 <td style="text-align:left;">
+“Niemann Pick Disease Type C”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -378,6 +578,163 @@ NA
 </td>
 <td style="text-align:left;">
 NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease, type C1”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Type C Niemann-Pick disease associated with a mutation in the gene
+NPC1, encoding Niemann-Pick C1 protein.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
+C1”, “Niemann-Pick disease with cholesterol esterification block”,
+“Niemann-Pick disease without sphingomyelinase deficiency”,
+“Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
+disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
+form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
+“Niemann-Pick disease, type D”, “neurovisceral storage disease with
+vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
+“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease, type C1|type C1 Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“clingen|gard_rare|rare”
+</td>
+<td style="text-align:left;">
+“NPC1|Niemann-PICK disease, type C1|Niemann-Pick disease type
+C1|Niemann-Pick disease with cholesterol esterification
+block|Niemann-Pick disease without sphingomyelinase
+deficiency|Niemann-Pick disease, chronic neuronopathic form|Niemann-Pick
+disease, nova Scotian type|Niemann-Pick disease, subacute juvenile
+form|Niemann-Pick disease, type C|Niemann-Pick disease, type
+D|neurovisceral storage disease with vertical supranuclear
+ophthalmoplegia”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type B”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Niemann-Pick disease type B is a mild subtype of Niemann-Pick disease,
+an autosomal recessive lysosomal disease, and is characterized
+clinically by onset in childhood with hepatosplenomegaly, growth
+retardation, and lung disorders such as infections and dyspnea”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+“Niemann-Pick disease, Intermediate, with visceral involvement and rapid
+progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
+type F”, “type B Niemann-Pick disease”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
+“MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
+“OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
+“icd11.foundation:327269975”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“type B Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+“Niemann Pick disease type B|Niemann-PICK disease, type B|Niemann-Pick
+disease, Intermediate, with visceral involvement and rapid
+progression|Niemann-Pick disease, type E|Niemann-Pick disease, type F”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“SMPD1”
 </td>
 </tr>
 <tr>
@@ -416,9 +773,7 @@ c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease type
 C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011873" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011873</a>”
@@ -437,6 +792,21 @@ c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
 NA
 </td>
 <td style="text-align:left;">
+“NPC2|Niemann-Pick disease, type C2|type C2 Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“clingen|gard_rare|rare”
+</td>
+<td style="text-align:left;">
+“Niemann-PICK disease, type C2|Niemann-Pick disease type C2”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -444,252 +814,6 @@ NA
 </td>
 <td style="text-align:left;">
 “NPC2”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0100464”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“acid sphingomyelinase deficiency”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“An autosomal recessive lysosomal disease caused by biallelic loss of
-function variants in the SMPD1 gene. Clinical symptoms in affected
-individuals occur along a continuum. At the severe end of the spectrum
-are individuals historically diagnosed with Niemann-Pick disease type A
-(the neurovisceral form), which is characterized by hepatosplenomegaly
-with rapid neurological deterioration leading to death in the first few
-years of life. At the milder end of the spectrum are individuals
-historically diagnosed with Niemann-Pick disease type B, a later-onset,
-chronic visceral form, characterized by progressive visceral organ
-symptoms including hepatosplenomegaly and pulmonary insufficiency, and
-survival into adulthood. In addition, some affected individuals present
-with an intermediate phenotype, Niemann-Pick disease type A/B.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
-</td>
-<td style="text-align:left;">
-c(“MEDGEN:1800807”, “UMLS:C5243927”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type B”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type B is a mild subtype of Niemann-Pick disease,
-an autosomal recessive lysosomal disease, and is characterized
-clinically by onset in childhood with hepatosplenomegaly, growth
-retardation, and lung disorders such as infections and dyspnea”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
-“Niemann-Pick disease, Intermediate, with visceral involvement and rapid
-progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”, “type B Niemann-Pick disease”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
-“MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
-“OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
-“icd11.foundation:327269975”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“SMPD1”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease, type C1”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Type C Niemann-Pick disease associated with a mutation in the gene
-NPC1, encoding Niemann-Pick C1 protein.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
-“Niemann-Pick disease without sphingomyelinase deficiency”,
-“Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
-disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
-form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
-“Niemann-Pick disease, type D”, “neurovisceral storage disease with
-vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
-“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0009756”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type A”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type A is a very severe subtype of Niemann-Pick
-disease, an autosomal recessive lysosomal disease, and is characterized
-clinically by onset in infancy or early childhood with failure to
-thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
-disorders.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070111”, “GARD:7206”, “MEDGEN:78650”, “MESH:D052536”,
-“NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”, “OMIM:257200”,
-“Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
-“icd11.foundation:530611243”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“SMPD1”
 </td>
 </tr>
 <tr>
@@ -715,9 +839,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016306" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016306</a>”
@@ -730,6 +852,21 @@ c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”, “UMLS:C568086
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -767,9 +904,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016307" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016307</a>”
@@ -783,6 +918,21 @@ c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”, “UMLS:C568086
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -820,9 +970,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016308" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016308</a>”
@@ -844,51 +992,13 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C, adult neurologic onset”
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
-“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
 </td>
 <td style="text-align:left;">
 NA
@@ -926,9 +1036,7 @@ NA
 “Niemann-Pick disease type C, classic form”
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016309" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016309</a>”
@@ -942,6 +1050,87 @@ c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”, “UMLS:C567981
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C, classic form”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C, adult neurologic onset”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
+“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -980,9 +1169,7 @@ non-neuronopathic form of Niemann-Pick disease.”
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0020384" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0020384</a>”
@@ -995,6 +1182,21 @@ c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”, “UMLS:C02682
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -1032,21 +1234,35 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0850058" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0850058</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:22456”, “MEDGEN:1842316”, “Orphanet:618891”, “UMLS:C5539139”)
+c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”, “Orphanet:618891”,
+“UMLS:C5539139”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -1081,16 +1297,11 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“EDDM1”, “HE1”, “NP-C2”, “Niemann-Pick disease, type C2”, “epididymal
-protein 1”)
+c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
+disease, type C2”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
+“biolink:Gene”
 </td>
 <td style="text-align:left;">
 NA
@@ -1105,62 +1316,22 @@ c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 “NPC intracellular cholesterol transporter 2”
-</td>
-<td style="text-align:left;">
-“NCBITaxon:9606”
-</td>
-<td style="text-align:left;">
-“SO:0001217”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:Gene”
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-<td style="text-align:left;">
-“Homo sapiens”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann-Pick disease, type C1”, “SLC65A1”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
-</td>
-<td style="text-align:left;">
-“HGNC”
-</td>
-<td style="text-align:left;">
-“hgnc_gene_nodes”
-</td>
-<td style="text-align:left;">
-“NPC intracellular cholesterol transporter 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -1192,16 +1363,11 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“ASM”, “Niemann-Pick type A/B”, “acid sphingomyelinase”,
+c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
 “sphingomyelin phosphodiesterase 1, acid lysosomal”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
+“biolink:Gene”
 </td>
 <td style="text-align:left;">
 NA
@@ -1216,7 +1382,87 @@ c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 “sphingomyelin phosphodiesterase 1”
+</td>
+<td style="text-align:left;">
+“NCBITaxon:9606”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:Gene”
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+<td style="text-align:left;">
+“Homo sapiens”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“SLC65A1”, “Niemann-Pick disease, type C1”)
+</td>
+<td style="text-align:left;">
+“biolink:Gene”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
+</td>
+<td style="text-align:left;">
+“HGNC”
+</td>
+<td style="text-align:left;">
+“hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC intracellular cholesterol transporter 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -1263,13 +1509,10 @@ agent_type
 knowledge_level
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-knowledge_source
+aggregator_knowledge_source
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-aggregator_knowledge_source (list)
-</th>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-provided_by (list)
+provided_by
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 id
@@ -1278,10 +1521,10 @@ id
 category (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-original_subject
+original_object
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-original_object
+original_subject
 </th>
 </tr></thead>
 <tbody>
@@ -1291,147 +1534,6 @@ original_object
 </td>
 <td style="text-align:left;">
 2
-</td>
-<td style="text-align:left;">
-“MONDO:0011873”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:d84e5ef9-9f3a-48ad-b02e-8bcb3c5c1d66" class="uri">urn:uuid:d84e5ef9-9f3a-48ad-b02e-8bcb3c5c1d66</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0100464”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:1139cc43-14fb-40be-888a-5db87084ac41" class="uri">urn:uuid:1139cc43-14fb-40be-888a-5db87084ac41</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:bc968cd7-5df4-4f0a-a1d0-cd9ab1024c4f" class="uri">urn:uuid:bc968cd7-5df4-4f0a-a1d0-cd9ab1024c4f</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-4
 </td>
 <td style="text-align:left;">
 “MONDO:0009756”
@@ -1452,19 +1554,148 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:d4851de8-b18c-4957-8c8d-d592732c2e2d" class="uri">urn:uuid:d4851de8-b18c-4957-8c8d-d592732c2e2d</a>”
+“<a href="urn:uuid:36460df7-c6bf-4dca-af59-2fcb3ba87d6d" class="uri">urn:uuid:36460df7-c6bf-4dca-af59-2fcb3ba87d6d</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:6773dba8-67ae-4350-a717-a414779df679" class="uri">urn:uuid:6773dba8-67ae-4350-a717-a414779df679</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0100464”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:2774cdd1-e13b-4fad-b7dd-c42cad0dc019" class="uri">urn:uuid:2774cdd1-e13b-4fad-b7dd-c42cad0dc019</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0011873”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:ce103bff-83b2-435d-a6ad-47a68f41467b" class="uri">urn:uuid:ce103bff-83b2-435d-a6ad-47a68f41467b</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1478,7 +1709,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -1499,19 +1730,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:6b6a820e-1cff-48c3-ad38-e8ead9291e11" class="uri">urn:uuid:6b6a820e-1cff-48c3-ad38-e8ead9291e11</a>”
+“<a href="urn:uuid:bb45c5f1-ba78-44c9-a9fe-98c1ef2a5bd7" class="uri">urn:uuid:bb45c5f1-ba78-44c9-a9fe-98c1ef2a5bd7</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1525,7 +1753,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -1546,19 +1774,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:2a8dfadf-942b-40d1-872f-ea8743e643bb" class="uri">urn:uuid:2a8dfadf-942b-40d1-872f-ea8743e643bb</a>”
+“<a href="urn:uuid:334aa59a-7d23-4764-ad20-b7ba5d79f950" class="uri">urn:uuid:334aa59a-7d23-4764-ad20-b7ba5d79f950</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1572,7 +1797,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -1593,19 +1818,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:60bf219e-359c-47d8-9625-7548f3fa29de" class="uri">urn:uuid:60bf219e-359c-47d8-9625-7548f3fa29de</a>”
+“<a href="urn:uuid:33eedac8-66f3-4f1c-aba9-f25ed369e155" class="uri">urn:uuid:33eedac8-66f3-4f1c-aba9-f25ed369e155</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1619,54 +1841,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:3ee3d8a0-8c25-4f72-b655-85353e04a57b" class="uri">urn:uuid:3ee3d8a0-8c25-4f72-b655-85353e04a57b</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -1687,19 +1862,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:73fa49c2-2b74-4197-a2cb-3ad785d43498" class="uri">urn:uuid:73fa49c2-2b74-4197-a2cb-3ad785d43498</a>”
+“<a href="urn:uuid:e781cf11-b0b0-4ff9-9d56-7b7f81f535f2" class="uri">urn:uuid:e781cf11-b0b0-4ff9-9d56-7b7f81f535f2</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1710,7 +1882,51 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-2
+12
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:54af4ae9-21e4-48d7-9420-5c540719c2f9" class="uri">urn:uuid:54af4ae9-21e4-48d7-9420-5c540719c2f9</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
 </td>
 <td style="text-align:left;">
 1
@@ -1734,19 +1950,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:2955ef59-2e0c-4857-8a3b-619e37e283f5" class="uri">urn:uuid:2955ef59-2e0c-4857-8a3b-619e37e283f5</a>”
+“<a href="urn:uuid:c0c2903c-d702-44ac-9456-6f1383e5a25a" class="uri">urn:uuid:c0c2903c-d702-44ac-9456-6f1383e5a25a</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1781,19 +1994,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:c68dd71c-5986-499e-a898-2191b1b9060a" class="uri">urn:uuid:c68dd71c-5986-499e-a898-2191b1b9060a</a>”
+“<a href="urn:uuid:87b140c9-d6c9-4401-a93f-0f7b9bc0e4c5" class="uri">urn:uuid:87b140c9-d6c9-4401-a93f-0f7b9bc0e4c5</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1804,7 +2014,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+2
 </td>
 <td style="text-align:left;">
 1
@@ -1828,19 +2038,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:07d2ac87-52da-4628-bf0a-ca8dd0ef173c" class="uri">urn:uuid:07d2ac87-52da-4628-bf0a-ca8dd0ef173c</a>”
+“<a href="urn:uuid:374ab4c1-1277-4f3b-996a-5db04577e237" class="uri">urn:uuid:374ab4c1-1277-4f3b-996a-5db04577e237</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1875,19 +2082,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:69db7c8b-0592-4e33-9a9d-8cdd3f1fb3de" class="uri">urn:uuid:69db7c8b-0592-4e33-9a9d-8cdd3f1fb3de</a>”
+“<a href="urn:uuid:d849b58c-a298-4bfc-842d-0f9b2a88208b" class="uri">urn:uuid:d849b58c-a298-4bfc-842d-0f9b2a88208b</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -1901,7 +2105,7 @@ NA
 15
 </td>
 <td style="text-align:left;">
-3
+7
 </td>
 <td style="text-align:left;">
 “HGNC:14537”
@@ -1922,33 +2126,22 @@ NA
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a6261aaa-8b41-11ef-b621-6045bdbae67e”
+“uuid:0eae150e-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:607625”
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
 </td>
 </tr>
 <tr>
@@ -1957,61 +2150,6 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 </td>
 <td style="text-align:left;">
 6
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:causes”
-</td>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“infores:omim”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:a63c3eec-8b41-11ef-b621-6045bdbae67e”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“OMIM:257220”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-5
 </td>
 <td style="text-align:left;">
 “HGNC:11120”
@@ -2032,33 +2170,22 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a6261ac5-8b41-11ef-b621-6045bdbae67e”
+“uuid:0eae1529-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:607616”
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
 </td>
 </tr>
 <tr>
@@ -2066,7 +2193,51 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 17
 </td>
 <td style="text-align:left;">
-7
+5
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:causes”
+</td>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“infores:omim”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:medgen”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:0ec43c21-198e-11f0-be82-6045bdb3d4c0”
+</td>
+<td style="text-align:left;">
+“biolink:CausalGeneToDiseaseAssociation”
+</td>
+<td style="text-align:left;">
+“OMIM:257220”
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+3
 </td>
 <td style="text-align:left;">
 “HGNC:11120”
@@ -2087,33 +2258,22 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a63c3f7e-8b41-11ef-b621-6045bdbae67e”
+“uuid:0ec43cb3-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:257200”
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
 </td>
 </tr>
 </tbody>
@@ -2132,22 +2292,22 @@ source nodes’ <code>name</code>, resulting in a new
 <span><span class="co">##    name                                                                 caused_by</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> Niemann-Pick disease                                                 <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> Niemann-Pick disease type C                                          <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Niemann-Pick disease, type C2                                        NPC2     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> acid sphingomyelinase deficiency                                     <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Niemann-Pick disease type B                                          SMPD1    </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Niemann-Pick disease, type C1                                        NPC1     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> Niemann-Pick disease type A                                          SMPD1    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> acid sphingomyelinase deficiency                                     <span style="color: #BB0000;">NA</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Niemann-Pick disease type A                                          SMPD1    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> Niemann-Pick disease type C                                          <span style="color: #BB0000;">NA</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Niemann-Pick disease, type C1                                        NPC1     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Niemann-Pick disease type B                                          SMPD1    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> Niemann-Pick disease, type C2                                        NPC2     </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span> Niemann-Pick disease type C, severe perinatal form                   <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> Niemann-Pick disease type C, severe early infantile neurologic onset <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> Niemann-Pick disease type C, late infantile neurologic onset         <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">11</span> Niemann-Pick disease type C, adult neurologic onset                  <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">12</span> Niemann-Pick disease type C, juvenile neurologic onset               <span style="color: #BB0000;">NA</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">11</span> Niemann-Pick disease type C, juvenile neurologic onset               <span style="color: #BB0000;">NA</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">12</span> Niemann-Pick disease type C, adult neurologic onset                  <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">13</span> Niemann-Pick disease type E                                          <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">14</span> chronic neurovisceral acid sphingomyelinase deficiency               <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">15</span> NPC2                                                                 <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">16</span> NPC1                                                                 <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">17</span> SMPD1                                                                <span style="color: #BB0000;">NA</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #BCBCBC;">16</span> SMPD1                                                                <span style="color: #BB0000;">NA</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">17</span> NPC1                                                                 <span style="color: #BB0000;">NA</span></span></span></code></pre>
 <p>In cases where a transfer would result in multiple values being
 collected at the destination node, the result will be a list column.</p>
 <p>To finish this example, we use <code><a href="../../reference/rolling.html">roll_up()</a></code> to collect, for
@@ -2208,13 +2368,28 @@ xref (list)
 namespace
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-provided_by (list)
+provided_by
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+narrow_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+exact_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+subsets
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+related_synonyms
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+broad_synonyms
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 full_name
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-in_taxon (list)
+in_taxon
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 type (list)
@@ -2256,17 +2431,98 @@ lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
 deficiency disease”, “type A Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001982</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “MEDGEN:10348”,
-“MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”, “SCTID:58459009”,
-“UMLS:C0028064”, “icd11.foundation:398872780”)
+c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
+“MEDGEN:10348”, “MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”,
+“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+“type A Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease with cholesterol esterification block|Niemann-Pick
+disease, subacute juvenile form|lipoid histiocytosis|lipoid
+histiocytosis (classical phosphatide)|sphingomyelin
+lipidosis|sphingomyelin/cholesterol lipidosis|sphingomyelinase
+deficiency disease”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(NA, “SMPD1”, “NPC1”, “NPC2”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0100464”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“acid sphingomyelinase deficiency”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“An autosomal recessive lysosomal disease caused by biallelic loss of
+function variants in the SMPD1 gene. Clinical symptoms in affected
+individuals occur along a continuum. At the severe end of the spectrum
+are individuals historically diagnosed with Niemann-Pick disease type A
+(the neurovisceral form), which is characterized by hepatosplenomegaly
+with rapid neurological deterioration leading to death in the first few
+years of life. At the milder end of the spectrum are individuals
+historically diagnosed with Niemann-Pick disease type B, a later-onset,
+chronic visceral form, characterized by progressive visceral organ
+symptoms including hepatosplenomegaly and pulmonary insufficiency, and
+survival into adulthood. In addition, some affected individuals present
+with an intermediate phenotype, Niemann-Pick disease type A/B.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
+</td>
+<td style="text-align:left;">
+c(“MEDGEN:1800807”, “UMLS:C5243927”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -2281,13 +2537,107 @@ NA
 NA
 </td>
 <td style="text-align:left;">
+“clingen|gard_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
-c(NA, “NPC2”, “NPC1”, “SMPD1”)
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(NA, “SMPD1”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009756”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type A”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Niemann-Pick disease type A is a very severe subtype of Niemann-Pick
+disease, an autosomal recessive lysosomal disease, and is characterized
+clinically by onset in infancy or early childhood with failure to
+thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
+disorders.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
+protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
+deficiency”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
+“MESH:D052536”, “NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”,
+“OMIM:257200”, “Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
+“icd11.foundation:530611243”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+“Niemann-PICK disease, type A|Niemann-Pick disease, Intermediate,
+protracted neurovisceral|sphingomyelin lipidosis|sphingomyelinase
+deficiency”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“SMPD1”
+</td>
+<td style="text-align:left;">
+“SMPD1”
 </td>
 </tr>
 <tr>
@@ -2315,17 +2665,15 @@ compartment.”
 c(“NPC”, “Niemann Pick Disease Type C”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:7207”, “MEDGEN:67399”, “MESH:D052556”, “NANDO:1200063”,
-“NORD:1509”, “Orphanet:646”, “SCTID:66751000”, “UMLS:C0220756”,
-“icd11.foundation:812702125”)
+c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
+“UMLS:C0220756”, “icd11.foundation:812702125”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -2337,7 +2685,16 @@ c(“GARD:7207”, “MEDGEN:67399”, “MESH:D052556”, “NANDO:1200063”,
 NA
 </td>
 <td style="text-align:left;">
+“Niemann Pick Disease Type C”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
 NA
+</td>
+<td style="text-align:left;">
+“NPC”
 </td>
 <td style="text-align:left;">
 NA
@@ -2346,7 +2703,176 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(NA, “NPC2”, “NPC1”)
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(NA, “NPC1”, “NPC2”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease, type C1”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Type C Niemann-Pick disease associated with a mutation in the gene
+NPC1, encoding Niemann-Pick C1 protein.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
+C1”, “Niemann-Pick disease with cholesterol esterification block”,
+“Niemann-Pick disease without sphingomyelinase deficiency”,
+“Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
+disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
+form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
+“Niemann-Pick disease, type D”, “neurovisceral storage disease with
+vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
+“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease, type C1|type C1 Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“clingen|gard_rare|rare”
+</td>
+<td style="text-align:left;">
+“NPC1|Niemann-PICK disease, type C1|Niemann-Pick disease type
+C1|Niemann-Pick disease with cholesterol esterification
+block|Niemann-Pick disease without sphingomyelinase
+deficiency|Niemann-Pick disease, chronic neuronopathic form|Niemann-Pick
+disease, nova Scotian type|Niemann-Pick disease, subacute juvenile
+form|Niemann-Pick disease, type C|Niemann-Pick disease, type
+D|neurovisceral storage disease with vertical supranuclear
+ophthalmoplegia”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type B”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“Niemann-Pick disease type B is a mild subtype of Niemann-Pick disease,
+an autosomal recessive lysosomal disease, and is characterized
+clinically by onset in childhood with hepatosplenomegaly, growth
+retardation, and lung disorders such as infections and dyspnea”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+“Niemann-Pick disease, Intermediate, with visceral involvement and rapid
+progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
+type F”, “type B Niemann-Pick disease”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
+</td>
+<td style="text-align:left;">
+c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
+“MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
+“OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
+“icd11.foundation:327269975”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“type B Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+“Niemann Pick disease type B|Niemann-PICK disease, type B|Niemann-Pick
+disease, Intermediate, with visceral involvement and rapid
+progression|Niemann-Pick disease, type E|Niemann-Pick disease, type F”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“SMPD1”
+</td>
+<td style="text-align:left;">
+“SMPD1”
 </td>
 </tr>
 <tr>
@@ -2385,9 +2911,7 @@ c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease type
 C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011873" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011873</a>”
@@ -2406,6 +2930,21 @@ c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
 NA
 </td>
 <td style="text-align:left;">
+“NPC2|Niemann-Pick disease, type C2|type C2 Niemann-Pick disease”
+</td>
+<td style="text-align:left;">
+“clingen|gard_rare|rare”
+</td>
+<td style="text-align:left;">
+“Niemann-PICK disease, type C2|Niemann-Pick disease type C2”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -2416,264 +2955,6 @@ NA
 </td>
 <td style="text-align:left;">
 “NPC2”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0100464”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“acid sphingomyelinase deficiency”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“An autosomal recessive lysosomal disease caused by biallelic loss of
-function variants in the SMPD1 gene. Clinical symptoms in affected
-individuals occur along a continuum. At the severe end of the spectrum
-are individuals historically diagnosed with Niemann-Pick disease type A
-(the neurovisceral form), which is characterized by hepatosplenomegaly
-with rapid neurological deterioration leading to death in the first few
-years of life. At the milder end of the spectrum are individuals
-historically diagnosed with Niemann-Pick disease type B, a later-onset,
-chronic visceral form, characterized by progressive visceral organ
-symptoms including hepatosplenomegaly and pulmonary insufficiency, and
-survival into adulthood. In addition, some affected individuals present
-with an intermediate phenotype, Niemann-Pick disease type A/B.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
-</td>
-<td style="text-align:left;">
-c(“MEDGEN:1800807”, “UMLS:C5243927”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-c(NA, “SMPD1”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type B”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type B is a mild subtype of Niemann-Pick disease,
-an autosomal recessive lysosomal disease, and is characterized
-clinically by onset in childhood with hepatosplenomegaly, growth
-retardation, and lung disorders such as infections and dyspnea”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
-“Niemann-Pick disease, Intermediate, with visceral involvement and rapid
-progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”, “type B Niemann-Pick disease”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
-“MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
-“OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
-“icd11.foundation:327269975”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“SMPD1”
-</td>
-<td style="text-align:left;">
-“SMPD1”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease, type C1”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Type C Niemann-Pick disease associated with a mutation in the gene
-NPC1, encoding Niemann-Pick C1 protein.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
-“Niemann-Pick disease without sphingomyelinase deficiency”,
-“Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
-disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
-form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
-“Niemann-Pick disease, type D”, “neurovisceral storage disease with
-vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
-“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0009756”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type A”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type A is a very severe subtype of Niemann-Pick
-disease, an autosomal recessive lysosomal disease, and is characterized
-clinically by onset in infancy or early childhood with failure to
-thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
-disorders.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
-</td>
-<td style="text-align:left;">
-c(“DOID:0070111”, “GARD:7206”, “MEDGEN:78650”, “MESH:D052536”,
-“NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”, “OMIM:257200”,
-“Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
-“icd11.foundation:530611243”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“SMPD1”
-</td>
-<td style="text-align:left;">
-“SMPD1”
 </td>
 </tr>
 <tr>
@@ -2699,9 +2980,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016306" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016306</a>”
@@ -2714,6 +2993,21 @@ c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”, “UMLS:C568086
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -2754,9 +3048,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016307" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016307</a>”
@@ -2770,6 +3062,21 @@ c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”, “UMLS:C568086
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -2810,9 +3117,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016308" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016308</a>”
@@ -2834,54 +3139,13 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-NA
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
 </td>
 <td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
 NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C, adult neurologic onset”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
-“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
 </td>
 <td style="text-align:left;">
 NA
@@ -2922,9 +3186,7 @@ NA
 “Niemann-Pick disease type C, classic form”
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016309" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016309</a>”
@@ -2938,6 +3200,90 @@ c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”, “UMLS:C567981
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C, classic form”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C, adult neurologic onset”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
+“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -2979,9 +3325,7 @@ non-neuronopathic form of Niemann-Pick disease.”
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0020384" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0020384</a>”
@@ -2994,6 +3338,21 @@ c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”, “UMLS:C02682
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -3034,21 +3393,35 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”, “biolink:Disease”,
-“biolink:DiseaseOrPhenotypicFeature”, “biolink:Entity”,
-“biolink:NamedThing”, “biolink:ThingWithTaxon”)
+“biolink:Disease”
 </td>
 <td style="text-align:left;">
 “<a href="http://purl.obolibrary.org/obo/MONDO_0850058" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0850058</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:22456”, “MEDGEN:1842316”, “Orphanet:618891”, “UMLS:C5539139”)
+c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”, “Orphanet:618891”,
+“UMLS:C5539139”)
 </td>
 <td style="text-align:left;">
 “MONDO”
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -3086,16 +3459,11 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“EDDM1”, “HE1”, “NP-C2”, “Niemann-Pick disease, type C2”, “epididymal
-protein 1”)
+c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
+disease, type C2”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
+“biolink:Gene”
 </td>
 <td style="text-align:left;">
 NA
@@ -3110,65 +3478,22 @@ c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 “NPC intracellular cholesterol transporter 2”
-</td>
-<td style="text-align:left;">
-“NCBITaxon:9606”
-</td>
-<td style="text-align:left;">
-“SO:0001217”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:Gene”
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-<td style="text-align:left;">
-“NPC1”
-</td>
-<td style="text-align:left;">
-“Homo sapiens”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“Niemann-Pick disease, type C1”, “SLC65A1”)
-</td>
-<td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
-</td>
-<td style="text-align:left;">
-“HGNC”
-</td>
-<td style="text-align:left;">
-“hgnc_gene_nodes”
-</td>
-<td style="text-align:left;">
-“NPC intracellular cholesterol transporter 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -3203,16 +3528,11 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“ASM”, “Niemann-Pick type A/B”, “acid sphingomyelinase”,
+c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
 “sphingomyelin phosphodiesterase 1, acid lysosomal”)
 </td>
 <td style="text-align:left;">
-c(“biolink:BiologicalEntity”,
-“biolink:ChemicalEntityOrGeneOrGeneProduct”, “biolink:Entity”,
-“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
-“biolink:MacromolecularMachineMixin”, “biolink:NamedThing”,
-“biolink:OntologyClass”, “biolink:PhysicalEssence”,
-“biolink:PhysicalEssenceOrOccurrent”, “biolink:ThingWithTaxon”)
+“biolink:Gene”
 </td>
 <td style="text-align:left;">
 NA
@@ -3227,7 +3547,90 @@ c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
 “hgnc_gene_nodes”
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 “sphingomyelin phosphodiesterase 1”
+</td>
+<td style="text-align:left;">
+“NCBITaxon:9606”
+</td>
+<td style="text-align:left;">
+“SO:0001217”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:Gene”
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+<td style="text-align:left;">
+“NPC1”
+</td>
+<td style="text-align:left;">
+“Homo sapiens”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“SLC65A1”, “Niemann-Pick disease, type C1”)
+</td>
+<td style="text-align:left;">
+“biolink:Gene”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
+</td>
+<td style="text-align:left;">
+“HGNC”
+</td>
+<td style="text-align:left;">
+“hgnc_gene_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC intracellular cholesterol transporter 1”
 </td>
 <td style="text-align:left;">
 “NCBITaxon:9606”
@@ -3277,13 +3680,10 @@ agent_type
 knowledge_level
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-knowledge_source
+aggregator_knowledge_source
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-aggregator_knowledge_source (list)
-</th>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-provided_by (list)
+provided_by
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 id
@@ -3292,10 +3692,10 @@ id
 category (list)
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-original_subject
+original_object
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-original_object
+original_subject
 </th>
 </tr></thead>
 <tbody>
@@ -3305,147 +3705,6 @@ original_object
 </td>
 <td style="text-align:left;">
 2
-</td>
-<td style="text-align:left;">
-“MONDO:0011873”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:d84e5ef9-9f3a-48ad-b02e-8bcb3c5c1d66" class="uri">urn:uuid:d84e5ef9-9f3a-48ad-b02e-8bcb3c5c1d66</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-“MONDO:0011871”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0100464”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:1139cc43-14fb-40be-888a-5db87084ac41" class="uri">urn:uuid:1139cc43-14fb-40be-888a-5db87084ac41</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:bc968cd7-5df4-4f0a-a1d0-cd9ab1024c4f" class="uri">urn:uuid:bc968cd7-5df4-4f0a-a1d0-cd9ab1024c4f</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-4
 </td>
 <td style="text-align:left;">
 “MONDO:0009756”
@@ -3466,19 +3725,148 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:d4851de8-b18c-4957-8c8d-d592732c2e2d" class="uri">urn:uuid:d4851de8-b18c-4957-8c8d-d592732c2e2d</a>”
+“<a href="urn:uuid:36460df7-c6bf-4dca-af59-2fcb3ba87d6d" class="uri">urn:uuid:36460df7-c6bf-4dca-af59-2fcb3ba87d6d</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:6773dba8-67ae-4350-a717-a414779df679" class="uri">urn:uuid:6773dba8-67ae-4350-a717-a414779df679</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+“MONDO:0011871”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0100464”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:2774cdd1-e13b-4fad-b7dd-c42cad0dc019" class="uri">urn:uuid:2774cdd1-e13b-4fad-b7dd-c42cad0dc019</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0011873”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:ce103bff-83b2-435d-a6ad-47a68f41467b" class="uri">urn:uuid:ce103bff-83b2-435d-a6ad-47a68f41467b</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3492,7 +3880,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -3513,19 +3901,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:6b6a820e-1cff-48c3-ad38-e8ead9291e11" class="uri">urn:uuid:6b6a820e-1cff-48c3-ad38-e8ead9291e11</a>”
+“<a href="urn:uuid:bb45c5f1-ba78-44c9-a9fe-98c1ef2a5bd7" class="uri">urn:uuid:bb45c5f1-ba78-44c9-a9fe-98c1ef2a5bd7</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3539,7 +3924,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -3560,19 +3945,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:2a8dfadf-942b-40d1-872f-ea8743e643bb" class="uri">urn:uuid:2a8dfadf-942b-40d1-872f-ea8743e643bb</a>”
+“<a href="urn:uuid:334aa59a-7d23-4764-ad20-b7ba5d79f950" class="uri">urn:uuid:334aa59a-7d23-4764-ad20-b7ba5d79f950</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3586,7 +3968,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -3607,19 +3989,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:60bf219e-359c-47d8-9625-7548f3fa29de" class="uri">urn:uuid:60bf219e-359c-47d8-9625-7548f3fa29de</a>”
+“<a href="urn:uuid:33eedac8-66f3-4f1c-aba9-f25ed369e155" class="uri">urn:uuid:33eedac8-66f3-4f1c-aba9-f25ed369e155</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3633,54 +4012,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-“MONDO:0016310”
-</td>
-<td style="text-align:left;">
-“biolink:subclass_of”
-</td>
-<td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“infores:mondo”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“not_provided”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
-</td>
-<td style="text-align:left;">
-“phenio_edges”
-</td>
-<td style="text-align:left;">
-“<a href="urn:uuid:3ee3d8a0-8c25-4f72-b655-85353e04a57b" class="uri">urn:uuid:3ee3d8a0-8c25-4f72-b655-85353e04a57b</a>”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-2
+4
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -3701,19 +4033,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:73fa49c2-2b74-4197-a2cb-3ad785d43498" class="uri">urn:uuid:73fa49c2-2b74-4197-a2cb-3ad785d43498</a>”
+“<a href="urn:uuid:e781cf11-b0b0-4ff9-9d56-7b7f81f535f2" class="uri">urn:uuid:e781cf11-b0b0-4ff9-9d56-7b7f81f535f2</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3724,7 +4053,51 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-2
+12
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+“MONDO:0016310”
+</td>
+<td style="text-align:left;">
+“biolink:subclass_of”
+</td>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“infores:mondo”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“not_provided”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:phenio”
+</td>
+<td style="text-align:left;">
+“phenio_edges”
+</td>
+<td style="text-align:left;">
+“<a href="urn:uuid:54af4ae9-21e4-48d7-9420-5c540719c2f9" class="uri">urn:uuid:54af4ae9-21e4-48d7-9420-5c540719c2f9</a>”
+</td>
+<td style="text-align:left;">
+“biolink:Association”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
 </td>
 <td style="text-align:left;">
 1
@@ -3748,19 +4121,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:2955ef59-2e0c-4857-8a3b-619e37e283f5" class="uri">urn:uuid:2955ef59-2e0c-4857-8a3b-619e37e283f5</a>”
+“<a href="urn:uuid:c0c2903c-d702-44ac-9456-6f1383e5a25a" class="uri">urn:uuid:c0c2903c-d702-44ac-9456-6f1383e5a25a</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3795,19 +4165,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:c68dd71c-5986-499e-a898-2191b1b9060a" class="uri">urn:uuid:c68dd71c-5986-499e-a898-2191b1b9060a</a>”
+“<a href="urn:uuid:87b140c9-d6c9-4401-a93f-0f7b9bc0e4c5" class="uri">urn:uuid:87b140c9-d6c9-4401-a93f-0f7b9bc0e4c5</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3818,7 +4185,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+2
 </td>
 <td style="text-align:left;">
 1
@@ -3842,19 +4209,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:07d2ac87-52da-4628-bf0a-ca8dd0ef173c" class="uri">urn:uuid:07d2ac87-52da-4628-bf0a-ca8dd0ef173c</a>”
+“<a href="urn:uuid:374ab4c1-1277-4f3b-996a-5db04577e237" class="uri">urn:uuid:374ab4c1-1277-4f3b-996a-5db04577e237</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3889,19 +4253,16 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+“infores:monarchinitiative|infores:phenio”
 </td>
 <td style="text-align:left;">
 “phenio_edges”
 </td>
 <td style="text-align:left;">
-“<a href="urn:uuid:69db7c8b-0592-4e33-9a9d-8cdd3f1fb3de" class="uri">urn:uuid:69db7c8b-0592-4e33-9a9d-8cdd3f1fb3de</a>”
+“<a href="urn:uuid:d849b58c-a298-4bfc-842d-0f9b2a88208b" class="uri">urn:uuid:d849b58c-a298-4bfc-842d-0f9b2a88208b</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+“biolink:Association”
 </td>
 <td style="text-align:left;">
 NA
@@ -3915,7 +4276,7 @@ NA
 15
 </td>
 <td style="text-align:left;">
-3
+7
 </td>
 <td style="text-align:left;">
 “HGNC:14537”
@@ -3936,33 +4297,22 @@ NA
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a6261aaa-8b41-11ef-b621-6045bdbae67e”
+“uuid:0eae150e-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:10577”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:607625”
+</td>
+<td style="text-align:left;">
+“NCBIGene:10577”
 </td>
 </tr>
 <tr>
@@ -3971,61 +4321,6 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 </td>
 <td style="text-align:left;">
 6
-</td>
-<td style="text-align:left;">
-“HGNC:7897”
-</td>
-<td style="text-align:left;">
-“biolink:causes”
-</td>
-<td style="text-align:left;">
-“MONDO:0009757”
-</td>
-<td style="text-align:left;">
-“infores:omim”
-</td>
-<td style="text-align:left;">
-“manual_agent”
-</td>
-<td style="text-align:left;">
-“knowledge_assertion”
-</td>
-<td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
-</td>
-<td style="text-align:left;">
-“hpoa_gene_to_disease_edges”
-</td>
-<td style="text-align:left;">
-“uuid:a63c3eec-8b41-11ef-b621-6045bdbae67e”
-</td>
-<td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:4864”
-</td>
-<td style="text-align:left;">
-“OMIM:257220”
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-5
 </td>
 <td style="text-align:left;">
 “HGNC:11120”
@@ -4046,33 +4341,22 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a6261ac5-8b41-11ef-b621-6045bdbae67e”
+“uuid:0eae1529-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:607616”
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
 </td>
 </tr>
 <tr>
@@ -4080,7 +4364,51 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 17
 </td>
 <td style="text-align:left;">
-7
+5
+</td>
+<td style="text-align:left;">
+“HGNC:7897”
+</td>
+<td style="text-align:left;">
+“biolink:causes”
+</td>
+<td style="text-align:left;">
+“MONDO:0009757”
+</td>
+<td style="text-align:left;">
+“infores:omim”
+</td>
+<td style="text-align:left;">
+“manual_agent”
+</td>
+<td style="text-align:left;">
+“knowledge_assertion”
+</td>
+<td style="text-align:left;">
+“infores:monarchinitiative|infores:medgen”
+</td>
+<td style="text-align:left;">
+“hpoa_gene_to_disease_edges”
+</td>
+<td style="text-align:left;">
+“uuid:0ec43c21-198e-11f0-be82-6045bdb3d4c0”
+</td>
+<td style="text-align:left;">
+“biolink:CausalGeneToDiseaseAssociation”
+</td>
+<td style="text-align:left;">
+“OMIM:257220”
+</td>
+<td style="text-align:left;">
+“NCBIGene:4864”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+3
 </td>
 <td style="text-align:left;">
 “HGNC:11120”
@@ -4101,33 +4429,22 @@ c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
 “knowledge_assertion”
 </td>
 <td style="text-align:left;">
-“monarch-kg_edges.jsonl”
-</td>
-<td style="text-align:left;">
-c(“infores:medgen”, “infores:monarchinitiative”)
+“infores:monarchinitiative|infores:medgen”
 </td>
 <td style="text-align:left;">
 “hpoa_gene_to_disease_edges”
 </td>
 <td style="text-align:left;">
-“uuid:a63c3f7e-8b41-11ef-b621-6045bdbae67e”
+“uuid:0ec43cb3-198e-11f0-be82-6045bdb3d4c0”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:CausalGeneToDiseaseAssociation”,
-“biolink:Entity”, “biolink:EntityToDiseaseAssociationMixin”,
-“biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:EntityToPhenotypicFeatureAssociationMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:FrequencyQuantifier”,
-“biolink:GeneToDiseaseAssociation”,
-“biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
-“biolink:GeneToEntityAssociationMixin”,
-“biolink:RelationshipQuantifier”)
-</td>
-<td style="text-align:left;">
-“NCBIGene:6609”
+“biolink:CausalGeneToDiseaseAssociation”
 </td>
 <td style="text-align:left;">
 “OMIM:257200”
+</td>
+<td style="text-align:left;">
+“NCBIGene:6609”
 </td>
 </tr>
 </tbody>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -45,6 +45,9 @@
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -65,9 +68,27 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.1" id="monarchr-21">monarchr 2.1<a class="anchor" aria-label="anchor" href="#monarchr-21"></a></h2>
+<div class="section level3">
+<h3 id="new-features-2-1">New features<a class="anchor" aria-label="anchor" href="#new-features-2-1"></a></h3>
+<ul><li>Put example KG data in <code>data(eds_marfan_kg)</code>
+</li>
+<li>Added KGX format checks in engine instantiation</li>
+<li>Include available properties in engine <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>
+</li>
+<li>Added vignette for engine preferences</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-1"></a></h3>
+<ul><li>Remove <code>stitch_vectors</code> and <code>merge_lists</code> from public API</li>
+<li>Fix install instructions</li>
+<li>Fix timeout check for <code><a href="../reference/neo4j_engine.html">neo4j_engine()</a></code> URL fallback</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0" id="monarchr-20">monarchr 2.0<a class="anchor" aria-label="anchor" href="#monarchr-20"></a></h2>
 <div class="section level3">

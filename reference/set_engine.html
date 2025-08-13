@@ -22,7 +22,7 @@ yet fully supported or tested."><!-- mathjax --><script src="https://cdnjs.cloud
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -50,6 +50,9 @@ yet fully supported or tested."><!-- mathjax --><script src="https://cdnjs.cloud
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -70,7 +73,7 @@ yet fully supported or tested."><!-- mathjax --><script src="https://cdnjs.cloud
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Set the engine for a graph. See warning in details.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/set_engine.R" class="external-link"><code>R/set_engine.R</code></a>, <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/set_engine.tbl_kgx.R" class="external-link"><code>R/set_engine.tbl_kgx.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/set_engine.R" class="external-link"><code>R/set_engine.R</code></a>, <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/set_engine.tbl_kgx.R" class="external-link"><code>R/set_engine.tbl_kgx.R</code></a></small>
     <div class="hidden name"><code>set_engine.Rd</code></div>
     </div>
 
@@ -110,12 +113,12 @@ yet fully supported or tested.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Using example KGX file packaged with monarchr</span></span></span>
-<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0007525"</span>, <span class="st">"MONDO:0007526"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">other_engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="co"># this could be a different filename</span></span></span>
+<span class="r-in"><span><span class="va">other_engine</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="co"># this could be a different file-engine (see `file_engine()`)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">set_engine</span><span class="op">(</span><span class="va">g</span>, <span class="va">other_engine</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="get_engine.html">get_engine</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -173,7 +176,7 @@ yet fully supported or tested.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filename</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/__w/_temp/Library/monarchr/extdata/eds_marfan_kg.tar.gz"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/Users/oneilsh/Documents/projects/tislab/monarch/monarchr/inst/extdata/eds_marfan_kg.tar.gz"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 3000 nodes and 7148 edges</span></span>
@@ -215,12 +218,12 @@ yet fully supported or tested.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "file_engine" "base_engine" "list"       </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using example KGX file packaged with monarchr</span></span></span>
-<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0007525"</span>, <span class="st">"MONDO:0007526"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">other_engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="co"># this could be a different filename</span></span></span>
+<span class="r-in"><span><span class="va">other_engine</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="co"># this could be a different file engine (see `file_engine()`)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">set_engine</span><span class="op">(</span><span class="va">g</span>, <span class="va">other_engine</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="get_engine.html">get_engine</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -278,7 +281,7 @@ yet fully supported or tested.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $filename</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/__w/_temp/Library/monarchr/extdata/eds_marfan_kg.tar.gz"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/Users/oneilsh/Documents/projects/tislab/monarch/monarchr/inst/extdata/eds_marfan_kg.tar.gz"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 3000 nodes and 7148 edges</span></span>

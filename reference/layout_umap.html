@@ -20,7 +20,7 @@ igraph_layout_umap"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@ igraph_layout_umap"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -68,7 +71,7 @@ igraph_layout_umap"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Layout UMAP</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/layout_umap.R" class="external-link"><code>R/layout_umap.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/layout_umap.R" class="external-link"><code>R/layout_umap.R</code></a></small>
     <div class="hidden name"><code>layout_umap.Rd</code></div>
     </div>
 
@@ -112,19 +115,19 @@ igraph_layout_umap</a></p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">pcategory</span><span class="op">==</span><span class="st">"biolink:Disease"</span>, limit<span class="op">=</span><span class="fl">40</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
-<span class="r-in"><span>                 categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span><span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu">tidygraph</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">pcategory</span><span class="op">==</span><span class="st">"biolink:Disease"</span>, limit<span class="op">=</span><span class="fl">40</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
+<span class="r-in"><span>            categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span><span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>     <span class="fu">tidygraph</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `sample_n()` argument `.env` is deprecated and no longer has any effect.</span>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu">layout_umap</span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="graph_centrality.html">graph_centrality</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Computing node centrality.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, layout<span class="op">=</span><span class="va">X</span>, node_size<span class="op">=</span><span class="va">centrality</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>ggrepel: 177 unlabeled data points (too many overlaps). Consider increasing max.overlaps</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>ggrepel: 178 unlabeled data points (too many overlaps). Consider increasing max.overlaps</span>
 <span class="r-plt img"><img src="layout_umap-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

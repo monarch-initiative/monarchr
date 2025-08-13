@@ -22,7 +22,7 @@ predicates edges. If include_self is true, N itself is included."><!-- mathjax -
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
       </span>
     </div>
 
@@ -50,6 +50,9 @@ predicates edges. If include_self is true, N itself is included."><!-- mathjax -
     <li>
       <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
+    <li>
+      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -70,7 +73,7 @@ predicates edges. If include_self is true, N itself is included."><!-- mathjax -
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Roll node data up (along) or down (against) transitive edges. Use with <code>mutate()</code></h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/rollup.R" class="external-link"><code>R/rollup.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/R/rollup.R" class="external-link"><code>R/rollup.R</code></a></small>
     <div class="hidden name"><code>rolling.Rd</code></div>
     </div>
 
@@ -145,9 +148,9 @@ otherwise.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">engine</span> <span class="op">&lt;-</span> <span class="fu"><a href="file_engine.html">file_engine</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">engine</span> <span class="op">|&gt;</span> <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Tall stature"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Short stature"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span> <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Tall stature"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Short stature"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># get 2 levels of ancestors</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/graph_measures.html" class="external-link">graph_order</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span>                               <span class="co"># random count value per node</span></span></span>
