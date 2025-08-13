@@ -37,7 +37,7 @@ Monarch provides a simple specification for KGs:
 
 In the following figure, these required properties are shown in bold:
 
-<center>![](assets/cftr_cf_edge.png){width=90%}</center>
+<center>![Small KG visualization showing node and edge properties, with id, category, subject, and object bolded, and other properties such as name present.](assets/cftr_cf_edge.png){width=90%}</center>
 
 The `monarchr` package provides access to the cloud-hosted Monarch Initiative KG,
 and [others in KGX format](https://kghub.org) via graph-database and file-based "engines", 
