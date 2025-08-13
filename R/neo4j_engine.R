@@ -43,25 +43,40 @@ neo4j_engine <- function(url,
 												 cache = TRUE,
                          ...) {
 
-    success <- FALSE
-    for (i in seq_along(url)) {
-        message(paste0("Trying to connect to ", url[i]))
-        tryCatch({
-            graph_conn <- withTimeout(startGraph(url[i],
-                                                 username = username,
-                                                 password = password,
-                                                 ...),
-                                      timeout = timeout,
-                                      onTimeout = "error")
-            success <- TRUE
-        }, error = function(e) {
-            message(paste0("Failed to connect to ", url[i], ": ", e$message))
-        })
-        if (success) {
-            message(paste0("Connected to ", url[i]))
-            break
-        }
-    }
+		graph_conn <- NULL
+		success <- FALSE
+
+		for (i in seq_along(url)) {
+			message(paste0("Trying to connect to ", url[i]))
+			tryCatch({
+				# we create a test connection with a timeout to see if the URL is ok
+				# catch the error below if it times out
+				testconn <- startGraph(url[i],
+															 username = username,
+															 password = password,
+															 .opts = list(timeout = timeout),
+															 ...)
+
+				# if it connected, we need a new connection without the timeout,
+				# because any specified timeout will be applied to future queries with the connection
+				# and not be allowed to run for long
+				conn <- startGraph(url[i],
+													 username = username,
+													 password = password,
+													 ...)
+				if (!is.null(conn)) {
+					graph_conn <- conn
+					success <- TRUE
+				}
+			}, error = function(e) {
+				message(paste0("Failed to connect to ", url[i], ": ", e$message))
+			})
+
+			if (success) {
+				message(paste0("Connected to ", url[i]))
+				break
+			}
+		}
 
     if (!success) {
         stop("Failed to connect to any of the URLs provided.")
