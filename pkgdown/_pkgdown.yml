@@ -10,3 +10,4 @@ articles:
   - examples/visualizing_kgs
   - examples/exploring_kgs
   - examples/transitive_rollups
+  - examples/preferences

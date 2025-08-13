@@ -1,0 +1,100 @@
+---
+title: "Engine Preferences"
+author: "Shawn T O'Neil"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{Visualizing Knowledge Graphs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include=FALSE, message=FALSE}
+options(width = 300)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+# Engine Preferences
+
+Engines in `monarch` provide an abstraction over a Knowledge Graph (KG), supporting fetching nodes, expanding,
+and summaries. When instantiating an engine, we can optionally provide a `preferences` list to adjust default
+behaviors. 
+
+To see the default preferences for an engine, we can simply inspect its `preferences` entry:
+
+```{r}
+e <- monarch_engine()
+str(e$preferences)
+```
+
+## Category Priority
+
+The most important entry here is `category_priority`. KGX-formatted KGs must label nodes with a *multi-valued* `category`. In some
+KGs this may contain a single value; a Gene for example may be labeled with only `c("biolink:Gene")`. In other KGs, including 
+the Monarch KG, entities may be labeled with multiple categories, for example `c("biolink:GenomicEntity", "biolink:Entity", "biolink:Gene", "biolink:NamedThing")`. KGX does not specify an order for these (though in KGX Biolink labels exist in a hierarchy, a `biolink:Gene` is a type of `biolink:GenomicEntity`, which is a type of `biolink:Entity`, and so on).
+
+In practice, however, a single category is typically most relevant. For Genes we usually care about their `biolink:Gene` category, diseases `biolink:Disease`, and so on. In `monarchr`, this "primary category" is represented by nodes' `pcategory` column for convenience:
+
+```{r}
+library(dplyr)
+
+data(eds_marfan_kg)
+
+g <- eds_marfan_kg |> fetch_nodes(query_ids = "HP:0001788") |> 
+	expand(categories = "biolink:Disease") |>
+	expand(categories = "biolink:Gene")
+
+nodes(g) |> select(id, name, pcategory, category)
+```
+
+Which entry of `category` is chosen for `pcategory` is determined by the engines' `$preferences$category_priority`. For each node,
+the first entry that is present in `category` is used, if none are, the first entry of `category` is. 
+
+We can adjust this when initializing the engine. To do so in this example we need to load the KG from file with `file_engine()`.
+
+```{r}
+filename <- filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+
+eds_marfan_kg <- file_engine(filename, 
+								             preferences = list(category_priority = c("biolink:GenomicEntity", 
+								             																				 "biolink:DiseaseOrPhenotypicFeature")))
+
+g <- eds_marfan_kg |> fetch_nodes(query_ids = "HP:0001788") |> 
+	expand(categories = "biolink:Disease") |>
+	expand(categories = "biolink:Gene")
+
+nodes(g) |> select(id, name, pcategory, category)
+```
+
+The default `category_priority` list is designed to preferentially assign most-specific categories to `pcategory` and should work well in most uses.
+
+## Other Preferences
+
+Other preferences common to both `file_engine`s and `neo4j_engine`s include:
+
+- `node_property_priority` - defines a subset of column names to include first in node data frames
+- `egde_property_priority` - defines a subset of column names to include first in edge data frames
+
+## Query Caching for Neo4j Engines
+
+By default, `neo4j_engine`s and `monarch_engine`s cache queries for the duration of the R session, speeding exploratory
+analyses. This can be disabled, but is not (currently) controlled by preferences, and is instead a parameter to the engine
+constructor:
+
+```{r}
+monarch <- monarch_engine(cache = FALSE)
+
+g1 <- monarch |> fetch_nodes(query_ids = "HP:0001788") |>
+	expand()
+
+g2 <- monarch |> fetch_nodes(query_ids = "HP:0001788") |>
+	expand()
+```
+
+In the above example, because caching is disabled, the fetch and expansion are re-run in computing `g2`.
+
+
+
+
