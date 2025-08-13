@@ -25,6 +25,8 @@ behaviors.
 To see the default preferences for an engine, we can simply inspect its `preferences` entry:
 
 ```{r}
+library(monarchr)
+
 e <- monarch_engine()
 str(e$preferences)
 ```
