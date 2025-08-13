@@ -1,3 +1,18 @@
+# monarchr 2.1
+
+## New features
+
+* Put example KG data in `data(eds_marfan_kg)`
+* Added KGX format checks in engine instantiation
+* Include available properties in engine `summary()`
+* Added vignette for engine preferences
+
+## Bug fixes
+
+* Remove `stitch_vectors` and `merge_lists` from public API
+* Fix install instructions
+* Fix timeout check for `neo4j_engine()` URL fallback
+
 # monarchr 2.0
 
 ## Breaking changes
