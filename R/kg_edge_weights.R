@@ -13,12 +13,12 @@
 #' @import dplyr
 #' @export
 #' @examples
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-#' g <- file_engine(filename) |>
-#'           fetch_nodes(query_ids = "MONDO:0007525") |>
-#'           expand(predicates = "biolink:has_phenotype",
-#'                  categories = "biolink:PhenotypicFeature")|>
-#'           expand(categories = "biolink:Gene")
+#' data(eds_marfan_kg)
+#' g <- eds_marfan_kg |>
+#'      fetch_nodes(query_ids = "MONDO:0007525") |>
+#'      expand(predicates = "biolink:has_phenotype",
+#'             categories = "biolink:PhenotypicFeature")|>
+#'      expand(categories = "biolink:Gene")
 #' g2 <- kg_edge_weights(g)
 #' edges(g2)$weight
 kg_edge_weights <- function(graph,

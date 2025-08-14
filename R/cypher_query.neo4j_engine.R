@@ -1,16 +1,13 @@
 ########### Private functions ###########
 
 
-#' Stitch Vectors
-#'
-#' @description Neo4j array results come back as lists of length-1 character vectors;
-#' these need to be stitched together to length-N character vectors.
-#' We leave these in a list element to distinguish sets of size 1 from
-#' scalar strings
-#'
-#' @param x An element to be stitched.
-#' @return A list of single-character vectors.
+#' @noRd
 stitch_vectors <- function(x) {
+	# Neo4j array results come back as lists of length-1 character vectors;
+	# these need to be stitched together to length-N character vectors.
+	# We leave these in a list element to distinguish sets of size 1 from
+	# scalar strings
+
 	# Check if the element is a list
 	if (is.list(x)) {
 		# Check if all elements of the list are single-character vectors
@@ -58,6 +55,15 @@ neo2r_to_kgx <- function(res, engine) {
 	if(!is.null(res)) {
 		res <- stitch_vectors(res)
 	}
+
+	## NOTE: in cases where there are no array properties on a node,
+	## stitch_vectors above will result in a *named vector* in res$nodes[[x]]$properties
+	# the code below does not account for that
+	# (this was previously unseen as all nodes had a multivalued `category` property)
+
+	# this could be more of an issue with edges below; even though there should be no edges without a subject, predicate, and object,
+	# it is possible that some edges may not have any other properties, and so the code below assuming edge properties are lists may fail, even in a well-formed KGX graph
+
 
 	## node info
 	node_ids <- unlist(lapply(res$nodes, function(node) {

@@ -7,9 +7,9 @@
 #' @seealso [transitive_closure()], [roll_up()], [transfer()], [descendants()], [ancestors()]
 #'
 #' @examples
-#' engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+#' data(eds_marfan_kg)
 #'
-#' g <- engine |> fetch_nodes(name == "Tall stature") |>
+#' g <- eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
 #' 	expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>
 #' 	bind_edges(data.frame(from = 2, to = 9, predicate = "biolink_subclass_of", primary_knowledge_source = "hand_annotated"))
 #'

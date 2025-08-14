@@ -13,10 +13,10 @@
 #' @export
 #' @examples
 #' # Using example KGX file packaged with monarchr
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' data(eds_marfan_kg)
 #'
 #' # prints a readable summary and returns a list of dataframes
-#' g <- file_engine(filename) |> example_graph()
+#' g <- eds_marfan_kg |> example_graph()
 #' print(g)
 #'
 #' @examplesIf monarch_engine_check()

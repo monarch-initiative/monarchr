@@ -9,12 +9,12 @@
 #' @return A tbl_kgx graph.
 #' @examples
 #' # Using example KGX file packaged with monarchr
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' data(eds_marfan_kg)
 #'
-#' g <- file_engine(filename) |>
+#' g <- eds_marfan_kg |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
-#' other_engine <- file_engine(filename) # this could be a different filename
+#' other_engine <- eds_marfan_kg # this could be a different file engine (see `file_engine()`)
 #' g <- set_engine(g, other_engine)
 #'
 #' print(get_engine(g))

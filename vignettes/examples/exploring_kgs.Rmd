@@ -46,18 +46,16 @@ available node category and edge predicate. To keep the information small, we'll
 of the included mini-KG containing information about Ehlers-Danlos Syndrome (EDS) and Marfan Syndrome:
 
 ```{r}
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-eds_marfan <- file_engine(filename)
-
-summary(eds_marfan)
+data(eds_marfan_kg)
+summary(eds_marfan_kg)
 ```
 
-The printout reports the number of nodes for each category, and the number of edges for each predicate.
+The printout reports the number of nodes for each category, and the number of edges for each predicate. It also reports node and edge property counts; `neo4j_engines` by contrast only list available node and edge properties due to the computational effort required to compute these count data.
 
 This information is also returned (invisibly) as a list; to suppress the printed output we can add `quiet = TRUE`.
 
 ```{r}
-s <- summary(eds_marfan, quiet = TRUE)
+s <- summary(eds_marfan_kg, quiet = TRUE)
 
 paste("Total nodes:", s$total_nodes)
 paste("Total edges:", s$total_edges)
@@ -72,14 +70,14 @@ convenient auto-completion in your favorite IDE.
 
 <br /><br />
 
-![](exploring_kgs_assets/autocomplete.png)
+![Autocomplete example in RStudio](exploring_kgs_assets/autocomplete.png)
 
 <br /><br />
 
 The resulting auto-completion inserts the appropriate backtics in RStudio. 
 
 ```{r}
-diseases <- eds_marfan |>
+diseases <- eds_marfan_kg |>
   fetch_nodes(query_ids = "MONDO:0009159") |>
   expand(predicates = s$preds$`biolink:has_phenotype`)
 
@@ -103,7 +101,7 @@ chosen categories to represent the node. The choice of category shown in `pcateg
 is defined by `monarchr`, not the KG itself, and is configurable.
 
 ```{r}
-ex_g <- eds_marfan |> example_graph()
+ex_g <- eds_marfan_kg |> example_graph()
 ex_g
 ```
 

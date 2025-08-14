@@ -11,8 +11,8 @@
 #' @return A tbl_kgx graph.
 #' @export
 #' @examples
-#' engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
-#' g <- engine |>
+#' data(eds_marfan_kg)
+#' g <- eds_marfan_kg |>
 #' 	 fetch_nodes(query_ids = "MONDO:0020066") |>
 #' 	 ancestors()
 #'

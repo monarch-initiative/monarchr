@@ -43,28 +43,50 @@ neo4j_engine <- function(url,
 												 cache = TRUE,
                          ...) {
 
-    success <- FALSE
-    for (i in seq_along(url)) {
-        message(paste0("Trying to connect to ", url[i]))
-        tryCatch({
-            graph_conn <- withTimeout(startGraph(url[i],
-                                                 username = username,
-                                                 password = password,
-                                                 ...),
-                                      timeout = timeout,
-                                      onTimeout = "error")
-            success <- TRUE
-        }, error = function(e) {
-            message(paste0("Failed to connect to ", url[i], ": ", e$message))
-        })
-        if (success) {
-            message(paste0("Connected to ", url[i]))
-            break
-        }
-    }
+		graph_conn <- NULL
+		success <- FALSE
+
+		for (i in seq_along(url)) {
+			message(paste0("Trying to connect to ", url[i]))
+			tryCatch({
+				# we create a test connection with a timeout to see if the URL is ok
+				# catch the error below if it times out
+				testconn <- startGraph(url[i],
+															 username = username,
+															 password = password,
+															 .opts = list(timeout = timeout),
+															 ...)
+
+				# if it connected, we need a new connection without the timeout,
+				# because any specified timeout will be applied to future queries with the connection
+				# and not be allowed to run for long
+				conn <- startGraph(url[i],
+													 username = username,
+													 password = password,
+													 ...)
+				if (!is.null(conn)) {
+					graph_conn <- conn
+					success <- TRUE
+				}
+			}, error = function(e) {
+				message(paste0("Failed to connect to ", url[i], ": ", e$message))
+			})
+
+			if (success) {
+				message(paste0("Connected to ", url[i]))
+				break
+			}
+		}
 
     if (!success) {
         stop("Failed to connect to any of the URLs provided.")
+    }
+
+    content_check <- check_neo2r_kgx(graph_conn)
+    if(!content_check[[1]]) {
+    	message <- paste0(c("There appears to be an issue with the graph content or formatting. The following errors are noted:",
+    											content_check[[2]]), collapse = "\n   ")
+    	stop(message)
     }
 
     obj <- base_engine(name = "neo4j_engine",
@@ -79,4 +101,61 @@ neo4j_engine <- function(url,
 
     class(obj) <- c("neo4j_engine", class(obj))
     return(obj)
+}
+
+
+#' @noRd
+check_neo2r_kgx <- function(graph_conn) {
+	errors <- c()
+	nodes_ok <- TRUE
+	edges_ok <- TRUE
+	res <- neo2R::cypher(graph_conn, query = "MATCH (n)-[r]-(m) RETURN n, r, m LIMIT 2", result = "graph")
+	if(!"nodes" %in% names(res)) {
+		nodes_ok <- FALSE
+		errors <- c(errors, "No nodes present. Does the Neo4j graph contain any nodes?")
+	}
+	else if(length(res[["nodes"]]) < 1) {
+		nodes_ok <- FALSE
+		errors <- c(errors, "No nodes present. Does the Neo4j graph contain any nodes?")
+	}
+
+	if(nodes_ok) {
+		node1 <- res[["nodes"]][[1]]
+		if(!"id" %in% names(node1$properties)) {
+			nodes_ok <- FALSE
+			errors <- c(errors, "Found a node with no `id` property. Is the Neo4j graph properly KGX formatted? Nodes in KGX formatted graphs in Neo4j must have a character vector `id` property formatted as a CURIE (e.g. 'MONDO:0019391').")
+		}
+		if(!"category" %in% names(node1[["properties"]])) {
+			nodes_ok <- FALSE
+			errors <- c(errors, "Found a node with no `category` property. Is the Neo4j graph properly KGX formatted? Nodes in KGX formatted graphs in Neo4j must have a `category` array property (e.g. ['biolink:Entity', 'biolink:NamedThing', 'biolink:Cell']).")
+		}
+	}
+
+	if(!"relationships" %in% names(res)) {
+		edges_ok <- FALSE
+		errors <- c(errors, "No relationships present. Does the Neo4j graph contain any edges?")
+	}
+	else if(length(res[["relationships"]]) < 1) {
+		edges_ok <- FALSE
+		errors <- c(errors, "No relationships present. Does the Neo4j graph contain any edges?")
+	}
+
+	if(edges_ok) {
+		edge1 <- res[["relationships"]][[1]]
+		if(!"subject" %in% names(edge1[["properties"]])) {
+			edges_ok <- FALSE
+			errors <- c(errors, "Found a relationship with no `subject` property. Is the Neo4j graph properly KGX formatted? Edges in KGX formatted graphs in Neo4j must have a `subject` property (e.g. 'MONDO:0019391').")
+		}
+		if(!"predicate" %in% names(edge1[["properties"]])) {
+			edges_ok <- FALSE
+			errors <- c(errors, "Found a relationship with no `predicate` property. Is the Neo4j graph properly KGX formatted? Edges in KGX formatted graphs in Neo4j must have a `predicate` property (e.g. 'biolink:has_phenotype').")
+		}
+		if(!"object" %in% names(edge1[["properties"]])) {
+			edges_ok <- FALSE
+			errors <- c(errors, "Found a relationship with no `object` property. Is the Neo4j graph properly KGX formatted? Edges in KGX formatted graphs in Neo4j must have a `object` property (e.g. 'HP:0004322').")
+		}
+	}
+	ok <- all(nodes_ok & edges_ok)
+
+	return(list(ok, errors))
 }

@@ -1,11 +1,13 @@
 #' Summarize contents of a KGX-file-based KG engine
 #'
 #' Given a KGX file-based KG engine, provides summary information in the form of
-#' node counts, category counts across nodes, and relationship type counts.
+#' node counts, category counts across nodes, relationship type counts, and available properties.
 #' General information about the graph is printed to the console, and a list of
-#' dataframes describing node and edge counts is returned invisibly. Also returned
-#' are `cats` and `preds` entries, containing lists of available node categories and
-#' edge predicates, respectively, for convenient auto-completion in RStudio.
+#' dataframes with this information is returned invisibly. Also returned
+#' are `cats`, `preds`, and `props` entries, containing lists of available
+#' categories/predicates/properties for convenient auto-completion in RStudio.
+#'
+#' When applied to a `file_engine`, also included are node-specific and edge-specific properties.
 #'
 #' @param object A `file_engine` object
 #' @param ... Other parameters (not used)
@@ -14,10 +16,10 @@
 #' @export
 #' @examples
 #' # Using example KGX file packaged with monarchr
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-
+#' data(eds_marfan_kg)
+#'
 #' # prints a readable summary and returns a list of dataframes
-#' res <- file_engine(filename) |> summary()
+#' res <- eds_marfan_kg |> summary()
 #' print(res)
 #' @import tidygraph
 #' @import dplyr
@@ -34,6 +36,37 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     	  as.data.frame() |>
         nrow()
 
+    node_props <- g |>
+      activate(nodes) |>
+      as.data.frame() |>
+      colnames()
+
+    edge_props <- g |>
+      activate(edges) |>
+      as.data.frame() |>
+      colnames()
+
+    nodes_df <- nodes(g)
+    edges_df <- edges(g)
+
+
+    node_prop_counts <- lapply(node_props, function(prop_name) {
+      count <- length(nodes_df[[prop_name]][!is.na(nodes_df[[prop_name]])])
+      data.frame(property = prop_name, count = count)
+    })
+    node_prop_counts <- do.call(rbind, node_prop_counts)
+    node_prop_counts <- node_prop_counts[rev(order(node_prop_counts$count)),]
+
+
+    edge_prop_counts <- lapply(edge_props, function(prop_name) {
+      count <- length(edges_df[[prop_name]][!is.na(edges_df[[prop_name]])])
+      data.frame(property = prop_name, count = count)
+    })
+    edge_prop_counts <- do.call(rbind, edge_prop_counts)
+    edge_prop_counts <- edge_prop_counts[rev(order(edge_prop_counts$count)),]
+
+    properties <- unique(c(node_props, edge_props))
+
     total_edges <- g |>
         activate(edges) |>
     	  as.data.frame() |>
@@ -48,8 +81,8 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     	rle()
 
     node_summary_df <- data.frame(category = all_node_cats$values,
-    											 count = all_node_cats$lengths) |>
-    	arrange(desc(count))
+                                  count = all_node_cats$lengths) |>
+                       arrange(desc(count))
 
     all_edge_predicates <- g |>
     	activate(edges) |>
@@ -59,8 +92,8 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     	rle()
 
     edge_summary_df <- data.frame(predicate = all_edge_predicates$values,
-    											 count = all_edge_predicates$lengths) |>
-    	arrange(desc(count))
+                                  count = all_edge_predicates$lengths) |>
+                       arrange(desc(count))
 
 
     if(!quiet) {
@@ -74,6 +107,14 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     	cat("Edge type counts:\n")
     	# print the data frame without row names
     	print(edge_summary_df, row.names = FALSE)
+      cat("\n")
+      cat("Node property counts:\n")
+      print(node_prop_counts, row.names = FALSE)
+      cat("\n")
+      cat("Edge property counts:\n")
+      print(edge_prop_counts, row.names = FALSE)
+      cat("\n\n")
+      cat("For more information about Biolink node (Class) and edge (Association) properties, see https://biolink.github.io/biolink-model/.")
     }
 
 
@@ -83,10 +124,22 @@ summary.file_engine <- function(object, ..., quiet = FALSE) {
     preds <- as.list(edge_summary_df$predicate)
     names(preds) <- preds
 
+    props <- as.list(properties)
+    names(props) <- props
+
+    node_props <- as.list(node_props)
+    names(node_props) <- node_props
+
+    edge_props <- as.list(edge_props)
+    names(edge_props) <- edge_props
+
     return(invisible(list(node_summary = node_summary_df,
     											edge_summary = edge_summary_df,
     											total_nodes = total_nodes,
     											total_edges = total_edges,
+                          node_properties_summary = node_prop_counts,
+                          edge_properties_summary = edge_prop_counts,
     											cats = cats,
-    											preds = preds)))
+                          preds = preds,
+                          props = props)))
 }

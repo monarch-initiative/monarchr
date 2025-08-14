@@ -18,7 +18,7 @@
 #' library(tidygraph)
 #' library(dplyr)
 #'
-#' # Using example KGX file packaged with monarchr
+#' # Using example KGX .tar.gz file packaged with monarchr
 #' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 #' engine <- file_engine(filename)
 #'
@@ -84,6 +84,13 @@ file_engine <- function(filename, preferences = NULL, ...) {
                               show_col_types = FALSE)
                              )
 
+    content_check <- check_kgx_file_ok(nodes, edges)
+    if(!content_check[[1]]) {
+    	message <- paste0(c("There appears to be an issue with the graph content or formatting. The following errors are noted:",
+    											content_check[[2]]), collapse = "\n   ")
+    	stop(message)
+    }
+
     # although we read category in as a character vector, it should be a list column
     # if there are multiple categories for a node, they will be separated with |
     # characters per the KGX spec: https://github.com/biolink/kgx/blob/master/specification/kgx-format.md#core-node-record-elements
@@ -106,3 +113,49 @@ file_engine <- function(filename, preferences = NULL, ...) {
     class(obj) <- c("file_engine", class(obj))
     return(obj)
 }
+
+#' @noRd
+check_kgx_file_ok <- function(nodes_df, edges_df) {
+	node_check <- check_node_kgx_df(nodes_df)
+	edge_check <- check_edge_kgx_df(edges_df)
+	ok <- all(node_check[[1]] & edge_check[[1]])
+	errors <- c(node_check[[2]], edge_check[[2]])
+	return(list(ok, errors))
+}
+
+#' @noRd
+check_node_kgx_df <- function(nodes_df) {
+	ok <- TRUE
+	errors <- c()
+	if(!"id" %in% names(nodes_df)) {
+		ok <- FALSE
+		errors <- c(errors, "No `id` column found in the nodes file. Is the archive a proper KGX-formatted knowledge graph? Nodes in KGX formatted graphs must have a character `id` column formatted as a CURIE (with entries e.g. 'MONDO:0019391').")
+	}
+	if(!"category" %in% names(nodes_df)) {
+		ok <- FALSE
+		errors <- c(errors, "No `category` column found in the nodes file. Is the archive a proper KGX-formatted knowledge graph? Nodes in KGX formatted graphs must have a multi-valued, |-separated `category` column (with entries e.g. 'biolink:Entity|biolink:NamedThing|biolink:Cell').")
+	}
+	return(list(ok, errors))
+}
+
+#' @noRd
+check_edge_kgx_df <- function(edges_df) {
+	ok <- TRUE
+	errors <- c()
+	if(!"subject" %in% names(edges_df)) {
+		ok <- FALSE
+		errors <- c(errors, "No `subject` column found in the edges file. Is the archive a proper KGX-formatted knowledge graph? Edges in KGX formatted graphs must have a `subject` column (with entries e.g. 'MONDO:0019391').")
+	}
+	if(!"predicate" %in% names(edges_df)) {
+		ok <- FALSE
+		errors <- c(errors, "No `predicate` column found in the edges file. Is the archive a proper KGX-formatted knowledge graph? Edges in KGX formatted graphs must have a `predicate` column (with entries e.g. 'biolink:has_phenotype').")
+	}
+	if(!"object" %in% names(edges_df)) {
+		ok <- FALSE
+		errors <- c(errors, "No `object` column found in the edges file. Is the archive a proper KGX-formatted knowledge graph? Edges in KGX formatted graphs must have an `object` column (with entries e.g. 'HP:0004322').")
+	}
+	return(list(ok, errors))
+}
+
+
+

@@ -21,9 +21,9 @@ edges.tbl_kgx <- function(graph, ...) {
 #' @export
 #' @examples
 #' # (using the example KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' data(eds_marfan_kg)
 #'
-#' g <- file_engine(filename) |>
+#' g <- eds_marfan_kg |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
 #' print(nodes(g))
@@ -40,9 +40,9 @@ nodes <- function(graph, ...) {
 #' @importFrom tidygraph as_tibble
 #' @examples
 #' # (using the example KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' data(eds_marfan_kg)
 #'
-#' g <- file_engine(filename) |>
+#' g <- eds_marfan_kg |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
 #' print(edges(g))
@@ -57,9 +57,9 @@ edges <- function(graph, ...) {
 #' @return A list of tbl_kgx graphs.
 #' @examples
 #' # (using the example KGX file packaged with monarchr)
-#' filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
+#' data(eds_marfan_kg)
 #'
-#' g <- file_engine(filename) |>
+#' g <- eds_marfan_kg |>
 #'   fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 #'
 #' print(explode(g))
@@ -80,23 +80,16 @@ explode.tbl_kgx <- function(graph, ...) {
 
 
 
-#' Recursively Merge Two Named Lists
-#'
-#' This function takes two named lists and merges them recursively. Values in
-#' the second list (`b`) override or extend those in the first list (`a`).
-#' If both `a` and `b` contain a named list at the same position, they are merged recursively.
-#'
-#' @param a A named list to be updated.
-#' @param b A named list containing values to override or add to `a`.
-#'
-#' @return A named list that is the result of merging `b` into `a`.
-#' @export
-#'
-#' @examples
-#' a <- list(x = list(y = 1, z = 2), foo = "bar")
-#' b <- list(x = list(y = 42, new = 99), foo = "baz", extra = "new_value")
-#' merge_lists(a, b)
+#' @noRd
 merge_lists <- function(a, b) {
+	# This function takes two named lists and merges them recursively. Values in
+	# the second list (`b`) override or extend those in the first list (`a`).
+	# If both `a` and `b` contain a named list at the same position, they are merged recursively.
+	#
+	# a <- list(x = list(y = 1, z = 2), foo = "bar")
+	# b <- list(x = list(y = 42, new = 99), foo = "baz", extra = "new_value")
+	# merge_lists(a, b)
+
 	for (name in names(b)) {
 		if (is.list(b[[name]]) && name %in% names(a) && is.list(a[[name]])) {
 			# Recursively merge if both elements are lists

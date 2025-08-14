@@ -45,10 +45,9 @@ are sourced from MONDO as well as [OMIM](https://omim.org/) and
 
 
 ```{r}
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-engine <- file_engine(filename)
+data(eds_marfan_kg)
 
-g <- engine |>
+g <- eds_marfan_kg |>
   fetch_nodes(query_ids = c("MONDO:0017310")) |>
   expand(predicates = "biolink:subclass_of", direction = "in", transitive = TRUE) |>
   expand(categories = "biolink:Gene")
@@ -64,11 +63,11 @@ and `node_color` parameters simply pass their unquoted arguments to `geom_node_p
 and `geom_edge_fan` `ggraph` layers.
 
 ```{r}
-mar_phenos <- engine |> 
+mar_phenos <- eds_marfan_kg |> 
   fetch_nodes(query_ids = c("MONDO:0017309")) |>
   expand(categories = "biolink:PhenotypicFeature") 
 
-bcs_phenos <- engine |> 
+bcs_phenos <- eds_marfan_kg |> 
   fetch_nodes(query_ids = c("MONDO:0009242")) |>
   expand(categories = "biolink:PhenotypicFeature")
 
@@ -103,5 +102,5 @@ Node color is mapped to `pcategory` and edge color to `predicate`; hoverover
 node text is `description` if available, edge hoverover `predicate`. All of these
 and many more properties can be customized in Cytoscape.
 
-<center>![](visualizing_kgs_assets/cytoscape.png){width=90%}</center>
+<center>![A screenshot of Cytoscape with a graph visualized.](visualizing_kgs_assets/cytoscape.png){width=90%}</center>
 

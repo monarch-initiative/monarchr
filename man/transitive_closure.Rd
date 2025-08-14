@@ -15,9 +15,9 @@ predicate as transitive. Resulting edge predicates will the be the
 same, but have primary_knowledge_source set to transitive_\if{html}{\out{<predicate>}}.
 }
 \examples{
-engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+data(eds_marfan_kg)
 
-engine |> fetch_nodes(name == "Tall stature") |>
+eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>  # get 2 levels of ancestors
   activate(edges) |>
   filter(primary_knowledge_source == "infores:upheno") |>

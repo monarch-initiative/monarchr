@@ -51,25 +51,11 @@ print(phenos)
 
 \dontshow{\}) # examplesIf}
 ## Using example KGX file packaged with monarchr
-filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
-phenos <- file_engine(filename) |>
+data(eds_marfan_kg)
+phenos <- eds_marfan_kg |>
           fetch_nodes(query_ids = "MONDO:0007525") |>
           expand(predicates = "biolink:has_phenotype",
                  categories = "biolink:PhenotypicFeature")
 
 print(phenos)
-
-
-
-\dontshow{if (file_engine_check("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-## Using MONDO KGX file (remote) as an example
-phenos <- file_engine("https://kghub.io/kg-obo/mondo/2024-03-04/mondo_kgx_tsv.tar.gz") |>
-          fetch_nodes(query_ids = "MONDO:0007525") |>
-          expand(predicates = "biolink:has_phenotype",
-                 categories = "biolink:PhenotypicFeature")
-
-print(phenos)
-
-file.remove("mondo_kgx_tsv.tar.gz") # cleanup - remove the downloaded file
-\dontshow{\}) # examplesIf}
 }

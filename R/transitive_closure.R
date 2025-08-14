@@ -8,9 +8,9 @@
 #' @seealso [roll_up()], [transfer()], [descendants()], [ancestors()]
 #'
 #' @examples
-#' engine <- file_engine(system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr"))
+#' data(eds_marfan_kg)
 #'
-#' engine |> fetch_nodes(name == "Tall stature") |>
+#' eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
 #'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>  # get 2 levels of ancestors
 #'   activate(edges) |>
 #'   filter(primary_knowledge_source == "infores:upheno") |>
