@@ -98,10 +98,10 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Aug-14-2025</i>
+<i>Aug-19-2025</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/examples/engine_preferences.Rmd" class="external-link"><code>vignettes/examples/engine_preferences.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/vignettes/examples/engine_preferences.Rmd" class="external-link"><code>vignettes/examples/engine_preferences.Rmd</code></a></small>
       <div class="hidden name"><code>engine_preferences.Rmd</code></div>
 
     </div>
@@ -152,8 +152,8 @@ category, diseases <code>biolink:Disease</code>, and so on. In
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span> <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"HP:0001788"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/nodes.html">nodes</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">pcategory</span>, <span class="va">category</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
@@ -181,12 +181,12 @@ example we need to load the KG from file with
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"eds_marfan_kg.tar.gz"</span>, package <span class="op">=</span> <span class="st">"monarchr"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">eds_marfan_kg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/file_engine.html">file_engine</a></span><span class="op">(</span><span class="va">filename</span>, </span>
-<span>                                             preferences <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>category_priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:GenomicEntity"</span>, </span>
+<span>                             preferences <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>category_priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biolink:GenomicEntity"</span>, </span>
 <span>                                                                                                                             <span class="st">"biolink:DiseaseOrPhenotypicFeature"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span> <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"HP:0001788"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/nodes.html">nodes</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">pcategory</span>, <span class="va">category</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
@@ -232,10 +232,10 @@ engine constructor:</p>
 <code class="sourceCode R"><span><span class="va">monarch</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/monarch_engine.html">monarch_engine</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span> <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"HP:0001788"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">monarch</span> <span class="op">|&gt;</span> <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"HP:0001788"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>In the above example, because caching is disabled, the fetch and
 expansion are re-run in computing <code>g2</code>.</p>
 </div>
