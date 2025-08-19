@@ -45,8 +45,8 @@ library(dplyr)
 data(eds_marfan_kg)
 
 g <- eds_marfan_kg |> fetch_nodes(query_ids = "HP:0001788") |> 
-	expand(categories = "biolink:Disease") |>
-	expand(categories = "biolink:Gene")
+  expand(categories = "biolink:Disease") |>
+  expand(categories = "biolink:Gene")
 
 nodes(g) |> select(id, name, pcategory, category)
 ```
@@ -60,12 +60,12 @@ We can adjust this when initializing the engine. To do so in this example we nee
 filename <- filename <- system.file("extdata", "eds_marfan_kg.tar.gz", package = "monarchr")
 
 eds_marfan_kg <- file_engine(filename, 
-								             preferences = list(category_priority = c("biolink:GenomicEntity", 
+                             preferences = list(category_priority = c("biolink:GenomicEntity", 
 								             																				 "biolink:DiseaseOrPhenotypicFeature")))
 
 g <- eds_marfan_kg |> fetch_nodes(query_ids = "HP:0001788") |> 
-	expand(categories = "biolink:Disease") |>
-	expand(categories = "biolink:Gene")
+  expand(categories = "biolink:Disease") |>
+  expand(categories = "biolink:Gene")
 
 nodes(g) |> select(id, name, pcategory, category)
 ```
@@ -89,10 +89,10 @@ constructor:
 monarch <- monarch_engine(cache = FALSE)
 
 g1 <- monarch |> fetch_nodes(query_ids = "HP:0001788") |>
-	expand()
+  expand()
 
 g2 <- monarch |> fetch_nodes(query_ids = "HP:0001788") |>
-	expand()
+  expand()
 ```
 
 In the above example, because caching is disabled, the fetch and expansion are re-run in computing `g2`.
