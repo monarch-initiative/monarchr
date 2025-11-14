@@ -6,12 +6,15 @@
 #'
 #' @return Graph with transitive edges added.
 #' @seealso [roll_up()], [transfer()], [descendants()], [ancestors()]
+#' @param g The `tbl_kgx` graph to compute on.
+#' @param predicate The edge predicate to close over.
 #'
 #' @examples
 #' data(eds_marfan_kg)
 #'
 #' eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
-#'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>  # get 2 levels of ancestors
+#'   # get 2 levels of ancestors
+#'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>
 #'   activate(edges) |>
 #'   filter(primary_knowledge_source == "infores:upheno") |>
 #'   transitive_closure(predicate = "biolink:subclass_of") |>

@@ -5,7 +5,7 @@
 #' @param layout The layout to use for the plot. Default is "auto" as used by `ggraph`.
 #' @param node_color The column to use for node color. Default is "pcategory".
 #' @param node_shape The column to use for node shape Default is "namespace".
-#' @param edge_color The column to use for edge color. Default is NULL.
+#' @param edge_color The column to use for edge color. Default is "predicate".
 #' @param edge_linetype The column to use for edge line type. Default is "primary_knowledge_source".
 #' @param node_label The column to use for node labels. Defaults to "name".
 #' @param plot_ids Whether to show node IDs in node labels. Defaults to FALSE.
@@ -33,7 +33,7 @@ plot.tbl_kgx <- function(g,
 									layout = "auto",
 									node_color = pcategory,
 									node_shape = namespace,
-									edge_color = NULL,
+									edge_color = predicate,
 									edge_linetype = primary_knowledge_source,
 									node_label = name,
 									plot_ids = FALSE,

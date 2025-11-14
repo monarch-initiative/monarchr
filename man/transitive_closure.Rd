@@ -6,6 +6,11 @@
 \usage{
 transitive_closure(g, predicate = "biolink:subclass_of")
 }
+\arguments{
+\item{g}{The \code{tbl_kgx} graph to compute on.}
+
+\item{predicate}{The edge predicate to close over.}
+}
 \value{
 Graph with transitive edges added.
 }
@@ -18,7 +23,8 @@ same, but have primary_knowledge_source set to transitive_\if{html}{\out{<predic
 data(eds_marfan_kg)
 
 eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
-  expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>  # get 2 levels of ancestors
+  # get 2 levels of ancestors
+  expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>
   activate(edges) |>
   filter(primary_knowledge_source == "infores:upheno") |>
   transitive_closure(predicate = "biolink:subclass_of") |>
