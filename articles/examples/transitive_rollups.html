@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.1</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Aug-19-2025</i>
+<i>Nov-14-2025</i>
 </h4>
       
       <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/appnotes/vignettes/examples/transitive_rollups.Rmd" class="external-link"><code>vignettes/examples/transitive_rollups.Rmd</code></a></small>
@@ -133,7 +133,7 @@ it will make the next examples clearer).</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">!=</span> <span class="st">"leg phenotype"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-3-1.png" width="960">
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="960">
 It is not uncommon for data like this to come with additional
 information; if these were a set of disease diagnoses, we might have
 patient counts associated with each. Since patients receive diagnoses of
@@ -150,7 +150,7 @@ count information, plotting it in the node labels:</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_counted</span>, </span>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || count: "</span>, <span class="va">count</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-4-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="960"></p>
 <p>A “rollup” might thus ask, how many patients are associated with each
 phenotype, if we include all of it’s descendants? For example, “lower
 limb segment phenotype” (8 patients) is a subclass of “limb segment
@@ -171,7 +171,7 @@ the aggregation.</p>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
 <span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-5-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="960"></p>
 <p>The corresponding <strong><code><a href="../../reference/rolling.html">roll_down()</a></code></strong>
 aggregates in the opposite direction (not shown).</p>
 <div class="section level2">
@@ -194,7 +194,7 @@ subtypes of Niemann-Pick disease, and all known causal genes.</p>
 <span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:causes"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-6-1.png" width="960">
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="960">
 Now, we might wish for disease nodes to have an attribute reflecting
 their causal genes. This information is captured in the graph, but not
 as a part of the nodes. The <code><a href="../../reference/transfer.html">transfer()</a></code> function ‘pulls’
@@ -206,7 +206,7 @@ information across edges:</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal</span>, </span>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || caused by: "</span>, <span class="va">caused_by</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-7-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="960"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal</span></span></code></pre></div>
 <pre>Graph with 17 nodes and 17 edges. Expand sections below for details.</pre>
@@ -513,75 +513,6 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“NPC is a complex lipid storage disease mainly characterized by the
-accumulation of unesterified cholesterol in the late endosomal/lysosomal
-compartment.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
-“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
-“UMLS:C0220756”, “icd11.foundation:812702125”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“Niemann Pick Disease Type C”
-</td>
-<td style="text-align:left;">
-“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“NPC”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 “MONDO:0009757”
 </td>
 <td style="text-align:left;">
@@ -659,6 +590,75 @@ NA
 </td>
 <td style="text-align:left;">
 “NPC1”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“NPC is a complex lipid storage disease mainly characterized by the
+accumulation of unesterified cholesterol in the late endosomal/lysosomal
+compartment.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC”, “Niemann Pick Disease Type C”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
+“UMLS:C0220756”, “icd11.foundation:812702125”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann Pick Disease Type C”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
 </td>
 </tr>
 <tr>
@@ -1574,10 +1574,10 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-5
+4
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0009757”
@@ -1665,7 +1665,7 @@ NA
 7
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0011873”
@@ -1709,7 +1709,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -1753,7 +1753,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -1797,7 +1797,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -1841,7 +1841,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -1885,7 +1885,7 @@ NA
 12
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016310”
@@ -1926,7 +1926,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 1
@@ -2193,7 +2193,7 @@ NA
 17
 </td>
 <td style="text-align:left;">
-5
+4
 </td>
 <td style="text-align:left;">
 “HGNC:7897”
@@ -2294,8 +2294,8 @@ source nodes’ <code>name</code>, resulting in a new
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> Niemann-Pick disease                                                 <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 2</span> acid sphingomyelinase deficiency                                     <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Niemann-Pick disease type A                                          SMPD1    </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> Niemann-Pick disease type C                                          <span style="color: #BB0000;">NA</span>       </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Niemann-Pick disease, type C1                                        NPC1     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> Niemann-Pick disease, type C1                                        NPC1     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Niemann-Pick disease type C                                          <span style="color: #BB0000;">NA</span>       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Niemann-Pick disease type B                                          SMPD1    </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 7</span> Niemann-Pick disease, type C2                                        NPC2     </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span> Niemann-Pick disease type C, severe perinatal form                   <span style="color: #BB0000;">NA</span>       </span></span>
@@ -2323,7 +2323,7 @@ subtypes.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal_rolled</span>, </span>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || any caused by: "</span>, <span class="va">any_caused_by</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-9-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="960"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal_rolled</span></span></code></pre></div>
 <pre>Graph with 17 nodes and 17 edges. Expand sections below for details.</pre>
@@ -2642,78 +2642,6 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-“MONDO:0018982”
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“Niemann-Pick disease type C”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“NPC is a complex lipid storage disease mainly characterized by the
-accumulation of unesterified cholesterol in the late endosomal/lysosomal
-compartment.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
-</td>
-<td style="text-align:left;">
-“biolink:Disease”
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
-</td>
-<td style="text-align:left;">
-c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
-“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
-“UMLS:C0220756”, “icd11.foundation:812702125”)
-</td>
-<td style="text-align:left;">
-“MONDO”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“Niemann Pick Disease Type C”
-</td>
-<td style="text-align:left;">
-“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-“NPC”
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-c(NA, “NPC1”, “NPC2”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 “MONDO:0009757”
 </td>
 <td style="text-align:left;">
@@ -2794,6 +2722,78 @@ NA
 </td>
 <td style="text-align:left;">
 “NPC1”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“MONDO:0018982”
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“Niemann-Pick disease type C”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;min-width: 300px; ">
+“NPC is a complex lipid storage disease mainly characterized by the
+accumulation of unesterified cholesterol in the late endosomal/lysosomal
+compartment.”
+</td>
+<td style="text-align:left;min-width: 300px; ">
+c(“NPC”, “Niemann Pick Disease Type C”)
+</td>
+<td style="text-align:left;">
+“biolink:Disease”
+</td>
+<td style="text-align:left;">
+“<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
+</td>
+<td style="text-align:left;">
+c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+“NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
+“UMLS:C0220756”, “icd11.foundation:812702125”)
+</td>
+<td style="text-align:left;">
+“MONDO”
+</td>
+<td style="text-align:left;">
+“phenio_nodes”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“Niemann Pick Disease Type C”
+</td>
+<td style="text-align:left;">
+“gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+“NPC”
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+c(NA, “NPC1”, “NPC2”)
 </td>
 </tr>
 <tr>
@@ -3745,10 +3745,10 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-5
+4
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0009757”
@@ -3836,7 +3836,7 @@ NA
 7
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0011873”
@@ -3880,7 +3880,7 @@ NA
 8
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016306”
@@ -3924,7 +3924,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016307”
@@ -3968,7 +3968,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016308”
@@ -4012,7 +4012,7 @@ NA
 11
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016309”
@@ -4056,7 +4056,7 @@ NA
 12
 </td>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 “MONDO:0016310”
@@ -4097,7 +4097,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-4
+5
 </td>
 <td style="text-align:left;">
 1
@@ -4364,7 +4364,7 @@ NA
 17
 </td>
 <td style="text-align:left;">
-5
+4
 </td>
 <td style="text-align:left;">
 “HGNC:7897”
@@ -4469,7 +4469,7 @@ data:</p>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
 <span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-10-1.png" width="960">
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" width="960">
 It may be the case that to protect patient privacy (again, pretending
 these phenotypes are disease diagnoses associated with patients) we want
 to remove nodes that have a <code>count</code> less than 6. If we do so
@@ -4483,7 +4483,7 @@ however, we lose connectivity:</p>
 <span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
 <span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-11-1.png" width="960">
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" width="960">
 To fix this, we can first compute the <code><a href="../../reference/transitive_closure.html">transitive_closure()</a></code>
 of the graph, with respect to an edge predicate we want to treat as
 transitive (defaulting to <code>biolink:subclass_of</code>). We color
@@ -4503,7 +4503,7 @@ in the number of nodes.</p>
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
 <span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
 <span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-12-1.png" width="960">
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" width="960">
 Now we can try our removal:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">closed_censored</span> <span class="op">&lt;-</span> <span class="va">phenos_closed</span> <span class="op">|&gt;</span></span>
@@ -4516,7 +4516,7 @@ Now we can try our removal:</p>
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
 <span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
 <span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-13-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" width="960"></p>
 <p>The graph retains its connectivity, but has redundant edges. The
 <code><a href="../../reference/transitive_reduction.html">transitive_reduction()</a></code> function removes these, again
 according to a specified transitive predicate (defaulting again to
@@ -4531,7 +4531,7 @@ according to a specified transitive predicate (defaulting again to
 <span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
 <span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
 <span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
-<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-14-1.png" width="960"></p>
+<p><img src="transitive_rollups_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" width="960"></p>
 </div>
   </div>
 
@@ -4550,7 +4550,7 @@ according to a specified transitive predicate (defaulting again to
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
