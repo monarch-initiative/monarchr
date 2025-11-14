@@ -1,3 +1,11 @@
+# monarchr 2.1.1
+
+## Bug Fixes
+
+* Fixed a bug in `file_engine` `expand()` not including the query graph on transitive expansions
+* Temporarily set `edge_color` default to `NULL` until `ggplot` 4.0.1 is released with [this](https://github.com/tidyverse/ggplot2/issues/6669) bugfix
+* Update badges
+
 # monarchr 2.1
 
 ## New features
