@@ -4,7 +4,8 @@ library(assertthat)
 test_that("neo4j_engine caching", {
   e <- neo4j_engine(url = c("http://neo4j.monarchinitiative.org:7474",
   													"http://neo4j.monarchinitiative.org",
-                            "http://no.such.url"),
+  													"https://neo4j.monarchinitiative.org",
+  													"http://no.such.url"),
   									cache = TRUE)
 
   		start_time <- Sys.time()
@@ -37,6 +38,7 @@ test_that("neo4j_engine works as expected (using monarch neo4j db)", {
 
     # one of these should work
     e <- neo4j_engine(url = c("http://neo4j.monarchinitiative.org",
+    													"https://neo4j.monarchinitiative.org",
                               "http://no.such.url",
                               "http://neo4j.monarchinitiative.org:7474"))
 
