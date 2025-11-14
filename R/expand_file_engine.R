@@ -49,6 +49,8 @@ transitive_query_internal <- function(engine,
             filter(purrr::map_lgl(category, ~ any(.x %in% categories)) | id %in% query_ids)
     }
 
+    suppressMessages(bfs_result <- kg_join(g, bfs_result), classes = "message")
+
     attr(bfs_result, "last_engine") <- engine
     return(bfs_result)
 }
