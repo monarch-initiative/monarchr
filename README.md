@@ -2,7 +2,7 @@ monarchr
 ================
 [![License: MIT + file
 LICENSE](https://img.shields.io/badge/license-MIT%20+%20file%20LICENSE-blue.svg)](https://cran.r-project.org/web/licenses/MIT%20+%20file%20LICENSE)
-[![](https://img.shields.io/badge/devel%20version-1.5.0-black.svg)](https://github.com/monarch-initiative/monarchr)
+[![](https://img.shields.io/badge/devel%20version-2.1.1-black.svg)](https://github.com/monarch-initiative/monarchr)
 <br> [![R build
 status](https://github.com/monarch-initiative/monarchr/workflows/rworkflows/badge.svg)](https://github.com/monarch-initiative/monarchr/actions)
 [![](https://codecov.io/gh/monarch-initiative/monarchr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/monarch-initiative/monarchr)
