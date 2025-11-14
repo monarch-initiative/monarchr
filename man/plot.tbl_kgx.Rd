@@ -10,7 +10,7 @@
   layout = "auto",
   node_color = pcategory,
   node_shape = namespace,
-  edge_color = NULL,
+  edge_color = predicate,
   edge_linetype = primary_knowledge_source,
   node_label = name,
   plot_ids = FALSE,
@@ -37,7 +37,7 @@ of supported classes. Or a \code{layout_ggraph} object as returned from
 
 \item{node_shape}{The column to use for node shape Default is "namespace".}
 
-\item{edge_color}{The column to use for edge color. Default is NULL.}
+\item{edge_color}{The column to use for edge color. Default is "predicate".}
 
 \item{edge_linetype}{The column to use for edge line type. Default is "primary_knowledge_source".}
 

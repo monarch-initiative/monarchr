@@ -118,11 +118,15 @@ roll <- function(  column,
 #' @examples
 #' data(eds_marfan_kg)
 #'
-#' eds_marfan_kg |> fetch_nodes(name == "Tall stature" | name == "Short stature") |>
-#'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 2) |>  # get 2 levels of ancestors
+#' eds_marfan_kg |>
+#'   fetch_nodes(name == "Tall stature" | name == "Short stature") |>
+#'   # get 2 levels of ancestors
+#'   expand_n(predicates = "biolink:subclass_of", direction = "out", n = 2) |>
 #'   activate(nodes) |>
-#'   mutate(count = rpois(graph_order(), 1.5)) |>                               # random count value per node
-#'   mutate(sum_count = roll_up(count, fun = sum, include_self = TRUE)) |>      # apply sum to descendant (and self) values
+#'   # random count value per node
+#'   mutate(count = rpois(graph_order(), 1.5)) |>
+#'   # apply sum to descendant (and self) values
+#'   mutate(sum_count = roll_up(count, fun = sum, include_self = TRUE)) |>
 #'   plot(node_label = paste(name, " count: ", count, "sum_count: ", sum_count))
 #'
 #' @name rolling

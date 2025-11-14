@@ -6,6 +6,11 @@
 \usage{
 transitive_reduction(g, predicate = "biolink:subclass_of")
 }
+\arguments{
+\item{g}{The \code{tbl_kgx} graph to compute on.}
+
+\item{predicate}{The edge predicate to reduce over.}
+}
 \value{
 Graph with transitive edges added.
 }
@@ -18,7 +23,10 @@ data(eds_marfan_kg)
 
 g <- eds_marfan_kg |> fetch_nodes(name == "Tall stature") |>
 	expand_n(predicates = "biolink:subclass_of", direction = "out", n = 3) |>
-	bind_edges(data.frame(from = 2, to = 9, predicate = "biolink_subclass_of", primary_knowledge_source = "hand_annotated"))
+	bind_edges(data.frame(from = 2,
+	                      to = 9,
+	                      predicate = "biolink_subclass_of",
+	                      primary_knowledge_source = "hand_annotated"))
 
 plot(g, edge_color = primary_knowledge_source)
 

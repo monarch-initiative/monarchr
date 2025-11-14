@@ -1,3 +1,10 @@
+# monarchr 2.1.2
+
+## Bug Fixes
+
+* Better fix for `edge_color`
+* Improved documentation for `transitive_closure()`, `transitive_reduction()`, `transfer()`, `roll_up()`, `roll_down()`
+
 # monarchr 2.1.1
 
 ## Bug Fixes
