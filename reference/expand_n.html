@@ -72,7 +72,7 @@ of iterations (n)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Iteratively fetch additional knowledge graph edges connected to a query graph</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/expand_n.R" class="external-link"><code>R/expand_n.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/expand_n.R" class="external-link"><code>R/expand_n.R</code></a></small>
     <div class="hidden name"><code>expand_n.Rd</code></div>
     </div>
 
@@ -144,19 +144,21 @@ If FALSE, return the final graph with all expanded edges.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Using example KGX file packaged with monarchr</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
-<span class="r-in"><span>            categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
+<span class="r-in"><span>        categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_expanded</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>              <span class="fu">expand_n</span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Initial graph size: 49 nodes || 48 edges</span>
+<span class="r-in"><span>    <span class="fu">expand_n</span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Initial graph size:49nodes ||48edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 1/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 153 nodes || 168 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:153nodes ||168edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 2/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 415 nodes || 489 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:415nodes ||489edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 3/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 936 nodes || 1249 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:936nodes ||1249edges</span>
 </code></pre></div>
     </div>
   </div>

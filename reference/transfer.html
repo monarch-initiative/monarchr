@@ -71,7 +71,7 @@ column; intended to be used with mutate() on nodes."><!-- mathjax --><script src
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Transfer information over edges to nodes.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/transfer.R" class="external-link"><code>R/transfer.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/transfer.R" class="external-link"><code>R/transfer.R</code></a></small>
     <div class="hidden name"><code>transfer.Rd</code></div>
     </div>
 
@@ -120,7 +120,34 @@ otherwise.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidygraph.data-imaginist.com" class="external-link">tidygraph</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="st">"biolink:Gene"</span> <span class="op"><a href="grapes-in_list-grapes.html">%in_list%</a></span> <span class="va">category</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>caused_by_genes <span class="op">=</span> <span class="fu">transfer</span><span class="op">(</span><span class="va">name</span>,</span></span>
+<span class="r-in"><span>        over <span class="op">=</span> <span class="st">"biolink:causes"</span>,</span></span>
+<span class="r-in"><span>        direction <span class="op">=</span> <span class="st">"out"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>causes_diseases <span class="op">=</span> <span class="fu">transfer</span><span class="op">(</span><span class="va">name</span>,</span></span>
+<span class="r-in"><span>        over <span class="op">=</span> <span class="st">"biolink:causes"</span>,</span></span>
+<span class="r-in"><span>        direction <span class="op">=</span> <span class="st">"in"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            <span class="va">name</span>,</span></span>
+<span class="r-in"><span>            <span class="st">" caused by: "</span>, <span class="va">caused_by_genes</span>,</span></span>
+<span class="r-in"><span>            <span class="st">" causes: "</span>, <span class="va">causes_diseases</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        label_size <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using <span style="color: #0000BB;">"sugiyama"</span> as default layout</span>
+<span class="r-plt img"><img src="transfer-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

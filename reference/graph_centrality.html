@@ -69,7 +69,7 @@ Then adds the centrality score as an node attribute."><!-- mathjax --><script sr
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add centrality</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/graph_centrality.R" class="external-link"><code>R/graph_centrality.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/graph_centrality.R" class="external-link"><code>R/graph_centrality.R</code></a></small>
     <div class="hidden name"><code>graph_centrality.Rd</code></div>
     </div>
 
@@ -118,10 +118,12 @@ Default is <a href="https://r.igraph.org/reference/harmonic_centrality.html" cla
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
-<span class="r-in"><span>                 categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span><span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
+<span class="r-in"><span>        categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="st">"biolink:Gene"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">graph_centrality</span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Computing node centrality.</span>
 <span class="r-in"><span><span class="fu"><a href="nodes.html">nodes</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span><span class="op">$</span><span class="va">centrality</span></span></span>

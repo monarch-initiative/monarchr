@@ -71,7 +71,7 @@ any engine is associated with the graph it is not saved."><!-- mathjax --><scrip
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Save a graph as a KGX-formatted .tar.gz file.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/save_kgx.R" class="external-link"><code>R/save_kgx.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/save_kgx.R" class="external-link"><code>R/save_kgx.R</code></a></small>
     <div class="hidden name"><code>save_kgx.Rd</code></div>
     </div>
 
@@ -110,17 +110,19 @@ any engine is associated with the graph it is not saved.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">phenos</span> <span class="op">&lt;-</span> <span class="fu"><a href="monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
-<span class="r-in"><span>                 categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="st">"MONDO:0007525"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand.html">expand</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        predicates <span class="op">=</span> <span class="st">"biolink:has_phenotype"</span>,</span></span>
+<span class="r-in"><span>        categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://neo4j.monarchinitiative.org</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to https://neo4j.monarchinitiative.org</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; counting matching nodes... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 1.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 1 of 1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched1of1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding; counting matching edges... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 26.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding; fetched 26 of 26 edges.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding; fetched26of26edges.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">save_kgx</span><span class="op">(</span><span class="va">phenos</span>, <span class="st">"phenos.tar.gz"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -130,27 +132,27 @@ any engine is associated with the graph it is not saved.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to https://neo4j.monarchinitiative.org</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">loaded_phenos</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 27 nodes and 26 edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 30 nodes and 26 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted tree</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 4 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 27 × 16 (active)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 30 × 16 (active)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id       pcategory name  description synonym category iri   xref  file_source</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> MONDO:0… biolink:… Ehle… An inherit… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> HP:0000… biolink:… Thin… Reduction … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> HP:0000… biolink:… Hype… A conditio… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> HP:0001… biolink:… Abno… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> HP:0001… biolink:… Hypo… Hypotonia … <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HP:0001… biolink:… Join… Displaceme… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> HP:0001… biolink:… Hip … The presen… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> HP:0001… biolink:… Join… Joint stif… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> HP:0002… biolink:… Muti… Complete l… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HP:0002… biolink:… Apha… An acquire… <span style="color: #949494;">&lt;chr&gt;</span>   <span style="color: #949494;">&lt;chr&gt;</span>    http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 17 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: narrow_synonym &lt;list&gt;, namespace &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;chr&gt;, exact_synonym &lt;list&gt;, related_synonym &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   subsets &lt;list&gt;, broad_synonym &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> MONDO:0… <span style="color: #BB0000;">NA</span>        Ehle… An inherit… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> )        phenio_n… biol… http://pur… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>c(\… <span style="color: #949494;">"</span>MON… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> HP:0000… biolink:… Thin… Reduction … <span style="color: #949494;">"</span>Thin … <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> HP:0000… biolink:… Hype… A conditio… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>UML… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> HP:0001… biolink:… Abno… <span style="color: #BB0000;">NA</span>          <span style="color: #949494;">"</span>Abnor… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>UML… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HP:0001… biolink:… Hypo… Hypotonia … <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> HP:0001… biolink:… Join… Displaceme… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> HP:0001… biolink:… Hip … The presen… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> HP:0001… biolink:… Join… Joint stif… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> HP:0002… biolink:… Muti… Complete l… <span style="color: #949494;">"</span>c(\"\… <span style="color: #949494;">&lt;chr&gt;</span>    <span style="color: #949494;">"</span>htt… <span style="color: #949494;">"</span>c(\… phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: narrow_synonym &lt;chr&gt;, namespace &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   provided_by &lt;list&gt;, exact_synonym &lt;chr&gt;, related_synonym &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   subsets &lt;chr&gt;, broad_synonym &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 26 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate object primary_knowledge_so…¹ knowledge_level</span>

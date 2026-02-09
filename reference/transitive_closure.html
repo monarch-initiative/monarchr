@@ -70,7 +70,7 @@ same, but have primary_knowledge_source set to transitive_."><!-- mathjax --><sc
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute transitive closure over a predicate.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/transitive_closure.R" class="external-link"><code>R/transitive_closure.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/transitive_closure.R" class="external-link"><code>R/transitive_closure.R</code></a></small>
     <div class="hidden name"><code>transitive_closure.Rd</code></div>
     </div>
 
@@ -107,22 +107,25 @@ same, but have primary_knowledge_source set to transitive_<predicate>.</predicat
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidygraph.data-imaginist.com" class="external-link">tidygraph</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">eds_marfan_kg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span> <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Tall stature"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="co"># get 2 levels of ancestors</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">edges</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">primary_knowledge_source</span> <span class="op">==</span> <span class="st">"infores:upheno"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">transitive_closure</span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Initial graph size: 1 nodes || 0 edges</span>
+<span class="r-in"><span><span class="va">eds_marfan_kg</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Tall stature"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="co"># get 2 levels of ancestors</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, direction <span class="op">=</span> <span class="st">"out"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">edges</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">primary_knowledge_source</span> <span class="op">==</span> <span class="st">"infores:upheno"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu">transitive_closure</span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Initial graph size:1nodes ||0edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 1/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 3 nodes || 2 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:3nodes ||2edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 2/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 7 nodes || 7 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:7nodes ||7edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Expanding graph: iteration 3/3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size: 13 nodes || 15 edges</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Graph size:13nodes ||15edges</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using <span style="color: #0000BB;">"sugiyama"</span> as default layout</span>
 <span class="r-plt img"><img src="transitive_closure-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

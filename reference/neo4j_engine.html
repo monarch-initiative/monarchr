@@ -70,7 +70,7 @@ graph objects.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a knowledge graph engine object for a neo4j database</h1>
-    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/R/neo4j_engine.R" class="external-link"><code>R/neo4j_engine.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/R/neo4j_engine.R" class="external-link"><code>R/neo4j_engine.R</code></a></small>
     <div class="hidden name"><code>neo4j_engine.Rd</code></div>
     </div>
 
@@ -154,17 +154,17 @@ of <code>neo4j_engine()</code> with the URL set to the Monarch Neo4j instance, a
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">engine</span> <span class="op">|&gt;</span> <span class="fu"><a href="fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span>query_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MONDO:0007522"</span>, <span class="st">"MONDO:0007947"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; counting matching nodes... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  total: 2.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched 2 of 2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching; fetched2of2</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tbl_graph: 2 nodes and 0 edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A rooted forest with 2 trees</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Node Data: 2 × 14 (active)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id        category pcategory name  description synonym iri   xref  file_source</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:00… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ehle… Ehlers-Dan… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:00… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Marf… A disorder… <span style="color: #949494;">&lt;chr&gt;</span>   http… <span style="color: #949494;">&lt;chr&gt;</span> phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id       category pcategory name  description synonym iri   xref   file_source</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> MONDO:0… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Ehle… Ehlers-Dan… <span style="color: #949494;">&lt;list&gt;</span>  http… <span style="color: #949494;">&lt;list&gt;</span> phenio_nod…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MONDO:0… <span style="color: #949494;">&lt;chr&gt;</span>    biolink:… Marf… A disorder… <span style="color: #949494;">&lt;list&gt;</span>  http… <span style="color: #949494;">&lt;list&gt;</span> phenio_nod…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: namespace &lt;chr&gt;, provided_by &lt;chr&gt;, exact_synonym &lt;list&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   related_synonym &lt;list&gt;, subsets &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#</span></span>

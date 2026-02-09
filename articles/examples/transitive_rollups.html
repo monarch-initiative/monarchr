@@ -102,7 +102,7 @@ O’Neil</h4>
 <i>Feb-09-2026</i>
 </h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/main/vignettes/examples/transitive_rollups.Rmd" class="external-link"><code>vignettes/examples/transitive_rollups.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/vignettes/examples/transitive_rollups.Rmd" class="external-link"><code>vignettes/examples/transitive_rollups.Rmd</code></a></small>
       <div class="hidden name"><code>transitive_rollups.Rmd</code></div>
 
     </div>
@@ -124,13 +124,15 @@ of levels of this hierarchy for the phenotype
 it will make the next examples clearer).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phenos</span> <span class="op">&lt;-</span> <span class="va">e</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"leg phenotype"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/expand_n.html">expand_n</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>, </span>
-<span>           categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span>, </span>
-<span>           direction <span class="op">=</span> <span class="st">"out"</span>, </span>
-<span>           n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">!=</span> <span class="st">"leg phenotype"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"leg phenotype"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="../../reference/expand_n.html">expand_n</a></span><span class="op">(</span></span>
+<span>        predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span>,</span>
+<span>        categories <span class="op">=</span> <span class="st">"biolink:PhenotypicFeature"</span>,</span>
+<span>        direction <span class="op">=</span> <span class="st">"out"</span>,</span>
+<span>        n <span class="op">=</span> <span class="fl">4</span></span>
+<span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">!=</span> <span class="st">"leg phenotype"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos</span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="960">
@@ -145,11 +147,12 @@ count information, plotting it in the node labels:</p>
 <span></span>
 <span><span class="va">num_nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="../../reference/nodes.html">nodes</a></span><span class="op">(</span><span class="va">phenos</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">phenos_counted</span> <span class="op">&lt;-</span> <span class="va">phenos</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">num_nodes</span>, lambda <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">num_nodes</span>, lambda <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_counted</span>, </span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || count: "</span>, <span class="va">count</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_counted</span>,</span>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || count: "</span>, <span class="va">count</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="960"></p>
 <p>A “rollup” might thus ask, how many patients are associated with each
 phenotype, if we include all of it’s descendants? For example, “lower
@@ -164,13 +167,16 @@ all descendants), and whether each node should include its own value in
 the aggregation.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phenos_counted_rolled</span> <span class="op">&lt;-</span> <span class="va">phenos_counted</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="../../reference/rolling.html">roll_up</a></span><span class="op">(</span><span class="va">count</span>, fun <span class="op">=</span> <span class="va">sum</span>, include_self <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="../../reference/rolling.html">roll_up</a></span><span class="op">(</span><span class="va">count</span>, fun <span class="op">=</span> <span class="va">sum</span>, include_self <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_counted_rolled</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="960"></p>
 <p>The corresponding <strong><code><a href="../../reference/rolling.html">roll_down()</a></code></strong>
 aggregates in the opposite direction (not shown).</p>
@@ -189,9 +195,9 @@ nodes of one kind to another. We’ll start by fetching all of the
 subtypes of Niemann-Pick disease, and all known causal genes.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes</span> <span class="op">&lt;-</span> <span class="va">e</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Niemann-Pick disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/descendants.html">descendants</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:causes"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../../reference/fetch_nodes.html">fetch_nodes</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Niemann-Pick disease"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="../../reference/descendants.html">descendants</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="../../reference/expand.html">expand</a></span><span class="op">(</span>predicates <span class="op">=</span> <span class="st">"biolink:causes"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes</span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="960">
@@ -201,11 +207,12 @@ as a part of the nodes. The <code><a href="../../reference/transfer.html">transf
 information across edges:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal</span> <span class="op">&lt;-</span> <span class="va">npc_genes</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>caused_by <span class="op">=</span> <span class="fu"><a href="../../reference/transfer.html">transfer</a></span><span class="op">(</span><span class="va">name</span>, over <span class="op">=</span> <span class="st">"biolink:causes"</span>, direction <span class="op">=</span> <span class="st">"out"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>caused_by <span class="op">=</span> <span class="fu"><a href="../../reference/transfer.html">transfer</a></span><span class="op">(</span><span class="va">name</span>, over <span class="op">=</span> <span class="st">"biolink:causes"</span>, direction <span class="op">=</span> <span class="st">"out"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal</span>, </span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || caused by: "</span>, <span class="va">caused_by</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal</span>,</span>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || caused by: "</span>, <span class="va">caused_by</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="960"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal</span></span></code></pre></div>
@@ -307,11 +314,11 @@ accumulates in lysosomes in cells. The lysosomes normally transport
 material through and out of the cell.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann-Pick disease with cholesterol esterification block”,
+list(c(“Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease, subacute juvenile form”, “lipoid histiocytosis”,
 “lipoid histiocytosis (classical phosphatide)”, “sphingomyelin
 lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
-deficiency disease”, “type A Niemann-Pick disease”)
+deficiency disease”, “type A Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -322,15 +329,15 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001982</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
+list(c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
 “MEDGEN:10348”, “MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”,
-“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”)
+“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“type A Niemann-Pick disease”
+list(“type A Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -339,11 +346,11 @@ c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“Niemann-Pick disease with cholesterol esterification block”,
+list(c(“Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease, subacute juvenile form”, “lipoid histiocytosis”,
 “lipoid histiocytosis (classical phosphatide)”, “sphingomyelin
 lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
-deficiency disease”)
+deficiency disease”))
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|otar|rare”
@@ -398,7 +405,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016306" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016306</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”, “UMLS:C5680866”)
+list(c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”,
+“UMLS:C5680866”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -459,7 +467,7 @@ accumulation of unesterified cholesterol in the late endosomal/lysosomal
 compartment.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
+list(c(“NPC”, “Niemann Pick Disease Type C”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -470,9 +478,9 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+list(c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
 “NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
-“UMLS:C0220756”, “icd11.foundation:812702125”)
+“UMLS:C0220756”, “icd11.foundation:812702125”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -487,13 +495,13 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“Niemann Pick Disease Type C”
+list(“Niemann Pick Disease Type C”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
 </td>
 <td style="text-align:left;">
-“NPC”
+list(“NPC”)
 </td>
 <td style="text-align:left;">
 NA
@@ -542,8 +550,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016307" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016307</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”, “UMLS:C5680868”,
-“icd11.foundation:587642791”)
+list(c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”,
+“UMLS:C5680868”, “icd11.foundation:587642791”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -613,8 +621,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016308" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016308</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20506”, “MEDGEN:1843353”, “Orphanet:216978”, “UMLS:C5680867”,
-“icd11.foundation:2075382821”)
+list(c(“GARD:20506”, “MEDGEN:1843353”, “Orphanet:216978”,
+“UMLS:C5680867”, “icd11.foundation:2075382821”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -673,7 +681,7 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type C, classic form”
+list(“Niemann-Pick disease type C, classic form”)
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -684,8 +692,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016309" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016309</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”, “UMLS:C5679813”,
-“icd11.foundation:2006062681”)
+list(c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”,
+“UMLS:C5679813”, “icd11.foundation:2006062681”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -700,7 +708,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“Niemann-Pick disease type C, classic form”
+list(“Niemann-Pick disease type C, classic form”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
@@ -755,8 +763,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
-“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
+list(c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
+“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -827,7 +835,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0020384" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0020384</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”, “UMLS:C0268248”)
+list(c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”,
+“UMLS:C0268248”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -908,7 +917,7 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDGEN:1800807”, “UMLS:C5243927”)
+list(c(“MEDGEN:1800807”, “UMLS:C5243927”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -978,8 +987,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0850058" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0850058</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”, “Orphanet:618891”,
-“UMLS:C5539139”)
+list(c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”,
+“Orphanet:618891”, “UMLS:C5539139”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -1042,9 +1051,9 @@ thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
 disorders.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
+list(c(“Niemann-PICK disease, type A”, “Niemann-Pick disease,
+Intermediate, protracted neurovisceral”, “sphingomyelin lipidosis”,
+“sphingomyelinase deficiency”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -1055,10 +1064,10 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
+list(c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
 “MESH:D052536”, “NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”,
 “OMIM:257200”, “Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
-“icd11.foundation:530611243”)
+“icd11.foundation:530611243”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -1082,9 +1091,9 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
+list(c(“Niemann-PICK disease, type A”, “Niemann-Pick disease,
+Intermediate, protracted neurovisceral”, “sphingomyelin lipidosis”,
+“sphingomyelinase deficiency”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1120,14 +1129,14 @@ NA
 NPC1, encoding Niemann-Pick C1 protein.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
+list(c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease
+type C1”, “Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease without sphingomyelinase deficiency”,
 “Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
 disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
 form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
 “Niemann-Pick disease, type D”, “neurovisceral storage disease with
-vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
+vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -1138,8 +1147,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
-“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
+list(c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
+“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -1154,7 +1163,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”)
+list(c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 “clingen|gard_rare|rare”
@@ -1163,14 +1172,14 @@ c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”)
 NA
 </td>
 <td style="text-align:left;">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
+list(c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease
+type C1”, “Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease without sphingomyelinase deficiency”,
 “Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
 disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
 form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type D”,
 “neurovisceral storage disease with vertical supranuclear
-ophthalmoplegia”)
+ophthalmoplegia”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1208,10 +1217,10 @@ clinically by onset in childhood with hepatosplenomegaly, growth
 retardation, and lung disorders such as infections and dyspnea”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+list(c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
 “Niemann-Pick disease, Intermediate, with visceral involvement and rapid
 progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”, “type B Niemann-Pick disease”)
+type F”, “type B Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -1222,10 +1231,10 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
+list(c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
 “MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
 “OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
-“icd11.foundation:327269975”)
+“icd11.foundation:327269975”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -1240,7 +1249,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“type B Niemann-Pick disease”
+list(“type B Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
@@ -1249,10 +1258,10 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+list(c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
 “Niemann-Pick disease, Intermediate, with visceral involvement and rapid
 progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”)
+type F”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1299,8 +1308,9 @@ Niemann-Pick disease type C2. Treatment is based on the signs and
 symptoms present in each person.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease type
-C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick disease”)
+list(c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease
+type C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
+disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -1311,8 +1321,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011873" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011873</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
-“NCIT:C126865”, “OMIM:607625”, “UMLS:C1843366”)
+list(c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
+“NCIT:C126865”, “OMIM:607625”, “UMLS:C1843366”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -1327,8 +1337,8 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“NPC2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
-disease”)
+list(c(“NPC2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
+disease”))
 </td>
 <td style="text-align:left;">
 “clingen|gard_rare|rare”
@@ -1337,7 +1347,7 @@ disease”)
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann-PICK disease, type C2”, “Niemann-Pick disease type C2”)
+list(c(“Niemann-PICK disease, type C2”, “Niemann-Pick disease type C2”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1372,8 +1382,8 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
-“sphingomyelin phosphodiesterase 1, acid lysosomal”)
+list(c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
+“sphingomyelin phosphodiesterase 1, acid lysosomal”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -1387,7 +1397,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
+list(c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -1446,7 +1456,7 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“SLC65A1”, “Niemann-Pick disease, type C1”)
+list(c(“SLC65A1”, “Niemann-Pick disease, type C1”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -1460,7 +1470,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
+list(c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -1519,8 +1529,8 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
-disease, type C2”)
+list(c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
+disease, type C2”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -1534,7 +1544,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
+list(c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -1656,7 +1666,7 @@ original_subject
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1668,7 +1678,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:a6649ac1-7d5f-4246-a706-f2115d05381e" class="uri">urn:uuid:a6649ac1-7d5f-4246-a706-f2115d05381e</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1703,7 +1713,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1715,7 +1725,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:7f0b2bdb-1643-4257-bf48-ff46edb48e2c" class="uri">urn:uuid:7f0b2bdb-1643-4257-bf48-ff46edb48e2c</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1750,7 +1760,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1762,7 +1772,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:dbc5953d-dfe6-4003-bf04-dcf210137cee" class="uri">urn:uuid:dbc5953d-dfe6-4003-bf04-dcf210137cee</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1797,7 +1807,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1809,7 +1819,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:69452e94-5d68-412e-a921-ed2302f49f30" class="uri">urn:uuid:69452e94-5d68-412e-a921-ed2302f49f30</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1844,7 +1854,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1856,7 +1866,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:6bc5e5c8-ca90-4324-a778-87aa40c45587" class="uri">urn:uuid:6bc5e5c8-ca90-4324-a778-87aa40c45587</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1891,7 +1901,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1903,7 +1913,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:5a6ff81b-0338-4f13-9b5b-6f80f92f5823" class="uri">urn:uuid:5a6ff81b-0338-4f13-9b5b-6f80f92f5823</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1938,7 +1948,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1950,7 +1960,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:709c68a1-7585-479d-aa56-5c4cadfd3426" class="uri">urn:uuid:709c68a1-7585-479d-aa56-5c4cadfd3426</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -1985,7 +1995,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -1997,7 +2007,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:025ce824-a70a-4a63-b8c2-b81b508cf07e" class="uri">urn:uuid:025ce824-a70a-4a63-b8c2-b81b508cf07e</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2032,7 +2042,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -2044,7 +2054,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:142d051c-a43f-43d2-9dbd-e3373446d25a" class="uri">urn:uuid:142d051c-a43f-43d2-9dbd-e3373446d25a</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2079,7 +2089,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -2091,7 +2101,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:fa6e3095-088e-4510-9629-45fd41156900" class="uri">urn:uuid:fa6e3095-088e-4510-9629-45fd41156900</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2126,7 +2136,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -2138,7 +2148,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:51ad12d3-81e0-4992-b637-925e41266e56" class="uri">urn:uuid:51ad12d3-81e0-4992-b637-925e41266e56</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2173,7 +2183,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -2185,7 +2195,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:aacc4333-bb74-4943-8320-17ff139d4afb" class="uri">urn:uuid:aacc4333-bb74-4943-8320-17ff139d4afb</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2220,7 +2230,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -2232,7 +2242,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:6e38532c-3ed9-4bbc-af2f-cc8c4e4351c8" class="uri">urn:uuid:6e38532c-3ed9-4bbc-af2f-cc8c4e4351c8</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -2279,14 +2289,14 @@ NA
 “uuid:99dccc00-1378-4a81-99bf-69ff4cc37292”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257200”
@@ -2333,14 +2343,14 @@ NA
 “uuid:9b804d34-97f5-4e4a-a882-e30ffa24688b”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:607616”
@@ -2387,14 +2397,14 @@ NA
 “uuid:ca8e9478-f18a-411f-a07e-ec171462c2b4”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257220”
@@ -2441,14 +2451,14 @@ NA
 “uuid:58d971a3-2dc8-47ac-a123-b8851fafd582”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257220”
@@ -2495,14 +2505,14 @@ NA
 “uuid:701ae974-7a6e-4bd2-a0e3-b0cd83c6e11b”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:607625”
@@ -2522,7 +2532,7 @@ source nodes’ <code>name</code>, resulting in a new
 <code>caused_by</code> column in the node table.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/nodes.html">nodes</a></span><span class="op">(</span><span class="va">npc_genes_causal</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">caused_by</span><span class="op">)</span></span></code></pre></div>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">caused_by</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
 <span><span class="co">##    name                                                                 caused_by</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
@@ -2550,14 +2560,16 @@ each diseases, the set of genes that cause it or any of its
 subtypes.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal_rolled</span> <span class="op">&lt;-</span> <span class="va">npc_genes_causal</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>any_caused_by <span class="op">=</span> <span class="fu"><a href="../../reference/rolling.html">roll_up</a></span><span class="op">(</span><span class="va">caused_by</span>,</span>
-<span>                                 fun <span class="op">=</span> <span class="va">unique</span>,</span>
-<span>                                 include_self <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                                 predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>any_caused_by <span class="op">=</span> <span class="fu"><a href="../../reference/rolling.html">roll_up</a></span><span class="op">(</span><span class="va">caused_by</span>,</span>
+<span>        fun <span class="op">=</span> <span class="va">unique</span>,</span>
+<span>        include_self <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        predicates <span class="op">=</span> <span class="st">"biolink:subclass_of"</span></span>
+<span>    <span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal_rolled</span>, </span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || any caused by: "</span>, <span class="va">any_caused_by</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npc_genes_causal_rolled</span>,</span>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">" || any caused by: "</span>, <span class="va">any_caused_by</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="960"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npc_genes_causal_rolled</span></span></code></pre></div>
@@ -2662,11 +2674,11 @@ accumulates in lysosomes in cells. The lysosomes normally transport
 material through and out of the cell.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann-Pick disease with cholesterol esterification block”,
+list(c(“Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease, subacute juvenile form”, “lipoid histiocytosis”,
 “lipoid histiocytosis (classical phosphatide)”, “sphingomyelin
 lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
-deficiency disease”, “type A Niemann-Pick disease”)
+deficiency disease”, “type A Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -2677,15 +2689,15 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0001982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0001982</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
+list(c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
 “MEDGEN:10348”, “MESH:D009542”, “NANDO:2200561”, “NCIT:C61269”,
-“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”)
+“SCTID:58459009”, “UMLS:C0028064”, “icd11.foundation:398872780”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“type A Niemann-Pick disease”
+list(“type A Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
 “MONDO”
@@ -2694,11 +2706,11 @@ c(“DOID:14504”, “EFO:1001380”, “GARD:13334”, “ICD10CM:E75.24”,
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“Niemann-Pick disease with cholesterol esterification block”,
+list(c(“Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease, subacute juvenile form”, “lipoid histiocytosis”,
 “lipoid histiocytosis (classical phosphatide)”, “sphingomyelin
 lipidosis”, “sphingomyelin/cholesterol lipidosis”, “sphingomyelinase
-deficiency disease”)
+deficiency disease”))
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|otar|rare”
@@ -2756,7 +2768,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016306" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016306</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”, “UMLS:C5680866”)
+list(c(“GARD:20504”, “MEDGEN:1842349”, “Orphanet:216972”,
+“UMLS:C5680866”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -2820,7 +2833,7 @@ accumulation of unesterified cholesterol in the late endosomal/lysosomal
 compartment.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC”, “Niemann Pick Disease Type C”)
+list(c(“NPC”, “Niemann Pick Disease Type C”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -2831,9 +2844,9 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0018982" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0018982</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
+list(c(“GARD:7207”, “ICD10CM:E75.242”, “MEDGEN:67399”, “MESH:D052556”,
 “NANDO:1200063”, “NORD:1509”, “Orphanet:646”, “SCTID:66751000”,
-“UMLS:C0220756”, “icd11.foundation:812702125”)
+“UMLS:C0220756”, “icd11.foundation:812702125”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -2848,13 +2861,13 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“Niemann Pick Disease Type C”
+list(“Niemann Pick Disease Type C”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
 </td>
 <td style="text-align:left;">
-“NPC”
+list(“NPC”)
 </td>
 <td style="text-align:left;">
 NA
@@ -2906,8 +2919,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016307" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016307</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”, “UMLS:C5680868”,
-“icd11.foundation:587642791”)
+list(c(“GARD:20505”, “MEDGEN:1842400”, “Orphanet:216975”,
+“UMLS:C5680868”, “icd11.foundation:587642791”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -2980,8 +2993,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016308" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016308</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20506”, “MEDGEN:1843353”, “Orphanet:216978”, “UMLS:C5680867”,
-“icd11.foundation:2075382821”)
+list(c(“GARD:20506”, “MEDGEN:1843353”, “Orphanet:216978”,
+“UMLS:C5680867”, “icd11.foundation:2075382821”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3043,7 +3056,7 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Niemann-Pick disease type C, classic form”
+list(“Niemann-Pick disease type C, classic form”)
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -3054,8 +3067,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016309" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016309</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”, “UMLS:C5679813”,
-“icd11.foundation:2006062681”)
+list(c(“GARD:20507”, “MEDGEN:1842257”, “Orphanet:216981”,
+“UMLS:C5679813”, “icd11.foundation:2006062681”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3070,7 +3083,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“Niemann-Pick disease type C, classic form”
+list(“Niemann-Pick disease type C, classic form”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_subtype_of_a_disorder|otar|rare”
@@ -3128,8 +3141,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0016310" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0016310</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
-“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”)
+list(c(“GARD:20508”, “MEDGEN:1826101”, “NANDO:1200065”, “NANDO:2201209”,
+“Orphanet:216986”, “UMLS:C5680869”, “icd11.foundation:77127214”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3203,7 +3216,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0020384" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0020384</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”, “UMLS:C0268248”)
+list(c(“MEDGEN:82781”, “Orphanet:99022”, “SCTID:73399005”,
+“UMLS:C0268248”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3287,7 +3301,7 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0100464" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0100464</a>”
 </td>
 <td style="text-align:left;">
-c(“MEDGEN:1800807”, “UMLS:C5243927”)
+list(c(“MEDGEN:1800807”, “UMLS:C5243927”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3360,8 +3374,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0850058" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0850058</a>”
 </td>
 <td style="text-align:left;">
-c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”, “Orphanet:618891”,
-“UMLS:C5539139”)
+list(c(“GARD:22456”, “ICD10CM:E75.244”, “MEDGEN:1842316”,
+“Orphanet:618891”, “UMLS:C5539139”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3427,9 +3441,9 @@ thrive, hepatosplenomegaly, and rapidly progressive neurodegenerative
 disorders.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
+list(c(“Niemann-PICK disease, type A”, “Niemann-Pick disease,
+Intermediate, protracted neurovisceral”, “sphingomyelin lipidosis”,
+“sphingomyelinase deficiency”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -3440,10 +3454,10 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009756" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009756</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
+list(c(“DOID:0070111”, “GARD:7206”, “ICD10CM:E75.240”, “MEDGEN:78650”,
 “MESH:D052536”, “NANDO:1200061”, “NANDO:2201206”, “NCIT:C126561”,
 “OMIM:257200”, “Orphanet:77292”, “SCTID:52165006”, “UMLS:C0268242”,
-“icd11.foundation:530611243”)
+“icd11.foundation:530611243”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3467,9 +3481,9 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann-PICK disease, type A”, “Niemann-Pick disease, Intermediate,
-protracted neurovisceral”, “sphingomyelin lipidosis”, “sphingomyelinase
-deficiency”)
+list(c(“Niemann-PICK disease, type A”, “Niemann-Pick disease,
+Intermediate, protracted neurovisceral”, “sphingomyelin lipidosis”,
+“sphingomyelinase deficiency”))
 </td>
 <td style="text-align:left;">
 NA
@@ -3508,14 +3522,14 @@ NA
 NPC1, encoding Niemann-Pick C1 protein.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
+list(c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease
+type C1”, “Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease without sphingomyelinase deficiency”,
 “Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
 disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
 form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type C1”,
 “Niemann-Pick disease, type D”, “neurovisceral storage disease with
-vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”)
+vertical supranuclear ophthalmoplegia”, “type C1 Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -3526,8 +3540,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0009757" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0009757</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
-“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”)
+list(c(“DOID:0070113”, “MEDGEN:465922”, “NCIT:C126864”, “OMIM:257220”,
+“SCTID:18927009”, “SCTID:67855008”, “UMLS:C3179455”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3542,7 +3556,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”)
+list(c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 “clingen|gard_rare|rare”
@@ -3551,14 +3565,14 @@ c(“Niemann-Pick disease, type C1”, “type C1 Niemann-Pick disease”)
 NA
 </td>
 <td style="text-align:left;">
-c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease type
-C1”, “Niemann-Pick disease with cholesterol esterification block”,
+list(c(“NPC1”, “Niemann-PICK disease, type C1”, “Niemann-Pick disease
+type C1”, “Niemann-Pick disease with cholesterol esterification block”,
 “Niemann-Pick disease without sphingomyelinase deficiency”,
 “Niemann-Pick disease, chronic neuronopathic form”, “Niemann-Pick
 disease, nova Scotian type”, “Niemann-Pick disease, subacute juvenile
 form”, “Niemann-Pick disease, type C”, “Niemann-Pick disease, type D”,
 “neurovisceral storage disease with vertical supranuclear
-ophthalmoplegia”)
+ophthalmoplegia”))
 </td>
 <td style="text-align:left;">
 NA
@@ -3599,10 +3613,10 @@ clinically by onset in childhood with hepatosplenomegaly, growth
 retardation, and lung disorders such as infections and dyspnea”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+list(c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
 “Niemann-Pick disease, Intermediate, with visceral involvement and rapid
 progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”, “type B Niemann-Pick disease”)
+type F”, “type B Niemann-Pick disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -3613,10 +3627,10 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011871" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011871</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
+list(c(“DOID:0070112”, “GARD:10729”, “ICD10CM:E75.241”, “MEDGEN:78651”,
 “MESH:D052537”, “NANDO:1200062”, “NANDO:2201207”, “NCIT:C126866”,
 “OMIM:607616”, “Orphanet:77293”, “SCTID:39390005”, “UMLS:C0268243”,
-“icd11.foundation:327269975”)
+“icd11.foundation:327269975”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3631,7 +3645,7 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-“type B Niemann-Pick disease”
+list(“type B Niemann-Pick disease”)
 </td>
 <td style="text-align:left;">
 “gard_rare|nord_rare|ordo_disorder|orphanet_rare|otar|rare”
@@ -3640,10 +3654,10 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
+list(c(“Niemann Pick disease type B”, “Niemann-PICK disease, type B”,
 “Niemann-Pick disease, Intermediate, with visceral involvement and rapid
 progression”, “Niemann-Pick disease, type E”, “Niemann-Pick disease,
-type F”)
+type F”))
 </td>
 <td style="text-align:left;">
 NA
@@ -3693,8 +3707,9 @@ Niemann-Pick disease type C2. Treatment is based on the signs and
 symptoms present in each person.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease type
-C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick disease”)
+list(c(“NPC2”, “Niemann-PICK disease, type C2”, “Niemann-Pick disease
+type C2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
+disease”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -3705,8 +3720,8 @@ c(“biolink:Disease”, “biolink:DiseaseOrPhenotypicFeature”,
 “<a href="http://purl.obolibrary.org/obo/MONDO_0011873" class="external-link uri">http://purl.obolibrary.org/obo/MONDO_0011873</a>”
 </td>
 <td style="text-align:left;">
-c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
-“NCIT:C126865”, “OMIM:607625”, “UMLS:C1843366”)
+list(c(“DOID:0070114”, “GARD:3992”, “MEDGEN:335942”, “MESH:C536119”,
+“NCIT:C126865”, “OMIM:607625”, “UMLS:C1843366”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -3721,8 +3736,8 @@ NA
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-c(“NPC2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
-disease”)
+list(c(“NPC2”, “Niemann-Pick disease, type C2”, “type C2 Niemann-Pick
+disease”))
 </td>
 <td style="text-align:left;">
 “clingen|gard_rare|rare”
@@ -3731,7 +3746,7 @@ disease”)
 NA
 </td>
 <td style="text-align:left;">
-c(“Niemann-PICK disease, type C2”, “Niemann-Pick disease type C2”)
+list(c(“Niemann-PICK disease, type C2”, “Niemann-Pick disease type C2”))
 </td>
 <td style="text-align:left;">
 NA
@@ -3769,8 +3784,8 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
-“sphingomyelin phosphodiesterase 1, acid lysosomal”)
+list(c(“ASM”, “acid sphingomyelinase”, “Niemann-Pick type A/B”,
+“sphingomyelin phosphodiesterase 1, acid lysosomal”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -3784,7 +3799,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”)
+list(c(“ENSEMBL:ENSG00000166311”, “OMIM:607608”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -3846,7 +3861,7 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“SLC65A1”, “Niemann-Pick disease, type C1”)
+list(c(“SLC65A1”, “Niemann-Pick disease, type C1”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -3860,7 +3875,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”)
+list(c(“ENSEMBL:ENSG00000141458”, “OMIM:607623”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -3922,8 +3937,8 @@ NA
 NA
 </td>
 <td style="text-align:left;min-width: 300px; ">
-c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
-disease, type C2”)
+list(c(“HE1”, “NP-C2”, “EDDM1”, “epididymal protein 1”, “Niemann-Pick
+disease, type C2”))
 </td>
 <td style="text-align:left;">
 c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity”,
@@ -3937,7 +3952,7 @@ c(“biolink:Gene”, “biolink:GeneOrGeneProduct”, “biolink:GenomicEntity�
 NA
 </td>
 <td style="text-align:left;">
-c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”)
+list(c(“ENSEMBL:ENSG00000119655”, “OMIM:601015”))
 </td>
 <td style="text-align:left;">
 “hgnc_gene_nodes”
@@ -4062,7 +4077,7 @@ original_subject
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4074,7 +4089,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:a6649ac1-7d5f-4246-a706-f2115d05381e" class="uri">urn:uuid:a6649ac1-7d5f-4246-a706-f2115d05381e</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4109,7 +4124,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4121,7 +4136,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:7f0b2bdb-1643-4257-bf48-ff46edb48e2c" class="uri">urn:uuid:7f0b2bdb-1643-4257-bf48-ff46edb48e2c</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4156,7 +4171,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4168,7 +4183,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:dbc5953d-dfe6-4003-bf04-dcf210137cee" class="uri">urn:uuid:dbc5953d-dfe6-4003-bf04-dcf210137cee</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4203,7 +4218,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4215,7 +4230,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:69452e94-5d68-412e-a921-ed2302f49f30" class="uri">urn:uuid:69452e94-5d68-412e-a921-ed2302f49f30</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4250,7 +4265,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4262,7 +4277,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:6bc5e5c8-ca90-4324-a778-87aa40c45587" class="uri">urn:uuid:6bc5e5c8-ca90-4324-a778-87aa40c45587</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4297,7 +4312,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4309,7 +4324,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:5a6ff81b-0338-4f13-9b5b-6f80f92f5823" class="uri">urn:uuid:5a6ff81b-0338-4f13-9b5b-6f80f92f5823</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4344,7 +4359,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4356,7 +4371,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:709c68a1-7585-479d-aa56-5c4cadfd3426" class="uri">urn:uuid:709c68a1-7585-479d-aa56-5c4cadfd3426</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4391,7 +4406,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4403,7 +4418,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:025ce824-a70a-4a63-b8c2-b81b508cf07e" class="uri">urn:uuid:025ce824-a70a-4a63-b8c2-b81b508cf07e</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4438,7 +4453,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4450,7 +4465,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:142d051c-a43f-43d2-9dbd-e3373446d25a" class="uri">urn:uuid:142d051c-a43f-43d2-9dbd-e3373446d25a</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4485,7 +4500,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4497,7 +4512,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:fa6e3095-088e-4510-9629-45fd41156900" class="uri">urn:uuid:fa6e3095-088e-4510-9629-45fd41156900</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4532,7 +4547,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4544,7 +4559,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:51ad12d3-81e0-4992-b637-925e41266e56" class="uri">urn:uuid:51ad12d3-81e0-4992-b637-925e41266e56</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4579,7 +4594,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4591,7 +4606,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:aacc4333-bb74-4943-8320-17ff139d4afb" class="uri">urn:uuid:aacc4333-bb74-4943-8320-17ff139d4afb</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4626,7 +4641,7 @@ NA
 “not_provided”
 </td>
 <td style="text-align:left;">
-c(“infores:monarchinitiative”, “infores:phenio”)
+list(c(“infores:monarchinitiative”, “infores:phenio”))
 </td>
 <td style="text-align:left;">
 “phenio_edges”
@@ -4638,7 +4653,7 @@ c(“infores:monarchinitiative”, “infores:phenio”)
 “<a href="urn:uuid:6e38532c-3ed9-4bbc-af2f-cc8c4e4351c8" class="uri">urn:uuid:6e38532c-3ed9-4bbc-af2f-cc8c4e4351c8</a>”
 </td>
 <td style="text-align:left;">
-c(“biolink:Association”, “biolink:Entity”)
+list(c(“biolink:Association”, “biolink:Entity”))
 </td>
 <td style="text-align:left;">
 NA
@@ -4685,14 +4700,14 @@ NA
 “uuid:99dccc00-1378-4a81-99bf-69ff4cc37292”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257200”
@@ -4739,14 +4754,14 @@ NA
 “uuid:9b804d34-97f5-4e4a-a882-e30ffa24688b”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:607616”
@@ -4793,14 +4808,14 @@ NA
 “uuid:ca8e9478-f18a-411f-a07e-ec171462c2b4”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257220”
@@ -4847,14 +4862,14 @@ NA
 “uuid:58d971a3-2dc8-47ac-a123-b8851fafd582”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:257220”
@@ -4901,14 +4916,14 @@ NA
 “uuid:701ae974-7a6e-4bd2-a0e3-b0cd83c6e11b”
 </td>
 <td style="text-align:left;">
-c(“biolink:CausalGeneToDiseaseAssociation”,
+list(c(“biolink:CausalGeneToDiseaseAssociation”,
 “biolink:GeneToEntityAssociationMixin”,
 “biolink:GeneToDiseaseAssociation”,
 “biolink:GeneToDiseaseOrPhenotypicFeatureAssociation”,
 “biolink:EntityToPhenotypicFeatureAssociationMixin”,
 “biolink:Association”, “biolink:Entity”, “biolink:FrequencyQuantifier”,
 “biolink:EntityToFeatureOrDiseaseQualifiersMixin”,
-“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”)
+“biolink:FrequencyQualifierMixin”, “biolink:RelationshipQuantifier”))
 </td>
 <td style="text-align:left;">
 “OMIM:607625”
@@ -4936,9 +4951,12 @@ would also a good use case for <code>purrr</code>’s
 data:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_counted_rolled</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="960">
 It may be the case that to protect patient privacy (again, pretending
 these phenotypes are disease diagnoses associated with patients) we want
@@ -4946,13 +4964,16 @@ to remove nodes that have a <code>count</code> less than 6. If we do so
 however, we lose connectivity:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">phenos_counted_rolled</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">count</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">count</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">censored</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="960">
 To fix this, we can first compute the <code><a href="../../reference/transitive_closure.html">transitive_closure()</a></code>
 of the graph, with respect to an edge predicate we want to treat as
@@ -4965,27 +4986,33 @@ The result is busy, and in general the number of transitive edges can be
 in the number of nodes.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phenos_closed</span> <span class="op">&lt;-</span> <span class="va">phenos_counted_rolled</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/transitive_closure.html">transitive_closure</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../../reference/transitive_closure.html">transitive_closure</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_closed</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
-<span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
-<span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
+<span>    edge_linetype <span class="op">=</span> <span class="va">predicate</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="960">
 Now we can try our removal:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">closed_censored</span> <span class="op">&lt;-</span> <span class="va">phenos_closed</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">count</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://tidygraph.data-imaginist.com/reference/activate.html" class="external-link">activate</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">count</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">closed_censored</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
-<span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
-<span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
+<span>    edge_linetype <span class="op">=</span> <span class="va">predicate</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="960"></p>
 <p>The graph retains its connectivity, but has redundant edges. The
 <code><a href="../../reference/transitive_reduction.html">transitive_reduction()</a></code> function removes these, again
@@ -4993,15 +5020,131 @@ according to a specified transitive predicate (defaulting again to
 <code>biolink:subclass_f</code>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phenos_final</span> <span class="op">&lt;-</span> <span class="va">closed_censored</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/transitive_reduction.html">transitive_reduction</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../../reference/transitive_reduction.html">transitive_reduction</a></span><span class="op">(</span>predicate <span class="op">=</span> <span class="st">"biolink:subclass_of"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">phenos_final</span>,</span>
-<span>     node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>,</span>
-<span>                         <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
-<span>                         <span class="st">" || total: "</span>, <span class="va">total</span><span class="op">)</span>,</span>
-<span>     edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
-<span>     edge_linetype <span class="op">=</span> <span class="va">predicate</span><span class="op">)</span></span></code></pre></div>
+<span>    node_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>        <span class="va">name</span>,</span>
+<span>        <span class="st">" || count: "</span>, <span class="va">count</span>,</span>
+<span>        <span class="st">" || total: "</span>, <span class="va">total</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    edge_color <span class="op">=</span> <span class="va">primary_knowledge_source</span>,</span>
+<span>    edge_linetype <span class="op">=</span> <span class="va">predicate</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="transitive_rollups_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="960"></p>
+<p><br><br><br></p>
+<div class="section level3">
+<h3 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
+</h3>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">session_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">##  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
+<span><span class="co">##  version  R Under development (unstable) (2026-02-08 r89382)</span></span>
+<span><span class="co">##  os       Ubuntu 24.04.3 LTS</span></span>
+<span><span class="co">##  system   x86_64, linux-gnu</span></span>
+<span><span class="co">##  ui       X11</span></span>
+<span><span class="co">##  language en</span></span>
+<span><span class="co">##  collate  en_US.UTF-8</span></span>
+<span><span class="co">##  ctype    en_US.UTF-8</span></span>
+<span><span class="co">##  tz       UTC</span></span>
+<span><span class="co">##  date     2026-02-09</span></span>
+<span><span class="co">##  pandoc   3.9 @ /usr/bin/ (via rmarkdown)</span></span>
+<span><span class="co">##  quarto   1.8.27 @ /usr/local/bin/quarto</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">##  <span style="color: #555555; font-style: italic;">package     </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
+<span><span class="co">##  archive        1.1.12.1 <span style="color: #555555;">2025-12-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  assertthat     0.2.1    <span style="color: #555555;">2019-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  base64enc      0.1-6    <span style="color: #555555;">2026-02-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  bslib          0.10.0   <span style="color: #555555;">2026-01-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  cachem         1.1.0    <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  cli            3.6.5    <span style="color: #555555;">2025-04-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  cluster        2.1.8.2  <span style="color: #555555;">2026-02-05</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  curl           7.0.0    <span style="color: #555555;">2025-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  desc           1.4.3    <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  digest         0.6.39   <span style="color: #555555;">2025-11-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  dplyr        * 1.2.0    <span style="color: #555555;">2026-02-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  evaluate       1.0.5    <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  farver         2.1.2    <span style="color: #555555;">2024-05-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  fastmap        1.2.0    <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  fs             1.6.6    <span style="color: #555555;">2025-04-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  generics       0.1.4    <span style="color: #555555;">2025-05-09</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  ggforce        0.5.0    <span style="color: #555555;">2025-06-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  ggplot2        4.0.2    <span style="color: #555555;">2026-02-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  ggraph         2.2.2    <span style="color: #555555;">2025-08-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  ggrepel        0.9.6    <span style="color: #555555;">2024-09-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  glue           1.8.0    <span style="color: #555555;">2024-09-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  graphlayouts   1.2.2    <span style="color: #555555;">2025-01-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  gridExtra      2.3      <span style="color: #555555;">2017-09-09</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  gtable         0.3.6    <span style="color: #555555;">2024-10-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  hms            1.1.4    <span style="color: #555555;">2025-10-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  htmltools      0.5.9    <span style="color: #555555;">2025-12-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  htmlwidgets    1.6.4    <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  httr           1.4.7    <span style="color: #555555;">2023-08-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  igraph         2.2.1    <span style="color: #555555;">2025-10-27</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  jquerylib      0.1.4    <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  jsonlite       2.0.0    <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  kableExtra     1.4.0    <span style="color: #555555;">2024-01-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  knitr          1.51     <span style="color: #555555;">2025-12-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  labeling       0.4.3    <span style="color: #555555;">2023-08-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  lifecycle      1.0.5    <span style="color: #555555;">2026-01-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  magrittr       2.0.4    <span style="color: #555555;">2025-09-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  MASS           7.3-65   <span style="color: #555555;">2025-02-28</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  memoise        2.0.1    <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  monarchr     * 2.1.3    <span style="color: #555555;">2026-02-09</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  neo2R          2.4.2    <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  otel           0.2.0    <span style="color: #555555;">2025-08-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  pillar         1.11.1   <span style="color: #555555;">2025-09-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  pkgconfig      2.0.3    <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  pkgdown        2.2.0    <span style="color: #555555;">2025-11-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  polyclip       1.10-7   <span style="color: #555555;">2024-07-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  purrr          1.2.1    <span style="color: #555555;">2026-01-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  R.methodsS3    1.8.2    <span style="color: #555555;">2022-06-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  R.oo           1.27.1   <span style="color: #555555;">2025-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  R.utils        2.13.0   <span style="color: #555555;">2025-02-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  R6             2.6.1    <span style="color: #555555;">2025-02-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  ragg           1.5.0    <span style="color: #555555;">2025-09-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  RColorBrewer   1.1-3    <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  Rcpp           1.1.1    <span style="color: #555555;">2026-01-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  readr          2.1.6    <span style="color: #555555;">2025-11-14</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  relations      0.6-15   <span style="color: #555555;">2025-02-19</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  rlang          1.1.7    <span style="color: #555555;">2026-01-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  rmarkdown      2.30     <span style="color: #555555;">2025-09-28</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  rstudioapi     0.18.0   <span style="color: #555555;">2026-01-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  S7             0.2.1    <span style="color: #555555;">2025-11-14</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  sass           0.4.10   <span style="color: #555555;">2025-04-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  scales         1.4.0    <span style="color: #555555;">2025-04-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  sessioninfo    1.2.3    <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  sets           1.0-25   <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  slam           0.1-55   <span style="color: #555555;">2024-11-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  stringi        1.8.7    <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  stringr        1.6.0    <span style="color: #555555;">2025-11-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  svglite        2.2.2    <span style="color: #555555;">2025-10-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  systemfonts    1.3.1    <span style="color: #555555;">2025-10-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  textshaping    1.0.4    <span style="color: #555555;">2025-10-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tibble         3.3.1    <span style="color: #555555;">2026-01-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tidygraph    * 1.3.1    <span style="color: #555555;">2024-01-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tidyr          1.3.2    <span style="color: #555555;">2025-12-19</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tidyselect     1.2.1    <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tweenr         2.0.3    <span style="color: #555555;">2024-02-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  tzdb           0.5.0    <span style="color: #555555;">2025-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  utf8           1.2.6    <span style="color: #555555;">2025-06-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  vctrs          0.7.1    <span style="color: #555555;">2026-01-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  viridis        0.6.5    <span style="color: #555555;">2024-01-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  viridisLite    0.4.3    <span style="color: #555555;">2026-02-04</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  withr          3.0.2    <span style="color: #555555;">2024-10-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  xfun           0.56     <span style="color: #555555;">2026-01-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  xml2           1.5.2    <span style="color: #555555;">2026-01-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">##  yaml           2.3.12   <span style="color: #555555;">2025-12-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #555555;"> [1] /__w/_temp/Library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [2] /usr/local/lib/R/site-library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [3] /usr/local/lib/R/library</span></span></span>
+<span><span class="co">##  <span style="color: #BBBBBB; background-color: #BB0000;">*</span> ── Packages attached to the search path.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
+</div>
 </div>
   </div>
 
