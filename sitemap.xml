@@ -56,6 +56,8 @@
 <url><loc>/reference/normalize_categories.html</loc></url>
 <url><loc>/reference/order_cols.html</loc></url>
 <url><loc>/reference/plot.tbl_kgx.html</loc></url>
+<url><loc>/reference/print.summary.file_engine.html</loc></url>
+<url><loc>/reference/print.summary.neo4j_engine.html</loc></url>
 <url><loc>/reference/roll.html</loc></url>
 <url><loc>/reference/rolling.html</loc></url>
 <url><loc>/reference/save_kgx.html</loc></url>
