@@ -21,7 +21,7 @@ override them with custom encoding logic if needed."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.4</span>
       </span>
     </div>
 
@@ -91,13 +91,18 @@ override them with custom encoding logic if needed.</p>
     <div id="value">
     <h2>Value</h2>
     <p>A list of encodings for various edge attributes:</p><dl><dt>knowledge_level</dt>
-<dd><p>A named list assigning weights based on knowledge assertion levels:</p><ul><li><p><code>"knowledge_assertion"</code>: <code>1</code> (full weight for direct assertions)</p></li>
-<li><p><code>"logical_entailment"</code>: <code>1</code> (full weight for inferred relationships)</p></li>
-<li><p><code>"not_provided"</code>: <code>0</code> (no weight when knowledge level is unspecified)</p></li>
+<dd><p>A named list assigning weights based on knowledge
+assertion levels:</p><ul><li><p><code>"knowledge_assertion"</code>: <code>1</code> (full weight for direct
+assertions)</p></li>
+<li><p><code>"logical_entailment"</code>: <code>1</code> (full weight for inferred
+relationships)</p></li>
+<li><p><code>"not_provided"</code>: <code>0</code> (no weight when knowledge level is
+unspecified)</p></li>
 </ul></dd>
 
 <dt>frequency_qualifier</dt>
-<dd><p>A named list mapping Human Phenotype Ontology (HPO) frequency terms to numeric weights:</p><ul><li><p><code>"HP:0040281"</code>: <code>1</code> ("Very frequent")</p></li>
+<dd><p>A named list mapping Human Phenotype Ontology
+(HPO) frequency terms to numeric weights:</p><ul><li><p><code>"HP:0040281"</code>: <code>1</code> ("Very frequent")</p></li>
 <li><p><code>"HP:0040282"</code>: <code>0.75</code> ("Frequent")</p></li>
 <li><p><code>"HP:0040283"</code>: <code>0.5</code> ("Occasional")</p></li>
 <li><p><code>"HP:0040284"</code>: <code>0.25</code> ("Very rare")</p></li>
@@ -109,25 +114,32 @@ override them with custom encoding logic if needed.</p>
 </ul></dd>
 
 <dt>has_total</dt>
-<dd><p><code>NULL</code>. Placeholder for total counts; can be overridden with custom logic.</p></dd>
+<dd><p><code>NULL</code>. Placeholder for total counts; can be
+overridden with custom logic.</p></dd>
 
 <dt>has_quotient</dt>
-<dd><p>An empty numeric vector. Placeholder for quotient-based weight calculations.</p></dd>
+<dd><p>An empty numeric vector. Placeholder for quotient-based
+weight calculations.</p></dd>
 
 <dt>has_count</dt>
-<dd><p><code>NULL</code>. Placeholder for count-based weight computations.</p></dd>
+<dd><p><code>NULL</code>. Placeholder for count-based weight
+computations.</p></dd>
 
 <dt>has_percentage</dt>
-<dd><p><code>NULL</code>. Placeholder for percentage-based weight computations.</p></dd>
+<dd><p><code>NULL</code>. Placeholder for percentage-based weight
+computations.</p></dd>
 
 <dt>has_evidence</dt>
-<dd><p><code>NULL</code>. Placeholder for evidence-based weight computations.</p></dd>
+<dd><p><code>NULL</code>. Placeholder for evidence-based weight
+computations.</p></dd>
 
 <dt>onset_qualifier</dt>
-<dd><p><code>NULL</code>. Placeholder for onset qualifiers, which can influence weights.</p></dd>
+<dd><p><code>NULL</code>. Placeholder for onset qualifiers, which
+can influence weights.</p></dd>
 
 <dt>publications</dt>
-<dd><p>A function that computes the weight based on the number of unique publications:</p><ul><li><p>Takes a vector of publication IDs and returns the count of unique IDs.</p></li>
+<dd><p>A function that computes the weight based on the number
+of unique publications:</p><ul><li><p>Takes a vector of publication IDs and returns the count of unique IDs.</p></li>
 </ul></dd>
 
 
@@ -193,8 +205,8 @@ override them with custom encoding logic if needed.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     length(unique(x))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x555e5c21a530&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x555e5f0c7540&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x56464cf42b08&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x564656e98688&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Override the encoding to assign more weight to logical entailments</span></span></span>

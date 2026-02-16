@@ -21,7 +21,7 @@ graph's collective neighborhood in the larger KG."><!-- mathjax --><script src="
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.4</span>
       </span>
     </div>
 
@@ -102,7 +102,8 @@ graph's collective neighborhood in the larger KG.</p>
 
 
 <dt id="arg-engine">engine<a class="anchor" aria-label="anchor" href="#arg-engine"></a></dt>
-<dd><p>(Optional) An engine to use. If not provided, the graph's most recent engine is used.</p></dd>
+<dd><p>(Optional) An engine to use. If not provided, the graph's most
+recent engine is used.</p></dd>
 
 
 <dt id="arg-direction">direction<a class="anchor" aria-label="anchor" href="#arg-direction"></a></dt>
@@ -121,7 +122,8 @@ graph's collective neighborhood in the larger KG.</p>
     <h2>Details</h2>
     <p>Note that the number of relationships returned may be larger than the number
 of nodes they connect to; use summarize = "edges" to see edge counts between
-nodes of different categories, and summarize = "nodes" to see counts of connected
+nodes of different categories, and summarize = "nodes" to see counts of
+connected
 node categories.</p>
 <p>Additionally, when using <code>summarize = "edges"</code>, the summary will include
 edges that may already be present in the query graph.</p>
@@ -136,17 +138,18 @@ includes both incoming and outgoing edges.</p>
 <span class="r-in"><span>    <span class="fu">summarize_neighborhood</span><span class="op">(</span>direction <span class="op">=</span> <span class="st">"both"</span>, summarize <span class="op">=</span> <span class="st">"edges"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Trying to connect to https://neo4j.monarchinitiative.org</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to https://neo4j.monarchinitiative.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   count query_pcategory predicate                result_pcategory query_category</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   236 biolink:Disease biolink:has_phenotype    biolink:Phenoty… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    24 biolink:Disease biolink:subclass_of      biolink:Disease  <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   208 biolink:Disease biolink:has_phenotype    biolink:Phenoty… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    23 biolink:Disease biolink:subclass_of      biolink:Disease  <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    22 biolink:Disease biolink:gene_associated… biolink:Gene     <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     9 biolink:Disease biolink:treats_or_appli… biolink:Chemica… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>     7 biolink:Disease biolink:model_of         biolink:Genotype <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>     6 biolink:Disease biolink:model_of         biolink:Genotype <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>     4 biolink:Disease biolink:causes           biolink:Gene     <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>     4 biolink:Disease biolink:has_mode_of_inh… biolink:Phenoty… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>     1 biolink:Disease biolink:related_to       biolink:Disease  <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>     4 biolink:Disease biolink:has_disease      biolink:Organis… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>     4 biolink:Disease biolink:has_mode_of_inh… biolink:Phenoty… <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span>     1 biolink:Disease biolink:related_to       biolink:Disease  <span style="color: #949494;">&lt;list [7]&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: result_category &lt;list&gt;</span></span>
 </code></pre></div>
     </div>
