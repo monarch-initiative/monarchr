@@ -39,16 +39,16 @@ https://monarchinitiative.org/explore#phenotype-explorer."><!-- mathjax --><scri
   <ul class="dropdown-menu" role="menu"><li class="divider">
     <li class="dropdown-header">Examples</li>
     <li>
-      <a href="../articles/examples/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
+      <a href="../articles/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
     </li>
     <li>
-      <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+      <a href="../articles/exploring_kgs.html">Exploring Knowledge Graphs</a>
     </li>
     <li>
-      <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
+      <a href="../articles/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
     <li>
-      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+      <a href="../articles/engine_preferences.html">Engine Preferences</a>
     </li>
   </ul></li>
 <li>
@@ -202,9 +202,9 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 107 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object     primary_knowledge_so…¹</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   110 HP:0000006 computed:best_matches HP:0002761 computed:monarch_sems…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   116 HP:0000006 computed:best_matches HP:0000015 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    33    33 HP:0000023 computed:best_matches HP:0000023 computed:monarch_sems…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    86     6 HP:0000098 computed:best_matches HP:0002616 computed:monarch_sems…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    86   117 HP:0000098 computed:best_matches HP:0000286 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 104 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_knowledge_source</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: monarch_semsim_metric &lt;chr&gt;, monarch_semsim_score &lt;dbl&gt;,</span></span>
@@ -243,7 +243,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 107 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object     primary_knowledge_so…¹</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   132 HP:0000006 computed:best_matches HP:0001386 computed:monarch_sems…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   124 HP:0000006 computed:best_matches HP:0000015 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    33    33 HP:0000023 computed:best_matches HP:0000023 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    86     6 HP:0000098 computed:best_matches HP:0002616 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 104 more rows</span></span>
@@ -284,7 +284,7 @@ the best matches from the second graph to the first graph.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Edge Data: 174 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to subject    predicate             object     primary_knowledge_so…¹</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   127 HP:0000006 computed:best_matches HP:0000481 computed:monarch_sems…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   107   132 HP:0000006 computed:best_matches HP:0001386 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    33    33 HP:0000023 computed:best_matches HP:0000023 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    86   126 HP:0000098 computed:best_matches HP:0000286 computed:monarch_sems…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 171 more rows</span></span>

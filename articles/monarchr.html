@@ -56,16 +56,16 @@
     </li>
 <li class="dropdown-header">Examples</li>
     <li>
-      <a href="../articles/examples/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
+      <a href="../articles/visualizing_kgs.html">Visualizing Knowledge Graphs</a>
     </li>
     <li>
-      <a href="../articles/examples/exploring_kgs.html">Exploring Knowledge Graphs</a>
+      <a href="../articles/exploring_kgs.html">Exploring Knowledge Graphs</a>
     </li>
     <li>
-      <a href="../articles/examples/transitive_rollups.html">Rollups and Transitivity</a>
+      <a href="../articles/transitive_rollups.html">Rollups and Transitivity</a>
     </li>
     <li>
-      <a href="../articles/examples/engine_preferences.html">Engine Preferences</a>
+      <a href="../articles/engine_preferences.html">Engine Preferences</a>
     </li>
   </ul>
 </li>
@@ -99,7 +99,7 @@
 O’Neil</h4>
             
             <h4 data-toc-skip class="date">Vignette updated:
-<i>Feb-16-2026</i>
+<i>Feb-19-2026</i>
 </h4>
       
       <small class="dont-index">Source: <a href="https://github.com/monarch-initiative/monarchr/blob/checks/vignettes/monarchr.Rmd" class="external-link"><code>vignettes/monarchr.Rmd</code></a></small>
@@ -115,11 +115,11 @@ O’Neil</h4>
 <p>Knowledge graphs (KGs) represent entities (such as genes, diseases,
 or phenotypes) and the relationships between them; for example that the
 <code>CFTR</code> gene <code>causes</code> the disease
-<code>Cystic fibrosis</code>. In the <a href="https://monarchiniative.org" class="external-link">Monarch Initiative</a> KG, this
+<code>Cystic fibrosis</code>. In the <a href="https://monarchinitiative.org" class="external-link">Monarch Initiative</a> KG, this
 information is stored in a <em>directed, labeled property graph</em>,
 with properties attached to the entities (nodes) and relationships
-(edges). The <a href="https://github.com/biolink/kgx/blob/master/specification/kgx-format.md" class="external-link">KGX
-format</a> used by Monarch provides a simple specification for KGs:</p>
+(edges). The <a href="https://github.com/biolink/kgx" class="external-link">KGX format</a>
+used by Monarch provides a simple specification for KGs:</p>
 <ul>
 <li>Nodes must have an <code>id</code> property</li>
 <li>Nodes must have a <code>category</code> property, as a multi-valued
@@ -145,8 +145,8 @@ format</a> via graph-database and file-based “engines”, with a simple
 but flexible set of query functions. The example below finds all of the
 sub-types of <a href="https://monarchinitiative.org/MONDO:0001982" class="external-link">Neimann-Pick
 Disease</a>, and all of the genes associated with those. (You an use the
-<a href="https://monarchiniative.org" class="external-link">Monarch Initiative</a> website to
-identify IDs for genes, diseases, phenotypes and more, or
+<a href="https://monarchinitiative.org" class="external-link">Monarch Initiative</a> website
+to identify IDs for genes, diseases, phenotypes and more, or
 <code>search_nodes()</code> described below.)</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MONDO:0001982 Niemann-Pick Disease (13 subtypes)</span></span>
@@ -3103,18 +3103,18 @@ R:</p>
 <li>Graph algorithms:
 <ul>
 <li>Various: <a href="https://r.igraph.org/reference/index.html" class="external-link"><code>igraph</code></a>,
-<a href="https://cran.r-project.org/web/packages/migraph/index.html" class="external-link"><code>migraph</code></a>,
+<a href="https://CRAN.R-project.org/package=migraph" class="external-link"><code>migraph</code></a>,
 <a href="https://github.com/schochastics/netrankr/" class="external-link"><code>netrankr</code></a>
 </li>
-<li>Matching: <a href="https://cran.r-project.org/web/packages/iGraphMatch/vignettes/iGraphMatch.html" class="external-link"><code>iGraphMatch</code></a>
+<li>Matching: <a href="https://CRAN.R-project.org/package=iGraphMatch" class="external-link"><code>iGraphMatch</code></a>
 </li>
 <li>Graph neural networks: <a href="https://rpubs.com/giancarlo_vercellino/spinner" class="external-link"><code>spinner</code></a>
 </li>
-<li>Clustering: <a href="https://cran.r-project.org/web/packages/clustAnalytics/index.html" class="external-link"><code>clustAnalytics</code></a>
+<li>Clustering: <a href="https://CRAN.R-project.org/package=clustAnalytics" class="external-link"><code>clustAnalytics</code></a>
 </li>
 <li>Community detection: <a href="https://github.com/kharchenkolab/leidenAlg" class="external-link"><code>leidenAlg</code></a>
 </li>
-<li>Link prediction: <a href="https://cran.r-project.org/web/packages/linkprediction/index.html" class="external-link"><code>linkprediction</code></a>
+<li>Link prediction: <a href="https://CRAN.R-project.org/package=linkprediction" class="external-link"><code>linkprediction</code></a>
 </li>
 </ul>
 </li>
@@ -3122,7 +3122,7 @@ R:</p>
 <ul>
 <li>Particle/force-based simulation: <a href="https://github.com/thomasp85/particles" class="external-link"><code>particles</code></a>
 </li>
-<li>… others in the reverse imports for <a href="https://cran.r-project.org/web/packages/igraph/index.html" class="external-link"><code>igraph</code></a>
+<li>… others in the reverse imports for <a href="https://CRAN.R-project.org/package=igraph" class="external-link"><code>igraph</code></a>
 </li>
 </ul>
 </li>
@@ -3135,11 +3135,11 @@ R:</p>
 functionality: one supporting access to <a href="https://neo4j.com/" class="external-link">Neo4j graph databases</a>, and another
 supporting file-based access to TSV-formatted <code>.tar.gz</code> KGs
 hosted at <a href="https://kghub.io" class="external-link">kghub.io</a>. Regardless of source,
-KGs must conform to the <a href="https://github.com/biolink/kgx/blob/master/specification/kgx-format.md" class="external-link">KGX
+KGs must conform to the <a href="https://github.com/biolink/kgx" class="external-link">KGX
 specification</a>.</p>
 <p>The most accessible engine provided by <code>monarchr</code> is the
 <code><a href="../reference/monarch_engine.html">monarch_engine()</a></code>, designed specifically to access the
-cloud-hosted <a href="https://monarchiniatiative.org" class="external-link">Monarch
+cloud-hosted <a href="https://monarchinitiative.org" class="external-link">Monarch
 Initiative</a> KG.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">monarch</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/monarch_engine.html">monarch_engine</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -6995,10 +6995,10 @@ containing only computed <code>"computed:best_matches"</code> edges:</p>
 <p><img src="monarchr_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="960"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sim</span></span></code></pre></div>
-<pre>Graph with 19 nodes and 11 edges. Expand sections below for details.</pre>
+<pre>Graph with 18 nodes and 11 edges. Expand sections below for details.</pre>
 <details><summary><b>Node Data</b>
 </summary><p>
-Showing 19 of 19 nodes:
+Showing 18 of 18 nodes:
 </p>
 <div style="font-size: 0.8em; max-height: 400px;overflow-y: auto;border-left: 1px solid #ddd;border-right:  1px solid #ddd;border-bottom: 1px solid #ddd;">
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -7761,21 +7761,23 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Slender build”
+“Disproportionate tall stature”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Asthenic habitus refers to a slender build with long limbs, an angular
-profile, and prominent muscles or bones.”
+“A tall and slim body build with increased arm span to height ratio
+(&gt;1.05) and a reduced upper-to-lower segment ratio (&lt;0.85), i.e.,
+unusually long arms and legs. The extremities as well as the hands and
+feet are unusually slim.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-list(c(“Asthenic habitus”, “Slender build”, “Thin body habitus”, “Thin
-build”))
+list(c(“Dolichostenomelia”, “Marfanoid body habitus”, “Marfanoid
+habitus”, “Reduced upper-lower segment ratio”))
 </td>
 <td style="text-align:left;">
 c(“biolink:PhenotypicFeature”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -7783,10 +7785,10 @@ c(“biolink:PhenotypicFeature”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”, “biolink:NamedThing”, “biolink:Entity”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0001533" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001533</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0001519" class="external-link uri">http://purl.obolibrary.org/obo/HP_0001519</a>”
 </td>
 <td style="text-align:left;">
-list(“UMLS:C1850573”)
+list(c(“SNOMEDCT_US:62250003”, “UMLS:C0003706”, “UMLS:C1836996”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -7798,60 +7800,8 @@ list(“UMLS:C1850573”)
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-list(c(“Asthenic habitus”, “Slender build”, “Thin body habitus”, “Thin
-build”))
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-“HP:0002108”
-</td>
-<td style="text-align:left;">
-“biolink:PhenotypicFeature”
-</td>
-<td style="text-align:left;">
-“Spontaneous pneumothorax”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-“Pneumothorax occurring without traumatic injury to the chest or lung.”
-</td>
-<td style="text-align:left;min-width: 300px; ">
-list(“Spontaneous collapsed lung”)
-</td>
-<td style="text-align:left;">
-c(“biolink:PhenotypicFeature”, “biolink:DiseaseOrPhenotypicFeature”,
-“biolink:OntologyClass”, “biolink:BiologicalEntity”,
-“biolink:ThingWithTaxon”, “biolink:NamedThing”, “biolink:Entity”)
-</td>
-<td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0002108" class="external-link uri">http://purl.obolibrary.org/obo/HP_0002108</a>”
-</td>
-<td style="text-align:left;">
-list(c(“SNOMEDCT_US:80423007”, “UMLS:C0149781”))
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-“HP”
-</td>
-<td style="text-align:left;">
-“phenio_nodes”
-</td>
-<td style="text-align:left;">
-list(“Spontaneous collapsed lung”)
+list(c(“Dolichostenomelia”, “Marfanoid body habitus”, “Marfanoid
+habitus”, “Reduced upper-lower segment ratio”))
 </td>
 <td style="text-align:left;">
 NA
@@ -7923,20 +7873,26 @@ list(“Aortic root dilatation”)
 </tr>
 <tr>
 <td style="text-align:left;">
-“HP:0012432”
+“HP:0004942”
 </td>
 <td style="text-align:left;">
 “biolink:PhenotypicFeature”
 </td>
 <td style="text-align:left;">
-“Chronic fatigue”
+“Aortic aneurysm”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-“Subjective feeling of tiredness characterized by a lack of energy and
-motivation that persists for six months or longer.”
+“Aortic dilatation refers to a dimension that is greater than the 95th
+percentile for the normal person age, sex and body size. In contrast, an
+aneurysm is defined as a localized dilation of the aorta that is more
+than 150 percent of predicted (ratio of observed to expected diameter
+1.5 or more). Aneurysm should be distinguished from ectasia, which
+represents a diffuse dilation of the aorta less than 50 percent of
+normal aorta diameter.”
 </td>
 <td style="text-align:left;min-width: 300px; ">
-list(c(“Chronic extreme exhaustion”, “Chronic fatigue”))
+list(c(“Aortic dilatation”, “Bulge in wall of large artery that carries
+blood away from heart”, “Enlarged aorta”))
 </td>
 <td style="text-align:left;">
 c(“biolink:PhenotypicFeature”, “biolink:DiseaseOrPhenotypicFeature”,
@@ -7944,10 +7900,11 @@ c(“biolink:PhenotypicFeature”, “biolink:DiseaseOrPhenotypicFeature”,
 “biolink:ThingWithTaxon”, “biolink:NamedThing”, “biolink:Entity”)
 </td>
 <td style="text-align:left;">
-“<a href="http://purl.obolibrary.org/obo/HP_0012432" class="external-link uri">http://purl.obolibrary.org/obo/HP_0012432</a>”
+“<a href="http://purl.obolibrary.org/obo/HP_0004942" class="external-link uri">http://purl.obolibrary.org/obo/HP_0004942</a>”
 </td>
 <td style="text-align:left;">
-list(“UMLS:C0518656”)
+list(c(“Fyler:2301”, “Fyler:2708”, “SNOMEDCT_US:67362008”,
+“UMLS:C0003486”))
 </td>
 <td style="text-align:left;">
 “phenio_nodes”
@@ -7959,7 +7916,8 @@ list(“UMLS:C0518656”)
 “phenio_nodes”
 </td>
 <td style="text-align:left;">
-list(c(“Chronic extreme exhaustion”, “Chronic fatigue”))
+list(c(“Aortic dilatation”, “Bulge in wall of large artery that carries
+blood away from heart”, “Enlarged aorta”))
 </td>
 <td style="text-align:left;">
 NA
@@ -8206,7 +8164,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000505”
+“HP:0000545”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -8226,7 +8184,7 @@ monarch_semsim_ancestor_id
 2
 </td>
 <td style="text-align:left;">
-14
+15
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -8235,7 +8193,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0004942”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -8264,7 +8222,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -8284,7 +8242,7 @@ monarch_semsim_ancestor_id
 4
 </td>
 <td style="text-align:left;">
-15
+14
 </td>
 <td style="text-align:left;">
 “HP:0001030”
@@ -8322,7 +8280,7 @@ monarch_semsim_ancestor_id
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0012432”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -8342,7 +8300,7 @@ monarch_semsim_ancestor_id
 5
 </td>
 <td style="text-align:left;">
-17
+16
 </td>
 <td style="text-align:left;">
 “HP:0001065”
@@ -8371,7 +8329,7 @@ monarch_semsim_ancestor_id
 6
 </td>
 <td style="text-align:left;">
-17
+16
 </td>
 <td style="text-align:left;">
 “HP:0001073”
@@ -8400,7 +8358,7 @@ monarch_semsim_ancestor_id
 7
 </td>
 <td style="text-align:left;">
-17
+16
 </td>
 <td style="text-align:left;">
 “HP:0001075”
@@ -8429,7 +8387,7 @@ monarch_semsim_ancestor_id
 11
 </td>
 <td style="text-align:left;">
-18
+17
 </td>
 <td style="text-align:left;">
 “HP:0001252”
@@ -8458,7 +8416,7 @@ monarch_semsim_ancestor_id
 8
 </td>
 <td style="text-align:left;">
-19
+18
 </td>
 <td style="text-align:left;">
 “HP:0002761”
@@ -12084,7 +12042,7 @@ NA
 9
 </td>
 <td style="text-align:left;">
-21
+22
 </td>
 <td style="text-align:left;">
 “HP:0000938”
@@ -12093,7 +12051,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0000505”
+“HP:0000545”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -12164,7 +12122,7 @@ NA
 2
 </td>
 <td style="text-align:left;">
-16
+18
 </td>
 <td style="text-align:left;">
 “HP:0000974”
@@ -12173,7 +12131,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0002108”
+“HP:0004942”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -12244,7 +12202,7 @@ NA
 3
 </td>
 <td style="text-align:left;">
-14
+13
 </td>
 <td style="text-align:left;">
 “HP:0001027”
@@ -12253,7 +12211,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0001533”
+“HP:0001519”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -12404,7 +12362,7 @@ NA
 10
 </td>
 <td style="text-align:left;">
-19
+20
 </td>
 <td style="text-align:left;">
 “HP:0001058”
@@ -12413,7 +12371,7 @@ NA
 “computed:best_matches”
 </td>
 <td style="text-align:left;">
-“HP:0012432”
+“HP:0000275”
 </td>
 <td style="text-align:left;">
 “computed:monarch_semsim”
@@ -13006,7 +12964,7 @@ other configurable engine properties.</li>
 <span><span class="co">##  collate  en_US.UTF-8</span></span>
 <span><span class="co">##  ctype    en_US.UTF-8</span></span>
 <span><span class="co">##  tz       UTC</span></span>
-<span><span class="co">##  date     2026-02-16</span></span>
+<span><span class="co">##  date     2026-02-19</span></span>
 <span><span class="co">##  pandoc   3.9 @ /usr/bin/ (via rmarkdown)</span></span>
 <span><span class="co">##  quarto   1.8.27 @ /usr/local/bin/quarto</span></span>
 <span><span class="co">## </span></span>
@@ -13052,7 +13010,7 @@ other configurable engine properties.</li>
 <span><span class="co">##  magrittr       2.0.4    <span style="color: #555555;">2025-09-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
 <span><span class="co">##  MASS           7.3-65   <span style="color: #555555;">2025-02-28</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
 <span><span class="co">##  memoise        2.0.1    <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
-<span><span class="co">##  monarchr     * 2.1.4    <span style="color: #555555;">2026-02-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">##  monarchr     * 2.1.4    <span style="color: #555555;">2026-02-19</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
 <span><span class="co">##  neo2R          2.4.2    <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
 <span><span class="co">##  otel           0.2.0    <span style="color: #555555;">2025-08-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
 <span><span class="co">##  pillar         1.11.1   <span style="color: #555555;">2025-09-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.6.0)</span></span></span>
