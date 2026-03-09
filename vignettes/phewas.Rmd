@@ -1,0 +1,199 @@
+---
+title: "Phenome-Wide Association Study"
+author: "Brian M Schilder"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
+output:
+  rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{monarchr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include=FALSE, message=FALSE}
+options(width = 300)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+# Motivation
+
+Phenome-Wide Association Studies (PHEWAS) seek to understand how genetic variants known to cause one disease can have pleiotropic effects on risk for other diseases as well. While this approach has been widely used in the field, gathering the necessary data to conduct such a study comprehensively is a laborious process. Furthermore, the variant-phenotype associations that are required to perform such PHEWAS are frequently changing as new studies are published. Inconsistencies in the level at which the traits are annotated (e.g. cardiovascular disease vs. its subset cardiomyopathy) . Here, we demonstrate how `monarchr` can be used to perform a comprehensive PHEWAS in four steps that can be run in under XX seconds.
+
+## 1. Get all subtypes of a disease
+
+Get cardiovascular disease parent node MONDO ID:
+
+```{r}
+library(monarchr)
+library(tidygraph)
+
+# Append preferences
+monarch <- monarch_engine()
+preferences <- monarch$preferences
+preferences$category_priority <- c(preferences$category_priority,
+																	 "biolink:SequenceVariant")
+# Search for cardiovascular disorders
+query <- "vascular disorder"
+cvd <- monarch_search(query = query, 
+											category = "biolink:Disease", 
+											preferences = preferences,
+											limit=10) 
+cvd_subtypes <- cvd|> 
+	# activate(nodes) |>
+	# filter(grepl(query, name, ignore.case = TRUE)) |>
+	expand(predicates = "biolink:subclass_of", 
+				 direction = "in",
+			 	 transitive = TRUE) 
+
+cvd_subtypes 
+```
+
+
+## 2. Get all genes and variants associated with disease subtypes
+
+```{r}
+# monarchr::summarize_neighborhood(cvd_subtypes, direction = "in")
+
+cvd_genetics <- cvd_subtypes |>
+	expand(categories = c("biolink:Gene", "biolink:SequenceVariant"), 
+				 predicates = c("biolink:causes",
+				 							  "biolink:gene_associated_with_condition",
+				 							  "biolink:genetically_associated_with"
+				 							 )
+				 )
+
+table(nodes(cvd_genetics)$pcategory)
+```
+
+3. Get other diseases associated with those variants
+ 
+```{r}
+# https://biolink.github.io/biolink-model/related_to_at_instance_level/
+# "in_linkage_disequilibrium_with"
+phewas_hits <- cvd_genetics |> 
+	# Get the diseases associated with these variants
+	filter(pcategory %in% "biolink:SequenceVariant") |> 
+	# Add variants in LD with the original variants
+	expand(predicate = "biolink:in_linkage_disequilibrium_with",
+				 categories = "biolink:SequenceVariant",
+				 direction = "both") |>
+	# Get connections from variants to other diseases
+	expand(predicates = "biolink:causes",
+				 categories = "biolink:Disease", 
+				 direction = "out",
+				 transitive = TRUE
+				 ) |>
+	# Get the genes associated with these new variants
+	expand(predicates = "biolink:is_sequence_variant_of",
+				 categories = "biolink:Gene",
+			   direction = "out",
+				 transitive = TRUE
+				 ) |>
+	# Remove the original CVD diseases
+	filter(!id %in% nodes(cvd_subtypes)$id) |>
+	# Get the subtypes of these diseases
+	expand(predicates = "biolink:subclass_of", 
+				 direction = "in", 
+				 categories = "biolink:Disease", 
+				 transitive = TRUE
+				 ) 
+
+table(nodes(phewas_hits)$pcategory) 
+
+# Plot the PHEWAS hits
+phewas_hits|>
+	activate(nodes) |>
+	filter(!node_is_isolated()) |>
+	plot(layout = "fr")
+```
+
+## Merge and plot
+
+Merge the graphs `cvd_genetics`, `phewas_hits`
+
+```{r}
+kg_all <- kg_join(cvd_genetics, phewas_hits) |>
+	# Add group labels to disease nodes
+	mutate(group = ifelse(pcategory == "biolink:Disease", 
+													 ifelse(id %in% nodes(cvd_subtypes)$id,
+													 			 "Cardiovascular Disorder",
+													 			 "Other Disease"), 
+													 NA)
+						) 
+# Count the number of Diseases in each group
+nodes(kg_all)|>
+	filter(pcategory=="biolink:Disease")|>
+	group_by(group)|>count()
+
+# Compute distance from variant and disease nodes
+get_node_idx <- function(graph, category){
+	which(nodes(graph)$pcategory %in% category)
+}
+variant_nodes <- get_node_idx(kg_all, "biolink:SequenceVariant")
+gene_nodes <- get_node_idx(kg_all, "biolink:Gene")
+disease_nodes <- get_node_idx(kg_all, "biolink:Disease")
+kg_all <- kg_all|>
+	activate(nodes) |>
+	mutate(distance_from_variant = node_distance_to(nodes = variant_nodes, mode = "all"),
+				 distance_from_gene = node_distance_to(nodes = gene_nodes, mode = "all"),
+				 distance_from_disease = node_distance_to(nodes = disease_nodes, mode = "all")) 
+# If a variant is associated with a disease, propagate the relationship to the gene with all the descendants of the disease
+
+
+# Count node distances by category 
+nodes(kg_all)|>
+	group_by(pcategory)|>
+	count(distance_from_gene)|> 
+	arrange(pcategory,distance_from_gene)|>
+	data.table::data.table() 
+
+table(nodes(kg_all)$pcategory)
+table(edges(kg_all)$predicate)
+table((edges(kg_all)|> filter(predicate=="biolink:causes"))$primary_knowledge_source)
+# table(unlist((edges(kg_all)|> filter(predicate=="biolink:causes"))$provided_by))
+table(unlist((edges(kg_all)|> 
+								filter(predicate=="biolink:causes"))$qualifiers),useNA = "always")
+table(unlist((edges(kg_all)|> 
+								filter(predicate=="biolink:causes"))$original_predicate),useNA = "always")
+
+
+# Weight the edges
+# monarchr::kg_edge_weights(kg_all)
+rownames(nodes(kg_all)) <- nodes(kg_all)$id
+
+kg_filt <- kg_all |>
+	# Filter to only nodes that are somewhat close to the genetic assocation
+	# filter(!(pcategory=="biolink:Disease" & distance_from_variant>3) &
+	# 			 !(pcategory=="biolink:Gene" & distance_from_variant>3) 
+	# 		 	 !(pcategory=="biolink:SequenceVariant" & distance_from_disease>=5)
+				 # )|>
+	filter(!(pcategory=="biolink:SequenceVariant" & !node_is_adjacent(to = disease_nodes, mode = "all")) &
+			  	!(pcategory=="biolink:SequenceVariant" & !node_is_adjacent(to = gene_nodes, mode = "all")) &
+				  !(pcategory=="biolink:Gene" & !node_is_adjacent(to = variant_nodes, mode = "all")) &
+ 			 	  !(pcategory=="biolink:Disease" & distance_from_variant>=4) &
+				 	!(pcategory=="biolink:Disease" & distance_from_variant>=4) &
+				  !(pcategory=="biolink:Gene" & distance_from_disease>=6)
+				 ) |>
+	# Drop isolated nodes
+	activate(nodes) |>
+	filter(!node_is_isolated()) 
+
+table(nodes(kg_filt)$pcategory)
+plot(kg_filt, layout = "fr")
+	
+variant_nodes2 <- get_node_idx(kg_filt, "biolink:SequenceVariant")
+# Recompute distance from variant
+	kg_filt |>
+	mutate(adjacent_to_variant = node_is_adjacent(to = variant_nodes2,
+																										 mode = "all")) |>
+	# Remove Gene nodes that aren't directly connected with SequenceVariant nodes anymore
+	filter(!(pcategory=="biolink:Gene" & adjacent_to_variant==FALSE)
+				 ) |>
+	# Drop isolated nodes
+	activate(nodes) |>
+	filter(!node_is_isolated()) |>
+	plot(layout="fr")
+```
+
+

@@ -1,6 +1,18 @@
 ---
 title: "`r read.dcf('DESCRIPTION', fields = 'Package')[1]`"  
-author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE, add_doi = '10.5281/zenodo.14553217')`"
+author: "[![License: MIT + file
+LICENSE](https://img.shields.io/badge/license-MIT%20+%20file%20LICENSE-blue.svg)](https://cran.r-project.org/web/licenses/MIT%20+%20file%20LICENSE)
+[![](https://img.shields.io/badge/doi-10.5281/zenodo.14553217-blue.svg)](https://doi.org/10.5281/zenodo.14553217)
+[![](https://img.shields.io/badge/devel%20version-1.6.2-black.svg)](https://github.com/monarch-initiative/monarchr)
+[![](https://img.shields.io/github/languages/code-size/monarch-initiative/monarchr.svg)](https://github.com/monarch-initiative/monarchr)
+[![](https://img.shields.io/github/last-commit/monarch-initiative/monarchr.svg)](https://github.com/monarch-initiative/monarchr/commits/main)
+<br> [![R build
+status](https://github.com/monarch-initiative/monarchr/workflows/rworkflows/badge.svg)](https://github.com/monarch-initiative/monarchr/actions)
+[![](https://codecov.io/gh/monarch-initiative/monarchr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/monarch-initiative/monarchr)
+<br>  
+<h4>  
+Authors: <i>Shawn O’Neil, Brian Schilder</i>  
+</h4>"
 date: "README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   github_document
@@ -17,7 +29,7 @@ URL <- read.dcf("DESCRIPTION", fields = "URL")[1]
 owner <- tolower(strsplit(URL, "/")[[1]][4])
 ```
 
-## `r pkg`: `r title`
+## ``r pkg``: `r title`
 
 ### `r description`
 

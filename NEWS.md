@@ -1,3 +1,11 @@
+# monarchr 2.99.1
+
+## Changes
+
+* Synced fork with upstream monarch-initiative/monarchr v2.99.0.
+* Removed `rworkflows` dependency.
+* Added GitHub issue templates for bug reports and feature requests (fixes #38).
+
 # monarchr 2.99.0
 
 This is a minor version bump for the purpose of submitting the package to BioConductor.
@@ -51,7 +59,7 @@ This is a minor version bump for the purpose of submitting the package to BioCon
 
 ## Breaking changes
 
-* This breaking release drops support for `drop_unused_query_nodes` in `expand()`, which was both brittle and violated the rule that expansion should return a supergraph of the query 
+* This breaking release drops support for `drop_unused_query_nodes` in `expand()`, which was both brittle and violated the rule that expansion should return a supergraph of the query
 
 ## Bug fixes
 
