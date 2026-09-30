@@ -24,8 +24,9 @@ monarch_semsim(
 \item{include_reverse}{Whether to include the best matches from the target
 graph to the query graph. Default is \code{FALSE}.}
 
-\item{keep_unmatched}{Whether to keep nodes in the target graph that do not
-have a match. Default is \code{FALSE}.}
+\item{keep_unmatched}{Whether to keep nodes from either graph that do not
+have a match (as nodes with no edges). Default is
+\code{FALSE}.}
 }
 \value{
 A tbl_kgx graph with \code{"computed:best_matches"} edges between the
@@ -52,12 +53,14 @@ By default, the function only returns the best matches from the first graph
 to the second graph, and
 removes any nodes that do not have a match. If \code{include_reverse = TRUE}, the
 function also returns
-the best matches from the second graph to the first graph.
+the best matches from the second graph to the first graph. A node whose
+best match shares no common ancestor with it (e.g. a disease node compared
+against phenotypes) is considered unmatched and gets no edge.
 
 The engine attached to the return graph is that of the query.
 }
 \examples{
-\dontshow{if (monarch_engine_check(service = "semsim")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check(service = "semsim")) withAutoprint(\{ # examplesIf}
 
 g1 <- monarch_engine() |>
     fetch_nodes(query_ids = "MONDO:0007947") |>

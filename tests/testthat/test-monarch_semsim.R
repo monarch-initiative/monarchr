@@ -37,13 +37,18 @@ test_that("monarch_semsim works", {
     sim <- monarch_semsim(g1, g2, metric = "jaccard_similarity", include_reverse = TRUE, keep_unmatched = TRUE)
 
     # all query and target nodes will be subjects exactly once in the resulting
-    # edges
+    # edges, except the EDS disease node, which shares no ancestor with any
+    # query phenotype and so is unmatched
     query_target_node_ids <- c(g1 |> activate(nodes) |> pull(id), g2 |> activate(nodes) |> pull(id))
-    expect_equal(sim |> activate(edges) |> pull(subject) |> sort(), query_target_node_ids |> sort())
+    matched_ids <- setdiff(query_target_node_ids, "MONDO:0007522")
+    expect_equal(sim |> activate(edges) |> pull(subject) |> sort(), matched_ids |> sort())
 
-    # the number of edges in the result should equal the number of nodes in the
-    # query graph plus the number of nodes in the target graph
-    expect_equal(edges(sim) |> nrow(), length(query_target_node_ids))
+    # the number of edges in the result should equal the number of matched
+    # nodes
+    expect_equal(edges(sim) |> nrow(), length(matched_ids))
+
+    # with keep_unmatched = TRUE, the unmatched disease node is still present
+    expect_true("MONDO:0007522" %in% (nodes(sim) |> pull(id)))
 
     # make sure the engine of the result is the same as the query graph
     expect_equal(sim |> get_engine(), g1 |> get_engine())

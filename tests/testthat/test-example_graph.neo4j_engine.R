@@ -25,6 +25,6 @@ test_that("example_graph for neo4j engine", {
     expect_true(any("biolink:causes" %in_list% edges(sample)$predicate))
     expect_true(any("biolink:subclass_of" %in_list% edges(sample)$predicate))
     expect_true(any("biolink:associated_with_increased_likelihood_of" %in_list% edges(sample)$predicate))
-    expect_true(any("biolink:treats_or_applied_or_studied_to_treat" %in_list% edges(sample)$predicate))
+    expect_true(any("biolink:applied_to_treat" %in_list% edges(sample)$predicate))
     expect_true(any("biolink:genetically_associated_with" %in_list% edges(sample)$predicate))
 })

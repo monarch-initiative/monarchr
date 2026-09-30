@@ -144,9 +144,10 @@ test_that("expand works as expected", {
     phenos <- g %>% expand(categories = "biolink:PhenotypicFeature")
     expect_contains(10 + -2:2, phenos %>% activate(nodes) %>% data.frame() %>% nrow())
 
-    # whole neighborhood should be 11 nodes
+    # whole neighborhood was ~12 nodes, but now includes a growing number of
+    # ClinVar variants (370+ as of 2026-09), so just check a lower bound
     neighborhood <- g %>% expand()
-    expect_contains(12 + -2:2, neighborhood %>% activate(nodes) %>% data.frame() %>% nrow())
+    expect_gte(neighborhood %>% activate(nodes) %>% data.frame() %>% nrow(), 10)
 
     # there should be 57 phenotypic features connected to this disease and its
     # 2 subtypes
