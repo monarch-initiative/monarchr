@@ -1,6 +1,7 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
+#' @importFrom utils head
 expand_neo4j_engine <- function(engine,
     graph,
     direction = "both",

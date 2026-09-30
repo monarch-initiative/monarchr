@@ -21,6 +21,7 @@
 #' print(g)
 #' @import tidygraph
 #' @import dplyr
+#' @importFrom utils head
 example_graph.file_engine <- function(engine, ...) {
     # first, let's discover the different edge types (predicates) available
     edges_df <- engine$graph |>

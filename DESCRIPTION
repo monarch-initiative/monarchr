@@ -49,7 +49,10 @@ Imports:
     R.utils,
     digest,
     memoise,
-    tidyr
+    tidyr,
+    methods,
+    stats,
+    utils
 Suggests: 
     testthat (>= 3.0.0),
     rmarkdown,
