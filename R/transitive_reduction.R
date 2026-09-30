@@ -3,7 +3,8 @@
 #' Computes the transitive reduction of a graph, treating the specified
 #' predicate as transitive.
 #'
-#' @return Graph with transitive edges added.
+#' @return Graph with redundant (transitively implied) edges of the given
+#'         predicate removed.
 #' @seealso [transitive_closure()], [roll_up()], [transfer()], [descendants()],
 #'          [ancestors()]
 #' @param g The `tbl_kgx` graph to compute on.
@@ -20,7 +21,7 @@
 #'     bind_edges(data.frame(
 #'         from = 2,
 #'         to = 9,
-#'         predicate = "biolink_subclass_of",
+#'         predicate = "biolink:subclass_of",
 #'         primary_knowledge_source = "hand_annotated"
 #'     ))
 #'
@@ -57,6 +58,15 @@ transitive_reduction <- function(g, predicate = "biolink:subclass_of") {
         )
     }
 
+    # note: inside filter(), `predicate` refers to the edge column, so we use
+    # a differently named local variable for the argument
+    p <- predicate
+
+    # if there are no edges to reduce, return the input
+    if (nrow(edges(g) |> filter(predicate == p)) == 0) {
+        return(g)
+    }
+
     # first we make a copy
     active_tbl <- active(g)
     g2 <- g
@@ -64,24 +74,30 @@ transitive_reduction <- function(g, predicate = "biolink:subclass_of") {
     # in the original, remove the predicate edges
     g <- g |>
         activate(edges) |>
-        filter(predicate != predicate)
+        filter(predicate != p)
 
+    # compute the reduction over just the predicate edges, using node ids as
+    # the domain so that the incidence matrix is labeled by id
     df <- g2 |>
         activate(edges) |>
+        filter(predicate == p) |>
         as.data.frame()
     r <- relations::endorelation(
-        domain = lapply(unique(unlist(df[c("from", "to")])), sets::as.set),
-        graph = df[c("from", "to")]
+        domain = lapply(unique(c(df$subject, df$object)), sets::as.set),
+        graph = df[c("subject", "object")]
     )
     mat <- relations::relation_incidence(relations::transitive_reduction(r))
 
-    keep_edges <- which(mat == 1, arr.ind = TRUE) |>
-        as.data.frame() |>
-        rename(from = row, to = col)
+    keep_idx <- which(mat == 1, arr.ind = TRUE)
+    keep_edges <- data.frame(
+        subject = rownames(mat)[keep_idx[, "row"]],
+        object = colnames(mat)[keep_idx[, "col"]]
+    )
 
     g_reduced <- g2 |>
         activate(edges) |>
-        semi_join(keep_edges, by = c("from", "to"))
+        filter(predicate == p) |>
+        semi_join(keep_edges, by = c("subject", "object"))
 
     # merge the original w g_reduced, adding back just the reduction edges
     suppressMessages(g <- kg_join(g, g_reduced), classes = "message") # suppress joining info
