@@ -15,6 +15,7 @@
 #' @inheritParams nodes
 #' @returns Graph object with similarity added as a new edge attribute.
 #' @export
+#' @importFrom rlang :=
 #' @examples
 #' data(eds_marfan_kg)
 #' g <- eds_marfan_kg |>
