@@ -119,7 +119,7 @@ fetch_nodes.neo4j_engine <- function(engine, ..., query_ids = NULL, page_size = 
             total_nodes_fetched <- total_nodes_fetched + last_result_size
             last_max_node_id <- max(nodes(result)$id)
 
-            suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
+            suppressMessages(result_cumulative <- graph_join(result_cumulative, result), classes = "message")
             message("Fetching; fetched", total_nodes_fetched, "of", total_results)
         }
 
