@@ -26,7 +26,7 @@ It returns nodes (no edges) from the Monarch KG, fetched via an instance of
 \code{monarch_engine()}.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 cf_hits <- monarch_search("Cystic fibrosis", category = "biolink:Disease", limit = 5)
 print(cf_hits)
 \dontshow{\}) # examplesIf}

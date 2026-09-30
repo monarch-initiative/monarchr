@@ -50,11 +50,11 @@ If more than one condition parameter is specified, they are combined with
 library(tidygraph)
 library(dplyr)
 
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 monarch_engine() |>
     fetch_nodes(query_ids = c("MONDO:0007525", "MONDO:0007526"))
 \dontshow{\}) # examplesIf}
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # a large query
 monarch_engine() |>
     fetch_nodes("biolink:Disease" \%in_list\% category)

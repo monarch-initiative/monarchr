@@ -31,7 +31,7 @@ data(eds_marfan_kg)
 g <- eds_marfan_kg |> example_graph()
 print(g)
 
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 # prints a readable summary and returns a list of dataframes
 g <- monarch_engine() |> example_graph()
 print(g)

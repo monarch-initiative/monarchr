@@ -64,7 +64,7 @@ overrides \code{search_nodes()} to use the Monarch search API, see
 \code{monarch_engine()} for details).
 }
 \examples{
-\dontshow{if (neo4j_engine_check("https://neo4j.monarchinitiative.org")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (neo4j_engine_check("https://neo4j.monarchinitiative.org")) withAutoprint(\{ # examplesIf}
 library(tidygraph)
 library(dplyr)
 

@@ -26,7 +26,7 @@ This function takes a Cypher query and parameters, executes the query using
 the given engine, and returns the result as a tbl_kgx graph.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 engine <- monarch_engine()
 
 query <- "MATCH (n) WHERE n.id IN $ids RETURN n LIMIT 10"

@@ -24,7 +24,7 @@ to satisfy these criteria, it is not random or even pseudo-random, and it
 may not be connected.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 # Retrieve and print an example graph:
 g <- monarch_engine() |> example_graph()
 print(g)

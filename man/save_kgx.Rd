@@ -24,7 +24,7 @@ that if
 any engine is associated with the graph it is not saved.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 phenos <- monarch_engine() |>
     fetch_nodes(query_ids = "MONDO:0007525") |>
     expand(
