@@ -157,14 +157,17 @@ fibrosis_disease_matches
 
 # Expanding
 
-From a set of nodes (and possibly edges that connect them), we can "expand" by fetching their collective neighborhood from the KG engine. Here we fetch 10 Gene nodes, and in the first call to `expand()` fetch nodes connected by `biolink:causes` or `biolink:gene_associated_with_condition` predicates. We then take the resulting graph (which contains both disease and gene nodes), and fetch the neighborhood of nodes with category `biolink:PhenotypicFeature`. Since there are many such results, we add a `limit` for the visualization.^[The `limit` parameter for `expand()` is more complex than for `fetch_nodes()`, because the query graph also contains edges which may be part of the neighborhood that would be fetched; `expand()` attempts to fetch `limit` new edges that are not part of the query already. Further, unlike in `fetch_nodes()` where nodes are ordered by ID, edges returned by `expand()` have no explicit order, and results with `limit` should not be considered reproducible or representative.]
+From a set of nodes (and possibly edges that connect them), we can "expand" by fetching their collective neighborhood from the KG engine. Here we fetch two Niemann-Pick disease nodes, and in the first call to `expand()` fetch genes connected by `biolink:causes` or `biolink:gene_associated_with_condition` predicates (we restrict to `biolink:Gene` with `categories`, since many sequence variants are also connected by `biolink:causes`). We then take the resulting graph (which contains both disease and gene nodes), and fetch the neighborhood of nodes with category `biolink:PhenotypicFeature`. Since there are many such results, we add a `limit` for the visualization.^[The `limit` parameter for `expand()` is more complex than for `fetch_nodes()`, because the query graph also contains edges which may be part of the neighborhood that would be fetched; `expand()` attempts to fetch `limit` new edges that are not part of the query already. Further, unlike in `fetch_nodes()` where nodes are ordered by ID, edges returned by `expand()` have no explicit order, and results with `limit` should not be considered reproducible or representative.]
 
 ```{r}
 # MONDO:0018982, MONDO:0011871: Neimann-Pick type B and C
 
 g <- monarch |>
     fetch_nodes(query_ids = c("MONDO:0018982", "MONDO:0011871")) |>
-    expand(predicates = c("biolink:causes", "biolink:gene_associated_with_condition")) |>
+    expand(
+        predicates = c("biolink:causes", "biolink:gene_associated_with_condition"),
+        categories = "biolink:Gene"
+    ) |>
     expand(categories = c("biolink:PhenotypicFeature"), limit = 10)
 
 plot(g)
