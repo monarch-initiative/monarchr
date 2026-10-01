@@ -1,0 +1,203 @@
+---
+title: "Finding Diseases with Shared Genetic Causes"
+author: "Brian M Schilder and Shawn T O'Neil"
+date: "Vignette updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
+output:
+  rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Finding Diseases with Shared Genetic Causes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include=FALSE, message=FALSE}
+options(width = 300)
+
+# Run live/networked chunks only when building pkgdown (or when explicitly forced).
+live_eval <- identical(tolower(Sys.getenv("IN_PKGDOWN", "false")), "true") ||
+    identical(tolower(Sys.getenv("MONARCHR_VIGNETTE_EVAL", "false")), "true")
+
+knitr::opts_chunk$set(eval = live_eval, echo = TRUE, fig.width = 10, message = FALSE, warning = FALSE)
+```
+
+# Motivation
+
+Genes and variants that cause one disease sometimes contribute to others as well,
+a phenomenon known as pleiotropy. Phenome-wide association studies (PheWAS)
+investigate this statistically, testing variants for association with many
+phenotypes across large cohorts. Before (or alongside) such a study, it is useful
+to ask what is already known: which other diseases share curated genetic causes
+with a disease of interest?
+
+The Monarch KG integrates curated gene- and variant-disease relationships from
+sources such as ClinVar, OMIM, Orphanet, and ClinGen, along with the disease
+hierarchy of the Mondo ontology. Here we use `monarchr` to start from a disease
+(cardiomyopathy), collect its subtypes and their known genetic causes, find other
+diseases attributed to the same variants, and summarize which genes link them.
+
+Note that this is a knowledge-graph lookup, not a statistical association study:
+results reflect curated, largely Mendelian, causal annotations, and are best
+treated as a starting point for hypotheses about shared genetics rather than as
+evidence of association. The full analysis takes a few minutes to run.
+
+## 1. Get all subtypes of a disease
+
+First we find the Mondo identifier for cardiomyopathy. A search returns several
+related terms, so we pick the general one, `MONDO:0004994`, and fetch it:
+
+```{r}
+library(monarchr)
+library(tidygraph)
+library(dplyr)
+
+monarch_search("cardiomyopathy", category = "biolink:Disease", limit = 5)
+
+cardiomyopathy <- monarch_engine() |>
+    fetch_nodes(query_ids = "MONDO:0004994")
+```
+
+Then we collect all of its subtypes by following `biolink:subclass_of` edges
+inward, transitively:
+
+```{r}
+cm_subtypes <- cardiomyopathy |>
+    expand(
+        predicates = "biolink:subclass_of",
+        direction = "in",
+        transitive = TRUE
+    )
+
+cm_subtypes
+```
+
+## 2. Get genes and variants known to cause these diseases
+
+Next we add genes and variants connected to any of these diseases by a causal or
+genetic-association predicate. Most of the variants come from ClinVar:
+
+```{r}
+cm_genetics <- cm_subtypes |>
+    expand(
+        categories = c("biolink:Gene", "biolink:SequenceVariant"),
+        predicates = c(
+            "biolink:causes",
+            "biolink:gene_associated_with_condition",
+            "biolink:genetically_associated_with"
+        )
+    )
+
+table(nodes(cm_genetics)$pcategory)
+
+# where the causal edges come from
+edges(cm_genetics) |>
+    filter(predicate == "biolink:causes") |>
+    count(primary_knowledge_source)
+```
+
+## 3. Find other diseases caused by the same variants
+
+Starting from just the variants, we follow `biolink:causes` edges out to the
+diseases they cause, and `biolink:is_sequence_variant_of` edges out to the genes
+they belong to. Then we remove the cardiomyopathies we started with, leaving the
+*other* diseases these variants are known to cause:
+
+```{r}
+shared_hits <- cm_genetics |>
+    filter(pcategory == "biolink:SequenceVariant") |>
+    expand(
+        predicates = "biolink:causes",
+        categories = "biolink:Disease",
+        direction = "out"
+    ) |>
+    expand(
+        predicates = "biolink:is_sequence_variant_of",
+        categories = "biolink:Gene",
+        direction = "out"
+    ) |>
+    filter(!id %in% nodes(cm_subtypes)$id)
+
+table(nodes(shared_hits)$pcategory)
+```
+
+## 4. Summarize shared genes
+
+With thousands of variant nodes, plotting this graph directly isn't very
+informative. Instead we collapse each *gene ← variant → disease* path into a
+single gene-disease link, counting the variants that support it. We first merge
+the two graphs so that we have the variants' links to both the cardiomyopathies
+and the other diseases:
+
+```{r}
+kg_all <- kg_join(cm_genetics, shared_hits)
+
+variant_gene <- edges(kg_all) |>
+    filter(predicate == "biolink:is_sequence_variant_of") |>
+    select(variant = subject, gene = object)
+
+variant_disease <- edges(kg_all) |>
+    filter(predicate == "biolink:causes", subject %in% variant_gene$variant) |>
+    select(variant = subject, disease = object)
+
+gene_disease <- inner_join(variant_gene, variant_disease,
+    by = "variant", relationship = "many-to-many"
+) |>
+    count(gene, disease, name = "n_variants") |>
+    mutate(is_cardiomyopathy = disease %in% nodes(cm_subtypes)$id)
+```
+
+A gene is *shared* if its variants cause at least one cardiomyopathy and at least
+one other disease. The genes shared with the most other diseases include
+well-known pleiotropic genes such as *LMNA*, *TTN*, and the RAS-pathway genes
+(*KRAS*, *HRAS*, *BRAF*, *PTPN11*):
+
+```{r}
+gene_names <- nodes(kg_all) |>
+    select(gene = id, symbol = name)
+
+shared_genes <- gene_disease |>
+    group_by(gene) |>
+    summarize(
+        n_cardiomyopathies = sum(is_cardiomyopathy),
+        n_other_diseases = sum(!is_cardiomyopathy),
+        n_variants = sum(n_variants)
+    ) |>
+    filter(n_cardiomyopathies > 0, n_other_diseases > 0) |>
+    left_join(gene_names, by = "gene") |>
+    arrange(desc(n_other_diseases))
+
+shared_genes
+```
+
+Finally, we build a small graph of just these genes and the diseases they link,
+and plot it. Each gene-disease edge here is computed, standing in for one or more
+variants:
+
+```{r, fig.height = 9}
+shared_edges <- gene_disease |>
+    filter(gene %in% shared_genes$gene) |>
+    transmute(
+        subject = gene,
+        predicate = "computed:shared_variant_cause",
+        object = disease,
+        primary_knowledge_source = "computed",
+        n_variants
+    )
+
+shared_nodes <- nodes(kg_all) |>
+    filter(id %in% c(shared_edges$subject, shared_edges$object)) |>
+    mutate(group = case_when(
+        pcategory == "biolink:Gene" ~ "Gene",
+        id %in% nodes(cm_subtypes)$id ~ "Cardiomyopathy",
+        TRUE ~ "Other disease"
+    ))
+
+shared_graph <- tbl_kgx(nodes = shared_nodes, edges = shared_edges)
+
+plot(shared_graph, layout = "fr", node_color = group, edge_color = NULL)
+```
+
+Clusters in this plot correspond to familiar groups of genetic disease: the
+RASopathies (Noonan syndrome and related disorders) around the RAS-pathway genes,
+limb-girdle and other muscular dystrophies around sarcomere and dystrophin-complex
+genes, and mitochondrial disorders around mitochondrially encoded genes.

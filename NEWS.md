@@ -8,6 +8,7 @@
 
 ## Other changes
 
+* New vignette, "Finding Diseases with Shared Genetic Causes", adapted from an analysis by @bschilder.
 * Added code coverage reporting via Codecov.
 * Added tests for previously untested functions.
 * Expanded the package `Description`.
