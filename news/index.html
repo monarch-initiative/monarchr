@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.1</span>
       </span>
     </div>
 
@@ -71,6 +71,26 @@
       <small>Source: <a href="https://github.com/monarch-initiative/monarchr/blob/codecov/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.99.1" id="monarchr-2991">monarchr 2.99.1<a class="anchor" aria-label="anchor" href="#monarchr-2991"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-2-99-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-99-1"></a></h3>
+<ul><li>
+<code><a href="../reference/transitive_reduction.html">transitive_reduction()</a></code> now only reduces edges of the given <code>predicate</code>, and correctly maps results back to graph nodes (<a href="https://github.com/monarch-initiative/monarchr/issues/90" class="external-link">#90</a>).</li>
+<li>
+<code><a href="../reference/monarch_semsim.html">monarch_semsim()</a></code> no longer errors when a best match has no common ancestor; such nodes are now treated as unmatched.</li>
+<li>
+<code><a href="../reference/monarch_search.html">monarch_search()</a></code> and <code><a href="../reference/monarch_semsim.html">monarch_semsim()</a></code> retry once after a short pause on transient server errors (502, 503, 504).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-changes-2-99-1">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-2-99-1"></a></h3>
+<ul><li>Added code coverage reporting via Codecov.</li>
+<li>Added tests for previously untested functions.</li>
+<li>Expanded the package <code>Description</code>.</li>
+<li>Added GitHub issue templates for bug reports and feature requests (<a href="https://github.com/monarch-initiative/monarchr/issues/38" class="external-link">#38</a>; thanks <a href="https://github.com/bschilder" class="external-link">@bschilder</a>).</li>
+<li>Fixed <code>R CMD check</code> notes.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.99.0" id="monarchr-2990">monarchr 2.99.0<a class="anchor" aria-label="anchor" href="#monarchr-2990"></a></h2>
 <p>This is a minor version bump for the purpose of submitting the package to BioConductor.</p>

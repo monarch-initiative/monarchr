@@ -13,7 +13,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Monarch Knowledge Graph Queries">
-<meta property="og:description" content="R package for easy access, manipulation, and analysis of Monarch KG data Resources.">
+<meta property="og:description" content="monarchr provides a tidy interface for querying and analyzing biomedical knowledge graphs (KGs), including the Monarch Initiative KG, which integrates data on biological entities such as genes, disease, and phenotypes, and the relationships between them within and across species. The same set of functions queries the Monarch-hosted Neo4j database, other Neo4j databases, or local files in the KGX format (such as those available from KG-Hub), fetching nodes by identifier or property and expanding along edges by category and predicate. Results are tidygraph objects that can be manipulated with dplyr verbs and joined with other graphs. The package also provides transitive closure and reduction, aggregation over ontology hierarchies, and graph visualization.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">monarchr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.1</span>
       </span>
     </div>
 
@@ -100,13 +100,13 @@
 <br>
 Authors: <i>Shawn O’Neil, Brian Schilder, National Institutes of Health O’Neil</i><br><a class="anchor" aria-label="anchor" href="#monarchr-1"></a>
 </h4>
-<p>README updated: <i>Sep-30-2026</i></p>
+<p>README updated: <i>Oct-01-2026</i></p>
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
 <div class="section level2">
 <h2 id="monarchr-monarch-knowledge-graph-queries">monarchr: Monarch Knowledge Graph Queries<a class="anchor" aria-label="anchor" href="#monarchr-monarch-knowledge-graph-queries"></a>
 </h2>
 <div class="section level3">
-<h3 id="r-package-for-easy-access-manipulation-and-analysis-of-monarch-kg-data-resources">R package for easy access, manipulation, and analysis of Monarch KG data Resources.<a class="anchor" aria-label="anchor" href="#r-package-for-easy-access-manipulation-and-analysis-of-monarch-kg-data-resources"></a>
+<h3 id="monarchr-provides-a-tidy-interface-for-querying-and-analyzing-biomedical-knowledge-graphs-kgs-including-the-monarch-initiative-kg-which-integrates-data-on-biological-entities-such-as-genes-disease-and-phenotypes-and-the-relationships-between-them-within-and-across-species-the-same-set-of-functions-queries-the-monarch-hosted-neo4j-database-other-neo4j-databases-or-local-files-in-the-kgx-format-such-as-those-available-from-kg-hub-fetching-nodes-by-identifier-or-property-and-expanding-along-edges-by-category-and-predicate-results-are-tidygraph-objects-that-can-be-manipulated-with-dplyr-verbs-and-joined-with-other-graphs-the-package-also-provides-transitive-closure-and-reduction-aggregation-over-ontology-hierarchies-and-graph-visualization">monarchr provides a tidy interface for querying and analyzing biomedical knowledge graphs (KGs), including the Monarch Initiative KG, which integrates data on biological entities such as genes, disease, and phenotypes, and the relationships between them within and across species. The same set of functions queries the Monarch-hosted Neo4j database, other Neo4j databases, or local files in the KGX format (such as those available from KG-Hub), fetching nodes by identifier or property and expanding along edges by category and predicate. Results are tidygraph objects that can be manipulated with dplyr verbs and joined with other graphs. The package also provides transitive closure and reduction, aggregation over ontology hierarchies, and graph visualization.<a class="anchor" aria-label="anchor" href="#monarchr-provides-a-tidy-interface-for-querying-and-analyzing-biomedical-knowledge-graphs-kgs-including-the-monarch-initiative-kg-which-integrates-data-on-biological-entities-such-as-genes-disease-and-phenotypes-and-the-relationships-between-them-within-and-across-species-the-same-set-of-functions-queries-the-monarch-hosted-neo4j-database-other-neo4j-databases-or-local-files-in-the-kgx-format-such-as-those-available-from-kg-hub-fetching-nodes-by-identifier-or-property-and-expanding-along-edges-by-category-and-predicate-results-are-tidygraph-objects-that-can-be-manipulated-with-dplyr-verbs-and-joined-with-other-graphs-the-package-also-provides-transitive-closure-and-reduction-aggregation-over-ontology-hierarchies-and-graph-visualization"></a>
 </h3>
 <p><code>monarchr</code> provides a tidy interface to data hosted at <a href="https://monarchinitiative.org" class="external-link uri">https://monarchinitiative.org</a>, and other knowledge graphs in KGX format (e.g. those at <a href="https://kghub.org/" class="external-link">KGHub</a>).</p>
 <ul>
