@@ -114,7 +114,7 @@ of Niemann-Pick disease, and all known causal genes.
 npc_genes <- e |>
     fetch_nodes(name == "Niemann-Pick disease") |>
     descendants() |>
-    expand(predicates = "biolink:causes")
+    expand(predicates = "biolink:causes", categories = "biolink:Gene")
 
 plot(npc_genes)
 ```
