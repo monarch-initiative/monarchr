@@ -1,3 +1,19 @@
+# monarchr 2.99.1
+
+## Bug fixes
+
+* `transitive_reduction()` now only reduces edges of the given `predicate`, and correctly maps results back to graph nodes (#90).
+* `monarch_semsim()` no longer errors when a best match has no common ancestor; such nodes are now treated as unmatched.
+* `monarch_search()` and `monarch_semsim()` retry once after a short pause on transient server errors (502, 503, 504).
+
+## Other changes
+
+* Added code coverage reporting via Codecov.
+* Added tests for previously untested functions.
+* Expanded the package `Description`.
+* Added GitHub issue templates for bug reports and feature requests (#38; thanks @bschilder).
+* Fixed `R CMD check` notes.
+
 # monarchr 2.99.0
 
 This is a minor version bump for the purpose of submitting the package to BioConductor.

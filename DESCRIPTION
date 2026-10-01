@@ -2,9 +2,19 @@ Package: monarchr
 Type: Package
 Depends: R (>= 4.4.0)
 Title: Monarch Knowledge Graph Queries
-Description: R package for easy access, manipulation, and analysis of
-		Monarch KG data Resources.
-Version: 2.99.0
+Description: monarchr provides a tidy interface for querying and analyzing
+    biomedical knowledge graphs (KGs), including the Monarch Initiative KG,
+    which integrates data on biological entities such as genes, disease, and 
+    phenotypes, and the
+    relationships between them within and across species. The same set of functions
+    queries the Monarch-hosted Neo4j database, other Neo4j databases, or
+    local files in the KGX format (such as those available from KG-Hub),
+    fetching nodes by identifier or property and expanding along edges by
+    category and predicate. Results are tidygraph objects that can be
+    manipulated with dplyr verbs and joined with other graphs. The package
+    also provides transitive closure and reduction, aggregation over
+    ontology hierarchies, and graph visualization.
+Version: 2.99.1
 URL: https://github.com/monarch-initiative/monarchr
 BugReports: https://github.com/monarch-initiative/monarchr/issues
 Authors@R:
