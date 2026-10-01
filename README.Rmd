@@ -1,6 +1,6 @@
 ---
 title: "`r read.dcf('DESCRIPTION', fields = 'Package')[1]`"  
-author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE, add_doi = '10.5281/zenodo.14553217')`"
+author: "`r rworkflows::use_badges(branch='main', add_hex = FALSE, add_codecov_graphs = FALSE, add_authors = FALSE, add_doi = '10.5281/zenodo.14553217')` <h4>Authors: <i>`r p <- eval(parse(text = read.dcf('DESCRIPTION', fields = 'Authors@R')[1])); paste(format(p[vapply(p, function(x) 'aut' %in% x$role, logical(1))], include = c('given', 'family')), collapse = ', ')`</i></h4>"
 date: "README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i>"
 output:
   github_document
@@ -19,13 +19,12 @@ owner <- tolower(strsplit(URL, "/")[[1]][4])
 
 ## `r pkg`: `r title`
 
-### `r description`
-
-`monarchr` provides a tidy interface to data hosted at
-<https://monarchinitiative.org>, and other knowledge graphs in KGX format (e.g. those at [KGHub](https://kghub.org/)).
+`r description`
 
 -   [Website](https://monarch-initiative.github.io/monarchr/)
 -   [Get started](https://monarch-initiative.github.io/monarchr/articles/monarchr.html)
+-   [Monarch Initiative](https://monarchinitiative.org)
+-   [KG-Hub](https://kghub.org/) (more knowledge graphs in KGX format)
 
 <!-- If you use ``r pkg``, please cite:  -->
 
