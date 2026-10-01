@@ -10,6 +10,7 @@
 #' @inheritParams nodes
 #' @returns Graph object with centrality added as a new node attribute.
 #' @export
+#' @importFrom rlang :=
 #' @importFrom tidygraph active
 #' @importFrom tidygraph activate
 #' @examples

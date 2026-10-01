@@ -13,6 +13,7 @@
 #' @import tidygraph
 #' @import dplyr
 #' @export
+#' @importFrom rlang :=
 #' @examples
 #' data(eds_marfan_kg)
 #' g <- eds_marfan_kg |>

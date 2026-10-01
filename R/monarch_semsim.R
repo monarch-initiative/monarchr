@@ -17,7 +17,9 @@
 #' to the second graph, and
 #' removes any nodes that do not have a match. If `include_reverse = TRUE`, the
 #' function also returns
-#' the best matches from the second graph to the first graph.
+#' the best matches from the second graph to the first graph. A node whose
+#' best match shares no common ancestor with it (e.g. a disease node compared
+#' against phenotypes) is considered unmatched and gets no edge.
 #'
 #' The engine attached to the return graph is that of the query.
 #'
@@ -28,8 +30,9 @@
 #'               `"jaccard_similarity"` and `"phenodigm_score"`.
 #' @param include_reverse Whether to include the best matches from the target
 #'                        graph to the query graph. Default is `FALSE`.
-#' @param keep_unmatched Whether to keep nodes in the target graph that do not
-#'                       have a match. Default is `FALSE`.
+#' @param keep_unmatched Whether to keep nodes from either graph that do not
+#'                       have a match (as nodes with no edges). Default is
+#'                       `FALSE`.
 #' @return A tbl_kgx graph with `"computed:best_matches"` edges between the
 #'         nodes of the two input graphs and columns for
 #'         `monarch_semsim_metric`, `monarch_semsim_score`, and
@@ -92,11 +95,8 @@ monarch_semsim <- function(query_graph,
         "metric" = metric
     )
 
-    response <- httr::POST(api_url, body = params, encode = "json")
-
-    if (response$status_code != 200) {
-        stop(response$status_code, " ", httr::http_status(response$status_code)$message)
-    }
+    # errors if the response is not 200 (after one retry on gateway errors)
+    response <- monarch_api_request("POST", api_url, body = params, encode = "json")
 
     response_content <- httr::content(response, "parsed")
 
@@ -106,33 +106,17 @@ monarch_semsim <- function(query_graph,
     # $ancestor_id entry that might be of use $object_best_matches -> named
     # list with names being object IDs, same as above
 
-    # parse subject best matches
-    subject_best_matches <- response_content$subject_best_matches
-    subject_best_matches <- lapply(seq_along(subject_best_matches), function(i) {
-        x <- subject_best_matches[[i]]
-        name <- names(subject_best_matches)[i]
-        data.frame(
-            subject = name,
-            predicate = "computed:best_matches",
-            primary_knowledge_source = "computed:monarch_semsim",
-            object = x$match_target,
-            monarch_semsim_metric = metric,
-            monarch_semsim_score = x$score,
-            monarch_semsim_ancestor_id = x$similarity$ancestor_id
-        )
-    })
-
-    subject_best_matches <- do.call(rbind, subject_best_matches)
-    keep_edges_df <- subject_best_matches
-
-    if (include_reverse) {
-        # parse object best matches
-        object_best_matches <- response_content$object_best_matches
-        object_best_matches <- lapply(seq_along(object_best_matches), function(i) {
-            x <- object_best_matches[[i]]
-            name <- names(object_best_matches)[i]
+    # convert a list of best matches (named by source ID) to an edge data
+    # frame; a "best match" with no common ancestor (score 0) isn't really a
+    # match, so those are dropped (and handled by keep_unmatched)
+    parse_best_matches <- function(best_matches) {
+        edges <- lapply(seq_along(best_matches), function(i) {
+            x <- best_matches[[i]]
+            if (is.null(x$similarity$ancestor_id)) {
+                return(NULL)
+            }
             data.frame(
-                subject = name,
+                subject = names(best_matches)[i],
                 predicate = "computed:best_matches",
                 primary_knowledge_source = "computed:monarch_semsim",
                 object = x$match_target,
@@ -141,9 +125,13 @@ monarch_semsim <- function(query_graph,
                 monarch_semsim_ancestor_id = x$similarity$ancestor_id
             )
         })
+        do.call(rbind, edges)
+    }
 
-        object_best_matches <- do.call(rbind, object_best_matches)
-        keep_edges_df <- rbind(keep_edges_df, object_best_matches)
+    keep_edges_df <- parse_best_matches(response_content$subject_best_matches)
+
+    if (include_reverse) {
+        keep_edges_df <- rbind(keep_edges_df, parse_best_matches(response_content$object_best_matches))
     }
 
     if (keep_unmatched) {

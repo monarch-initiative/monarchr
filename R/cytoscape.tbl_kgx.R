@@ -68,6 +68,7 @@ color_cats <- function(input, num_colors = 16, levels_only = TRUE) {
 #'
 #' @import tidygraph
 #' @import dplyr
+#' @importFrom stats setNames
 cytoscape.tbl_kgx <- function(g, ...) {
     if (!requireNamespace("RCy3", quietly = TRUE)) {
         stop(

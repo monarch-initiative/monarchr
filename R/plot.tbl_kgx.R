@@ -33,6 +33,7 @@
 #'     expand(categories = "biolink:Gene")
 #' plot(g)
 #' @export
+#' @importFrom rlang :=
 plot.tbl_kgx <- function(x,
     ...,
     layout = "auto",

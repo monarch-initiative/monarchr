@@ -12,7 +12,8 @@ transitive_reduction(g, predicate = "biolink:subclass_of")
 \item{predicate}{The edge predicate to reduce over.}
 }
 \value{
-Graph with transitive edges added.
+Graph with redundant (transitively implied) edges of the given
+predicate removed.
 }
 \description{
 Computes the transitive reduction of a graph, treating the specified
@@ -29,7 +30,7 @@ g <- eds_marfan_kg |>
     bind_edges(data.frame(
         from = 2,
         to = 9,
-        predicate = "biolink_subclass_of",
+        predicate = "biolink:subclass_of",
         primary_knowledge_source = "hand_annotated"
     ))
 

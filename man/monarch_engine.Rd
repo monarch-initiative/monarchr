@@ -52,7 +52,7 @@ but these can be overridden by the user.
 The \code{monarch_engine()} overrides \code{search_nodes()} to use the Monarch search API, so setting \code{node_search_properties} in the preferences will not affect the search behavior. To use regex-based searching with the Monarch Neo4j instance, use \code{neo4j_engine()} instead and specify the Monarch Neo4j URL (https://neo4j.monarchinitiative.org).
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 library(tidygraph)
 library(dplyr)
 

@@ -40,7 +40,7 @@ transitive_closure <- function(g, predicate = "biolink:subclass_of") {
 
     with_downstream <- g |>
         activate(nodes) |>
-        mutate(downstream_nodes = roll_down(id, include_self = FALSE, predicate = predicate)) |>
+        mutate(downstream_nodes = roll_down(id, include_self = FALSE, predicates = predicate)) |>
         filter(!is.na(downstream_nodes))
 
     # create a new edge df... start by getting the nodes and the list col

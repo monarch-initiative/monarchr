@@ -48,13 +48,8 @@ monarch_search <- function(query,
         params$category <- category
     }
 
-    # put the httr::GET call in a trycatch block to handle errors
-    response <- httr::GET(api_url, query = flatten_body_for_httr(params))
-
-    # if the response is not 200, throw an error
-    if (response$status_code != 200) {
-        stop(response$status_code, " ", httr::http_status(response$status_code)$message)
-    }
+    # errors if the response is not 200 (after one retry on gateway errors)
+    response <- monarch_api_request("GET", api_url, query = flatten_body_for_httr(params))
 
     response_content <- httr::content(response, "parsed")
     total_available <- response_content$total

@@ -51,7 +51,7 @@ engine is used; if the first parameter is a query graph, the most recent
 engine associated with the graph is used.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 ## Using Monarch (hosted)
 phenos <- monarch_engine() |>
     fetch_nodes(query_ids = "MONDO:0007525") |>

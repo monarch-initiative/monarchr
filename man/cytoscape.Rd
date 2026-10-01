@@ -27,7 +27,7 @@ the Cytoscape application. This function requires that Cytoscape is installed
 and running independently of the R session.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 data(eds_marfan_kg)
 g <- eds_marfan_kg |>
     fetch_nodes(query_ids = "MONDO:0020066") |>

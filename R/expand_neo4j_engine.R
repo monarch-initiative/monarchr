@@ -1,6 +1,7 @@
 #' @import tidygraph
 #' @import dplyr
 #' @importFrom assertthat assert_that
+#' @importFrom utils head
 expand_neo4j_engine <- function(engine,
     graph,
     direction = "both",
@@ -156,7 +157,7 @@ expand_neo4j_engine <- function(engine,
             ## main work: keep track of max relationship fetched, update
             #running graph
             last_max_relationship_id <- max(attr(result, "relationship_ids"))
-            suppressMessages(result_cumulative <- graph_join(result_cumulative, result), class = "message")
+            suppressMessages(result_cumulative <- graph_join(result_cumulative, result), classes = "message")
             total_edges_fetched <- total_edges_fetched + last_result_size
 
             ## which new edges (not present in the query graph) did we fetch?

@@ -7,6 +7,7 @@
 #' @returns A numeric value representing the proportion of zero
 #'    values in the graph/matrix.
 #' @export
+#' @importFrom methods is
 #' @examples
 #' ## Using example KGX file packaged with monarchr
 #' data(eds_marfan_kg)

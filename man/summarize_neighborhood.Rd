@@ -46,7 +46,7 @@ neighborhood, using the direction parameter. The default is "both", which
 includes both incoming and outgoing edges.
 }
 \examples{
-\dontshow{if (monarch_engine_check()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (monarch_engine_check()) withAutoprint(\{ # examplesIf}
 monarch_search("fanconi anemia", limit = 5) |>
     summarize_neighborhood(direction = "both", summarize = "edges")
 \dontshow{\}) # examplesIf}
